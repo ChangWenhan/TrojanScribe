@@ -1,0 +1,10 @@
+# experiment data & caches (not part of the code release)
+data/
+results/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.ipynb_checkpoints/
+*.log
+.DS_Store

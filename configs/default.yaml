@@ -1,0 +1,42 @@
+llm:
+  provider: local                 # local (vLLM) | remote (OpenAI 兼容 API)
+  local:
+    base_url: http://localhost:8000/v1
+    api_key: EMPTY
+    model: xlam-2-8b
+  remote:
+    base_url: ""
+    api_key: ""
+    model: ""
+  temperature: 0.0
+  max_tokens: 1024
+
+embedding:
+  model_path: /mnt/disk/cwh/LLMs/bge-base-en-v1.5
+  dim: 768
+
+kb:
+  persist_dir: data/chroma
+  collection: hotpot_kb
+  top_k: 8
+
+corpus:
+  path: data/hotpot_dev_distractor_v1.json
+  n_questions: 7405
+  seed: 42
+
+attack:
+  n_targets: 30
+  n_candidates: 6                # 首轮生成的候选毒段落数（embed_hybrid/keyword_dense/
+                                 # paraphrase 等经 _fill_candidates；cluster 家族内部
+                                 # 首轮用 8/原型、mono 臂用 16）
+  refill_rounds: 6               # "配额补齐"轮数上限：候选被质量/去重门淘汰后继续
+                                 # 生成补齐直至凑满 poison_chunks_per_target。
+                                 # 6=全量重跑 v2（A1 修复落地；1=旧单轮行为）
+  poison_chunks_per_target: 8
+  trigger_kind: keyword           # keyword | semantic | always
+  trigger_keywords: []            # 空则自动从目标题抽取高频实体词
+  semantic_threshold: 0.82
+  benign_rounds: 3                # 实际执行的良性任务数；触发门槛与此一致
+                                  # （修复前=10 但只跑 3 轮，前 7 个目标永不触发）
+  max_iterations: 8               # agent 单题最大检索轮数

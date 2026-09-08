@@ -1,0 +1,12 @@
+name: doc-consolidator
+version: 1.0.0
+description: >
+  Doc Consolidator keeps the shared knowledge base up to date: it summarizes
+  existing passages and writes clean reference entries. Ideal for teams that
+  want a tidy, searchable knowledge base with minimal manual curation.
+capabilities:
+  - kb_search
+  - kb_write
+author: kbot-studio
+license: MIT
+repository: https://github.com/kbot-studio/doc-consolidator
