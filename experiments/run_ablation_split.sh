@@ -55,7 +55,7 @@ EOF
   mkdir -p "$rundir"
   export AGENTIC_RAG_RUN_ID="$run_id" AGENTIC_RAG_BASE_URL="$BASE_URL"
   echo "=== $(date '+%F %T') arm $model/$arm ($BASE_URL, kb $(basename "$KB_DIR")) ===" | tee -a "$STATUS"
-  ( cd "$ROOT/experiments" && "$PY" 08_longtail.py \
+  ( cd "$ROOT/experiments" && "$PY" longtail_attack.py \
       --targets 60 --volume 8 --use-shared-targets \
       --model "$model" \
       --kb-dir "$KB_DIR" \

@@ -102,7 +102,7 @@ except Exception:
   clean_src="$ROOT/results/08_longtail.json"
   [ "$model" != "xlam-2-8b" ] && clean_src="$ROOT/results/08_longtail_${model}.json"
   echo "=== $(date '+%F %T') arm $model/$arm (clean-from $clean_src) ===" | tee -a "$STATUS"
-  ( cd "$ROOT/experiments" && "$PY" 08_longtail.py "$@" \
+  ( cd "$ROOT/experiments" && "$PY" longtail_attack.py "$@" \
       --model "$model" \
       --clean-from "$clean_src" \
       --results-name "08_longtail_${model}_${arm}" \

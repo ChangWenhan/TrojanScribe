@@ -1,6 +1,6 @@
 #!/bin/bash
 # ReAct baselines on the default victim (xlam-2-8b): serve -> smoke ->
-# experiments/14_react_baselines.py (clean + naive + poisonedRAG + ours +
+# experiments/react_baselines.py (clean + naive + poisonedRAG + ours +
 # topicattack -> hotpotqa_seed1_<method>_xlam28b.json).
 set -u
 export PYTHONUNBUFFERED=1
@@ -36,7 +36,7 @@ serve () {
 
 echo "=== $(date '+%F %T') react baselines (xlam-2-8b) ===" | tee -a "$STATUS"
 if serve; then
-  ( cd "$ROOT/experiments" && "$PY" 14_react_baselines.py > "$LOGDIR/14_react_baselines.log" 2>&1 ) \
+  ( cd "$ROOT/experiments" && "$PY" react_baselines.py > "$LOGDIR/react_baselines.log" 2>&1 ) \
     && echo "baselines OK" >> "$STATUS" || echo "baselines RUN_FAILED" >> "$STATUS"
 else
   echo "SERVER_FAILED" >> "$STATUS"

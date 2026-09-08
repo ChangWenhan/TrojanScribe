@@ -602,3 +602,11 @@ semantic 65%/58.3%（阈值漏触发损失 ~10pp）。
 - 改动范围:README.md、AGENTS.md、src/(payload.py docstrings+comments、attack.py、08_longtail.py docstrings)、experiments/ 驱动与 summarize_ablation.py 的头注释。**代码逻辑、LLM prompt 字符串、JSON 键名(如 picked_archetypes)、CLI 参数、臂名一律未动**——旧结果文件里已含这些键,改名会造成新旧 schema 分裂。
 - 顺带修正一处 doc-vs-data 失配:summarize_ablation.py 头注释称"08_longtail.json 属于 GLM-4-9B",实际 v2 重跑后 headline victim 为 xlam-2-8b(GLM 已放弃,见上文)。
 - research/frozen/* 未动(sha256 manifest 完整);本条为 ledger 追加记录。
+
+## V2 ABLATION COMPLETE + REPO HYGIENE (2026-09-09)
+
+- 44/44 消融臂全部收官：本机 llama-3.1-8b 全 11 臂（run_ablation_v2.sh）；gpt-oss-20b 双机并行（141 + 本机 4090 同时 serve gpt-oss-20b，新驱动 run_ablation_split.sh 显式分臂，KB 隔离 clone chroma_gpt-oss-20b_b），04:21 split instance done。
+- 全量 v2 总表：`results/ablation_summary.md`（主表 4 骨干 × 2 数据集 + 毒量/风格多样性/触发/检索窗口全部骨干 + 跨模型矩阵对角线）。
+- 关键 v2 结论：mono（单风格）全骨干一致最弱（gpt-oss-20b −47pp，26.3% vs 73.7%）；keyword 触发在全部骨干 ≥ always-fire 上界（选择性免费）；topk16 在强骨干抬 flip（xlam 92.6%）但 k=4 几乎不掉 flip（挤位效应主导，k 只调 ASR）。
+- 仓库整理（公开 GitHub ChangWenhan/TrojanScribe）：方法公开命名 **TrojanScribe**（内部标识符 cluster 不变）；脚本去数字前缀改名 08_longtail.py→longtail_attack.py、13_unified_eval.py→unified_eval.py、14_react_baselines.py→react_baselines.py（**结果文件命名 08_longtail*.json 保持不变**，与既有数据连续）；README 重写：删 Repairs、清除 qwen3-4b 时代内容、主表/消融换成 v2 数字、新增 Terminology 表；清理 __pycache__、半成品 run 目录（vol2×2/greedy/qwen3-8b_070048/mini_141_test×2/granite_035812）与 6 个旧时代脚本。
+- 跨模型矩阵（非对角 12 对）pending；xlam-2-8b ReAct 基线重跑 pending（baselines 需 xlam 服务）。

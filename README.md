@@ -33,26 +33,26 @@ in this README and in code comments uses the plain term.
 | `collapse` | collapse (DoS) | clean-correct target answered with an empty answer or crash — never counted as a flip |
 | `ASR` | attack success rate | answer contains the injected wrong-answer string |
 | `true_in_top8` (JSON key) | true paragraph displaced? (inverted) | count of targets whose **true** supporting paragraph still ranks in the victim's top-8 |
+| `08_longtail*.json` (result files) | — | historical data-file convention kept for stability with archived results; the experiment script itself is `longtail_attack.py` |
 | AR1–AR5 | frozen hypotheses | pre-registered proposals in `research/frozen/` (read-only, sha256 manifest); e.g. AR3 = the consensus-style poisoning hypothesis implemented by `payload.generate_cluster` |
 
 ## Core claim
 
 A poisoned subagent installed from an "open-source" platform writes consensus-style
 fabricated passages into a **shared knowledge base** while behaving benignly in
-every prior round. On a **LangGraph agent** victim, it is the only evaluated attack
-that is both directional and high-flip: it rewrites **75% of clean-correct long-tail
-targets** (15/20 — every flip is a genuine non-empty wrong answer, zero agent
-crashes) and injects the shared target wrong answer into **61.7% of all answers
-(ASR 37/60)** — more than 2.5× the best published baseline (poisonedRAG, 23.3% on
-the ReAct victim). Under the same definition the baselines collapse: poisonedRAG
-rewrites 33.3% (7/21), topicattack 42.9% (9/21, plus 12 crashed rows), naive and
-KidnapRAG-ours ~0 (their flips are almost all empty answers, i.e. DoS-style agent
-disruption, reported separately as `collapse`).
+every prior round. On a **LangGraph agent** victim it is the only evaluated attack
+that is both directional and high-flip: on the default victim (xlam-2-8b, 60
+long-tail HotpotQA targets) it rewrites **81.5% of clean-correct targets**
+(22/27 — every flip a genuine non-empty wrong answer, zero agent crashes) and
+injects the shared target wrong answer into **93.3% of all answers (ASR 56/60)**.
+Under the archived unified-comparison protocol the best published baseline
+(poisonedRAG) reached only 23.3% ASR — a >2.5× gap; a rerun of the baselines on
+the current default victim is pending (`experiments/react_baselines.py`).
 
-Metric definition (2026-09-06): **flip** counts only clean-EM-correct targets
-answered with a NON-EMPTY wrong answer (true before the attack, false after);
-empty/crashed rows are reported separately as `collapse`; `changed` = flip +
-collapse (the correct answer was replaced by anything else, including nothing).
+Metric definitions: **flip** counts only clean-correct targets answered with a
+NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
+are reported separately as `collapse`; `changed` = flip + collapse (the correct
+answer was replaced by anything else, including nothing).
 
 ## Design (two frameworks, one metric)
 
@@ -61,109 +61,89 @@ was designed for:
 
 | Side | Attack | Victim | Code |
 |---|---|---|---|
-| Ours | consensus-style multi-template poisoning (`cluster`) | our LangGraph agent | `src/agentic_rag/`, `experiments/08_longtail.py` |
+| Ours | consensus-style multi-template poisoning (`cluster`) | our LangGraph agent | `src/agentic_rag/`, `experiments/longtail_attack.py` |
 | Baselines | naive / poisonedRAG / ours / topicattack (KidnapRAG official) | KidnapRAG ReAct agent | `kidnaprag/` |
 
 **Controlled variables across both sides:** same 60 long-tail HotpotQA targets
 (rare, hard questions), same per-target wrong answers (the shared `hotpotqa.json`
-"incorrect answer", injected verbatim by every method — enforced since the
-2026-09-06 repair), same bge knowledge base (66,581 clean chunks), top-8
-retrieval, same victim model Qwen3-4B (vLLM, OpenAI-compatible), poison corpora
-from the official KidnapRAG generators for the ReAct side.
+"incorrect answer", injected verbatim by every method), same bge knowledge base
+(66,581 clean chunks), top-8 retrieval, victim = the backbone under test
+(vLLM, OpenAI-compatible), poison corpora from the official KidnapRAG generators
+for the ReAct side.
 
 **Unified metrics** (`src/agentic_rag/eval/unified.py`, applied by
-`experiments/13_unified_eval.py` to every method's raw answers):
+`experiments/unified_eval.py` to every method's raw answers):
 
 - `EM` — HotpotQA official normalize (article + punctuation removal)
 - `F1>0` — token F1 vs gold
 - `ASR` — substring of the **injected** wrong answer in the answer (literature style)
-- `flip` — clean-EM-correct target answered wrong after the attack, decomposed
+- `flip` — clean-correct target answered wrong after the attack, decomposed
   into `flips_knowledge` (non-empty wrong answer) and `flips_collapse` (empty
   answer / crashed row), so DoS breakage is never counted as a knowledge flip
-  (clean denominators are framework-local: ReAct 21/60, LangGraph 20/60)
+  (clean denominators are framework-local — per-victim clean baselines)
 
-## Final results (`results/13_unified_comparison.{json,md}`)
-
-| method | framework | clean EM | after EM | ASR% | flip (knowledge) | collapse |
-|---|---|---|---|---|---|---|
-| clean | react | 21/60 | 21/60 | 0 | 0/21 | 0 |
-| naive | react | 21/60 | 13/60 | 0 | **0/21** | 10 |
-| poisonedRAG | react | 21/60 | 12/60 | 23.3 | 7/21 (33.3%) | 3 |
-| ours | react | 21/60 | 11/60 | 0 | 1/21 (4.8%) | 11 |
-| topicattack | react | 21/60 | 0/60 | 0 | 9/21 (42.9%) | 12 |
-| **cluster (ours)** | **langgraph** | **20/60** | **9/60** | **61.7** | **15/20 (75.0%)** | 0 |
-| embed_hybrid (near-duplicate control) | langgraph | 20/60 | 18/60 | 43.3 | 9/20 (45.0%) | 0 |
-
-Matched-volume control on the same LangGraph victim (`experiments/08_longtail.py
---variants embed_hybrid,cluster`, isolated runs): the multi-style method doubles
-the knowledge flip rate (75.0% vs 45.0%) at identical poison volume, and raises
-directional ASR from 43.3% to 61.7%.
-
-## Main table — 4 backbones × 2 datasets (2026-09-07, `results/ablation_summary.md`)
+## Main table — 4 backbones × 2 datasets (v2 rerun 2026-09-08, `results/ablation_summary.md`)
 
 Same protocol per dataset: HotpotQA = shared 60 targets + shared wrongs (identical
 to the ReAct baselines' protocol); MuSiQue = frozen 59-target set with frozen
 wrong answers, zero per-model re-selection. Method = `cluster` at poison dose 8,
-keyword trigger, 3 benign rounds, official-EM flip definition, victim = the
-served backbone (attacker payload/writer use the same backbone).
+keyword trigger, 3 benign rounds, flip judged by the v2 substring-correct rule,
+victim = the served backbone (attacker payload/writer use the same backbone).
 
-> NOTE: the 2026-09-08 v2 rerun replaced Qwen3-4B with xlam-2-8b as the default
-> victim and re-ran the full main table + all ablation arms (4 backbones × 11
-> arms). This table shows the 2026-09-07 numbers; the v2 table lands in
-> `results/ablation_summary.md` when the rerun completes (trust the results
-> files over this prose in the meantime).
+### HotpotQA (60 shared targets)
 
-| backbone | version | HotpotQA clean-EM | HotpotQA flip | HotpotQA ASR | MuSiQue clean-EM | MuSiQue flip | MuSiQue ASR |
-|---|---|---|---|---|---|---|---|
-| Qwen3-4B-Instruct-2507 | 2025-07 | 20/60 | 15/20 (75.0%) | 61.7% | 6/59 | 6/6 (100%) | 66.1% |
-| Qwen3-8B | 2025-04 | 25/60 | 21/25 (84.0%) | 83.3% | 7/59 | 7/7 (100%) | 78.0% |
-| gpt-oss-20b (MoE) | 2025-08 | 32/60 | 23/32 (71.9%) | 65.0% | 19/59 | 14/19 (73.7%) | 67.8% |
-| Llama-3.1-8B-Instruct | 2024-07 | 14/60 | 12/14 (85.7%) | 51.7% | 7/59 | 6/7 (85.7%) | 49.2% |
+| backbone | clean correct | flip (knowledge) | collapse | ASR | true paragraph still in top-8 |
+|---|---|---|---|---|---|
+| xlam-2-8b (default victim) | 27/60 | **22/27 (81.5%)** | 0 | **56/60 (93.3%)** | 13/60 |
+| Qwen3-8B | 31/60 | 23/31 (74.2%) | 0 | 46/60 (76.7%) | 13/60 |
+| gpt-oss-20b (MoE) | 38/60 | 28/38 (73.7%) | 0 | 41/60 (68.3%) | 16/60 |
+| Llama-3.1-8B-Instruct | 25/60 | 19/25 (76.0%) | 1 | 32/60 (53.3%) | 8/60 |
+
+### MuSiQue (59 frozen targets)
+
+| backbone | clean correct | flip (knowledge) | collapse | ASR | true paragraph still in top-8 |
+|---|---|---|---|---|---|
+| xlam-2-8b (default victim) | 7/59 | **7/7 (100%)** | 0 | 51/59 (86.4%) | 2/59 |
+| Qwen3-8B | 9/59 | 9/9 (100%) | 0 | 47/59 (79.7%) | 0/59 |
+| gpt-oss-20b (MoE) | 18/59 | 18/18 (100%) | 0 | 41/59 (69.5%) | 3/59 |
+| Llama-3.1-8B-Instruct | 10/59 | 8/10 (80.0%) | 0 | 26/59 (44.1%) | 0/59 |
 
 **Insights.** (1) The attack fully generalizes across model families, scales
-(dense 4B→8B, MoE 20B) and datasets — knowledge-flip stays at 72–100% everywhere
-a victim protocol is respected, and stronger backbones are NOT more resistant
-(Qwen3-8B 84% > 4B 75%; gpt-oss has the largest flip surface 32 clean-correct).
-(2) ASR is the backbone-sensitive metric (49–83%), tracking each model's tendency
-to echo the injected string verbatim. (3) On MuSiQue the true paragraph is
-displaced out of the top-8 retrieval window on essentially all targets
-(true_in_top8: qwen3-4b 0, qwen3-8b 1, llama-3.1-8b 0; gpt-oss-20b is the
-outlier at 5/59) — the attack captures retrieval outright. (4) Two backbones
-could not be evaluated for protocol reasons and are excluded from the table:
-internlm3-8b pre-run (weak tool-format compliance), and phi-4-mini post-run
-(victim-side multi-turn tool protocol non-compliance — empty finals; evaluation
-presupposes a victim that can run the agent loop). Evidence in
-`research/monitor/experiment_ledger.md`; their result files and serving
-adaptations were removed on 2026-09-07.
+(dense 4B→8B, MoE 20B) and datasets — knowledge-flip stays at 74–100% everywhere,
+and stronger backbones are NOT more resistant. (2) ASR is the backbone-sensitive
+metric (44–93%), tracking each model's tendency to echo the injected string
+verbatim. (3) On MuSiQue the true paragraph is displaced out of the top-8
+retrieval window on essentially all targets — the attack captures retrieval
+outright. (4) Two backbones were excluded for protocol reasons (weak tool-format
+compliance); evidence in `research/monitor/experiment_ledger.md`.
 
-## Ablations (2026-09-06, plan in `research/ablation/plan.md`, table in `results/ablation_summary.md`)
+## Ablations (v2, all 4 backbones, table in `results/ablation_summary.md`)
 
-All ablation runs use qwen3-4b, HotpotQA, and the full method (poison dose 8)
-unless stated otherwise.
+Every arm is run on EVERY backbone, HotpotQA, method = `cluster` unless stated.
 
-- **Poison dose** (fabricated chunks per target): flip 40.0% / 60.0% / 80.0% /
-  75.0% at 2/4/6/8 chunks; ASR 45.0% / 51.7% / 66.7% / 61.7%. Dose–response
-  saturates at ~6 chunks/target (6 vs 8 differ by one question, n=20 noise),
-  while `true_in_top8` falls monotonically 48→44→36→22 — retrieval displacement
-  grows with dose even past the success saturation point.
-- **Style-diversity decomposition** (all at dose 8, `payload.generate_cluster`
-  selection modes): near-duplicate control (`embed_hybrid`) 45.0% flip / 43.3%
-  ASR; single-style (`cluster_mono`, authority template only) 45.0% / 33.3% at
-  ~3.6 chunks/target — at matched budget (~4 chunks) the multi-style method wins
-  60.0% / 51.7%; no-diversity-selection (`cluster_nodiv`) 80.0% / 60.0%;
-  no-template-anchor (`cluster_greedy`) 70.0% / 56.7%; full method 75.0% /
-  61.7%. **The load-bearing component is generating text in multiple distinct
-  styles, not the selection machinery**: both selection ablations stay within
-  noise of the full method, while removing style diversity entirely collapses
-  the attack. A single style also cannot sustain the volume (the dedup gate
-  passes only 206 chunks over 57 fired targets).
-- **Trigger**: keyword (auto-extracted proper nouns) 75.0% / 61.7%; semantic
-  (BGE cosine ≥ 0.82) 65.0% / 58.3%; always-fire p=1.0 (no filter, upper bound)
-  80.0% / 63.3%. Keyword selectivity is effectively free — it fires on all its
-  own target queries and matches the no-filter bound; the semantic threshold
-  loses ~10pp to missed firings.
-- Legacy backbone runs (qwen2.5-7b/3b, llama-3.2-3b) are superseded by the
-  main table above (their result files were removed from `results/`).
+- **Poison dose** (2/4/6/8 chunks per target): flip saturates around dose 4–8 on
+  strong backbones (xlam 74→75→78→81.5%) while weaker-dose arms stay far below
+  on gpt-oss-20b (53→55→66→74%); meanwhile the true paragraph vanishes from the
+  retrieval window monotonically with dose (qwen3-8b true_in_top8 48→46→30→13) —
+  displacement strength grows with dose even past the success saturation point.
+- **Style diversity** (all dose 8): the load-bearing component is generating
+  text in multiple distinct styles, not the selection machinery — the
+  single-style arm (`cluster_mono`) is consistently the weakest (flip −6 to
+  −47pp vs full; the largest gap on gpt-oss-20b, 26.3% vs 73.7%), while
+  removing the selection machinery (`cluster_nodiv`, `cluster_greedy`) stays
+  within noise of the full method. The near-duplicate control (`embed_hybrid`)
+  matches on flip but collapses the true paragraph to ~1–6 in the top-8:
+  near-duplicates flood the retrieval window instead of directional rewriting.
+- **Trigger**: keyword (auto-extracted proper nouns) matches or beats the
+  always-fire upper bound (p=1.0) on every backbone (e.g. llama-3.1-8b 76.0% vs
+  60.0% flip) — **selectivity is effectively free**: the subagent can stay
+  silent on all non-target traffic at no cost to the attack.
+- **Victim retrieval window** (top-k 4/8/16): larger windows raise the flip
+  rate on the stronger backbones (xlam-2-8b 81.5→92.6%, qwen3-8b 74.2→80.6% at
+  k=16), while shrinking the window barely protects (flip at k=4 still
+  68–82%): displacement of the true paragraph dominates, and window size mainly
+  modulates how many poison chunks surface (ASR falls with k, e.g.
+  llama-3.1-8b 53→32% at k=4).
 
 ## Repository layout
 
@@ -173,35 +153,39 @@ src/agentic_rag/    our method: LangGraph victim agent + poisoned subagent chain
   eval/unified.py     single source of truth for EM/F1/ASR/flip scoring
 kidnaprag/          KidnapRAG ReAct baselines (their code + official generators)
 experiments/
-  08_longtail.py        our method: shared targets -> clean baseline -> isolated
+  longtail_attack.py    our method: shared targets -> clean baseline -> isolated
                         per-variant attack (persists per-target records + poison writes)
-  13_unified_eval.py    unified scoring over both frameworks' results
-  14_react_baselines.py KidnapRAG baselines: inject official poison -> run attack
-results/            08_longtail.json (latest-run mirror), 13_unified_comparison.*,
-                    poison_<method>.jsonl; results/runs/<run_id>/ holds every run's
-                    timestamped results + logs (run_id set by the run scripts)
+  unified_eval.py       unified scoring over both frameworks' results
+  react_baselines.py    KidnapRAG baselines: inject official poison -> run attack
+  summarize_ablation.py ablation + main-table summary -> results/ablation_summary.md
+  run_*.sh              batch drivers (main table / ablation / cross-model / baselines)
+results/            result JSONs (latest-run mirror) + runs/<run_id>/ timestamped
+                    archives (kept out of this repo; naming note in Terminology)
 research/           frozen hypotheses, experiment ledger, literature review
 ```
 
 ## Reproduction
 
-1. Serve Qwen3-4B: `vllm serve .../Qwen3-4B-Instruct-2507 --port 8000`
+1. Serve the default victim (xLAM-2-8B-fc-r):
+   `vllm serve /path/to/xlam-2-8b-fc-r --port 8000 --gpu-memory-utilization 0.85 --max-model-len 16384 --served-model-name xlam-2-8b --enable-auto-tool-choice --tool-call-parser xlam --chat-template /path/to/xlam_chat_template.jinja`
 2. Build the knowledge base: `data/chroma` (bge-base-en-v1.5 embeddings of
    HotpotQA dev distractor paragraphs, 66,581 chunks) — see `configs/default.yaml`
 3. Our method (LangGraph):
-   `python experiments/08_longtail.py --candidates 120 --targets 60 --volume 8 --variants cluster`
+   `python experiments/longtail_attack.py --targets 60 --volume 8 --variants cluster --use-shared-targets`
    (targets are structurally aligned to the shared 60-qid protocol and the run
    asserts full coverage; wrong answers are read from the shared target file)
 4. KidnapRAG baselines (ReAct):
-   `python experiments/14_react_baselines.py`
+   `python experiments/react_baselines.py`
 5. Unified evaluation:
-   `python experiments/13_unified_eval.py`
+   `python experiments/unified_eval.py`
+6. Ablation summary:
+   `python experiments/summarize_ablation.py`
 
 ## Environment
 
 - conda env `agents` (Python 3.11; langgraph, chromadb, vllm, openai)
-- victim / attacker model per main-table row (vLLM, localhost:8000, served from
-  `/mnt/disk/cwh/LLMs/`); models downloaded via ModelScope. Serving notes (see
+- victim / attacker model per main-table row (vLLM, localhost:8000; models
+  downloaded via ModelScope). Serving notes (see
   `experiments/run_main_table_v2.sh`): Qwen3-8B needs `--reasoning-parser qwen3`
   plus request-level `enable_thinking: false`; gpt-oss-20b needs the harmony
   parser with `--max-num-seqs 64` (sampler-warmup OOM on 24 GB) and 32k context
@@ -221,35 +205,6 @@ research/           frozen hypotheses, experiment ledger, literature review
   prompt/temperature, so the distribution matches the serial branch (boundary
   cases may issue a few fewer calls than the strict 4n cap — see the note at
   `payload.py` `_gen_i`).
-
-## Repairs (2026-09-06)
-
-Code audit found and fixed (details in `research/monitor/experiment_ledger.md`):
-
-1. **ASR target mismatch (P0)** — the LangGraph run used to inject its own
-   LLM-generated wrong answers while the unified ASR scored against the shared
-   file's strings. Both sides now inject and score the same per-target wrong
-   answer; per-target records and every poison write are persisted.
-2. **Trigger dormancy (P0)** — the benign gate compared against a configured 10
-   while only 3 benign rounds ran, silently leaving the first 7 targets
-   unpoisoned. `benign_rounds` now counts the tasks actually executed (3).
-3. **Biography style starved (P0)** — the biography-template prompt (frozen
-   hypothesis AR3) received the paragraph *title* instead of its text (frozen
-   spec assumption bug), so the Dice>=0.5 filter rejected every biography
-   candidate. It now rewrites the real supporting paragraph; a logged Dice>=0.35
-   fallback keeps the biography style alive when the strict filter empties the
-   pool (used by 23/60 targets).
-4. **entity_swap silently degraded (P0)** — qid/supporting titles were only
-   passed to the `combo` variant; all per-target context is now explicit
-   arguments on every payload path.
-5. `co_retrieval true_rank` was computed against the title (always None) — now
-   against the true paragraph text; multi-variant runs are isolated (poison
-   cleaned between variants); flips are decomposed knowledge vs collapse;
-   `pick_entity_questions` operator-precedence bug fixed (candidate set proven
-   unchanged); a vacuous `"" in pred` inflation in `poison_follow` guarded;
-   unified scoring moved to `src/agentic_rag/eval/unified.py`; each run is
-   saved under `results/runs/<run_id>/` (timestamped, never overwritten) with
-   `results/<name>.json` kept as the latest-run mirror.
 
 Known limitation: 1/60 targets ("...a rule that is expressed algebraically...")
 contains no proper-noun keyword and is missed by the keyword trigger (59/60 fire

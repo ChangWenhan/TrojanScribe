@@ -117,7 +117,7 @@ run_model () {  # $1 path $2 name $3 parser $4 extra
     if tool_smoke "$2" >> "$LOGDIR/toolsmoke_$2.log" 2>&1 \
         && "$PY" "$ROOT/experiments/harness_smoke.py" "$2" >> "$LOGDIR/harnesssmoke_$2.log" 2>&1; then
       if ! skip_if_done "$ROOT/results/$hname.json"; then
-        ( cd "$ROOT/experiments" && "$PY" 08_longtail.py \
+        ( cd "$ROOT/experiments" && "$PY" longtail_attack.py \
             --targets 60 --volume 8 --variants cluster \
             --use-shared-targets --model "$2" \
             --results-name "$hname" \
@@ -125,7 +125,7 @@ run_model () {  # $1 path $2 name $3 parser $4 extra
           && echo "$2 hotpot OK" >> "$STATUS" || echo "$2 hotpot RUN_FAILED" >> "$STATUS"
       fi
       if ! skip_if_done "$ROOT/results/$mname.json"; then
-        ( cd "$ROOT/experiments" && "$PY" 08_longtail.py \
+        ( cd "$ROOT/experiments" && "$PY" longtail_attack.py \
             --volume 8 --variants cluster \
             --target-records "$FROZEN_MUS" \
             --kb-dir "$ROOT/data/chroma_musique" --kb-collection musique_kb \

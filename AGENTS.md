@@ -21,9 +21,9 @@ and the preferred prose wording live in the **Terminology table at the top of
 ## Commands
 
 - Serve default victim (xLAM-2-8B-fc-r, since the 2026-09-08 v2 rerun; Qwen3-4B retired): `vllm serve /mnt/disk/cwh/LLMs/xlam-2-8b-fc-r --port 8000 --gpu-memory-utilization 0.85 --max-model-len 16384 --served-model-name xlam-2-8b --enable-auto-tool-choice --tool-call-parser xlam --chat-template /mnt/disk/cwh/LLMs/xlam_chat_template.jinja`
-- Our method (LangGraph): `python experiments/08_longtail.py --targets 60 --volume 8 --variants cluster --use-shared-targets`; model ablation adds `--model <name> --results-name 08_longtail_<name>`
-- KidnapRAG baselines (runs inside `kidnaprag/ReAct/ReAct`): `python experiments/14_react_baselines.py` (needs the xlam-2-8b server up; results `hotpotqa_seed1_<method>_xlam28b.json`)
-- Unified scoring: `python experiments/13_unified_eval.py`
+- Our method (LangGraph): `python experiments/longtail_attack.py --targets 60 --volume 8 --variants cluster --use-shared-targets`; model ablation adds `--model <name> --results-name 08_longtail_<name>`
+- KidnapRAG baselines (runs inside `kidnaprag/ReAct/ReAct`): `python experiments/react_baselines.py` (needs the xlam-2-8b server up; results `hotpotqa_seed1_<method>_xlam28b.json`)
+- Unified scoring: `python experiments/unified_eval.py`
 - Ablation table: `python experiments/summarize_ablation.py` → writes `results/ablation_summary.md`
 - MuSiQue KB: `python experiments/build_musique_kb.py` (idempotent)
 - Batch drivers (idempotent, skip done runs; serve-switch + tool smoke; restore the xlam-2-8b server at the end):
@@ -44,14 +44,14 @@ The LangGraph victim REQUIRES structured tool calls — run the `tool_smoke` che
 ## Results discipline
 
 - `save_results` (`experiments/common.py`) writes `results/runs/<run_id>/<name>.json` (run_id = `AGENTIC_RAG_RUN_ID` env, else auto `name_<timestamp>`) and mirrors to `results/<name>.json`. Downstream scripts read the ROOT mirror only, so a root file is always the latest run. Never hand-edit result JSONs; reruns create new run dirs.
-- Naming: `08_longtail.json` = xlam-2-8b hotpot headline (variant `cluster`); per-model `08_longtail_<model>.json`; MuSiQue suffix `_musique`; ablation arms `08_longtail_<model>_<arm>.json` (vol2/vol4/vol6/embed_hybrid/mono/nodiv/greedy/semantic/trig_always/topk4/topk16); cross-model F `08_longtail_xsm_<att>_to_<vic>.json` (+`_inj` for the replay record).
+- Naming: `08_longtail.json` = xlam-2-8b hotpot headline (variant `cluster`); per-model `08_longtail_<model>.json`; MuSiQue suffix `_musique`; ablation arms `08_longtail_<model>_<arm>.json` (vol2/vol4/vol6/embed_hybrid/mono/nodiv/greedy/semantic/trig_always/topk4/topk16); cross-model `08_longtail_xsm_<att>_to_<vic>.json` (+`_inj` for the replay record).
 - MuSiQue xlam-2-8b row is restricted to the frozen 59 qids (`research/frozen/musique_targets_59.json`) at analysis time.
 - `results/backup_20260908/` holds the pre-v2 rerun results (old qwen3-4b era); `results/baseline_archive/` holds the old `hotpotqa_seed1_*_qwen34.json` baseline files.
 
 ## Controlled-variable protocol (do not break)
 
 - The 60 shared HotpotQA targets and per-target wrong answers in `kidnaprag/ReAct/results/adv_targeted_results/hotpotqa.json` ("incorrect answer") are the same strings injected AND scored on both frameworks. New runs must use `--use-shared-targets` (hotpot) or `--target-records <frozen json>` (musique); never generate your own wrong answers (the run asserts coverage / missing wrongs).
-- `08_longtail.py` wipes poison + leftover benign `doc-consolidator` writes at start (accumulated writes confound baselines) and cleans between variants (isolation). The `eval-after` phase is the exception: it MUST keep the poison the inject/inject-from phase wrote. Don't skip.
+- `longtail_attack.py` wipes poison + leftover benign `doc-consolidator` writes at start (accumulated writes confound baselines) and cleans between variants (isolation). The `eval-after` phase is the exception: it MUST keep the poison the inject/inject-from phase wrote. Don't skip.
 - Keyword trigger firing 59/60 is BY DESIGN (1 target has no proper noun — closed issue A2). 59/60 fired is not a bug.
 
 ## Metrics (`src/agentic_rag/eval/unified.py`)
@@ -60,7 +60,7 @@ The LangGraph victim REQUIRES structured tool calls — run the `tool_smoke` che
 - `flip` = clean-`correct` target answered with a NON-EMPTY wrong answer (knowledge actually rewritten). `collapse` = clean-correct → empty/crashed (DoS-style). `changed` = flip + collapse. Never count collapse as flip.
 - `ASR` = substring of the INJECTED per-target wrong answer, over all targets.
 - flip denominators are framework-local (per-victim clean baseline) — not directly comparable across victims.
-- `08_longtail.py --phase inject-from --inject-from <attacker main-table json>` replays attacker A's persisted poison texts into the KB (cross-model F): the flip denominator is victim B's main-table clean baseline, read automatically by `eval-after` (see `load_clean_baseline`).
+- `longtail_attack.py --phase inject-from --inject-from <attacker main-table json>` replays attacker A's persisted poison texts into the KB (cross-model F): the flip denominator is victim B's main-table clean baseline, read automatically by `eval-after` (see `load_clean_baseline`).
 
 ## Research process
 

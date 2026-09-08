@@ -5,7 +5,7 @@ Design (post-refactor, per project decision):
     KidnapRAG repo on THEIR OWN ReAct agent. Results live in
     kidnaprag/ReAct/results/adv_targeted_results/hotpotqa_seed1_<method>_qwen34.json
   - OUR method (consensus-cluster) runs on OUR langgraph agent via
-    experiments/08_longtail.py. Results live in results/08_longtail.json
+    experiments/longtail_attack.py. Results live in results/08_longtail.json
   - The two frameworks are deliberately NOT merged: each attack is evaluated
     on the victim it was designed for.
 

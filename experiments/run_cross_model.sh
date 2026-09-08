@@ -117,12 +117,12 @@ run_pair () {  # $1 att  $2 vic
     *)        unset AGENTIC_RAG_CHAT_KWARGS ;;
   esac
   export AGENTIC_RAG_RUN_ID="$run_id"
-  ( cd "$ROOT/experiments" && "$PY" 08_longtail.py \
+  ( cd "$ROOT/experiments" && "$PY" longtail_attack.py \
       --phase inject-from --inject-from "$srcpath" \
       --results-name "08_longtail_xsm_${att}_to_${vic}_inj" \
       > "$rundir/inject_${att}_to_${vic}.log" 2>&1 ) \
     && echo "$att poison replay OK" >> "$STATUS" || echo "$att poison replay RUN_FAILED" >> "$STATUS"
-  ( cd "$ROOT/experiments" && "$PY" 08_longtail.py \
+  ( cd "$ROOT/experiments" && "$PY" longtail_attack.py \
       --targets 60 --volume 8 --variants cluster --use-shared-targets \
       --phase eval-after --model "$vname" \
       --results-name "08_longtail_xsm_${att}_to_${vic}" \

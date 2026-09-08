@@ -1,7 +1,7 @@
 """Unified scoring functions (single source of truth for BOTH frameworks).
 
-Used by experiments/13_unified_eval.py (authoritative table) and by
-experiments/08_longtail.py (internal reporting). Every reported number
+Used by experiments/unified_eval.py (authoritative table) and by
+experiments/longtail_attack.py (internal reporting). Every reported number
 (EM / F1>0 / ASR / flip) is computed from raw texts with THESE functions so
 metrics are comparable across frameworks.
 

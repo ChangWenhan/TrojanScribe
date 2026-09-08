@@ -1,4 +1,4 @@
-"""Experiment 08: long-tail target selection (PoisonedRAG-style).
+"""Long-tail target selection + write-back poisoning (TrojanScribe).
 
 The victim model answers many HotpotQA questions from parametric memory;
 those cannot be poisoned reliably. We select targets the model CANNOT answer
@@ -14,7 +14,7 @@ REPAIR 2026-09-06 (see research/monitor/experiment_ledger.md):
     answer") — the same strings the ReAct baselines were injected with — so
     the unified ASR metric measures what was actually injected on both sides.
     (Previously the LangGraph side generated its own wrong answers while
-    13_unified_eval scored against the shared ones: ASR was measured against
+    unified_eval scored against the shared ones: ASR was measured against
     strings that were never injected.)
   * targets are structurally aligned to the shared qid set (asserted), no
     longer relying on a coincidental seed match.
