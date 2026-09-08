@@ -610,3 +610,12 @@ semantic 65%/58.3%（阈值漏触发损失 ~10pp）。
 - 关键 v2 结论：mono（单风格）全骨干一致最弱（gpt-oss-20b −47pp，26.3% vs 73.7%）；keyword 触发在全部骨干 ≥ always-fire 上界（选择性免费）；topk16 在强骨干抬 flip（xlam 92.6%）但 k=4 几乎不掉 flip（挤位效应主导，k 只调 ASR）。
 - 仓库整理（公开 GitHub ChangWenhan/TrojanScribe）：方法公开命名 **TrojanScribe**（内部标识符 cluster 不变）；脚本去数字前缀改名 08_longtail.py→longtail_attack.py、13_unified_eval.py→unified_eval.py、14_react_baselines.py→react_baselines.py（**结果文件命名 08_longtail*.json 保持不变**，与既有数据连续）；README 重写：删 Repairs、清除 qwen3-4b 时代内容、主表/消融换成 v2 数字、新增 Terminology 表；清理 __pycache__、半成品 run 目录（vol2×2/greedy/qwen3-8b_070048/mini_141_test×2/granite_035812）与 6 个旧时代脚本。
 - 跨模型矩阵（非对角 12 对）pending；xlam-2-8b ReAct 基线重跑 pending（baselines 需 xlam 服务）。
+
+## BASELINES RERUN (xlam-2-8b) + UNIFIED EVAL v2 DENOMINATOR FIX (2026-09-09)
+
+- ReAct 基线（clean/naive/poisonedRAG/ours/topicattack）在 xlam-2-8b 上重跑完成（`hotpotqa_seed1_*_xlam28b.json`）。
+- P0 修复 1：attack_react.py:31 无条件用 VICTIM_MODEL 环境变量覆盖 CLI --model_path（qwen3-4b 适配残留，404）→ CLI 优先。
+- P0 修复 2：xlam 在文本 ReAct 协议下不合规（原生 JSON 工具调用 / [response] 标签 → 58/60 空）。两处 shim：(a) attack_react.py 加 system 格式强制提示（REACT_NO_SYS=1 可关）+ (b) JSON 工具调用→Search[]/Finish[] 翻译。单题 dry_run F1=0.59 验证后全量重跑。
+- P0 修复 3：clean 路径不清毒，上次中断尝试的残留毒污染 clean 基线（dry_run 中 5/8 检索文档被污染）→ react_baselines.py 启动时 store.delete_poison()。
+- P0 修复 4：unified_eval.py 的 flip 分母用官方 EM 计数而判定用 v2 子串 correct（langgraph 行 22/6=366% 荒谬显示）→ 新增 clean_correct（子串口径）作全框架统一分母；clean_em 保留官方 EM 供参考。
+- 最终对比（同 victim xlam-2-8b、同 60 目标、同注入错误答案、统一评分）：TrojanScribe flip 22/27 (81.5%)、collapse 0、ASR 93.3%；最佳基线 poisonedRAG flip 3/15 (20.0%)、ASR 21.7%（>4×差距）；naive/ours/topicattack 的破坏几乎全是 collapse（topicattack 14 collapse / 0 flip，纯 DoS）。注意 react clean 分母仅 15（ReAct 循环在该 victim 上本身 20 空），react 侧 flip 率只作粗对比。

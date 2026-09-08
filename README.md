@@ -43,11 +43,14 @@ fabricated passages into a **shared knowledge base** while behaving benignly in
 every prior round. On a **LangGraph agent** victim it is the only evaluated attack
 that is both directional and high-flip: on the default victim (xlam-2-8b, 60
 long-tail HotpotQA targets) it rewrites **81.5% of clean-correct targets**
-(22/27 — every flip a genuine non-empty wrong answer, zero agent crashes) and
-injects the shared target wrong answer into **93.3% of all answers (ASR 56/60)**.
-Under the archived unified-comparison protocol the best published baseline
-(poisonedRAG) reached only 23.3% ASR — a >2.5× gap; a rerun of the baselines on
-the current default victim is pending (`experiments/react_baselines.py`).
+(22/27 — zero agent crashes) and injects the shared target wrong answer into
+**93.3% of all answers (ASR 56/60)**. The strongest published baseline under the
+same protocol on the same victim (KidnapRAG's ReAct harness, poisonedRAG
+corpus) reaches **20.0% flip / 21.7% ASR** — a **>4× gap on both metrics** —
+while naive, KidnapRAG-ours and topicattack barely rewrite knowledge at all
+(their damage is almost entirely `collapse`: empty answers / crashed agent
+loops, i.e. DoS-style disruption, reported separately — topicattack collapses
+14 of 15 clean-correct targets without a single knowledge flip).
 
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
@@ -81,6 +84,25 @@ for the ReAct side.
   into `flips_knowledge` (non-empty wrong answer) and `flips_collapse` (empty
   answer / crashed row), so DoS breakage is never counted as a knowledge flip
   (clean denominators are framework-local — per-victim clean baselines)
+
+## Cross-framework comparison (`results/13_unified_comparison.{json,md}`)
+
+Same victim (xlam-2-8b), same 60 targets, same injected wrong answers, same
+unified scoring (v2 substring-correct flip denominator, both frameworks):
+
+| method | framework | flip (knowledge) | collapse | ASR% |
+|---|---|---|---|---|
+| clean | react | — | 0 | 0 |
+| naive | react | 0/15 | 2 | 0 |
+| poisonedRAG | react | 3/15 (20.0%) | 3 | 21.7 |
+| ours (KidnapRAG) | react | 1/15 (6.7%) | 7 | 0 |
+| topicattack | react | 0/15 (0%) | 14 | 1.7 |
+| **cluster (TrojanScribe, ours)** | **langgraph** | **22/27 (81.5%)** | **0** | **93.3** |
+
+React-side clean denominator is small (15 substring-correct of 60; the ReAct
+loop itself leaves 20 empty answers on this victim) — treat react flip rates
+as coarse. Full per-method records: `kidnaprag/ReAct/results/adv_targeted_results/
+hotpotqa_seed1_*_xlam28b.json`.
 
 ## Main table — 4 backbones × 2 datasets (v2 rerun 2026-09-08, `results/ablation_summary.md`)
 

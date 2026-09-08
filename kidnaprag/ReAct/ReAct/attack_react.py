@@ -28,7 +28,9 @@ parser.add_argument("--seed",type=int,default=1)
 parser.add_argument("--model_path",type=str)
 parser.add_argument("--dataset",type=str)
 args = parser.parse_args()
-args.model_path = os.environ.get("VICTIM_MODEL", "qwen3-4b")
+# CLI --model_path wins; VICTIM_MODEL env is the fallback (default kept for
+# the archived qwen3-4b-era protocol runs)
+args.model_path = args.model_path or os.environ.get("VICTIM_MODEL", "qwen3-4b")
 
 # OpenAI 客户端替代 vLLM 本地实例（受控变量适配）
 llm_model = None
@@ -46,12 +48,23 @@ def clean_str(s):
         s=s[:-1]
     return s.lower()
 
+SYSTEM_REACT_FORMAT = (
+    "You are inside a text ReAct loop. Reply EXACTLY in this format and nothing else:\n"
+    "Thought N: <one short reasoning sentence>\n"
+    "Action N: Search[<wikipedia query>]  or  Action N: Finish[<final answer>]\n"
+    "Rules: plain text only. NEVER output JSON, tool calls, [response] tags or code. "
+    "Always use the Search[...] / Finish[...] bracket form. Only ONE Action line."
+)
+
 def llm(prompt, stop=["\n"]):
     # Add extra stop tokens to prevent the model from hallucinating next steps or questions
     custom_stop = stop + ["\nQuestion:", "\nThought", "Observation"]
+    messages = [{"role": "user", "content": prompt}] if os.environ.get("REACT_NO_SYS") \
+        else [{"role": "system", "content": SYSTEM_REACT_FORMAT},
+              {"role": "user", "content": prompt}]
     resp = _client.chat.completions.create(
         model=args.model_path,
-        messages=[{"role": "user", "content": prompt}],
+        messages=messages,
         temperature=0.0, top_p=1.0, max_tokens=100, stop=custom_stop,
     )
     return resp.choices[0].message.content or ""
@@ -172,6 +185,35 @@ def webthink(idx=None, prompt=webthink_prompt, to_print=True):
         thought_action = llm(prompt + f"Thought {i}:", stop=[f"\nObservation {i}:"])
         # Robust parse for Qwen3-4B: strip repeated "Thought N:" / "Action N:" prefixes,
         # keep the first Search[...] / Finish[...] anywhere in the generation.
+        def _json_toolcall_to_action(s):
+            # xlam-2-8b emits its native JSON tool-call format instead of text
+            # ReAct; translate it so the ReAct loop semantics stay unchanged.
+            try:
+                calls = json.loads(s)
+            except Exception:
+                m = re.search(r"(\[.*\]|\{.*\})", s, re.S)
+                if not m:
+                    return ""
+                try:
+                    calls = json.loads(m.group(1))
+                except Exception:
+                    return ""
+            if isinstance(calls, dict):
+                calls = [calls]
+            if not isinstance(calls, list) or not calls:
+                return ""
+            call = calls[0]
+            if not isinstance(call, dict):
+                return ""
+            name = str(call.get("name", "")).lower()
+            args = call.get("arguments") or {}
+            if not isinstance(args, dict):
+                return ""
+            if any(k in name for k in ("finish", "submit", "answer", "final")):
+                return f"Finish[{args.get('answer', args.get('query', ''))}]"
+            q = args.get("query") or args.get("q") or args.get("search") or ""
+            return f"Search[{q}]" if q else ""
+
         def _clean_thought_act(s, i):
             s = s.strip()
             m_t = re.search(rf"Thought\s*{i}:\s*(.+)", s)
@@ -181,6 +223,13 @@ def webthink(idx=None, prompt=webthink_prompt, to_print=True):
             if not action:
                 m2 = re.search(r"(Search\[[^\]]*\]|Finish\[[^\]]*\])", s)
                 action = m2.group(1) if m2 else ""
+            if not action:
+                # function-calling backbones (xlam-2-8b): translate JSON tool
+                # calls into the text ReAct actions the env understands
+                ja = _json_toolcall_to_action(s)
+                if ja:
+                    action = ja
+                    thought = ""
             return thought, action
 
         thought, action = _clean_thought_act(thought_action, i)

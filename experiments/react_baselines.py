@@ -109,6 +109,10 @@ def main():
     )
     adv = json.load(open(os.path.join(ADV_DIR, "hotpotqa.json")))
 
+    # pristine start: wipe any leftover poison from interrupted attempts — the
+    # clean method never deletes poison itself, so leftovers would contaminate
+    # the clean baseline (caught 2026-09-09: 5/8 retrieved docs were poisoned)
+    store.delete_poison()
     for method in methods:
         if method != "clean":
             # poison methods inject their corpus first; clean runs the pristine KB
