@@ -216,8 +216,7 @@ research/           frozen hypotheses, experiment ledger, literature review
 - embedding: bge-base-en-v1.5 (CPU)
 - datasets: HotpotQA dev (data/hotpot_dev_distractor_v1.json); MuSiQue
   (data/musique_ans_v1.0_dev.jsonl, knowledge base 17,629 chunks). Targets: the
-  60 long-tail HotpotQA qids in
-  `kidnaprag/ReAct/results/adv_targeted_results/hotpotqa.json` and the frozen
+  60 long-tail HotpotQA qids in `data/targets/hotpotqa.json` and the frozen
   59-target MuSiQue set in `research/frozen/musique_targets_59.json`
 - concurrency: `AGENTIC_RAG_ASK_WORKERS` / `AGENTIC_RAG_SAMPLE_WORKERS` (default
   1 = serial; the drivers set 8) parallelize independent victim asks and poison

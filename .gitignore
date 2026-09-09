@@ -1,5 +1,9 @@
 # experiment data & caches (not part of the code release)
-data/
+data/*
+!data/targets/
+data/targets/*
+!data/targets/hotpotqa.json
+!data/targets/hotpotqa_qid_to_idx.json
 results/
 __pycache__/
 *.pyc

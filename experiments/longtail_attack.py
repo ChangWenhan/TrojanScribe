@@ -10,9 +10,9 @@ attack (poison cleaned between variants) -> victim re-answer -> report.
 
 REPAIR 2026-09-06 (see research/monitor/experiment_ledger.md):
   * wrong answers come from the SHARED per-target file
-    kidnaprag/ReAct/results/adv_targeted_results/hotpotqa.json ("incorrect
-    answer") — the same strings the ReAct baselines were injected with — so
-    the unified ASR metric measures what was actually injected on both sides.
+    data/targets/hotpotqa.json ("incorrect answer") — the same strings the
+    ReAct baselines were injected with — so the unified ASR metric measures
+    what was actually injected on both sides.
     (Previously the LangGraph side generated its own wrong answers while
     unified_eval scored against the shared ones: ASR was measured against
     strings that were never injected.)
@@ -45,9 +45,7 @@ from agentic_rag.eval.metrics import eval_answers, exact_match
 from agentic_rag.llm import LLMBackend, load_llm_config
 from agentic_rag.poison.attack import AttackRunner
 
-SHARED_TARGETS = os.path.join(
-    REPO, "kidnaprag", "ReAct", "results", "adv_targeted_results", "hotpotqa.json"
-)
+SHARED_TARGETS = os.path.join(REPO, "data", "targets", "hotpotqa.json")
 
 
 class _FrozenTarget:

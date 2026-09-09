@@ -26,8 +26,8 @@ def main() -> None:
     # from memory (incident 2026-09-08: qwen3-8b mis-flagged TOOL_CALL_FAILED).
     import json as _json
     shared_path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), "..", "kidnaprag", "ReAct",
-        "results", "adv_targeted_results", "hotpotqa.json")
+        os.path.dirname(os.path.abspath(__file__)), "..", "data", "targets",
+        "hotpotqa.json")
     rec = _json.load(open(shared_path))
     question = next(iter(rec.values()))["question"]
     r = victim.ask(question)

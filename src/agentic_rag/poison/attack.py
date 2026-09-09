@@ -4,10 +4,10 @@ tasks, and record what got written into the shared KB.
 Controlled-variable note (repair 2026-09-06): the per-target wrong answer is
 NOT generated here any more. Both framework sides (our LangGraph run and the
 KidnapRAG ReAct baselines) use the SAME per-target wrong answers from
-kidnaprag/ReAct/results/adv_targeted_results/hotpotqa.json ("incorrect
-answer"), so the unified ASR metric measures the string that was actually
-injected on every side. LLM generation is only a fallback for qids missing
-from the shared file (there are none on the 60-target protocol).
+data/targets/hotpotqa.json ("incorrect answer"), so the unified ASR metric
+measures the string that was actually injected on every side. LLM generation
+is only a fallback for qids missing from the shared file (there are none on
+the 60-target protocol).
 """
 from __future__ import annotations
 
