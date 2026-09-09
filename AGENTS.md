@@ -22,7 +22,10 @@ and the preferred prose wording live in the **Terminology table at the top of
 
 - Serve default victim (xLAM-2-8B-fc-r, since the 2026-09-08 v2 rerun; Qwen3-4B retired): `vllm serve /mnt/disk/cwh/LLMs/xlam-2-8b-fc-r --port 8000 --gpu-memory-utilization 0.85 --max-model-len 16384 --served-model-name xlam-2-8b --enable-auto-tool-choice --tool-call-parser xlam --chat-template /mnt/disk/cwh/LLMs/xlam_chat_template.jinja`
 - Our method (LangGraph): `python experiments/longtail_attack.py --targets 60 --volume 8 --variants cluster --use-shared-targets`; model ablation adds `--model <name> --results-name 08_longtail_<name>`
-- KidnapRAG baselines (runs inside `kidnaprag/ReAct/ReAct`): `python experiments/react_baselines.py` (needs the xlam-2-8b server up; results `hotpotqa_seed1_<method>_xlam28b.json`)
+- KidnapRAG baselines: REMOVED 2026-09-09 — the upstream ReAct harness is
+  incompatible with function-calling backbones (20+ empty answers even on clean;
+  see ledger). `experiments/react_baselines.py` retained but not run; results
+  deleted.
 - Unified scoring: `python experiments/unified_eval.py`
 - Ablation table: `python experiments/summarize_ablation.py` → writes `results/ablation_summary.md`
 - MuSiQue KB: `python experiments/build_musique_kb.py` (idempotent)
@@ -46,7 +49,7 @@ The LangGraph victim REQUIRES structured tool calls — run the `tool_smoke` che
 - `save_results` (`experiments/common.py`) writes `results/runs/<run_id>/<name>.json` (run_id = `AGENTIC_RAG_RUN_ID` env, else auto `name_<timestamp>`) and mirrors to `results/<name>.json`. Downstream scripts read the ROOT mirror only, so a root file is always the latest run. Never hand-edit result JSONs; reruns create new run dirs.
 - Naming: `08_longtail.json` = xlam-2-8b hotpot headline (variant `cluster`); per-model `08_longtail_<model>.json`; MuSiQue suffix `_musique`; ablation arms `08_longtail_<model>_<arm>.json` (vol2/vol4/vol6/embed_hybrid/mono/nodiv/greedy/semantic/trig_always/topk4/topk16); cross-model `08_longtail_xsm_<att>_to_<vic>.json` (+`_inj` for the replay record).
 - MuSiQue xlam-2-8b row is restricted to the frozen 59 qids (`research/frozen/musique_targets_59.json`) at analysis time.
-- `results/backup_20260908/` holds the pre-v2 rerun results (old qwen3-4b era); `results/baseline_archive/` holds the old `hotpotqa_seed1_*_qwen34.json` baseline files.
+- `results/backup_20260908/` holds the pre-v2 rerun results (old qwen3-4b era). The old `results/baseline_archive/` (qwen34 baseline results) and the xlam28b baseline results were deleted 2026-09-09 (see ledger).
 
 ## Controlled-variable protocol (do not break)
 

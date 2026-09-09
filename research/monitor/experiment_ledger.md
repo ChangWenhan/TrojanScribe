@@ -626,3 +626,22 @@ semantic 65%/58.3%（阈值漏触发损失 ~10pp）。
 - 141 侧零代码部署：仅作为 vLLM 端点；Qwen3-8B + Meta-Llama-3.1-8B-Instruct 权重已 rsync 到 141:~/LLMs/（141 vllm 0.15.1 与本机一致）。跑完已恢复 141 的 gpt-oss-20b 服务、本机 xlam-2-8b 服务。
 - 汇总 results/cross_model_summary.md：迁移无损且多个非对角格超过对角线（gptoss→qwen3 94%/92% vs 自攻击 74%/77%）；gptoss 攻击者全列最强，llama 攻击者全列最弱（仍 55–78% ASR）；collapse 每格 ≤2（改写而非 DoS）。
 - flip 分母 = 受害者主表 clean-correct（27/31/38/25，与主表对角线一致，交叉验证通过）。
+
+## BASELINE RESULTS REMOVED (2026-09-09)
+
+- Deleted all published-baseline (KidnapRAG ReAct side) result artifacts from the repo:
+  - `kidnaprag/ReAct/results/adv_targeted_results/hotpotqa_seed1_{clean,naive,ours,poisonedRAG,topicattack}_xlam28b.json` (5)
+  - `results/baseline_archive/hotpotqa_seed1_*_qwen34.json` (5, old era)
+  - `results/poison_{naive,ours,poisonedRAG,topicattack}.jsonl` (baseline poison corpora)
+  - `results/13_unified_comparison.{json}` and `results/baseline_status.txt`
+- Rationale (user decision): the upstream KidnapRAG ReAct harness's text-ReAct
+  protocol is incompatible with function-calling backbones — 20 empty answers on
+  the CLEAN baseline alone (9-step `Invalid action: invalid[]` loops), 20–47
+  empties under attack, clean EM only 13/60. These systematically depress all
+  baseline numbers and were judged unusable for a fair comparison. README Core
+  claim / Design / layout / reproduction updated accordingly (baseline numbers
+  removed from prose; pending: same-harness LangGraph comparison of baseline
+  poison corpora).
+- NOT deleted (still required by our protocol): the shared target/wrongs file
+  `kidnaprag/ReAct/results/adv_targeted_results/hotpotqa.json` +
+  `hotpotqa_qid_to_idx.json`.

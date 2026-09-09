@@ -40,39 +40,35 @@ in this README and in code comments uses the plain term.
 
 A poisoned subagent installed from an "open-source" platform writes consensus-style
 fabricated passages into a **shared knowledge base** while behaving benignly in
-every prior round. On a **LangGraph agent** victim it is the only evaluated attack
-that is both directional and high-flip: on the default victim (xlam-2-8b, 60
-long-tail HotpotQA targets) it rewrites **81.5% of clean-correct targets**
-(22/27 — zero agent crashes) and injects the shared target wrong answer into
-**93.3% of all answers (ASR 56/60)**. The strongest published baseline under the
-same protocol on the same victim (KidnapRAG's ReAct harness, poisonedRAG
-corpus) reaches **20.0% flip / 21.7% ASR** — a **>4× gap on both metrics** —
-while naive, KidnapRAG-ours and topicattack barely rewrite knowledge at all
-(their damage is almost entirely `collapse`: empty answers / crashed agent
-loops, i.e. DoS-style disruption, reported separately — topicattack collapses
-14 of 15 clean-correct targets without a single knowledge flip).
+every prior round. On a **LangGraph agent** victim it is both directional and
+high-flip: on the default victim (xlam-2-8b, 60 long-tail HotpotQA targets) it
+rewrites **81.5% of clean-correct targets** (22/27 — zero agent crashes) and
+injects the shared target wrong answer into **93.3% of all answers
+(ASR 56/60)**. Cross-model transfer (Section below) shows poison written by any
+common open backbone transfers near-losslessly to every other victim.
+
+> Note: published document-poisoning baselines (naive / PoisonedRAG / TopicAttack
+> / KidnapRAG) were evaluated on the upstream KidnapRAG ReAct harness, whose
+> text-ReAct protocol is incompatible with function-calling backbones
+> (systematic `Invalid action` loops → 20+ empty answers even on the clean
+> baseline). Those baseline runs were **removed from this repo**; a same-harness
+> (LangGraph) comparison of their poison corpora is a pending item.
 
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
 are reported separately as `collapse`; `changed` = flip + collapse (the correct
 answer was replaced by anything else, including nothing).
 
-## Design (two frameworks, one metric)
+## Design
 
-Frameworks are deliberately **not** merged — each attack runs on the victim it
-was designed for:
+Our method runs on our LangGraph agent harness. Metric definitions below are
+applied uniformly to every run of our method.
 
-| Side | Attack | Victim | Code |
-|---|---|---|---|
-| Ours | consensus-style multi-template poisoning (`cluster`) | our LangGraph agent | `src/agentic_rag/`, `experiments/longtail_attack.py` |
-| Baselines | naive / poisonedRAG / ours / topicattack (KidnapRAG official) | KidnapRAG ReAct agent | `kidnaprag/` |
-
-**Controlled variables across both sides:** same 60 long-tail HotpotQA targets
+**Controlled variables across all runs:** same 60 long-tail HotpotQA targets
 (rare, hard questions), same per-target wrong answers (the shared `hotpotqa.json`
 "incorrect answer", injected verbatim by every method), same bge knowledge base
 (66,581 clean chunks), top-8 retrieval, victim = the backbone under test
-(vLLM, OpenAI-compatible), poison corpora from the official KidnapRAG generators
-for the ReAct side.
+(vLLM, OpenAI-compatible).
 
 **Unified metrics** (`src/agentic_rag/eval/unified.py`, applied by
 `experiments/unified_eval.py` to every method's raw answers):
@@ -83,26 +79,7 @@ for the ReAct side.
 - `flip` — clean-correct target answered wrong after the attack, decomposed
   into `flips_knowledge` (non-empty wrong answer) and `flips_collapse` (empty
   answer / crashed row), so DoS breakage is never counted as a knowledge flip
-  (clean denominators are framework-local — per-victim clean baselines)
-
-## Cross-framework comparison (`results/13_unified_comparison.{json,md}`)
-
-Same victim (xlam-2-8b), same 60 targets, same injected wrong answers, same
-unified scoring (v2 substring-correct flip denominator, both frameworks):
-
-| method | framework | flip (knowledge) | collapse | ASR% |
-|---|---|---|---|---|
-| clean | react | — | 0 | 0 |
-| naive | react | 0/15 | 2 | 0 |
-| poisonedRAG | react | 3/15 (20.0%) | 3 | 21.7 |
-| ours (KidnapRAG) | react | 1/15 (6.7%) | 7 | 0 |
-| topicattack | react | 0/15 (0%) | 14 | 1.7 |
-| **cluster (TrojanScribe, ours)** | **langgraph** | **22/27 (81.5%)** | **0** | **93.3** |
-
-React-side clean denominator is small (15 substring-correct of 60; the ReAct
-loop itself leaves 20 empty answers on this victim) — treat react flip rates
-as coarse. Full per-method records: `kidnaprag/ReAct/results/adv_targeted_results/
-hotpotqa_seed1_*_xlam28b.json`.
+  (clean denominators are per-victim clean baselines)
 
 ## Cross-model transfer — poison written by A, victimized by B (`results/cross_model_summary.md`)
 
@@ -135,11 +112,11 @@ Key observations:
 
 ## Main table — 4 backbones × 2 datasets (v2 rerun 2026-09-08, `results/ablation_summary.md`)
 
-Same protocol per dataset: HotpotQA = shared 60 targets + shared wrongs (identical
-to the ReAct baselines' protocol); MuSiQue = frozen 59-target set with frozen
-wrong answers, zero per-model re-selection. Method = `cluster` at poison dose 8,
-keyword trigger, 3 benign rounds, flip judged by the v2 substring-correct rule,
-victim = the served backbone (attacker payload/writer use the same backbone).
+Same protocol per dataset: HotpotQA = shared 60 targets + shared wrongs; MuSiQue
+= frozen 59-target set with frozen wrong answers, zero per-model re-selection.
+Method = `cluster` at poison dose 8, keyword trigger, 3 benign rounds, flip
+judged by the v2 substring-correct rule, victim = the served backbone (attacker
+payload/writer use the same backbone).
 
 ### HotpotQA (60 shared targets)
 
@@ -202,14 +179,12 @@ Every arm is run on EVERY backbone, HotpotQA, method = `cluster` unless stated.
 configs/            vLLM / knowledge-base / attack settings
 src/agentic_rag/    our method: LangGraph victim agent + poisoned subagent chain
   eval/unified.py     single source of truth for EM/F1/ASR/flip scoring
-kidnaprag/          KidnapRAG ReAct baselines (their code + official generators)
 experiments/
   longtail_attack.py    our method: shared targets -> clean baseline -> isolated
                         per-variant attack (persists per-target records + poison writes)
-  unified_eval.py       unified scoring over both frameworks' results
-  react_baselines.py    KidnapRAG baselines: inject official poison -> run attack
+  unified_eval.py       unified scoring over runs
   summarize_ablation.py ablation + main-table summary -> results/ablation_summary.md
-  run_*.sh              batch drivers (main table / ablation / cross-model / baselines)
+  run_*.sh              batch drivers (main table / ablation / cross-model)
 results/            result JSONs (latest-run mirror) + runs/<run_id>/ timestamped
                     archives (kept out of this repo; naming note in Terminology)
 research/           frozen hypotheses, experiment ledger, literature review
@@ -225,11 +200,9 @@ research/           frozen hypotheses, experiment ledger, literature review
    `python experiments/longtail_attack.py --targets 60 --volume 8 --variants cluster --use-shared-targets`
    (targets are structurally aligned to the shared 60-qid protocol and the run
    asserts full coverage; wrong answers are read from the shared target file)
-4. KidnapRAG baselines (ReAct):
-   `python experiments/react_baselines.py`
-5. Unified evaluation:
+4. Unified evaluation:
    `python experiments/unified_eval.py`
-6. Ablation summary:
+5. Ablation summary:
    `python experiments/summarize_ablation.py`
 
 ## Environment
