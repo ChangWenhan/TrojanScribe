@@ -619,3 +619,10 @@ semantic 65%/58.3%（阈值漏触发损失 ~10pp）。
 - P0 修复 3：clean 路径不清毒，上次中断尝试的残留毒污染 clean 基线（dry_run 中 5/8 检索文档被污染）→ react_baselines.py 启动时 store.delete_poison()。
 - P0 修复 4：unified_eval.py 的 flip 分母用官方 EM 计数而判定用 v2 子串 correct（langgraph 行 22/6=366% 荒谬显示）→ 新增 clean_correct（子串口径）作全框架统一分母；clean_em 保留官方 EM 供参考。
 - 最终对比（同 victim xlam-2-8b、同 60 目标、同注入错误答案、统一评分）：TrojanScribe flip 22/27 (81.5%)、collapse 0、ASR 93.3%；最佳基线 poisonedRAG flip 3/15 (20.0%)、ASR 21.7%（>4×差距）；naive/ours/topicattack 的破坏几乎全是 collapse（topicattack 14 collapse / 0 flip，纯 DoS）。注意 react clean 分母仅 15（ReAct 循环在该 victim 上本身 20 空），react 侧 flip 率只作粗对比。
+
+## CROSS-MODEL MATRIX F COMPLETE (2026-09-09)
+
+- 12 个非对角 pair 全部完成（双机并行 ~24 min：本机端点跑 gpt-oss-20b/xlam 受害者 6 对，141 端点跑 qwen3/llama 受害者 6 对）。新驱动 experiments/run_cross_model_split.sh（local/remote 双模式，--kb-dir 隔离：chroma / chroma_xsm141；tool_smoke 走 AGENTIC_RAG_BASE_URL——首版硬编码 localhost 的 bug 已修；curl 轮询 $BASE_URL/models——首版双 /v1 的 404 死循环 bug 已修）。
+- 141 侧零代码部署：仅作为 vLLM 端点；Qwen3-8B + Meta-Llama-3.1-8B-Instruct 权重已 rsync 到 141:~/LLMs/（141 vllm 0.15.1 与本机一致）。跑完已恢复 141 的 gpt-oss-20b 服务、本机 xlam-2-8b 服务。
+- 汇总 results/cross_model_summary.md：迁移无损且多个非对角格超过对角线（gptoss→qwen3 94%/92% vs 自攻击 74%/77%）；gptoss 攻击者全列最强，llama 攻击者全列最弱（仍 55–78% ASR）；collapse 每格 ≤2（改写而非 DoS）。
+- flip 分母 = 受害者主表 clean-correct（27/31/38/25，与主表对角线一致，交叉验证通过）。

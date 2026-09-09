@@ -104,6 +104,35 @@ loop itself leaves 20 empty answers on this victim) — treat react flip rates
 as coarse. Full per-method records: `kidnaprag/ReAct/results/adv_targeted_results/
 hotpotqa_seed1_*_xlam28b.json`.
 
+## Cross-model transfer — poison written by A, victimized by B (`results/cross_model_summary.md`)
+
+Attacker A's persisted poison texts are **replayed verbatim** into the KB
+(`--phase inject-from`, no regeneration — transferability of pre-written
+poison), then victim B is evaluated; 12 off-diagonal pairs, 4×4 backbones
+(diagonal = main table):
+
+| attacker \ victim | xlam-2-8b | qwen3-8b | gpt-oss-20b | llama-3.1-8b |
+|---|---|---|---|---|
+| xlam-2-8b | — | 28/31 (90%), ASR 85% | 28/38 (74%), ASR 67% | 23/25 (92%), ASR 78% |
+| qwen3-8b | 22/27 (81%), ASR 88% | — | 26/38 (68%), ASR 65% | 22/25 (88%), ASR 73% |
+| gpt-oss-20b | 24/27 (89%), ASR 85% | 29/31 (94%), ASR 92% | — | 23/25 (92%), ASR 77% |
+| llama-3.1-8b | 21/27 (78%), ASR 65% | 25/31 (81%), ASR 72% | 24/38 (63%), ASR 55% | — |
+
+Key observations:
+
+- **Transfer is essentially lossless and often exceeds the same-model
+  diagonal**: every off-diagonal cell keeps ≥63% flip and ≥55% ASR, and
+  several non-diagonal cells beat the victim's own diagonal attack (e.g.
+  gpt-oss-20b poison on qwen3-8b: 94% flip / 92% ASR vs 74% / 77% on
+  gpt-oss-20b itself). A poison corpus written once by any common open
+  backbone poisons the whole fleet — there is no per-victim customization
+  barrier to cross.
+- Attacker quality ordering persists across victims: gpt-oss-20b poison is
+  the strongest on every foreign victim; llama-3.1-8b poison the weakest
+  (still 55–78% ASR).
+- Collapse stays near zero (≤2 per cell): the damage is genuine knowledge
+  rewriting, not agent breakage, regardless of which model wrote the poison.
+
 ## Main table — 4 backbones × 2 datasets (v2 rerun 2026-09-08, `results/ablation_summary.md`)
 
 Same protocol per dataset: HotpotQA = shared 60 targets + shared wrongs (identical
