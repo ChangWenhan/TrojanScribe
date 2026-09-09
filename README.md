@@ -47,12 +47,28 @@ injects the shared target wrong answer into **93.3% of all answers
 (ASR 56/60)**. Cross-model transfer (Section below) shows poison written by any
 common open backbone transfers near-losslessly to every other victim.
 
-> Note: published document-poisoning baselines (naive / PoisonedRAG / TopicAttack
-> / KidnapRAG) were evaluated on the upstream KidnapRAG ReAct harness, whose
-> text-ReAct protocol is incompatible with function-calling backbones
-> (systematic `Invalid action` loops → 20+ empty answers even on the clean
-> baseline). Those baseline runs were **removed from this repo**; a same-harness
-> (LangGraph) comparison of their poison corpora is a pending item.
+## Baseline comparison — PoisonedRAG (USENIX Security 2025)
+
+To compare against a published document-poisoning attack under **identical
+conditions** (same 60 targets, same injected wrong answers, same bge KB,
+same LangGraph victims, same unified metrics), we run PoisonedRAG's
+black-box corpus-crafting method (`P = question + "." + II`, II = LLM-crafted
+30-word corpus, verified so the wrong answer follows from the corpus alone)
+on the same victim set. Poison texts are generated once (Qwen3-8B) and
+evaluated against all four main-table victims.
+
+| victim | clean | PoisonedRAG flip | TrojanScribe flip | PR ASR | TS ASR |
+|---|---|---|---|---|---|
+| xlam-2-8b | 27/60 | 14/27 (51.9%) | **22/27 (81.5%)** | 41/60 | **56/60** |
+| qwen3-8b | 31/60 | 21/31 (67.7%) | **23/31 (74.2%)** | 40/60 | **46/60** |
+| gpt-oss-20b | 38/60 | 18/38 (47.4%) | **28/38 (73.7%)** | 24/60 | **41/60** |
+| llama-3.1-8b | 25/60 | 19/25 (76.0%) | 19/25 (76.0%) | **42/60** | 32/60 |
+
+TrojanScribe leads knowledge-flip on three of four victims (up to +27pp on
+gpt-oss-20b) and matches on llama-3.1-8b; PoisonedRAG's ASR is higher on
+llama-3.1-8b (it injects a non-empty wrong string more often but flips no
+more targets). Same-harness, same-metric comparison: this is not the old
+ReAct-harness numbers (removed 2026-09-09); code in `baseline/poisonedrag/`.
 
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
@@ -184,6 +200,9 @@ experiments/
                         per-variant attack (persists per-target records + poison writes)
   summarize_ablation.py ablation + main-table summary -> results/ablation_summary.md
   run_*.sh              batch drivers (main table / ablation / cross-model)
+baseline/           published attack baselines (same-harness, same-metric)
+  poisonedrag/          PoisonedRAG (USENIX Security 2025): corpus crafting +
+                        verification + per-victim evaluation scripts
 results/            result JSONs (latest-run mirror) + runs/<run_id>/ timestamped
                     archives (kept out of this repo; naming note in Terminology)
 research/           frozen hypotheses, experiment ledger, literature review

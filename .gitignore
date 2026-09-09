@@ -26,4 +26,10 @@ results/*
 !results/08_longtail_llama-3.1-8b_musique.json
 !results/ablation_summary.md
 !results/cross_model_summary.md
+!results/baseline_poisonedrag_60.json
+!results/baseline_pr_eval_60.json
+!results/baseline_poisonedrag_eval_qwen3-8b.json
+!results/baseline_poisonedrag_eval_gpt-oss-20b.json
+!results/baseline_poisonedrag_eval_llama-3.1-8b.json
+!results/baseline_poisonedrag_targets.json
 AGENTS.md
