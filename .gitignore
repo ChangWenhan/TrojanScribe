@@ -53,3 +53,7 @@ results/*
 !results/baseline_agentpoison_musique_eval_gpt-oss-20b.json
 !results/baseline_agentpoison_musique_eval_llama-3.1-8b.json
 AGENTS.md
+
+# upstream baseline repos (third-party code, kept locally for reference only)
+baseline/poisonedrag/upstream/
+baseline/agentpoison/upstream/
