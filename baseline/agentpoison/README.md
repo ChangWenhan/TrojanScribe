@@ -61,4 +61,11 @@ query; under a KB-only attacker only the instruction-following side remains.
 Qwen3-8B is the trigger-optimization model, so its own row (18/31) is not a
 cross-model transfer; the other three rows are transfers from Qwen3-8B.
 
-### MuSiQue (59 frozen targets) — pending
+### MuSiQue (59 frozen targets)
+
+| victim | clean | AgentPoison flip | PoisonedRAG flip | TrojanScribe flip | AP ASR | PR ASR | TS ASR |
+|---|---|---|---|---|---|---|---|
+| xlam-2-8b | 7/59 | 6/7 (85.7%) | 7/7 (100%) | 7/7 (100%) | 38/59 | 42/59 | **51/59** |
+| qwen3-8b | 9/59 | 7/9 (77.8%) | 9/9 (100%) | 9/9 (100%) | **48/59** | 40/59 | 47/59 |
+| gpt-oss-20b | 18/59 | 9/18 (50.0%) | 16/18 (88.9%) | **18/18 (100%)** | 29/59 | 26/59 | **41/59** |
+| llama-3.1-8b | 10/59 | 8/10 (80.0%) | 10/10 (100%) | 8/10 (80.0%) | **40/59** | 34/59 | 26/59 |

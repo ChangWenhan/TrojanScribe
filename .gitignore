@@ -45,4 +45,11 @@ results/*
 !results/baseline_agentpoison_eval_qwen3-8b.json
 !results/baseline_agentpoison_eval_gpt-oss-20b.json
 !results/baseline_agentpoison_eval_llama-3.1-8b.json
+!results/baseline_agentpoison_musique.json
+!results/baseline_agentpoison_gen_musique.json
+!results/baseline_agentpoison_musique_targets.json
+!results/baseline_agentpoison_musique_eval_xlam-2-8b.json
+!results/baseline_agentpoison_musique_eval_qwen3-8b.json
+!results/baseline_agentpoison_musique_eval_gpt-oss-20b.json
+!results/baseline_agentpoison_musique_eval_llama-3.1-8b.json
 AGENTS.md

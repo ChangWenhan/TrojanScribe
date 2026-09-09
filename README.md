@@ -83,16 +83,19 @@ code in `baseline/poisonedrag/` and `baseline/agentpoison/`.
 
 ### MuSiQue (59 frozen targets)
 
-| victim | clean | PoisonedRAG flip | TrojanScribe flip | PR ASR | TS ASR |
-|---|---|---|---|---|---|
-| xlam-2-8b | 7/59 | 7/7 (100%) | 7/7 (100%) | 42/59 | **51/59** |
-| qwen3-8b | 9/59 | 9/9 (100%) | 9/9 (100%) | 40/59 | **47/59** |
-| gpt-oss-20b | 18/59 | 16/18 (88.9%) | **18/18 (100%)** | 26/59 | **41/59** |
-| llama-3.1-8b | 10/59 | 10/10 (100%) | 8/10 (80.0%) | **34/59** | 26/59 |
+| victim | clean | PoisonedRAG flip | AgentPoison flip | TrojanScribe flip | PR ASR | AP ASR | TS ASR |
+|---|---|---|---|---|---|---|---|
+| xlam-2-8b | 7/59 | 7/7 (100%) | 6/7 (85.7%) | 7/7 (100%) | 42/59 | 38/59 | **51/59** |
+| qwen3-8b | 9/59 | 9/9 (100%) | 7/9 (77.8%) | 9/9 (100%) | 40/59 | **48/59** | 47/59 |
+| gpt-oss-20b | 18/59 | 16/18 (88.9%) | 9/18 (50.0%) | **18/18 (100%)** | 26/59 | 29/59 | **41/59** |
+| llama-3.1-8b | 10/59 | 10/10 (100%) | 8/10 (80.0%) | 8/10 (80.0%) | 34/59 | **40/59** | 26/59 |
 
-On MuSiQue both methods reach near-ceiling flip (both saturate on the small
-clean-correct pools) — the flip metric loses discriminative power here; ASR
-still separates them (TrojanScribe higher on 3/4 victims).
+On MuSiQue PoisonedRAG and TrojanScribe reach near-ceiling flip (both saturate
+on the small clean-correct pools); the adapted AgentPoison is consistently the
+weakest (its retrieval-side trigger needs the victim's query, which a KB-only
+attacker cannot touch). ASR separates the stronger two: TrojanScribe higher on
+3/4 victims, AgentPoison highest on qwen3-8b (its trigger-optimization model)
+and llama-3.1-8b.
 
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
