@@ -22,9 +22,7 @@ echo "--- stage 2: ablations (dose / style diversity / trigger / window) ---" >>
 bash "$ROOT/experiments/run_ablation_v2.sh" > "$LOG/ablation_v2_driver.log" 2>&1
 echo "--- stage 3: cross-model ---" >> "$STATUS"
 bash "$ROOT/experiments/run_cross_model.sh" > "$LOG/cross_model_driver.log" 2>&1
-echo "--- stage 4: react baselines ---" >> "$STATUS"
-bash "$ROOT/experiments/run_baselines.sh" > "$LOG/baselines_driver.log" 2>&1
-echo "--- stage 5: unified eval + summary ---" >> "$STATUS"
+echo "--- stage 4: unified eval + summary ---" >> "$STATUS"
 ( cd "$ROOT/experiments" && "$PY" unified_eval.py > "$LOG/unified_eval.log" 2>&1 )
 ( cd "$ROOT/experiments" && "$PY" summarize_ablation.py > "$LOG/summarize_ablation.log" 2>&1 )
 

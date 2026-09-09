@@ -70,8 +70,8 @@ applied uniformly to every run of our method.
 (66,581 clean chunks), top-8 retrieval, victim = the backbone under test
 (vLLM, OpenAI-compatible).
 
-**Unified metrics** (`src/agentic_rag/eval/unified.py`, applied by
-`experiments/unified_eval.py` to every method's raw answers):
+**Unified metrics** (`src/agentic_rag/eval/unified.py`, applied to every
+run's raw answers):
 
 - `EM` — HotpotQA official normalize (article + punctuation removal)
 - `F1>0` — token F1 vs gold
@@ -182,7 +182,6 @@ src/agentic_rag/    our method: LangGraph victim agent + poisoned subagent chain
 experiments/
   longtail_attack.py    our method: shared targets -> clean baseline -> isolated
                         per-variant attack (persists per-target records + poison writes)
-  unified_eval.py       unified scoring over runs
   summarize_ablation.py ablation + main-table summary -> results/ablation_summary.md
   run_*.sh              batch drivers (main table / ablation / cross-model)
 results/            result JSONs (latest-run mirror) + runs/<run_id>/ timestamped
@@ -200,9 +199,7 @@ research/           frozen hypotheses, experiment ledger, literature review
    `python experiments/longtail_attack.py --targets 60 --volume 8 --variants cluster --use-shared-targets`
    (targets are structurally aligned to the shared 60-qid protocol and the run
    asserts full coverage; wrong answers are read from the shared target file)
-4. Unified evaluation:
-   `python experiments/unified_eval.py`
-5. Ablation summary:
+4. Ablation summary:
    `python experiments/summarize_ablation.py`
 
 ## Environment

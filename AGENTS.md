@@ -1,5 +1,15 @@
 # AGENTS.md
 
+## 与用户的沟通方式（重要，务必遵守）
+
+- 用户看不懂专业术语。解释任何事都要用大白话，像跟非技术的人说话一样。
+- 每个解释都要**先说结论/答案，再解释为什么**。
+- 一句话能说清的，绝不说两句。术语第一次出现时给个比喻或例子。
+- 用户问"为什么"时，先说人话版原因，不要堆代码细节或字段名。
+- 不要用"冻结目标/协议口径/裁剪/变体"这类词，换成"这批问题/按规则挑出来的/从清单里选"等普通说法。
+
+## Research
+
 Research codebase: write-back poisoning of multi-user AgenticRAG via a poisoned supply-chain subagent, compared against KidnapRAG ReAct baselines. Paper-facing summary is `README.md`; **trust executable code + `results/*.json` over prose** — doc-vs-data mismatches are tracked in `research/issues/known_issues.md`.
 
 ## Terminology
@@ -24,9 +34,8 @@ and the preferred prose wording live in the **Terminology table at the top of
 - Our method (LangGraph): `python experiments/longtail_attack.py --targets 60 --volume 8 --variants cluster --use-shared-targets`; model ablation adds `--model <name> --results-name 08_longtail_<name>`
 - KidnapRAG baselines: REMOVED 2026-09-09 — the upstream ReAct harness is
   incompatible with function-calling backbones (20+ empty answers even on clean;
-  see ledger). `experiments/react_baselines.py` retained but not run; results
+  see ledger). Results and scripts (`react_baselines.py`, `run_baselines.sh`)
   deleted.
-- Unified scoring: `python experiments/unified_eval.py`
 - Ablation table: `python experiments/summarize_ablation.py` → writes `results/ablation_summary.md`
 - MuSiQue KB: `python experiments/build_musique_kb.py` (idempotent)
 - Batch drivers (idempotent, skip done runs; serve-switch + tool smoke; restore the xlam-2-8b server at the end):
