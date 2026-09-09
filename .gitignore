@@ -8,3 +8,18 @@ __pycache__/
 .ipynb_checkpoints/
 *.log
 .DS_Store
+
+# main-table result files (tracked for paper reproducibility)
+!results/
+results/*
+!results/08_longtail.json
+!results/08_longtail_musique.json
+!results/08_longtail_qwen3-8b.json
+!results/08_longtail_qwen3-8b_musique.json
+!results/08_longtail_gpt-oss-20b.json
+!results/08_longtail_gpt-oss-20b_musique.json
+!results/08_longtail_llama-3.1-8b.json
+!results/08_longtail_llama-3.1-8b_musique.json
+!results/ablation_summary.md
+!results/cross_model_summary.md
+AGENTS.md
