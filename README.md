@@ -47,28 +47,39 @@ injects the shared target wrong answer into **93.3% of all answers
 (ASR 56/60)**. Cross-model transfer (Section below) shows poison written by any
 common open backbone transfers near-losslessly to every other victim.
 
-## Baseline comparison — PoisonedRAG (USENIX Security 2025)
+## Baseline comparison — PoisonedRAG (USENIX Security 2025) & AgentPoison (NeurIPS 2024)
 
-To compare against a published document-poisoning attack under **identical
+To compare against published document-poisoning attacks under **identical
 conditions** (same 60 targets, same injected wrong answers, same bge KB,
-same LangGraph victims, same unified metrics), we run PoisonedRAG's
-black-box corpus-crafting method (`P = question + "." + II`, II = LLM-crafted
-30-word corpus, verified so the wrong answer follows from the corpus alone)
-on the same victim set. Poison texts are generated once (Qwen3-8B) and
+same LangGraph victims, same unified metrics), we run each baseline's crafting
+method on the same victim set. Poison texts are generated once (Qwen3-8B) and
 evaluated against all four main-table victims.
 
-| victim | clean | PoisonedRAG flip | TrojanScribe flip | PR ASR | TS ASR |
-|---|---|---|---|---|---|
-| xlam-2-8b | 27/60 | 14/27 (51.9%) | **22/27 (81.5%)** | 41/60 | **56/60** |
-| qwen3-8b | 31/60 | 21/31 (67.7%) | **23/31 (74.2%)** | 40/60 | **46/60** |
-| gpt-oss-20b | 38/60 | 18/38 (47.4%) | **28/38 (73.7%)** | 24/60 | **41/60** |
-| llama-3.1-8b | 25/60 | 19/25 (76.0%) | 19/25 (76.0%) | **42/60** | 32/60 |
+- **PoisonedRAG** black-box corpus crafting (`P = question + "." + II`, II =
+  LLM-crafted 30-word corpus, verified so the wrong answer follows from the
+  corpus alone).
+- **AgentPoison (adapted)** trigger + instruction: a trigger word is selected
+  per target by Qwen3-8B sampling (the paper's GPT-3.5 target-asr role) and the
+  poisoned doc embedding is pushed toward the question embedding under our bge
+  retriever. Unlike the paper we do not append the trigger to the victim's
+  question (write-back threat model), so the trigger only serves the generation
+  side — this is the fair adaptation to our KB-only attacker.
+
+| victim | clean | PoisonedRAG flip | AgentPoison flip | TrojanScribe flip | PR ASR | AP ASR | TS ASR |
+|---|---|---|---|---|---|---|---|
+| xlam-2-8b | 27/60 | 14/27 (51.9%) | 12/27 (44.4%) | **22/27 (81.5%)** | 41/60 | 30/60 | **56/60** |
+| qwen3-8b | 31/60 | 21/31 (67.7%) | 18/31 (58.1%) | **23/31 (74.2%)** | 40/60 | 36/60 | **46/60** |
+| gpt-oss-20b | 38/60 | 18/38 (47.4%) | 12/38 (31.6%) | **28/38 (73.7%)** | 24/60 | 18/60 | **41/60** |
+| llama-3.1-8b | 25/60 | 19/25 (76.0%) | 11/25 (44.0%) | 19/25 (76.0%) | **42/60** | 33/60 | 32/60 |
 
 TrojanScribe leads knowledge-flip on three of four victims (up to +27pp on
-gpt-oss-20b) and matches on llama-3.1-8b; PoisonedRAG's ASR is higher on
-llama-3.1-8b (it injects a non-empty wrong string more often but flips no
-more targets). Same-harness, same-metric comparison: this is not the old
-ReAct-harness numbers (removed 2026-09-09); code in `baseline/poisonedrag/`.
+gpt-oss-20b) and matches on llama-3.1-8b. Among baselines, PoisonedRAG is the
+stronger (its corpus both retrieves and asserts the wrong answer); the adapted
+AgentPoison is weaker because its retrieval-side trigger mechanism requires
+modifying the victim's query, which our KB-only attacker cannot do — its
+generation-side trigger alone steers fewer flips. Same-harness, same-metric
+comparison: this is not the old ReAct-harness numbers (removed 2026-09-09);
+code in `baseline/poisonedrag/` and `baseline/agentpoison/`.
 
 ### MuSiQue (59 frozen targets)
 
