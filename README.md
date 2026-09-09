@@ -70,6 +70,19 @@ llama-3.1-8b (it injects a non-empty wrong string more often but flips no
 more targets). Same-harness, same-metric comparison: this is not the old
 ReAct-harness numbers (removed 2026-09-09); code in `baseline/poisonedrag/`.
 
+### MuSiQue (59 frozen targets)
+
+| victim | clean | PoisonedRAG flip | TrojanScribe flip | PR ASR | TS ASR |
+|---|---|---|---|---|---|
+| xlam-2-8b | 7/59 | 7/7 (100%) | 7/7 (100%) | 42/59 | **51/59** |
+| qwen3-8b | 9/59 | 9/9 (100%) | 9/9 (100%) | 40/59 | **47/59** |
+| gpt-oss-20b | 18/59 | 16/18 (88.9%) | **18/18 (100%)** | 26/59 | **41/59** |
+| llama-3.1-8b | 10/59 | 10/10 (100%) | 8/10 (80.0%) | **34/59** | 26/59 |
+
+On MuSiQue both methods reach near-ceiling flip (both saturate on the small
+clean-correct pools) — the flip metric loses discriminative power here; ASR
+still separates them (TrojanScribe higher on 3/4 victims).
+
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
 are reported separately as `collapse`; `changed` = flip + collapse (the correct

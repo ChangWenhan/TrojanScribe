@@ -54,6 +54,15 @@ targets × 5 = 300 corpora.
 Flip = clean-correct → non-empty wrong answer; collapse = clean-correct →
 empty (0 everywhere here). ASR = injected wrong-answer substring in the answer.
 
+### MuSiQue (59 frozen targets)
+
+| victim | clean | PoisonedRAG flip | TrojanScribe flip | PR ASR | TS ASR |
+|---|---|---|---|---|---|
+| xlam-2-8b | 7/59 | 7/7 (100%) | 7/7 (100%) | 42/59 | **51/59** |
+| qwen3-8b | 9/59 | 9/9 (100%) | 9/9 (100%) | 40/59 | **47/59** |
+| gpt-oss-20b | 18/59 | 16/18 (88.9%) | **18/18 (100%)** | 26/59 | **41/59** |
+| llama-3.1-8b | 10/59 | 10/10 (100%) | 8/10 (80.0%) | **34/59** | 26/59 |
+
 ## Notes
 
 - `qwen3-8b` served with `enable_thinking:false` for corpus generation

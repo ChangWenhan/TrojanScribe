@@ -162,16 +162,23 @@ def co_retrieval(store, query: str, cluster_ids: set[str], true_text: str, k: in
     }
 
 
-def load_clean_baseline(model: str, target_records: dict) -> tuple[dict | None, str]:
+def load_clean_baseline(model: str, target_records: dict, kb_collection: str = "") -> tuple[dict | None, str]:
     """Read the victim model's clean answers from its main-table result file
     (08_longtail_<model>.json, falling back to the headline 08_longtail.json),
     restricted to our target qids. Used by the eval-after phase (cross-model
-    ablation F): the clean baseline must come from a pristine-KB run of the
-    SAME victim model — exactly what the main table provides."""
-    for cand in (
-        os.path.join(REPO, "results", f"08_longtail_{model}.json"),
-        os.path.join(REPO, "results", "08_longtail.json"),
-    ):
+    ablation F / baseline comparison): the clean baseline must come from a
+    pristine-KB run of the SAME victim model — exactly what the main table
+    provides. For MuSiQue (kb_collection contains 'musique'), the main-table
+    files are 08_longtail_<model>_musique.json (and 08_longtail_musique.json)."""
+    is_mus = "musique" in (kb_collection or "")
+    candidates = (
+        [os.path.join(REPO, "results", f"08_longtail_{model}_musique.json"),
+         os.path.join(REPO, "results", "08_longtail_musique.json")]
+        if is_mus else
+        [os.path.join(REPO, "results", f"08_longtail_{model}.json"),
+         os.path.join(REPO, "results", "08_longtail.json")]
+    )
+    for cand in candidates:
         if not os.path.exists(cand):
             continue
         d = json.load(open(cand))
@@ -504,7 +511,8 @@ def main():
         # cross-model ablation F, stage 2: victim model answers with the poison
         # already in the KB; clean baseline read from the victim's main table.
         victim_model = args.model or config["llm"]["local"]["model"]
-        clean, clean_source = load_clean_baseline(victim_model, target_records)
+        clean, clean_source = load_clean_baseline(
+            victim_model, target_records, config["kb"]["collection"])
         if not clean:
             raise SystemExit(
                 f"[08][eval-after] no clean baseline found for {victim_model} "
