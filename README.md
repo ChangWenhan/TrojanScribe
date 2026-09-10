@@ -47,7 +47,7 @@ injects the shared target wrong answer into **93.3% of all answers
 (ASR 56/60)**. Cross-model transfer (Section below) shows poison written by any
 common open backbone transfers near-losslessly to every other victim.
 
-## Baseline comparison — PoisonedRAG (USENIX Security 2025) & AgentPoison (NeurIPS 2024)
+## Baseline comparison — PoisonedRAG, AgentPoison & CorruptRAG
 
 To compare against published document-poisoning attacks under **identical
 conditions** (same 60 targets, same injected wrong answers, same bge KB,
@@ -55,47 +55,52 @@ same LangGraph victims, same unified metrics), we run each baseline's crafting
 method on the same victim set. Poison texts are generated once (Qwen3-8B) and
 evaluated against all four main-table victims.
 
-- **PoisonedRAG** black-box corpus crafting (`P = question + "." + II`, II =
-  LLM-crafted 30-word corpus, verified so the wrong answer follows from the
-  corpus alone).
-- **AgentPoison (adapted)** trigger + instruction: a trigger word is selected
-  per target by Qwen3-8B sampling (the paper's GPT-3.5 target-asr role) and the
-  poisoned doc embedding is pushed toward the question embedding under our bge
-  retriever. Unlike the paper we do not append the trigger to the victim's
-  question (write-back threat model), so the trigger only serves the generation
-  side — this is the fair adaptation to our KB-only attacker.
+- **PoisonedRAG** (USENIX Security 2025) black-box corpus crafting
+  (`P = question + "." + II`, II = LLM-crafted 30-word corpus, verified so the
+  wrong answer follows from the corpus alone). 5 chunks per target.
+- **AgentPoison** (NeurIPS 2024, adapted) trigger + instruction: a trigger word
+  is selected per target by Qwen3-8B sampling (the paper's GPT-3.5 target-asr
+  role) and the poisoned doc embedding is pushed toward the question embedding
+  under our bge retriever. Unlike the paper we do not append the trigger to the
+  victim's question (write-back threat model), so the trigger only serves the
+  generation side — the fair adaptation to our KB-only attacker.
+- **CorruptRAG** (ACM SACMAT 2026) **single-shot** poisoning: ONE text per
+  target. AS = fixed template (`question + "outdated corpus stating the
+  incorrect answer [C]" + "latest data confirms the correct answer is [A]"`);
+  AK = LLM-refined (Qwen3-8B, V=30 words, L=5 validation trials, fallback to AS).
 
-| victim | clean | PoisonedRAG flip | AgentPoison flip | TrojanScribe flip | PR ASR | AP ASR | TS ASR |
+| victim | clean | PR flip | AP flip | CR-AS flip | CR-AK flip | TrojanScribe flip | TS ASR |
 |---|---|---|---|---|---|---|---|
-| xlam-2-8b | 27/60 | 14/27 (51.9%) | 12/27 (44.4%) | **22/27 (81.5%)** | 41/60 | 30/60 | **56/60** |
-| qwen3-8b | 31/60 | 21/31 (67.7%) | 18/31 (58.1%) | **23/31 (74.2%)** | 40/60 | 36/60 | **46/60** |
-| gpt-oss-20b | 38/60 | 18/38 (47.4%) | 12/38 (31.6%) | **28/38 (73.7%)** | 24/60 | 18/60 | **41/60** |
-| llama-3.1-8b | 25/60 | 19/25 (76.0%) | 11/25 (44.0%) | 19/25 (76.0%) | **42/60** | 33/60 | 32/60 |
+| xlam-2-8b | 27/60 | 14/27 (51.9%) | 12/27 (44.4%) | 18/27 (66.7%) | 16/27 (59.3%) | **22/27 (81.5%)** | **56/60** |
+| qwen3-8b | 31/60 | 21/31 (67.7%) | 18/31 (58.1%) | 22/31 (71.0%) | 24/31 (77.4%) | **23/31 (74.2%)** | **46/60** |
+| gpt-oss-20b | 38/60 | 18/38 (47.4%) | 12/38 (31.6%) | 27/38 (71.1%) | 29/38 (76.3%) | **28/38 (73.7%)** | **41/60** |
+| llama-3.1-8b | 25/60 | 19/25 (76.0%) | 11/25 (44.0%) | 21/25 (84.0%) | 21/25 (84.0%) | 19/25 (76.0%) | 32/60 |
 
-TrojanScribe leads knowledge-flip on three of four victims (up to +27pp on
-gpt-oss-20b) and matches on llama-3.1-8b. Among baselines, PoisonedRAG is the
-stronger (its corpus both retrieves and asserts the wrong answer); the adapted
-AgentPoison is weaker because its retrieval-side trigger mechanism requires
-modifying the victim's query, which our KB-only attacker cannot do — its
-generation-side trigger alone steers fewer flips. Same-harness, same-metric
-comparison: this is not the old ReAct-harness numbers (removed 2026-09-09);
-code in `baseline/poisonedrag/` and `baseline/agentpoison/`.
+TrojanScribe leads knowledge-flip on three of four victims (up to +30pp on
+gpt-oss-20b). Among baselines, **CorruptRAG is the strongest**: with only ONE
+poisoned text per target it matches or beats PoisonedRAG (5 chunks) on most
+rows — its "outdated corpus / latest data" framing is a very effective single
+shot, and it even edges out TrojanScribe on llama-3.1-8b flip (84% vs 76%,
+though TrojanScribe's ASR there is higher on ASR it trails on llama). The
+adapted AgentPoison is the weakest because its retrieval-side trigger mechanism
+requires modifying the victim's query, which our KB-only attacker cannot do.
+Same-harness, same-metric comparison (not the old ReAct-harness numbers,
+removed 2026-09-09); code in `baseline/poisonedrag/`, `baseline/agentpoison/`
+and `baseline/corruptrag/`.
 
 ### MuSiQue (59 frozen targets)
 
-| victim | clean | PoisonedRAG flip | AgentPoison flip | TrojanScribe flip | PR ASR | AP ASR | TS ASR |
+| victim | clean | PR flip | AP flip | CR-AS flip | CR-AK flip | TrojanScribe flip | TS ASR |
 |---|---|---|---|---|---|---|---|
-| xlam-2-8b | 7/59 | 7/7 (100%) | 6/7 (85.7%) | 7/7 (100%) | 42/59 | 38/59 | **51/59** |
-| qwen3-8b | 9/59 | 9/9 (100%) | 7/9 (77.8%) | 9/9 (100%) | 40/59 | **48/59** | 47/59 |
-| gpt-oss-20b | 18/59 | 16/18 (88.9%) | 9/18 (50.0%) | **18/18 (100%)** | 26/59 | 29/59 | **41/59** |
-| llama-3.1-8b | 10/59 | 10/10 (100%) | 8/10 (80.0%) | 8/10 (80.0%) | 34/59 | **40/59** | 26/59 |
+| xlam-2-8b | 7/59 | 7/7 (100%) | 6/7 (85.7%) | 5/7 (71.4%) | 6/7 (85.7%) | 7/7 (100%) | **51/59** |
+| qwen3-8b | 9/59 | 9/9 (100%) | 7/9 (77.8%) | 8/9 (88.9%) | 7/9 (77.8%) | 9/9 (100%) | 47/59 |
+| gpt-oss-20b | 18/59 | 16/18 (88.9%) | 9/18 (50.0%) | 15/18 (83.3%) | 17/18 (94.4%) | **18/18 (100%)** | **41/59** |
+| llama-3.1-8b | 10/59 | 10/10 (100%) | 8/10 (80.0%) | 9/10 (90.0%) | 9/10 (90.0%) | 8/10 (80.0%) | 26/59 |
 
-On MuSiQue PoisonedRAG and TrojanScribe reach near-ceiling flip (both saturate
-on the small clean-correct pools); the adapted AgentPoison is consistently the
-weakest (its retrieval-side trigger needs the victim's query, which a KB-only
-attacker cannot touch). ASR separates the stronger two: TrojanScribe higher on
-3/4 victims, AgentPoison highest on qwen3-8b (its trigger-optimization model)
-and llama-3.1-8b.
+On MuSiQue PoisonedRAG and TrojanScribe reach near-ceiling flip (small
+clean-correct pools); CorruptRAG is close behind (a single shot flip 83-94% on
+gpt-oss-20b/llama), AgentPoison consistently weakest. TrojanScribe's ASR leads
+on 2/4 victims; CorruptRAG's ASR is highest on qwen3-8b.
 
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows

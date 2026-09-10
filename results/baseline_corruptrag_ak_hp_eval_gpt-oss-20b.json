@@ -1,0 +1,2115 @@
+{
+  "meta": {
+    "phase": "eval-after",
+    "model": "gpt-oss-20b",
+    "clean_source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_gpt-oss-20b.json",
+    "volume": 8,
+    "trigger_kind": "keyword",
+    "refill_rounds": 6,
+    "kb_collection": "hotpot_kb",
+    "wrong_source": "frozen_records",
+    "timestamp": "2026-09-10 11:24:43"
+  },
+  "targets": {
+    "5ac3bff15542995ef918c213": {
+      "question": "Alexander S. Wadsworth served during the war that was faught between which two countries?",
+      "gold": "United States, the United Kingdom, and their respective allies",
+      "wrong": "France, Russia, and their respective allies"
+    },
+    "5ab5b701554299637185c5e7": {
+      "question": "Han Chae-young was in the 2009 drama that aired on what network?",
+      "gold": "KBS2",
+      "wrong": "MBC"
+    },
+    "5abe4a365542993f32c2a0dc": {
+      "question": "Rosi Golan's songs were featured in commercials for a brand of Artsana, that's been working for over 50 years, and is present in how many countries?",
+      "gold": "more than 120 countries",
+      "wrong": "Coca-Cola"
+    },
+    "5ab935c755429934fafe6e74": {
+      "question": "What was the nationality of the \"Lonely Hearts Killers\"?",
+      "gold": "American",
+      "wrong": "Inferno"
+    },
+    "5a73d4385542992d56e7e3b1": {
+      "question": "Yves Apollinaire Pede made sand paintings of which South African anti-apartheid revolutionary? ",
+      "gold": "Nelson Mandela",
+      "wrong": "F.W. de Klerk"
+    },
+    "5add7c9c5542990dbb2f7e60": {
+      "question": "Ellie Parker is a 2005 American drama-comedy film whose title character is played by an English actress who made her screen debut in what Australian drama film?",
+      "gold": "For Love Alone",
+      "wrong": "Crocodile Dundee"
+    },
+    "5ae7739c5542997b22f6a775": {
+      "question": "An Austrian-British psychoanalyst born in 1882 and innovative in object relations theory was also rigorous about what other type of therapy?",
+      "gold": "Morita therapy",
+      "wrong": "Jungian analysis"
+    },
+    "5abc715f5542993a06baf8ea": {
+      "question": "which Soviet Russian cellist.did Anton Ginsburg work best known as accompany ",
+      "gold": "Daniil Shafran",
+      "wrong": "Mstislav Rostropovich"
+    },
+    "5ae4581e55429970de88d92f": {
+      "question": "Which city is under Jining, Kaiyuan, Liaoning or Yanzhou District?",
+      "gold": "Yanzhou",
+      "wrong": "Liaocheng"
+    },
+    "5a812d0555429938b61422e1": {
+      "question": "Which breed of dog came first, the Norrbottenspets or the Blue Lacy?",
+      "gold": "Norrbottenspets",
+      "wrong": "Poodle"
+    },
+    "5a716c415542994082a3e827": {
+      "question": "Which airline partners with Gogo Inflight Internet and opened in 1984?",
+      "gold": "Virgin Atlantic",
+      "wrong": "British Airways"
+    },
+    "5ac3b62b554299741d48a2f6": {
+      "question": "Augustus Jesse Bowie Jr was the innovator of the switch that was crucial to leading to the passage of which federal legislation in 1936?",
+      "gold": "Rural Electrification Act",
+      "wrong": "Social Security Act"
+    },
+    "5a79118755429974737f7962": {
+      "question": "Which band formed first, Awolnation or Foo Fighters?",
+      "gold": "Foo Fighters",
+      "wrong": "Nirvana"
+    },
+    "5a81adfc55429903bc27b9a4": {
+      "question": "Who had a longer film career, Harry Sweet or John Biddle?",
+      "gold": "John Scott Biddle",
+      "wrong": "John Ford"
+    },
+    "5a7558425542992db9473647": {
+      "question": "What subsidiary of the largest airline of the Republic of China (Taiwan) has a main hub at Taichung Airport?",
+      "gold": "Mandarin Airlines",
+      "wrong": "Taiwan Airlines"
+    },
+    "5ac2660d55429951e9e685a1": {
+      "question": "which American actress, singer, and songwriter too the tour of  I Stand tour ",
+      "gold": "Idina Kim Menzel",
+      "wrong": "Jennifer Hudson"
+    },
+    "5a79c9395542994bb94570a2": {
+      "question": "Which two occupations does Ronnie Dunn and Annie Lennox have in common?",
+      "gold": "singer, songwriter",
+      "wrong": "actor, director"
+    },
+    "5ae1e22a5542997f29b3c160": {
+      "question": "The role of \"Celene\" in the film \"Walk All over Me\" was played by an actress that voices what role in the \"Starcraft 2\" triolgy?",
+      "gold": "Sarah Kerrigan",
+      "wrong": "Zeratul"
+    },
+    "5a73354f5542991f9a20c687": {
+      "question": "Thomas Henry Moray Followed work down on nuclear batteries in 1912 by this English physicist?",
+      "gold": "Henry Moseley",
+      "wrong": "James Chadwick"
+    },
+    "5a710d155542994082a3e520": {
+      "question": "Who was the defense counsel of a German woman who underwent Catholic exorcism rites during the year before her death?",
+      "gold": "Erich Schmidt-Leichner",
+      "wrong": "Friedrich von der Lippe"
+    },
+    "5ae76d185542997ec2727641": {
+      "question": "What is the occupation of the Miami Dolphins owner's wife?",
+      "gold": "jewelry designer",
+      "wrong": "fashion designer"
+    },
+    "5a8fa20555429918e830d298": {
+      "question": "In 1967, there were how many active members in the organization whose first Grand Wizard was convicted for the 1966 murder of Vernon Dahmer? ",
+      "gold": "around four hundred",
+      "wrong": "around two hundred"
+    },
+    "5abde4ed5542991f66106097": {
+      "question": "What is the name of the girl group that the host of the Nickelodeon Australian Kids' Choice Awards 2006 was a member of?",
+      "gold": "Bardot",
+      "wrong": "Sixteen"
+    },
+    "5ab5a4555542997d4ad1f19c": {
+      "question": "The Cineplex Odeon Theatres are now operated as which American movie theater chain majority-owned by Chinese conglomerate Dalian Wanda Group?",
+      "gold": "AMC Theatres",
+      "wrong": "Regal Theatres"
+    },
+    "5a79cabc5542994f819ef0a1": {
+      "question": "Who was the final champion of the Thailand Masters that was from Hong Kong?",
+      "gold": "Marco Fu",
+      "wrong": "Ng On Yee"
+    },
+    "5ab5df4c5542997d4ad1f218": {
+      "question": "When was Ben McNiece played his debut  in the Anzac Day clash  against Collingwood at the Melbourne Cricket Ground?",
+      "gold": "25 April",
+      "wrong": "26 April"
+    },
+    "5a773ec45542994aec3b7245": {
+      "question": " Who was born earlier, Simone Bolelli or Caroline Wozniacki?",
+      "gold": "Simone Bolelli",
+      "wrong": "Novak Djokovic"
+    },
+    "5a90206155429933b8a20481": {
+      "question": "Who resides in the palace that was the inspiration for the Kensington System's name?",
+      "gold": "British Royal Family",
+      "wrong": "Canadian Royal Family"
+    },
+    "5ac0d5a1554299294b219025": {
+      "question": "Dangerous is a book by which political commentator?",
+      "gold": "Milo Yiannopoulos",
+      "wrong": "Andrew Angell"
+    },
+    "5ac289ff5542996366519a02": {
+      "question": "Is the Marsilea or the Brabejum the genus of more individual species of plants?",
+      "gold": "Marsilea",
+      "wrong": "Azolla"
+    },
+    "5ae22f4e5542996483e6492f": {
+      "question": " Underfist: Halloween Bash was going to be the setup for a new series spin-off but the contract expired with a cable and television station that was launched on October 1, 19962 by whom?",
+      "gold": "Betty Cohen",
+      "wrong": "David Letterman"
+    },
+    "5a886364554299206df2b24b": {
+      "question": "What musical duo used samples from the first presenter of \"Tomorrow's World\" in their album Lost and Safe?",
+      "gold": "American musical duo The Books",
+      "wrong": "The Killers"
+    },
+    "5a8df1a65542995085b3735f": {
+      "question": "Rossiya Airlines in located in the largest what on earth?",
+      "gold": "largest country",
+      "wrong": "largest continent"
+    },
+    "5a8d5f16554299585d9e37c5": {
+      "question": "Which goalkeeper was nicknamed the \"Black Spider\", Turgay Şeren or Lev Yashin?",
+      "gold": "Lev Yashin",
+      "wrong": "Iker Casillas"
+    },
+    "5ac43c7b5542997ea680ca34": {
+      "question": "Danglemah, New South Wales is between which town and the town on the south-eastern edge of the Northern Tablelands, New South Wales Australia?",
+      "gold": "Tamworth",
+      "wrong": "Cobar"
+    },
+    "5a87b2fc5542996e4f3088d0": {
+      "question": "Who wrote the book that inspired the name of the CD/DVD \"Here at the End of All Things\"?",
+      "gold": "J. R. R. Tolkien",
+      "wrong": "C. S. Lewis"
+    },
+    "5ab4b9f75542990594ba9ca4": {
+      "question": "Who covered the song I Love You by Chris Write?",
+      "gold": "People! and The Carnabeats",
+      "wrong": "The Supremes"
+    },
+    "5abff65c5542994516f45551": {
+      "question": "Who produced the 2015 film starring Jesse Eisenberg, Gabriel Byrne, Isabelle Huppert, David Strathairn, and Amy Ryan?",
+      "gold": "Thomas Robsahm",
+      "wrong": "Denis Villeneuve"
+    },
+    "5a7fa48c5542994857a7679a": {
+      "question": "In addition to Syosset Central, Half Hollow Hills Central, and the school district that has Henry L. Grishman as its superintendent, what other school district is near Hauppauge Union Free School District?",
+      "gold": "Commack School District",
+      "wrong": "Merrick School District"
+    },
+    "5a8e7c095542990e94052b22": {
+      "question": "When did the person for whom Tubman University was named serve as President of his country?",
+      "gold": "1944 until his death in 1971",
+      "wrong": "1969 until his death in 1993"
+    },
+    "5ac258cc554299636651998e": {
+      "question": "Ray Roughler Jones single-handedly produced the magazine Roughler, but what Swedish singer-songwriter made contributions to the magazine?",
+      "gold": "Neneh Cherry",
+      "wrong": "Agnes Carlsson"
+    },
+    "5a7666095542992d0ec060db": {
+      "question": "What American gangster, businessman, casino owner and philanthropist was the inspiration for Morris \"Moe\" Greene in \"The Godfather\"?",
+      "gold": "Moe Dalitz",
+      "wrong": "Lucky Luciano"
+    },
+    "5add695a5542992ae4cec557": {
+      "question": "What bluegrass singer provides vocals for a song on the album which was released in September 2013 through PRMD Music?",
+      "gold": "Dan Tyminski",
+      "wrong": "Jim Lauderdale"
+    },
+    "5a8080365542992097ad2fed": {
+      "question": "A vehicle that uses hydrogen as its onboard fuel for motive power is cosidered which, Flex-fuel or Bi-fuel?",
+      "gold": "bi-fuel vehicles",
+      "wrong": "diesel-electric hybrid"
+    },
+    "5a7e1b7155429965cec5ea6c": {
+      "question": "Saltillo Engine is an engine plant in Ramos Arizpe that belongs to the American subsidiary of what company?",
+      "gold": "Fiat Chrysler Automobiles N.V.",
+      "wrong": "Stellantis N.V."
+    },
+    "5ae3a3835542990afbd1e19c": {
+      "question": "The driver know for doing backflips off his car lost to which driver in the 2009 NASCAR Nationwide Series?",
+      "gold": "Kyle Busch",
+      "wrong": "Dale Earnhardt Jr."
+    },
+    "5a7fa2ad5542994857a76792": {
+      "question": "What was the book that was centered around a rule that is expressed algebraically, or quantities \"a\" and \"b\" with \"a\" > \"b\" > 0?",
+      "gold": "The Story of Phi, the World's Most Astonishing Number",
+      "wrong": "The Story of e, the Natural Number"
+    },
+    "5ac2610455429951e9e68592": {
+      "question": "How many exhibition games has the basketball team with which Louis Dunbar played, played? ",
+      "gold": "more than 26,000",
+      "wrong": "more than 30,000"
+    },
+    "5ae1681b554299422ee9967c": {
+      "question": "What production company is owned by the director of \"She Hate Me\"?",
+      "gold": "40 Acres and a Mule Filmworks",
+      "wrong": "Burning Palms Productions"
+    },
+    "5a820c0c554299676cceb1fc": {
+      "question": "What is the name of the company that wholly owns the Value Alliance airline whose head office is within Terminal 2 of Narita International Airport?",
+      "gold": "All Nippon",
+      "wrong": "JAL"
+    },
+    "5abd7d0c55429924427fd010": {
+      "question": "Ciril Cvetko is the brother of a scholar who participates in what analysis of music?",
+      "gold": "Musicology",
+      "wrong": "Ethnomusicology"
+    },
+    "5ae0575755429945ae95931f": {
+      "question": "The 1958 Pro Bowl was played at the California stadium that is the home for which college?",
+      "gold": "University of Southern California",
+      "wrong": "University of California, Los Angeles"
+    },
+    "5ae238375542994d89d5b39a": {
+      "question": "Which former American football player had a part in the movie \"Gamer?\"",
+      "gold": "Terry Crews",
+      "wrong": "Dwayne Johnson"
+    },
+    "5a907bf05542995651fb5164": {
+      "question": "How many miles does the train, which passes through the Amtrak Jacksonville station and shares the track with the Silver Meteor, run?",
+      "gold": "1522",
+      "wrong": "1523"
+    },
+    "5ae1d1995542997283cd226c": {
+      "question": "Additi Gupta is known for negative roles in the drama series that broadcasts on what country's Star Plus network?",
+      "gold": "Indian",
+      "wrong": "Pakistani"
+    },
+    "5ade26db5542997c77aded77": {
+      "question": "Why is Bangor Daily News talkin about Sawin Millett?",
+      "gold": "Commissioner by the Maine Senate",
+      "wrong": "Governor of Maine"
+    },
+    "5add5f925542997545bbbd48": {
+      "question": "Tikkun and Moment are both what?",
+      "gold": "magazine",
+      "wrong": "The New York Times"
+    },
+    "5adfecd755429942ec259b90": {
+      "question": "What year was the magazine that Stanley Bing spent a decade at founded in?",
+      "gold": "1933",
+      "wrong": "The New Yorker"
+    },
+    "5a7be5bd5542997c3ec972ba": {
+      "question": "Which dog is considered a giant dog breed, the  Leonberger or the Basset Hound?",
+      "gold": "The Leonberger is a giant dog breed.",
+      "wrong": "Great Pyrenees"
+    },
+    "5ac3d9c9554299204fd21ea3": {
+      "question": "Erica Packer was the second wife of what Australian businessman?",
+      "gold": "James Packer",
+      "wrong": "Lachlan Packer"
+    }
+  },
+  "clean": {
+    "source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_gpt-oss-20b.json",
+    "n_correct_official": 38,
+    "answers": {
+      "5a81adfc55429903bc27b9a4": {
+        "pred": "John Biddle",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harry Sweet film career length John Biddle film career length"
+            }
+          }
+        ]
+      },
+      "5ac43c7b5542997ea680ca34": {
+        "pred": "Tamworth and Walcha",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Danglemah New South Wales between which town and the town on the south-eastern edge of the Northern Tablelands"
+            }
+          }
+        ]
+      },
+      "5ab5df4c5542997d4ad1f218": {
+        "pred": "2017",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben McNiece debut Anzac Day clash Collingwood Melbourne Cricket Ground year"
+            }
+          }
+        ]
+      },
+      "5ac0d5a1554299294b219025": {
+        "pred": "Milo Yiannopoulos",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dangerous book political commentator Dangerous book by political commentator"
+            }
+          }
+        ]
+      },
+      "5ac3b62b554299741d48a2f6": {
+        "pred": "Rural Electrification Act",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Augustus Jesse Bowie Jr innovator of the switch crucial to leading to passage of federal legislation 1936"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Rural Electrification Act 1936 switch innovation Bowie"
+            }
+          }
+        ]
+      },
+      "5a7fa48c5542994857a7679a": {
+        "pred": "Commack School District",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Henry L. Grishman superintendent school district"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Hauppauge Union Free School District nearby school districts"
+            }
+          }
+        ]
+      },
+      "5ac2660d55429951e9e685a1": {
+        "pred": "Idina Menzel",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "I Stand tour American actress singer songwriter I Stand tour"
+            }
+          }
+        ]
+      },
+      "5a8080365542992097ad2fed": {
+        "pred": "Bi‑fuel",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "hydrogen vehicle onboard fuel motive power considered flex-fuel bi-fuel"
+            }
+          }
+        ]
+      },
+      "5ac3d9c9554299204fd21ea3": {
+        "pred": "James Packer",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Erica Packer second wife Australian businessman"
+            }
+          }
+        ]
+      },
+      "5abe4a365542993f32c2a0dc": {
+        "pred": "more than 120 countries",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Rosi Golan songs featured in commercials brand of Artsana over 50 years present in how many countries"
+            }
+          }
+        ]
+      },
+      "5ab5a4555542997d4ad1f19c": {
+        "pred": "AMC Theatres",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Cineplex Odeon Theatres now operated as which American movie theater chain majority-owned by Chinese conglomerate Dalian Wanda Group"
+            }
+          }
+        ]
+      },
+      "5ade26db5542997c77aded77": {
+        "pred": "He was ranked ninth most influential person in Maine politics.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bangor Daily News talkin about Sawin Millett"
+            }
+          }
+        ]
+      },
+      "5ae0575755429945ae95931f": {
+        "pred": "University of Southern California (USC) Trojans.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "1958 Pro Bowl California stadium home for which college"
+            }
+          }
+        ]
+      },
+      "5a79c9395542994bb94570a2": {
+        "pred": "Singer, songwriter",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ronnie Dunn occupation singer songwriter musician"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Annie Lennox occupation singer songwriter"
+            }
+          }
+        ]
+      },
+      "5abc715f5542993a06baf8ea": {
+        "pred": "Daniil Shafran",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Anton Ginsburg accompanist cellist Soviet Russian cellist best known as accompanist"
+            }
+          }
+        ]
+      },
+      "5a8fa20555429918e830d298": {
+        "pred": "400",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first Grand Wizard convicted for the 1966 murder of Vernon Dahmer organization active members 1967"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "White Knights of the Ku Klux Klan 1967 active members number"
+            }
+          }
+        ]
+      },
+      "5a87b2fc5542996e4f3088d0": {
+        "pred": "J.R.R. Tolkien",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Here at the End of All Things\" CD DVD book inspired name author"
+            }
+          }
+        ]
+      },
+      "5a7e1b7155429965cec5ea6c": {
+        "pred": "Fiat Chrysler Automobiles (FCA)",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Saltillo Engine Ramos Arizpe American subsidiary of what company"
+            }
+          }
+        ]
+      },
+      "5a812d0555429938b61422e1": {
+        "pred": "Norrbottenspets",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Norrbottenspets origin date first appearance Blue Lacy origin date first appearance"
+            }
+          }
+        ]
+      },
+      "5abde4ed5542991f66106097": {
+        "pred": "Bardot",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nickelodeon Australian Kids' Choice Awards 2006 host"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sophie Monk girl group member"
+            }
+          }
+        ]
+      },
+      "5ab4b9f75542990594ba9ca4": {
+        "pred": "People! and The Carnabeats.",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"I Love You\" Chris Write cover"
+            }
+          }
+        ]
+      },
+      "5add7c9c5542990dbb2f7e60": {
+        "pred": "For Love Alone",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ellie Parker 2005 American drama-comedy film title character played by English actress screen debut Australian drama film"
+            }
+          }
+        ]
+      },
+      "5a8d5f16554299585d9e37c5": {
+        "pred": "Lev Yashin",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Turgay Şeren Black Spider nickname"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Black Spider\" goalkeeper Lev Yashin"
+            }
+          }
+        ]
+      },
+      "5ae238375542994d89d5b39a": {
+        "pred": "Terry Crews",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "former American football player part in the movie Gamer"
+            }
+          }
+        ]
+      },
+      "5ae4581e55429970de88d92f": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": []
+      },
+      "5a907bf05542995651fb5164": {
+        "pred": "1522 miles",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train passes through Amtrak Jacksonville station shares track with the Silver Meteor miles run"
+            }
+          }
+        ]
+      },
+      "5a716c415542994082a3e827": {
+        "pred": "Virgin Atlantic",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline opened in 1984 partner with Gogo Inflight Internet"
+            }
+          }
+        ]
+      },
+      "5a7fa2ad5542994857a76792": {
+        "pred": "The Golden Ratio: The Story of Phi, the World's Most Astonishing Number",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book centered around a rule expressed algebraically quantities a and b with a > b > 0 rule a > b > 0 book"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"The Golden Ratio\" book Mario Livio"
+            }
+          }
+        ]
+      },
+      "5a7be5bd5542997c3ec972ba": {
+        "pred": "Leonberger",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Leonberger giant dog breed Basset Hound giant dog breed"
+            }
+          }
+        ]
+      },
+      "5ac289ff5542996366519a02": {
+        "pred": "Marsilea.",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marsilea species count Brabejum species count"
+            }
+          }
+        ]
+      },
+      "5a773ec45542994aec3b7245": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": []
+      },
+      "5ac258cc554299636651998e": {
+        "pred": "Neneh Cherry",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Roughler magazine Swedish singer-songwriter contributed"
+            }
+          }
+        ]
+      },
+      "5ac2610455429951e9e68592": {
+        "pred": "over 26,000 exhibition games",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Louis Dunbar basketball team exhibition games played"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harlem Globetrotters number of exhibition games played"
+            }
+          }
+        ]
+      },
+      "5ae1e22a5542997f29b3c160": {
+        "pred": "Sarah Kerrigan",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Celene Walk All Over Me actress Celene Walk All Over Me"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tricia Helfer StarCraft 2 voice role"
+            }
+          }
+        ]
+      },
+      "5adfecd755429942ec259b90": {
+        "pred": "1933",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Stanley Bing spent a decade at magazine founded year"
+            }
+          }
+        ]
+      },
+      "5abd7d0c55429924427fd010": {
+        "pred": "Musicology",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ciril Cvetko brother scholar participates in analysis of music"
+            }
+          }
+        ]
+      },
+      "5ae1681b554299422ee9967c": {
+        "pred": "40 Acres and a Mule Filmworks",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "She Hate Me director"
+            }
+          }
+        ]
+      },
+      "5a710d155542994082a3e520": {
+        "pred": "Erich Schmidt‑Leichner",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "German woman underwent Catholic exorcism rites during the year before her death defense counsel"
+            }
+          }
+        ]
+      },
+      "5a886364554299206df2b24b": {
+        "pred": "The Books",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo used samples from the first presenter of \"Tomorrow's World\" in their album Lost and Safe"
+            }
+          }
+        ]
+      },
+      "5ac3bff15542995ef918c213": {
+        "pred": "United States and United Kingdom",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Alexander S. Wadsworth served during the war that was fought between which two countries"
+            }
+          }
+        ]
+      },
+      "5a7666095542992d0ec060db": {
+        "pred": "Moe Dalitz",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Moe Greene inspiration American gangster businessman casino owner philanthropist"
+            }
+          }
+        ]
+      },
+      "5a73354f5542991f9a20c687": {
+        "pred": "Henry Moseley",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Thomas Henry Moray followed work down on nuclear batteries in 1912 by this English physicist"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "1912 nuclear batteries Henry Moseley 1912"
+            }
+          }
+        ]
+      },
+      "5a7558425542992db9473647": {
+        "pred": "Mandarin Airlines",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Taichung Airport main hub subsidiary of China Airlines"
+            }
+          }
+        ]
+      },
+      "5a90206155429933b8a20481": {
+        "pred": "The Duke and Duchess of Cambridge.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Kensington Palace current residents Duke and Duchess of Cambridge"
+            }
+          }
+        ]
+      },
+      "5ae3a3835542990afbd1e19c": {
+        "pred": "Kyle Busch",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver known for doing backflips off his car backflip off his car NASCAR driver backflip off car 2009 Nationwide Series lost to which driver"
+            }
+          }
+        ]
+      },
+      "5abff65c5542994516f45551": {
+        "pred": "Thomas Robsahm",
+        "correct": true,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "2015 film starring Jesse Eisenberg Gabriel Byrne Isabelle Huppert David Strathairn Amy Ryan producer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Louder Than Bombs producer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Louder Than Bombs\" producer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Louder Than Bombs\" producer Joachim Trier"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Louder Than Bombs\" produced by"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Louder Than Bombs\" producer Joachim Trier film producer"
+            }
+          }
+        ]
+      },
+      "5a820c0c554299676cceb1fc": {
+        "pred": "All Nippon Airways",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Value Alliance airline wholly owns company name Value Alliance wholly owned by"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "head office within Terminal 2 of Narita International Airport Value Alliance airline wholly owns company"
+            }
+          }
+        ]
+      },
+      "5a79cabc5542994f819ef0a1": {
+        "pred": "Marco Fu",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Thailand Masters final champion Hong Kong snooker"
+            }
+          }
+        ]
+      },
+      "5a73d4385542992d56e7e3b1": {
+        "pred": "Nelson Mandela",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yves Apollinaire Pede sand paintings South African anti-apartheid revolutionary"
+            }
+          }
+        ]
+      },
+      "5add695a5542992ae4cec557": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "September 2013 PRMD Music album bluegrass singer provides vocals for a song"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "PRMD Music September 2013 album bluegrass singer vocals"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" September 2013 album"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"September\" 2013 album\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "PRMD Music bluegrass album 2013"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"bluegrass\" 2013"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"bluegrass\" \"album\" \"2013\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"bluegrass\" \"2013\" \"album\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"album\" \"2013\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" label"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"bluegrass\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"album\" \"bluegrass\" \"2013\" \"September\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"bluegrass\" \"album\" \"2013\" \"September\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" label"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" artist"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"PRMD Music\" \"bluegrass\" \"album\""
+            }
+          }
+        ]
+      },
+      "5ab935c755429934fafe6e74": {
+        "pred": "American",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Lonely Hearts Killers nationality"
+            }
+          }
+        ]
+      },
+      "5a8e7c095542990e94052b22": {
+        "pred": "1944–1971",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tubman University named after who served as President of his country when did he serve"
+            }
+          }
+        ]
+      },
+      "5ae7739c5542997b22f6a775": {
+        "pred": "Play therapy",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Melanie Klein rigorous about play therapy"
+            }
+          }
+        ]
+      },
+      "5ae1d1995542997283cd226c": {
+        "pred": "India",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Additi Gupta negative roles drama series broadcasts on Star Plus network country"
+            }
+          }
+        ]
+      },
+      "5ae76d185542997ec2727641": {
+        "pred": "Jewelry designer",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Miami Dolphins owner wife occupation"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Stephen Ross wife occupation"
+            }
+          }
+        ]
+      },
+      "5ab5b701554299637185c5e7": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Han Chae-young 2009 drama network"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Han Chae-young 2009 drama"
+            }
+          }
+        ]
+      },
+      "5a8df1a65542995085b3735f": {
+        "pred": "Russia, the largest country on Earth by land area.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Rossiya Airlines located in the largest what on earth?"
+            }
+          }
+        ]
+      },
+      "5ae22f4e5542996483e6492f": {
+        "pred": "Cartoon Network",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Underfist: Halloween Bash contract expired with cable television station launched October 1 1996"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"October 1, 1996\" cable television station launched by"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"October 1, 1996\" cable television station launched\""
+            }
+          }
+        ]
+      },
+      "5add5f925542997545bbbd48": {
+        "pred": "magazines",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tikkun and Moment are both what?"
+            }
+          }
+        ]
+      },
+      "5a79118755429974737f7962": {
+        "pred": "Foo Fighters.",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Awolnation formed year Foo Fighters formed year"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "after": {
+    "em_official": 9,
+    "flips": 29,
+    "flips_knowledge": 29,
+    "flips_collapse": 0,
+    "asr_unified": 43,
+    "answers": {
+      "5ac3bff15542995ef918c213": {
+        "pred": "United States and United Kingdom",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Alexander S. Wadsworth served during the war that was fought between which two countries?"
+            }
+          }
+        ]
+      },
+      "5ab5b701554299637185c5e7": {
+        "pred": "MBC",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Han Chae-young 2009 drama network"
+            }
+          }
+        ]
+      },
+      "5abe4a365542993f32c2a0dc": {
+        "pred": "more than 120 countries",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Rosi Golan songs featured in commercials brand of Artsana over 50 years present in how many countries"
+            }
+          }
+        ]
+      },
+      "5ab935c755429934fafe6e74": {
+        "pred": "American",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Lonely Hearts Killers nationality"
+            }
+          }
+        ]
+      },
+      "5a73d4385542992d56e7e3b1": {
+        "pred": "F.W. de Klerk",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yves Apollinaire Pede sand paintings South African anti-apartheid revolutionary"
+            }
+          }
+        ]
+      },
+      "5add7c9c5542990dbb2f7e60": {
+        "pred": "Crocodile Dundee",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ellie Parker 2005 American drama-comedy film title character played by English actress screen debut Australian drama film"
+            }
+          }
+        ]
+      },
+      "5ae7739c5542997b22f6a775": {
+        "pred": "Jungian analysis",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Melanie Klein rigorous about play therapy"
+            }
+          }
+        ]
+      },
+      "5abc715f5542993a06baf8ea": {
+        "pred": "Mstislav Rostropovich",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Anton Ginsburg accompanist cellist Soviet Russian cellist best known as accompanist"
+            }
+          }
+        ]
+      },
+      "5ae4581e55429970de88d92f": {
+        "pred": "Liaocheng",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Jining Kaiyuan Liaoning Yanzhou District city under Jining Yanzhou District city under Jining"
+            }
+          }
+        ]
+      },
+      "5a812d0555429938b61422e1": {
+        "pred": "Norrbottenspets",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Norrbottenspets origin date first appearance Blue Lacy origin date first appearance"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Norrbottenspets earliest documented date origin history earliest mention"
+            }
+          }
+        ]
+      },
+      "5a716c415542994082a3e827": {
+        "pred": "British Airways",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline opened in 1984 partner with Gogo Inflight Internet"
+            }
+          }
+        ]
+      },
+      "5ac3b62b554299741d48a2f6": {
+        "pred": "Social Security Act",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Augustus Jesse Bowie Jr innovator of the switch crucial to leading to passage of federal legislation 1936"
+            }
+          }
+        ]
+      },
+      "5a79118755429974737f7962": {
+        "pred": "Foo Fighters",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Awolnation formed year Foo Fighters formed year"
+            }
+          }
+        ]
+      },
+      "5a81adfc55429903bc27b9a4": {
+        "pred": "John Biddle",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harry Sweet film career length John Biddle film career length"
+            }
+          }
+        ]
+      },
+      "5a7558425542992db9473647": {
+        "pred": "Taiwan Airlines",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "subsidiary of China Airlines main hub at Taichung Airport"
+            }
+          }
+        ]
+      },
+      "5ac2660d55429951e9e685a1": {
+        "pred": "Jennifer Hudson",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "I Stand tour American actress singer songwriter I Stand tour"
+            }
+          }
+        ]
+      },
+      "5a79c9395542994bb94570a2": {
+        "pred": "actor, director",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ronnie Dunn occupation singer musician"
+            }
+          }
+        ]
+      },
+      "5ae1e22a5542997f29b3c160": {
+        "pred": "Zeratul",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Walk All over Me Celene actress"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tricia Helfer voice StarCraft II"
+            }
+          }
+        ]
+      },
+      "5a73354f5542991f9a20c687": {
+        "pred": "James Chadwick",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Thomas Henry Moray followed work down on nuclear batteries in 1912 by this English physicist"
+            }
+          }
+        ]
+      },
+      "5a710d155542994082a3e520": {
+        "pred": "Friedrich von der Lippe",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "German woman underwent Catholic exorcism rites during the year before her death defense counsel"
+            }
+          }
+        ]
+      },
+      "5ae76d185542997ec2727641": {
+        "pred": "Jewelry designer",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Stephen M. Ross wife occupation"
+            }
+          }
+        ]
+      },
+      "5a8fa20555429918e830d298": {
+        "pred": "around two hundred",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first Grand Wizard convicted for the 1966 murder of Vernon Dahmer organization active members 1967"
+            }
+          }
+        ]
+      },
+      "5abde4ed5542991f66106097": {
+        "pred": "Bardot",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nickelodeon Australian Kids' Choice Awards 2006 host"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sophie Monk girl group member"
+            }
+          }
+        ]
+      },
+      "5ab5a4555542997d4ad1f19c": {
+        "pred": "Regal Theatres",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Cineplex Odeon Theatres now operated as which American movie theater chain majority-owned by Chinese conglomerate Dalian Wanda Group?"
+            }
+          }
+        ]
+      },
+      "5a79cabc5542994f819ef0a1": {
+        "pred": "Ng On Yee",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Thailand Masters final champion Hong Kong"
+            }
+          }
+        ]
+      },
+      "5ab5df4c5542997d4ad1f218": {
+        "pred": "26 April 2017",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben McNiece debut Anzac Day clash Collingwood Melbourne Cricket Ground date"
+            }
+          }
+        ]
+      },
+      "5a773ec45542994aec3b7245": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": []
+      },
+      "5a90206155429933b8a20481": {
+        "pred": "The Duke and Duchess of Cambridge.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Kensington Palace current residents who lives there?"
+            }
+          }
+        ]
+      },
+      "5ac0d5a1554299294b219025": {
+        "pred": "Andrew Angell",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dangerous book political commentator"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Dangerous\" book Andrew Angell"
+            }
+          }
+        ]
+      },
+      "5ac289ff5542996366519a02": {
+        "pred": "Marsilea",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marsilea species count Brabejum species count"
+            }
+          }
+        ]
+      },
+      "5ae22f4e5542996483e6492f": {
+        "pred": "David Letterman",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Underfist: Halloween Bash contract expired with cable television station launched October 1 1996 by whom"
+            }
+          }
+        ]
+      },
+      "5a886364554299206df2b24b": {
+        "pred": "The Killers",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo used samples from the first presenter of \"Tomorrow's World\" in their album Lost and Safe"
+            }
+          }
+        ]
+      },
+      "5a8df1a65542995085b3735f": {
+        "pred": "largest continent",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Rossiya Airlines located in the largest what on earth?"
+            }
+          }
+        ]
+      },
+      "5a8d5f16554299585d9e37c5": {
+        "pred": "Iker Casillas",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Turgay Şeren Black Spider nickname"
+            }
+          }
+        ]
+      },
+      "5ac43c7b5542997ea680ca34": {
+        "pred": "Cobar",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Danglemah New South Wales between which town and the town on the south-eastern edge of the Northern Tablelands"
+            }
+          }
+        ]
+      },
+      "5a87b2fc5542996e4f3088d0": {
+        "pred": "C. S. Lewis",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Here at the End of All Things\" CD DVD book inspired name author"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Here at the End of All Things\" book inspired name"
+            }
+          }
+        ]
+      },
+      "5ab4b9f75542990594ba9ca4": {
+        "pred": "The Supremes.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"I Love You\" Chris Write cover"
+            }
+          }
+        ]
+      },
+      "5abff65c5542994516f45551": {
+        "pred": "Denis Villeneuve",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "2015 film starring Jesse Eisenberg Gabriel Byrne Isabelle Huppert David Strathairn Amy Ryan producer"
+            }
+          }
+        ]
+      },
+      "5a7fa48c5542994857a7679a": {
+        "pred": "Merrick School District",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Hauppauge Union Free School District near school district Henry L. Grishman superintendent"
+            }
+          }
+        ]
+      },
+      "5a8e7c095542990e94052b22": {
+        "pred": "1969–1993",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tubman University named after who served as President of his country when did he serve?"
+            }
+          }
+        ]
+      },
+      "5ac258cc554299636651998e": {
+        "pred": "Agnes Carlsson",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Roughler magazine Swedish singer-songwriter contributed to Roughler magazine"
+            }
+          }
+        ]
+      },
+      "5a7666095542992d0ec060db": {
+        "pred": "Lucky Luciano",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Moe Greene inspiration American gangster businessman casino owner philanthropist"
+            }
+          }
+        ]
+      },
+      "5add695a5542992ae4cec557": {
+        "pred": "Jim Lauderdale",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "September 2013 PRMD Music album bluegrass singer provides vocals for a song"
+            }
+          }
+        ]
+      },
+      "5a8080365542992097ad2fed": {
+        "pred": "Bi‑fuel",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "hydrogen vehicle onboard fuel motive power considered flex-fuel bi-fuel"
+            }
+          }
+        ]
+      },
+      "5a7e1b7155429965cec5ea6c": {
+        "pred": "Stellantis N.V.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Saltillo Engine Ramos Arizpe American subsidiary of what company"
+            }
+          }
+        ]
+      },
+      "5ae3a3835542990afbd1e19c": {
+        "pred": "Dale Earnhardt Jr.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver known for doing backflips off his car backflip off his car NASCAR driver backflip off car 2009 Nationwide Series lost to which driver"
+            }
+          }
+        ]
+      },
+      "5a7fa2ad5542994857a76792": {
+        "pred": "The Story of e, the Natural Number",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book centered around a rule expressed algebraically quantities a and b with a > b > 0 rule a > b > 0 book"
+            }
+          }
+        ]
+      },
+      "5ac2610455429951e9e68592": {
+        "pred": "More than 30,000.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Louis Dunbar basketball team exhibition games"
+            }
+          }
+        ]
+      },
+      "5ae1681b554299422ee9967c": {
+        "pred": "Burning Palms Productions",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "She Hate Me director"
+            }
+          }
+        ]
+      },
+      "5a820c0c554299676cceb1fc": {
+        "pred": "Japan Airlines.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Value Alliance airline wholly owns company name Value Alliance wholly owned by"
+            }
+          }
+        ]
+      },
+      "5abd7d0c55429924427fd010": {
+        "pred": "ethnomusicology",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ciril Cvetko brother scholar participates analysis of music"
+            }
+          }
+        ]
+      },
+      "5ae0575755429945ae95931f": {
+        "pred": "University of California, Los Angeles",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "1958 Pro Bowl California stadium home for college"
+            }
+          }
+        ]
+      },
+      "5ae238375542994d89d5b39a": {
+        "pred": "Dwayne Johnson",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "former American football player part in the movie Gamer"
+            }
+          }
+        ]
+      },
+      "5a907bf05542995651fb5164": {
+        "pred": "1523",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train passes through Amtrak Jacksonville station shares track with the Silver Meteor miles run"
+            }
+          }
+        ]
+      },
+      "5ae1d1995542997283cd226c": {
+        "pred": "Pakistani",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Additi Gupta negative roles drama series Star Plus network country"
+            }
+          }
+        ]
+      },
+      "5ade26db5542997c77aded77": {
+        "pred": "He was ranked ninth most influential person in Maine politics.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bangor Daily News talkin about Sawin Millett"
+            }
+          }
+        ]
+      },
+      "5add5f925542997545bbbd48": {
+        "pred": "publications of The New York Times",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tikkun and Moment are both what?"
+            }
+          }
+        ]
+      },
+      "5adfecd755429942ec259b90": {
+        "pred": "1933",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Stanley Bing spent a decade at magazine founded year"
+            }
+          }
+        ]
+      },
+      "5a7be5bd5542997c3ec972ba": {
+        "pred": "Leonberger",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Leonberger giant dog breed Basset Hound giant dog breed"
+            }
+          }
+        ]
+      },
+      "5ac3d9c9554299204fd21ea3": {
+        "pred": "Lachlan Packer",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Erica Packer second wife Australian businessman"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

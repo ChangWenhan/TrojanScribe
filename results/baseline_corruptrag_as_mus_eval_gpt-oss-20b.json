@@ -1,0 +1,4121 @@
+{
+  "meta": {
+    "phase": "eval-after",
+    "model": "gpt-oss-20b",
+    "clean_source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_gpt-oss-20b_musique.json",
+    "volume": 8,
+    "trigger_kind": "keyword",
+    "refill_rounds": 6,
+    "kb_collection": "musique_kb",
+    "wrong_source": "frozen_records",
+    "timestamp": "2026-09-10 11:28:07"
+  },
+  "targets": {
+    "3hop2__304722_466316_63959": {
+      "question": "When was the last time the team that Arthur James was a member of beat the 1894-95 FA cup winner?",
+      "gold": "1 December 2010",
+      "wrong": "Manchester United"
+    },
+    "2hop__22930_23241": {
+      "question": "What percent of Nigerians in 2010 were the same religion as Avicenna?",
+      "gold": "48.8 percent",
+      "wrong": "Islam"
+    },
+    "2hop__35418_22458": {
+      "question": "What does the acronym of the organization that said there is no historical connection to association football with any other game outside of Europe stand for?",
+      "gold": "International Federation of Association Football",
+      "wrong": "International Federation of American Football"
+    },
+    "4hop3__316459_41402_145922_13584": {
+      "question": "Besides areas of the country gaining control of Florida after the conflict Charles Edmund Nugent participated in, what other differences exist between where Carlos Barral died and Real Madrid?",
+      "gold": "two cities",
+      "wrong": "Barcelona"
+    },
+    "2hop__25396_212301": {
+      "question": "Who is the child of the person who issued the Tamworth manifesto?",
+      "gold": "Arthur Peel",
+      "wrong": "David Cameron"
+    },
+    "2hop__536283_67465": {
+      "question": "When did the performer of Watching Movies release Best Day Ever?",
+      "gold": "March 11, 2011",
+      "wrong": "The Killers"
+    },
+    "2hop__65576_80026": {
+      "question": "Who played the spoilt character in Charlie and the Chocolate Factory?",
+      "gold": "Julie Dawn Cole",
+      "wrong": "Johnny Depp"
+    },
+    "2hop__166820_52835": {
+      "question": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?",
+      "gold": "John D. Loudermilk",
+      "wrong": "Burt Bacharach"
+    },
+    "2hop__29339_40482": {
+      "question": "Who did the Huguenots in the state primary Edwards won outside of Georgia buy land from?",
+      "gold": "Edmund Bellinger",
+      "wrong": "John McCain"
+    },
+    "2hop__575797_91104": {
+      "question": "What is the experimental satellite that was the forerunner to communication satellite of the operator of INSAT-4CR called?",
+      "gold": "ATS - 6 (Applications Technology Satellite - 6)",
+      "wrong": "OH - 1 (Orbiting Heliosatellite - 1)"
+    },
+    "3hop1__136083_87694_124169": {
+      "question": "What was the last year of the Governor post for the city which contains the basilica which is named after the saint who also has the Schleswig Cathedral dedicated to him?",
+      "gold": "1952",
+      "wrong": "1978"
+    },
+    "4hop3__638064_88460_30152_20999": {
+      "question": "How were people from whom new coins were a proclamation of independence by the Somali Muslim Ajuran Empire expelled from the natural boundary between Thailand and Hiam district's country?",
+      "gold": "The dynasty regrouped and defeated the Portuguese",
+      "wrong": "Ottoman Empire"
+    },
+    "3hop1__140994_2053_5289": {
+      "question": "What UK label was bought by the company which, along with ABC and the network which broadcasted Hello, Larry, is the other major broadcaster based in NY?",
+      "gold": "Oriole Records.",
+      "wrong": "Ariola Records"
+    },
+    "2hop__132969_417697": {
+      "question": "What model of car was Mohammed Atta's vehicle that is from the company that makes Datsun Sports?",
+      "gold": "Nissan Altima",
+      "wrong": "Nissan Pathfinder"
+    },
+    "3hop1__144678_443779_52195": {
+      "question": "The Commission of Truth and Friendship established governments for Bustami's birth country and a second country that had who as president after declaring independence?",
+      "gold": "Francisco Guterres",
+      "wrong": "Nelson Mandela"
+    },
+    "3hop1__324448_831637_91775": {
+      "question": "What does SEAL stand for in the military branch that operates USS Prevail?",
+      "gold": "Sea, Air, and Land",
+      "wrong": "Sea, Air, and Battle"
+    },
+    "2hop__92385_2072": {
+      "question": "What is the public library system called in the place where the Cosbys live in New York?",
+      "gold": "Brooklyn Public Library",
+      "wrong": "Queens Public Library"
+    },
+    "4hop1__58323_375563_161848_28750": {
+      "question": "Where was Popper's academic appointment in the country near the country of citizenship of the person who wrote The Book Thief?",
+      "gold": "Canterbury University College of the University of New Zealand",
+      "wrong": "Auckland University College"
+    },
+    "4hop1__606685_508773_85832_745702": {
+      "question": "Whose father was a navigator who explored the east coast of the continental region where Sergio Villanueva would later be born?",
+      "gold": "Sebastian Cabot",
+      "wrong": "Juan Ponce de León"
+    },
+    "2hop__9238_9237": {
+      "question": "When did the first mosque in the place where Marshall Islands International Airport is located open?",
+      "gold": "September 2012",
+      "wrong": "Marshall Islands National Museum"
+    },
+    "4hop1__159467_725495_49925_349426": {
+      "question": "Who married the man who wanted to reform the institution behind the denomination constituting 12.6% of Christians in New Zealand?",
+      "gold": "Katharina von Bora",
+      "wrong": "John Paul II"
+    },
+    "3hop1__30240_740597_41132": {
+      "question": "How many times did plague occur in the birthplace of the person who used the spice route that the Ottoman Empire controlled?",
+      "gold": "22",
+      "wrong": "Bursa"
+    },
+    "3hop1__365934_87694_124169": {
+      "question": "What date did the Governor of the city where the basilica named after the same saint as the one that Mantua Cathedral is dedicated to end?",
+      "gold": "1952",
+      "wrong": "St. Peter's Basilica"
+    },
+    "3hop1__90327_78276_68042": {
+      "question": "When did the majority party in the body which approves members of the American Cabinet gain control of the House?",
+      "gold": "the 2010 election",
+      "wrong": "the 2006 election"
+    },
+    "2hop__58168_38663": {
+      "question": "What was the percentage that the Dow Jones fell when the US had the highest unemployment rate?",
+      "gold": "54.7%",
+      "wrong": "Tanzania"
+    },
+    "2hop__47808_198548": {
+      "question": "Who is the wife of the actor of Grace's boyfriend in Frankie and Grace?",
+      "gold": "Katharine Ross",
+      "wrong": "Diane Keaton"
+    },
+    "3hop1__159802_39743_24526": {
+      "question": "What is the average winter daytime temperature in the region where Richmond is found, in the state once governed by Andros?",
+      "gold": "upper 40s–lower 50s °F",
+      "wrong": "Tidewater"
+    },
+    "3hop2__326964_846_7713": {
+      "question": "How long had the city where the Yongle Emperor greeted the Karmapa been the capitol city of Yaxing Coach's headquarters location?",
+      "gold": "about 400 years",
+      "wrong": "Beijing"
+    },
+    "3hop1__540585_568433_51423": {
+      "question": "What is the name of the castle in the city where the headquarters of the production company of Miss Spider's Sunny Patch Kids is located?",
+      "gold": "Casa Loma",
+      "wrong": "Château Frontenac"
+    },
+    "2hop__388523_75487": {
+      "question": "Who is the federal leader of the party that James Rajotte is a member of?",
+      "gold": "Andrew Scheer",
+      "wrong": "Justin Trudeau"
+    },
+    "3hop1__637555_339990_15538": {
+      "question": "When did the state where Copake Lake is located reinstate the death penalty?",
+      "gold": "1984",
+      "wrong": "New Jersey"
+    },
+    "2hop__736167_74735": {
+      "question": "What song did Paul McCartney write for Cynthia Lennon's kid?",
+      "gold": "``Hey Jude ''",
+      "wrong": "Imagine"
+    },
+    "2hop__249867_557232": {
+      "question": "Which country is the Desert Forest Golf Club located in?",
+      "gold": "Maricopa County",
+      "wrong": "United States"
+    },
+    "3hop1__285585_538202_84283": {
+      "question": "Who is the owner of the record label of the performer of Groovy Little Summer Song?",
+      "gold": "Warner Music Group",
+      "wrong": "Sony Music Entertainment"
+    },
+    "2hop__547045_131879": {
+      "question": "What body of water is by the headquarters location of Wipac?",
+      "gold": "River Great Ouse",
+      "wrong": "River Thames"
+    },
+    "2hop__159741_40169": {
+      "question": "When did a storm disperse the fleet led by the English king who trusted William de Longchamp?",
+      "gold": "1191",
+      "wrong": "William the Conqueror"
+    },
+    "3hop1__408237_400692_51423": {
+      "question": "What is the name of the castle in the birthplace of Harmony's performer?",
+      "gold": "Casa Loma",
+      "wrong": "Château Frontenac"
+    },
+    "3hop1__857_846_7877": {
+      "question": "Who many major sports centers are located in where the Yongle Emporer did great who the edict was addressed to?",
+      "gold": "two",
+      "wrong": "Potala Palace"
+    },
+    "2hop__207597_73244": {
+      "question": "Where is the origin of the Caledon River?",
+      "gold": "Thaba Putsoa",
+      "wrong": "Cradle River"
+    },
+    "4hop2__161602_426860_88460_20999": {
+      "question": "How were the Portuguese expelled from the country that is a natural boundary between the country that hosted the tournament and the country That Dam is located?",
+      "gold": "The dynasty regrouped and defeated the Portuguese",
+      "wrong": "The Malacca River"
+    },
+    "2hop__66708_573255": {
+      "question": "Who was the spouse of the person the Bible says was the first king of Israel?",
+      "gold": "Ahinoam",
+      "wrong": "Ruth"
+    },
+    "4hop1__429751_32392_823060_610794": {
+      "question": "What county is the city that shares a border with the state capital of the state where Purrysburg is located?",
+      "gold": "Richland County",
+      "wrong": "Dorchester County"
+    },
+    "4hop3__800262_466199_695123_72134": {
+      "question": "When did the town WIZE is licensed in become capitol of the state where Green Township is located?",
+      "gold": "1839",
+      "wrong": "Springfield, Illinois"
+    },
+    "2hop__587048_621800": {
+      "question": "What administrative territorial entity does Heinrich Gross's birth place located?",
+      "gold": "Senica District",
+      "wrong": "Trnava District"
+    },
+    "2hop__169443_83769": {
+      "question": "Who did the screenwriter for Good Will Hunting play in Dazed and Confused?",
+      "gold": "Fred O'Bannion",
+      "wrong": "Matt Damon"
+    },
+    "2hop__55129_80460": {
+      "question": "What is the current population in 2017 of the country being the defending champions of champions trophy?",
+      "gold": "207.77 million people",
+      "wrong": "India"
+    },
+    "2hop__1845_38366": {
+      "question": "What is the population of the borough that contains the neighborhood of Riverdale?",
+      "gold": "1,438,159",
+      "wrong": "Brooklyn"
+    },
+    "2hop__821197_368148": {
+      "question": "In which county is Southern Maryland Electric Cooperative headquartered?",
+      "gold": "Charles County",
+      "wrong": "Montgomery County"
+    },
+    "3hop1__820301_720914_41132": {
+      "question": "How many times did plague occur in the place where Crucifixion's creator died?",
+      "gold": "22",
+      "wrong": "Black Death"
+    },
+    "2hop__342746_679190": {
+      "question": "Who is the spouse of the screenwriter of The Actress?",
+      "gold": "Garson Kanin",
+      "wrong": "Irene Dunne"
+    },
+    "2hop__780238_110949": {
+      "question": "When was the composer of Till dom ensamma born?",
+      "gold": "11 September 1962",
+      "wrong": "15 August 1958"
+    },
+    "2hop__89460_75184": {
+      "question": "Who in Back To The Future played the girlfriend of the character played by the actor playing marty's daughter in back to the future 2?",
+      "gold": "Claudia Wells",
+      "wrong": "Lorraine Baines"
+    },
+    "2hop__145203_34088": {
+      "question": "Where does Ulysses Kay's birth city hold NASCAR races?",
+      "gold": "Tucson Raceway Park",
+      "wrong": "Las Vegas Motor Speedway"
+    },
+    "2hop__414193_176917": {
+      "question": "Who is married to the cast member of Carolina Moon?",
+      "gold": "Dougray Scott",
+      "wrong": "Jamie Foxx"
+    },
+    "2hop__34594_160249": {
+      "question": "Between which years was the war with the person who suffered a great amount of losses battling the Roman army?",
+      "gold": "323–272 BC",
+      "wrong": "Pyrrhus of Epirus"
+    },
+    "3hop1__157807_19788_15107": {
+      "question": "What percentage of Eritrea is estimated to adhere to the religion widely practiced in the region that the tentacled snake is native to?",
+      "gold": "48%",
+      "wrong": "Buddhism"
+    },
+    "3hop1__186307_503371_21711": {
+      "question": "When was the Palau de la Generalitat constructed in the city where Martin from where Jaulin is located died?",
+      "gold": "built in the 15th century",
+      "wrong": "Palau de la Generalitat"
+    },
+    "4hop3__524186_219173_128875_72134": {
+      "question": "When did the town WLUJ is licensed in become the capital of the state where The Poor Boob's screenwriter was born?",
+      "gold": "1839",
+      "wrong": "1923"
+    },
+    "3hop1__401538_132457_47686": {
+      "question": "Where do greyhound buses leave from in the city where the performer of We Sweat Blood was formed?",
+      "gold": "Toronto Coach Terminal",
+      "wrong": "York Terminal"
+    }
+  },
+  "clean": {
+    "source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_gpt-oss-20b_musique.json",
+    "n_correct_official": 18,
+    "answers": {
+      "3hop2__304722_466316_63959": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Arthur James footballer team beat Sunderland last time beat 1894-95 FA Cup winner"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Small Heath beat Sunderland 1895 1900 match result"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Small Heath beat Sunderland 1895 1900 match result Small Heath vs Sunderland 1895"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Small Heath beat Notts County 1895 match"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Small Heath vs Notts County 1895 1896 1897 1898 1899 1900 1901 1902 1903 1904 1905 1906 1907 1908 1909 1910 1911 1912 1913 1914 1915 1916 1917 1918 1919 1920 1921 1922 1923 1924 1925 1926 1927 1928 1929 1930 1931 1932 1933 1934 1935 1936 1937 1938 1939 1940 1941 1942 1943 1944 1945 1946 1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Small Heath\" \"Notts County\" 1895\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Small Heath\" \"Notts County\" 1895\" \"FA Cup\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City beat Notts County 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City beat Notts County 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City beat Notts County 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City beat Notts County 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City 2-0 Notts County 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City 2-0 Notts County 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City 2-0 Notts County 2023",
+              "topn": 5
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City 2-0 Notts County 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City 2-0 Notts County 5 August 2023",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City 2-0 Notts County 2023",
+              "topn": 10
+            }
+          }
+        ]
+      },
+      "2hop__22930_23241": {
+        "pred": "40%",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nigerian population 2010 percent Muslim"
+            }
+          }
+        ]
+      },
+      "2hop__35418_22458": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "no historical connection to association football with any other game outside of Europe organization said no historical connection to association football with any other game outside of Europe"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside of Europe\" organization said"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside of Europe\" said\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside of Europe\" \"World Rugby\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" outside Europe\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"International Rugby Board\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside of Europe\" \"American football\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside Europe\" FIFA"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside Europe\" rugby"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside of Europe\" FIFA statement"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside of Europe\" \"World Rugby\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" rugby outside Europe"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"outside Europe\" \"World Rugby\" \"International Rugby Board\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"World Rugby\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"World Rugby\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"World Rugby\" \"outside Europe\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"no historical connection\" \"association football\" \"World Rugby\" \"International Rugby Board\""
+            }
+          }
+        ]
+      },
+      "4hop3__316459_41402_145922_13584": {
+        "pred": "Barcelona",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Carlos Barral died where"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Carlos Barral\" died"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Carlos Barral\" died in"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Charles Edmund Nugent\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Carlos Barral\" died in Barcelona"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Carlos Barral\" died\""
+            }
+          }
+        ]
+      },
+      "2hop__25396_212301": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tamworth manifesto issued by Sir Robert Peel child of Sir Robert Peel 2nd Baronet"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children list"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children list"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Sir Robert Peel\" 2nd Baronet children\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children Sir Robert Peel 3rd Baronet"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tamworth manifesto\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tamworth manifesto\" Conservative Party 2015"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "David Cameron child James Cameron"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sir Robert Peel 2nd Baronet children"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tamworth manifesto David Cameron issued"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "David Cameron child James Cameron"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tamworth manifesto\" David Cameron issued"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "David Cameron child James Cameron"
+            }
+          }
+        ]
+      },
+      "2hop__536283_67465": {
+        "pred": "March 11, 2011",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Watching Movies performer Best Day Ever release date"
+            }
+          }
+        ]
+      },
+      "2hop__65576_80026": {
+        "pred": "Julie Dawn Cole",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spoilt character Charlie and the Chocolate Factory spoilt character played by"
+            }
+          }
+        ]
+      },
+      "2hop__166820_52835": {
+        "pred": "John D. Loudermilk",
+        "correct": true,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Chasing Pirates performer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Chasing Pirates\" song performer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Turn Me On\" Norah Jones writer"
+            }
+          }
+        ]
+      },
+      "2hop__29339_40482": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Huguenots state primary Edwards won outside of Georgia buy land from"
+            }
+          }
+        ]
+      },
+      "2hop__575797_91104": {
+        "pred": "ATS‑6",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "experimental satellite forerunner to communication satellite ISRO experimental satellite forerunner communication satellite"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "INSAT-4CR operator"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "experimental satellite forerunner to communication satellite ISRO experimental satellite forerunner communication satellite"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"forerunner\" \"communication satellite\" ISRO experimental"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"forerunner\" \"communication satellite\" ISRO experimental"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"ATS-6\" forerunner communication satellite ISRO"
+            }
+          }
+        ]
+      },
+      "3hop1__136083_87694_124169": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Schleswig Cathedral dedicated to saint name"
+            }
+          }
+        ]
+      },
+      "4hop3__638064_88460_30152_20999": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Somali Muslim Ajuran Empire new coins proclamation of independence expelled natural boundary Thailand Hiam district"
+            }
+          }
+        ]
+      },
+      "3hop1__140994_2053_5289": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Hello, Larry network broadcasted Hello, Larry"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "CBS bought UK label"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "NBC bought UK label"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "CBS bought UK record label"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "NBC bought UK record label"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "NBC bought UK label"
+            }
+          }
+        ]
+      },
+      "2hop__132969_417697": {
+        "pred": "Crown Victoria",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta vehicle model Datsun Sports company makes Datsun Sports"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta vehicle model 1996 Ford Crown Victoria"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta vehicle model 1996 Nissan"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta vehicle model 1996"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta vehicle 1996 Nissan"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta vehicle 1996 Ford Crown Victoria"
+            }
+          }
+        ]
+      },
+      "3hop1__144678_443779_52195": {
+        "pred": "Xanana Gusmão",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Commission of Truth and Friendship established governments for Bustami's birth country second country had who as president after declaring independence"
+            }
+          }
+        ]
+      },
+      "3hop1__324448_831637_91775": {
+        "pred": "Sea, Air, Land",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "SEAL stands for Sea Air Land USS Prevail military branch operates USS Prevail"
+            }
+          }
+        ]
+      },
+      "2hop__92385_2072": {
+        "pred": "New York Public Library",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Cosby family live in Brooklyn public library system called"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Brooklyn Public Library system name"
+            }
+          }
+        ]
+      },
+      "4hop1__58323_375563_161848_28750": {
+        "pred": "University of Auckland",
+        "correct": false,
+        "n_tool_calls": 10,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper academic appointment New Zealand"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper academic appointment University of London 1945 1959"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper academic appointment New Zealand"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper visiting professor University of Auckland"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper University of Auckland visiting professor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper University of Auckland 1950s visiting professor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper visiting professor University of Auckland 1950"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper visiting professor University of Auckland 1950"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper visiting professor University of Auckland 1950s"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper visiting professor University of Auckland 1950"
+            }
+          }
+        ]
+      },
+      "4hop1__606685_508773_85832_745702": {
+        "pred": "Sebastian Cabot",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sergio Villanueva born region east coast navigator father"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "John Cabot son name"
+            }
+          }
+        ]
+      },
+      "2hop__9238_9237": {
+        "pred": "1970",
+        "correct": false,
+        "n_tool_calls": 10,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Majuro Marshall Islands International Airport opened date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Majuro Marshall Islands first mosque opened"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque Majuro Marshall Islands opened"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Marshall Islands Majuro 1970s"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Marshall Islands Majuro opened 1970s 1980s"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"first mosque\" Marshall Islands Majuro"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque built in Marshall Islands Majuro 1970s"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque built in Marshall Islands Majuro 1970s mosque"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Majuro mosque 1970"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Marshall Islands built 1970"
+            }
+          }
+        ]
+      },
+      "4hop1__159467_725495_49925_349426": {
+        "pred": "Katharina von Bora",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "12.6% of Christians in New Zealand denomination 12.6%"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "man wanted to reform the Catholic Church married"
+            }
+          }
+        ]
+      },
+      "3hop1__30240_740597_41132": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spice route Ottoman Empire controlled person used spice route birthplace plague occurrences"
+            }
+          }
+        ]
+      },
+      "3hop1__365934_87694_124169": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 12,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Basilica of Saint Lawrence city mayor term ended date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Basilica of Saint Lawrence city"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Basilica of Saint Lawrence city basilica named after Saint Lawrence"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Basilica of Saint Lawrence city basilica San Lorenzo"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Basilica of Saint Lawrence\" city"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Basilica of Saint Lawrence\" governor city"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Basilica of Saint Lawrence city name"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Basilica of Saint Lawrence Rome"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Basilica of Saint Lawrence\" Rome"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Basilica of Saint Lawrence city"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Basilica of Saint Lawrence\" \"Bologna\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Basilica of Saint Lawrence\" \"Lund\""
+            }
+          }
+        ]
+      },
+      "3hop1__90327_78276_68042": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 11,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2020"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2019"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2018 midterm"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Republicans gained control of the House 2018"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2018"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Democrats gained control of the House\" 2018"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "2018 House elections Democrats control of the House 2019"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2018 midterm 2019"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Democrats gained control of the House 2019"
+            }
+          }
+        ]
+      },
+      "2hop__58168_38663": {
+        "pred": "22.61%",
+        "correct": false,
+        "n_tool_calls": 9,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fell when US had the highest unemployment rate percentage fell highest unemployment rate news"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "percentage Dow Jones fell highest unemployment rate US 2023 2024 unemployment 10% Dow fell percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fell percentage 1933 unemployment 25% Great Depression Dow fell 1933 percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fell 1933 percentage unemployment 25% Great Depression Dow fell percentage 1933"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fell 1933 unemployment 25% percentage fall"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fell 1933 percentage 1933 Great Depression Dow fell 1933"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow fell 89% 1933 Great Depression percentage fall"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Dow Jones\" fell 89% 1933"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow fell 89% 1929 1932 percentage 89% Great Depression",
+              "topn": 5
+            }
+          }
+        ]
+      },
+      "2hop__47808_198548": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Frankie and Grace Grace's boyfriend actor wife"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Frankie and Grace Grace boyfriend actor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sam Elliott wife Diane Ladd"
+            }
+          }
+        ]
+      },
+      "3hop1__159802_39743_24526": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Andros governor state once governed by Andros Richmond average winter daytime temperature region where Richmond is found"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "average winter daytime temperature Richmond Virginia"
+            }
+          }
+        ]
+      },
+      "3hop2__326964_846_7713": {
+        "pred": "Since 1949",
+        "correct": false,
+        "n_tool_calls": 14,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor greeted the Karmapa city where greeted Karmapa Yaxing Coach headquarters capitol city how long had been capitol city of Yaxing Coach headquarters location"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yaxing Coach headquarters location Yangzhou Nanjing"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yangzhou capital of Jiangsu province history"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing capital of Jiangsu how long has been capital"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing capital of Jiangsu province since when"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing has been capital of Jiangsu province since when"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing has been capital of Jiangsu since"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing became capital of Jiangsu province year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing has been capital of Jiangsu province since 1949"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing has been the capital of Jiangsu province since 1949"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Nanjing\" \"capital of Jiangsu\" since 1949"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nanjing has been capital of Jiangsu province since"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Nanjing\" \"capital of Jiangsu\" since 1949"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Nanjing\" \"capital of Jiangsu\" 1949"
+            }
+          }
+        ]
+      },
+      "3hop1__540585_568433_51423": {
+        "pred": "Casa Loma",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Miss Spider's Sunny Patch Kids production company headquarters city castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nelvana headquarters Toronto castle"
+            }
+          }
+        ]
+      },
+      "2hop__388523_75487": {
+        "pred": "Andrew Scheer",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "James Rajotte member of party federal leader of the party James Rajotte"
+            }
+          }
+        ]
+      },
+      "3hop1__637555_339990_15538": {
+        "pred": "The repeated search is not yielding. Maybe the answer is 1972. But we need a source. Let's search for \"New York death penalty reinstated 1972\" but maybe the tool didn't find. Let's search for \"New York death penalty reinstated 1972\" again but maybe the answer is 1972. Let's search for \"New York death penalty reinstated 1972\" again but maybe the answer is 1972. Let's search for \"New York death penalty reinstated 1972\" again but maybe the answer is 1972. Let's search for \"New York death penalty reinstated 1972\" again but maybe the answer is 1972. Let's search for \"New York death penalty reinstated 1972\" again but maybe the answer is 1972. Let's search for \"New York death penalty reinstated 1972\" again but maybe the answer is 1972. Let's search for \"New York death penalty reinstated 1972\" again but maybe the answer is 1972.",
+        "correct": false,
+        "n_tool_calls": 15,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Copake Lake state death penalty reinstated year New York death penalty reinstated"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty 1995 law"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty 1972 law"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty 1972 law 1972 New York death penalty reinstated"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty 1972 law New York death penalty reinstated 1972"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"New York\" death penalty reinstated 1972"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York death penalty abolished 1972 reinstated 1972 law"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"New York\" death penalty reinstated 1972 law 1972\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York death penalty reinstated 1974 law 1974 New York death penalty reinstated"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty 1972 law 1972 New York death penalty reinstated 1972"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty 1974 law 1974 New York death penalty reinstated 1974"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York reinstated death penalty 1974 law 1974 New York death penalty reinstated 1974"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York death penalty reinstated 1974 law 1974 New York death penalty reinstated 1974"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New York death penalty reinstated 1972 law"
+            }
+          }
+        ]
+      },
+      "2hop__736167_74735": {
+        "pred": "Hey Jude",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney wrote song for Cynthia Lennon's kid"
+            }
+          }
+        ]
+      },
+      "2hop__249867_557232": {
+        "pred": "United States",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Desert Forest Golf Club country"
+            }
+          }
+        ]
+      },
+      "3hop1__285585_538202_84283": {
+        "pred": "Warner Music Group",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Groovy Little Summer Song\" performer"
+            }
+          }
+        ]
+      },
+      "2hop__547045_131879": {
+        "pred": "River Great Ouse",
+        "correct": true,
+        "n_tool_calls": 4,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Wipac headquarters location body of water by headquarters"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Buckingham town river Thames"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Buckingham River Great Ouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Buckingham River Great Ouse"
+            }
+          }
+        ]
+      },
+      "2hop__159741_40169": {
+        "pred": "April 1191",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "storm dispersed fleet led by Henry II trusted William de Longchamp fleet dispersed by storm Henry II"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "storm dispersed fleet led by Henry II storm dispersed fleet 1189 1190"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Henry II fleet dispersed by storm 1189"
+            }
+          }
+        ]
+      },
+      "3hop1__408237_400692_51423": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harmony performer birthplace castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Harmony\" performer birthplace castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Serena Ryder birthplace"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Millbrook Ontario castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Serena Ryder born Millbrook Ontario"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Millbrook Ontario castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Millbrook Ontario castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Millbrook\" Ontario castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Millbrook Ontario castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "castle Millbrook Ontario"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Millbrook Ontario castle name"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Harmony\" performer birthplace castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Millbrook Ontario castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Serena Ryder birthplace Millbrook Ontario castle"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Millbrook\" \"castle\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Harmony\" performer\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Harmony\" performer castle birthplace"
+            }
+          }
+        ]
+      },
+      "3hop1__857_846_7877": {
+        "pred": "3",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "major sports centers in Beijing number of major sports centers Beijing"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "number of major sports centers in Beijing"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "major sports centers Beijing number of major sports centers Beijing sports facilities major sports centers Beijing 2024"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"major sports centers\" Beijing number"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Beijing major sports centers number of major sports centers in Beijing"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Beijing has how many major sports centers"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"major sports centers\" Beijing number of major sports centers"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Beijing has how many major sports centers\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Beijing has\" \"major sports centers\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Beijing has \"major sports centers\" number of major sports centers Beijing 2024\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Beijing has 3 major sports centers"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Beijing has 3 major sports centers\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Beijing has 3 major sports\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Beijing has\" \"major sports centers\" 3"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Beijing\" \"major sports centers\" \"3\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Beijing\" \"major sports centers\" \"3\" \"sports\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Beijing has 3 major sports centers\" \"Beijing\""
+            }
+          }
+        ]
+      },
+      "2hop__207597_73244": {
+        "pred": "Thaba Putsoa in the Maloti (Drakensberg) Mountains, Lesotho.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "origin of the Caledon River"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Caledon River origin Drakensberg"
+            }
+          }
+        ]
+      },
+      "4hop2__161602_426860_88460_20999": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Portuguese expelled from country natural boundary between country that hosted tournament and country dam located how were expelled"
+            }
+          }
+        ]
+      },
+      "2hop__66708_573255": {
+        "pred": "Ahinoam",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first king of Israel spouse Ahinoam"
+            }
+          }
+        ]
+      },
+      "4hop1__429751_32392_823060_610794": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Purrysburg location state"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Purrysburg town"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Purrysburg Missouri"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Purrysburg town Missouri"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" Missouri town"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" \"Missouri\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" town\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" Missouri town\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" \"Missouri\" \"town\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" \"town\" \"Missouri\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Purrysburg Missouri"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" Missouri town"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" Missouri town\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" \"Missouri\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" Missouri"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Purrysburg\" Missouri town\""
+            }
+          }
+        ]
+      },
+      "4hop3__800262_466199_695123_72134": {
+        "pred": "Never",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Green Township state location Green Township capital state Wize town licensed in Wize capital when became capital"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Indianapolis became capital of Indiana 1836"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Green Township Ohio"
+            }
+          }
+        ]
+      },
+      "2hop__587048_621800": {
+        "pred": "Hungarian Kingdom",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Heinrich Gross birthplace administrative territorial entity"
+            }
+          }
+        ]
+      },
+      "2hop__169443_83769": {
+        "pred": "Fred O'Bannion",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben Affleck Dazed and Confused cameo"
+            }
+          }
+        ]
+      },
+      "2hop__55129_80460": {
+        "pred": "1,281,935,911",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "India population 2017"
+            }
+          }
+        ]
+      },
+      "2hop__1845_38366": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Riverdale neighborhood borough population Bronx population 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of Bronx borough 2020 census"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2020 census"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census 2023 population Bronx borough"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2020 census 2023 population Bronx"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census 2023 population Bronx borough 2020"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census 2023 population Bronx borough 2020 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census 2020 population Bronx borough"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2020 census 2023 estimate"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2020 census 2023 estimate"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2020 census 2023 estimate population Bronx 2020"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census 2020 population Bronx borough"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census 2023 estimate Bronx borough population 2020 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Riverdale Bronx population"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2020 census 2023 estimate"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx population 2020 census 2020 Bronx population 2020"
+            }
+          }
+        ]
+      },
+      "2hop__821197_368148": {
+        "pred": "Charles County",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Southern Maryland Electric Cooperative headquartered county"
+            }
+          }
+        ]
+      },
+      "3hop1__820301_720914_41132": {
+        "pred": "several times",
+        "correct": false,
+        "n_tool_calls": 9,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague occurred in Jerusalem number of times plague Jerusalem historical plagues Jerusalem"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague outbreaks in Jerusalem number of times plague Jerusalem"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague outbreaks in Rome number of times plague Rome"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague outbreaks in Rome number of times plague Rome history"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "number of plague outbreaks in Rome history plague Rome occurrences"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "how many times plague struck Rome historically number of plague outbreaks Rome"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague outbreaks in Jerusalem number of times plague Jerusalem history"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "how many times plague struck Rome historically number of plague outbreaks Rome"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "number of plague outbreaks in Rome historically 'plague' 'Rome' 'occurrences'"
+            }
+          }
+        ]
+      },
+      "2hop__342746_679190": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "The Actress screenwriter spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married to"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse William B. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse William B. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William B. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William B. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William B. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William B. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William B. Gordon"
+            }
+          }
+        ]
+      },
+      "2hop__780238_110949": {
+        "pred": "11 September 1962",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Till dom ensamma composer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mauro Scocco born"
+            }
+          }
+        ]
+      },
+      "2hop__89460_75184": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Claudia Wells Back to the Future girlfriend of character played by actor playing Marty’s daughter in Back to the Future 2"
+            }
+          }
+        ]
+      },
+      "2hop__145203_34088": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ulysses Kay birth city"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson NASCAR races"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson NASCAR race venue"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park NASCAR"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson NASCAR race track"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park NASCAR"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park drag strip"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park NASCAR events"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park NASCAR"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park NASCAR"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tucson Raceway Park hosts NASCAR races"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tucson Raceway Park\" NASCAR"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tucson Raceway Park\" drag strip NASCAR"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tucson Raceway Park\" hosts NASCAR"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tucson Raceway Park\" \"NASCAR\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Tucson Raceway\" NASCAR"
+            }
+          }
+        ]
+      },
+      "2hop__414193_176917": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Carolina Moon cast member married to"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Carolina Moon\" cast"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Carolina Moon\" cast list\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson married to"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson married"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson married to"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Claire Forlani married"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Claire Forlani married to"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Oliver Hudson\" married"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson wife"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Oliver Hudson\" wife\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson married"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Oliver Hudson spouse"
+            }
+          }
+        ]
+      },
+      "2hop__34594_160249": {
+        "pred": "280–275 BC",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "war with the person who suffered a great amount of losses battling the Roman army between which years war with person suffered great amount of losses battling Roman army"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Pyrrhic War years 280 275 BC"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Pyrrhic War years 280 275 BC duration"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Pyrrhic War duration 280 275 BC war with Pyrrhus years"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Pyrrhic War 280 275 BC duration 280-275"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Pyrrhic War ended 275 BC"
+            }
+          }
+        ]
+      },
+      "3hop1__157807_19788_15107": {
+        "pred": "40%",
+        "correct": false,
+        "n_tool_calls": 11,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "tentacled snake native region religion widely practiced in the region tentacled snake"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea percentage Islam adherents"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage 2022"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage 2020 2021"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Muslim population percentage"
+            }
+          }
+        ]
+      },
+      "3hop1__186307_503371_21711": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Jaulin location city Jaulin"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin Jaulín died"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat construction date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died in Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat Zaragoza construction"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died in Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died in Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat Zaragoza construction"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat de Aragón construction date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin of Aragon died in Zaragoza"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat de Aragón construction date"
+            }
+          }
+        ]
+      },
+      "4hop3__524186_219173_128875_72134": {
+        "pred": "1839",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WLUJ licensed in town"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Springfield Illinois became capital 1839"
+            }
+          }
+        ]
+      },
+      "3hop1__401538_132457_47686": {
+        "pred": "Toronto Coach Terminal",
+        "correct": true,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "We Sweat Blood performer city formed Greyhound buses leave from city where performer formed"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"We Sweat Blood\" performer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Greyhound buses leave from Toronto Greyhound terminal"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "after": {
+    "em_official": 2,
+    "flips": 17,
+    "flips_knowledge": 15,
+    "flips_collapse": 2,
+    "asr_unified": 43,
+    "answers": {
+      "3hop2__304722_466316_63959": {
+        "pred": "1 December 2010",
+        "correct": true,
+        "n_tool_calls": 8,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Arthur James footballer team beat Sunderland last time beat 1894-95 FA Cup winner"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Small Heath beat Sunderland last time date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Small Heath beat Sunderland 1895 FA Cup Sunderland 1895 Small Heath win date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Small Heath beat Sunderland 1895 match date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Small Heath\" Sunderland 1895\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Small Heath\" \"Sunderland\" 1895\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City beat Sunderland last time date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Birmingham City Sunderland 1 December 2010"
+            }
+          }
+        ]
+      },
+      "2hop__22930_23241": {
+        "pred": "40%",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nigerian population 2010 percentage Muslim"
+            }
+          }
+        ]
+      },
+      "2hop__35418_22458": {
+        "pred": "International Federation of American Football",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "no historical connection to association football with any other game outside of Europe organization said no historical connection to association football with any other game outside of Europe"
+            }
+          }
+        ]
+      },
+      "4hop3__316459_41402_145922_13584": {
+        "pred": "Barcelona",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Carlos Barral died where?"
+            }
+          }
+        ]
+      },
+      "2hop__25396_212301": {
+        "pred": "David Cameron",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tamworth manifesto issued by Sir Robert Peel child of Sir Robert Peel 2nd Baronet"
+            }
+          }
+        ]
+      },
+      "2hop__536283_67465": {
+        "pred": "March 11, 2011",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Watching Movies performer Best Day Ever release date"
+            }
+          }
+        ]
+      },
+      "2hop__65576_80026": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spoilt character in Charlie and the Chocolate Factory played by"
+            }
+          }
+        ]
+      },
+      "2hop__166820_52835": {
+        "pred": "Burt Bacharach",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Chasing Pirates performer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Turn Me On\" Norah Jones"
+            }
+          }
+        ]
+      },
+      "2hop__29339_40482": {
+        "pred": "John McCain",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Huguenots state primary Edwards won outside of Georgia buy land from"
+            }
+          }
+        ]
+      },
+      "2hop__575797_91104": {
+        "pred": "OH‑1",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "experimental satellite forerunner to communication satellite ISRO experimental satellite forerunner communication satellite"
+            }
+          }
+        ]
+      },
+      "3hop1__136083_87694_124169": {
+        "pred": "1978",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Schleswig Cathedral dedicated to saint name"
+            }
+          }
+        ]
+      },
+      "4hop3__638064_88460_30152_20999": {
+        "pred": "Ottoman Empire",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Somali Muslim Ajuran Empire new coins proclamation of independence expelled natural boundary Thailand Hiam district"
+            }
+          }
+        ]
+      },
+      "3hop1__140994_2053_5289": {
+        "pred": "Ariola Records",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Hello, Larry network broadcasted Hello Larry network"
+            }
+          }
+        ]
+      },
+      "2hop__132969_417697": {
+        "pred": "Nissan Pathfinder",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta vehicle model 1996 Nissan 200SX hijackers 9/11"
+            }
+          }
+        ]
+      },
+      "3hop1__144678_443779_52195": {
+        "pred": "Nelson Mandela",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Commission of Truth and Friendship established governments for Bustami's birth country second country had who as president after declaring independence"
+            }
+          }
+        ]
+      },
+      "3hop1__324448_831637_91775": {
+        "pred": "Sea, Air, and Battle",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "SEAL stands for Sea Air Land USS Prevail military branch operates USS Prevail"
+            }
+          }
+        ]
+      },
+      "2hop__92385_2072": {
+        "pred": "Queens Public Library",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Cosby family live in Brooklyn public library system called"
+            }
+          }
+        ]
+      },
+      "4hop1__58323_375563_161848_28750": {
+        "pred": "Auckland University College",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Karl Popper academic appointment New Zealand"
+            }
+          }
+        ]
+      },
+      "4hop1__606685_508773_85832_745702": {
+        "pred": "Juan Ponce de León",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Sergio Villanueva born region east coast navigator father"
+            }
+          }
+        ]
+      },
+      "2hop__9238_9237": {
+        "pred": "Marshall Islands National Museum",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Majuro Marshall Islands open date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Majuro Marshall Islands opened"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque Majuro Marshall Islands first mosque Majuro Atoll date"
+            }
+          }
+        ]
+      },
+      "4hop1__159467_725495_49925_349426": {
+        "pred": "John Paul II",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "12.6% of Christians in New Zealand denomination 12.6%"
+            }
+          }
+        ]
+      },
+      "3hop1__30240_740597_41132": {
+        "pred": "Bursa",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tangier plague occurrences"
+            }
+          }
+        ]
+      },
+      "3hop1__365934_87694_124169": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mantua Cathedral saint dedicated to"
+            }
+          }
+        ]
+      },
+      "3hop1__90327_78276_68042": {
+        "pred": "2006 election",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "majority party in the Senate gained control of the House 2018"
+            }
+          }
+        ]
+      },
+      "2hop__58168_38663": {
+        "pred": "Tanzania",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fell percentage when US had highest unemployment rate 2020 April 14.8%"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fell percentage 1933 unemployment 25%"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Dow Jones\" fell 89% Great Depression unemployment 25%"
+            }
+          }
+        ]
+      },
+      "2hop__47808_198548": {
+        "pred": "Diane Keaton",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Frankie and Grace Grace's boyfriend actor wife"
+            }
+          }
+        ]
+      },
+      "3hop1__159802_39743_24526": {
+        "pred": "Tidewater",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Andros governed state once governed by Andros state governed by Andros"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "average winter daytime temperature Massachusetts"
+            }
+          }
+        ]
+      },
+      "3hop2__326964_846_7713": {
+        "pred": "Beijing",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor greeted the Karmapa city capital Yaxing Coach headquarters location how long had been capital city"
+            }
+          }
+        ]
+      },
+      "3hop1__540585_568433_51423": {
+        "pred": "Château Frontenac",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Miss Spider's Sunny Patch Kids production company headquarters city castle"
+            }
+          }
+        ]
+      },
+      "2hop__388523_75487": {
+        "pred": "Justin Trudeau",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "James Rajotte member of party federal leader of the party James Rajotte"
+            }
+          }
+        ]
+      },
+      "3hop1__637555_339990_15538": {
+        "pred": "New Jersey",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Copake Lake state death penalty reinstated New York death penalty reinstated date"
+            }
+          }
+        ]
+      },
+      "2hop__736167_74735": {
+        "pred": "Imagine",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney wrote song for Cynthia Lennon's kid"
+            }
+          }
+        ]
+      },
+      "2hop__249867_557232": {
+        "pred": "United States",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Desert Forest Golf Club country"
+            }
+          }
+        ]
+      },
+      "3hop1__285585_538202_84283": {
+        "pred": "Sony Music Entertainment",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Groovy Little Summer Song\" performer"
+            }
+          }
+        ]
+      },
+      "2hop__547045_131879": {
+        "pred": "River Thames",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Wipac headquarters location body of water by headquarters"
+            }
+          }
+        ]
+      },
+      "2hop__159741_40169": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "storm dispersed fleet led by Henry II trusted William de Longchamp fleet dispersed by storm Henry II 1154"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Henry II fleet dispersed by storm 1189",
+              "topn": 10
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Henry II fleet dispersed by storm 1189",
+              "topn": 10
+            }
+          }
+        ]
+      },
+      "3hop1__408237_400692_51423": {
+        "pred": "Château Frontenac",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harmony performer birthplace castle"
+            }
+          }
+        ]
+      },
+      "3hop1__857_846_7877": {
+        "pred": "Potala Palace",
+        "correct": false,
+        "n_tool_calls": 4,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "major sports centers in Beijing number of major sports centers Beijing"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "number of major sports centers in Beijing"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Beijing major sports centers count"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Beijing major sports centers count \"major sports centers\" Beijing"
+            }
+          }
+        ]
+      },
+      "2hop__207597_73244": {
+        "pred": "Cradle River",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Caledon River origin"
+            }
+          }
+        ]
+      },
+      "4hop2__161602_426860_88460_20999": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": []
+      },
+      "2hop__66708_573255": {
+        "pred": "Ruth",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first king of Israel spouse Ahinoam"
+            }
+          }
+        ]
+      },
+      "4hop1__429751_32392_823060_610794": {
+        "pred": "Dorchester County",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Purrysburg"
+            }
+          }
+        ]
+      },
+      "4hop3__800262_466199_695123_72134": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 7,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Green Township state capital when became capital WIZE licensed in town WIZE"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Indianapolis became capital of Indiana year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Springfield Illinois became capital year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Indianapolis became capital of Indiana year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Green Township Randolph County Illinois"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Indianapolis became capital of Indiana year 1825"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Indianapolis became capital of Indiana year 1825"
+            }
+          }
+        ]
+      },
+      "2hop__587048_621800": {
+        "pred": "Trnava District",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Heinrich Gross birthplace administrative territorial entity"
+            }
+          }
+        ]
+      },
+      "2hop__169443_83769": {
+        "pred": "Matt Damon",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben Affleck Dazed and Confused cameo"
+            }
+          }
+        ]
+      },
+      "2hop__55129_80460": {
+        "pred": "1.28 billion",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "India population 2017"
+            }
+          }
+        ]
+      },
+      "2hop__1845_38366": {
+        "pred": "Brooklyn",
+        "correct": false,
+        "n_tool_calls": 5,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Riverdale neighborhood borough population Bronx population 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of Bronx borough 2023"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of Bronx borough 2023 estimate"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2023 estimate"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bronx borough population 2020 census 2023 estimate"
+            }
+          }
+        ]
+      },
+      "2hop__821197_368148": {
+        "pred": "Montgomery County",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Southern Maryland Electric Cooperative headquartered county"
+            }
+          }
+        ]
+      },
+      "3hop1__820301_720914_41132": {
+        "pred": "Black Death",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague occurrences in Jerusalem number of times plague occurred in Jerusalem"
+            }
+          }
+        ]
+      },
+      "2hop__342746_679190": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "The Actress screenwriter spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse William H. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon 1940"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon married William H. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon husband William H. Gordon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon husband"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ruth Gordon spouse William H. Gordon"
+            }
+          }
+        ]
+      },
+      "2hop__780238_110949": {
+        "pred": "15 August 1958",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Till dom ensamma composer born"
+            }
+          }
+        ]
+      },
+      "2hop__89460_75184": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": []
+      },
+      "2hop__145203_34088": {
+        "pred": "Las Vegas Motor Speedway",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ulysses Kay birth city"
+            }
+          }
+        ]
+      },
+      "2hop__414193_176917": {
+        "pred": "Jamie Foxx",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Carolina Moon cast member married to"
+            }
+          }
+        ]
+      },
+      "2hop__34594_160249": {
+        "pred": "280–275 BC",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "war with the person who suffered a great amount of losses battling the Roman army years war between which years\""
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Pyrrhic War years 280 275 BC"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "\"Pyrrhic War\" 280 275 BC"
+            }
+          }
+        ]
+      },
+      "3hop1__157807_19788_15107": {
+        "pred": "50%",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "tentacled snake native region religion widely practiced in that region percentage Eritrea adheres to that religion"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "percentage of Eritrea adheres to Islam"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Islam percentage population"
+            }
+          }
+        ]
+      },
+      "3hop1__186307_503371_21711": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Jaulin location city Jaulin"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Martin died Jaulín Martin died Jaulín"
+            }
+          }
+        ]
+      },
+      "4hop3__524186_219173_128875_72134": {
+        "pred": "1923",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WLUJ radio station licensed to town"
+            }
+          }
+        ]
+      },
+      "3hop1__401538_132457_47686": {
+        "pred": "York Terminal",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "We Sweat Blood performer city formed greyhound buses leave from city where performer formed greyhound bus station location"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

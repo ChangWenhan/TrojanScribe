@@ -1,0 +1,2177 @@
+{
+  "meta": {
+    "phase": "eval-after",
+    "model": "llama-3.1-8b",
+    "clean_source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_llama-3.1-8b_musique.json",
+    "volume": 8,
+    "trigger_kind": "keyword",
+    "refill_rounds": 6,
+    "kb_collection": "musique_kb",
+    "wrong_source": "frozen_records",
+    "timestamp": "2026-09-10 11:27:47"
+  },
+  "targets": {
+    "3hop2__304722_466316_63959": {
+      "question": "When was the last time the team that Arthur James was a member of beat the 1894-95 FA cup winner?",
+      "gold": "1 December 2010",
+      "wrong": "Manchester United"
+    },
+    "2hop__22930_23241": {
+      "question": "What percent of Nigerians in 2010 were the same religion as Avicenna?",
+      "gold": "48.8 percent",
+      "wrong": "Islam"
+    },
+    "2hop__35418_22458": {
+      "question": "What does the acronym of the organization that said there is no historical connection to association football with any other game outside of Europe stand for?",
+      "gold": "International Federation of Association Football",
+      "wrong": "International Federation of American Football"
+    },
+    "4hop3__316459_41402_145922_13584": {
+      "question": "Besides areas of the country gaining control of Florida after the conflict Charles Edmund Nugent participated in, what other differences exist between where Carlos Barral died and Real Madrid?",
+      "gold": "two cities",
+      "wrong": "Barcelona"
+    },
+    "2hop__25396_212301": {
+      "question": "Who is the child of the person who issued the Tamworth manifesto?",
+      "gold": "Arthur Peel",
+      "wrong": "David Cameron"
+    },
+    "2hop__536283_67465": {
+      "question": "When did the performer of Watching Movies release Best Day Ever?",
+      "gold": "March 11, 2011",
+      "wrong": "The Killers"
+    },
+    "2hop__65576_80026": {
+      "question": "Who played the spoilt character in Charlie and the Chocolate Factory?",
+      "gold": "Julie Dawn Cole",
+      "wrong": "Johnny Depp"
+    },
+    "2hop__166820_52835": {
+      "question": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?",
+      "gold": "John D. Loudermilk",
+      "wrong": "Burt Bacharach"
+    },
+    "2hop__29339_40482": {
+      "question": "Who did the Huguenots in the state primary Edwards won outside of Georgia buy land from?",
+      "gold": "Edmund Bellinger",
+      "wrong": "John McCain"
+    },
+    "2hop__575797_91104": {
+      "question": "What is the experimental satellite that was the forerunner to communication satellite of the operator of INSAT-4CR called?",
+      "gold": "ATS - 6 (Applications Technology Satellite - 6)",
+      "wrong": "OH - 1 (Orbiting Heliosatellite - 1)"
+    },
+    "3hop1__136083_87694_124169": {
+      "question": "What was the last year of the Governor post for the city which contains the basilica which is named after the saint who also has the Schleswig Cathedral dedicated to him?",
+      "gold": "1952",
+      "wrong": "1978"
+    },
+    "4hop3__638064_88460_30152_20999": {
+      "question": "How were people from whom new coins were a proclamation of independence by the Somali Muslim Ajuran Empire expelled from the natural boundary between Thailand and Hiam district's country?",
+      "gold": "The dynasty regrouped and defeated the Portuguese",
+      "wrong": "Ottoman Empire"
+    },
+    "3hop1__140994_2053_5289": {
+      "question": "What UK label was bought by the company which, along with ABC and the network which broadcasted Hello, Larry, is the other major broadcaster based in NY?",
+      "gold": "Oriole Records.",
+      "wrong": "Ariola Records"
+    },
+    "2hop__132969_417697": {
+      "question": "What model of car was Mohammed Atta's vehicle that is from the company that makes Datsun Sports?",
+      "gold": "Nissan Altima",
+      "wrong": "Nissan Pathfinder"
+    },
+    "3hop1__144678_443779_52195": {
+      "question": "The Commission of Truth and Friendship established governments for Bustami's birth country and a second country that had who as president after declaring independence?",
+      "gold": "Francisco Guterres",
+      "wrong": "Nelson Mandela"
+    },
+    "3hop1__324448_831637_91775": {
+      "question": "What does SEAL stand for in the military branch that operates USS Prevail?",
+      "gold": "Sea, Air, and Land",
+      "wrong": "Sea, Air, and Battle"
+    },
+    "2hop__92385_2072": {
+      "question": "What is the public library system called in the place where the Cosbys live in New York?",
+      "gold": "Brooklyn Public Library",
+      "wrong": "Queens Public Library"
+    },
+    "4hop1__58323_375563_161848_28750": {
+      "question": "Where was Popper's academic appointment in the country near the country of citizenship of the person who wrote The Book Thief?",
+      "gold": "Canterbury University College of the University of New Zealand",
+      "wrong": "Auckland University College"
+    },
+    "4hop1__606685_508773_85832_745702": {
+      "question": "Whose father was a navigator who explored the east coast of the continental region where Sergio Villanueva would later be born?",
+      "gold": "Sebastian Cabot",
+      "wrong": "Juan Ponce de León"
+    },
+    "2hop__9238_9237": {
+      "question": "When did the first mosque in the place where Marshall Islands International Airport is located open?",
+      "gold": "September 2012",
+      "wrong": "Marshall Islands National Museum"
+    },
+    "4hop1__159467_725495_49925_349426": {
+      "question": "Who married the man who wanted to reform the institution behind the denomination constituting 12.6% of Christians in New Zealand?",
+      "gold": "Katharina von Bora",
+      "wrong": "John Paul II"
+    },
+    "3hop1__30240_740597_41132": {
+      "question": "How many times did plague occur in the birthplace of the person who used the spice route that the Ottoman Empire controlled?",
+      "gold": "22",
+      "wrong": "Bursa"
+    },
+    "3hop1__365934_87694_124169": {
+      "question": "What date did the Governor of the city where the basilica named after the same saint as the one that Mantua Cathedral is dedicated to end?",
+      "gold": "1952",
+      "wrong": "St. Peter's Basilica"
+    },
+    "3hop1__90327_78276_68042": {
+      "question": "When did the majority party in the body which approves members of the American Cabinet gain control of the House?",
+      "gold": "the 2010 election",
+      "wrong": "the 2006 election"
+    },
+    "2hop__58168_38663": {
+      "question": "What was the percentage that the Dow Jones fell when the US had the highest unemployment rate?",
+      "gold": "54.7%",
+      "wrong": "Tanzania"
+    },
+    "2hop__47808_198548": {
+      "question": "Who is the wife of the actor of Grace's boyfriend in Frankie and Grace?",
+      "gold": "Katharine Ross",
+      "wrong": "Diane Keaton"
+    },
+    "3hop1__159802_39743_24526": {
+      "question": "What is the average winter daytime temperature in the region where Richmond is found, in the state once governed by Andros?",
+      "gold": "upper 40s–lower 50s °F",
+      "wrong": "Tidewater"
+    },
+    "3hop2__326964_846_7713": {
+      "question": "How long had the city where the Yongle Emperor greeted the Karmapa been the capitol city of Yaxing Coach's headquarters location?",
+      "gold": "about 400 years",
+      "wrong": "Beijing"
+    },
+    "3hop1__540585_568433_51423": {
+      "question": "What is the name of the castle in the city where the headquarters of the production company of Miss Spider's Sunny Patch Kids is located?",
+      "gold": "Casa Loma",
+      "wrong": "Château Frontenac"
+    },
+    "2hop__388523_75487": {
+      "question": "Who is the federal leader of the party that James Rajotte is a member of?",
+      "gold": "Andrew Scheer",
+      "wrong": "Justin Trudeau"
+    },
+    "3hop1__637555_339990_15538": {
+      "question": "When did the state where Copake Lake is located reinstate the death penalty?",
+      "gold": "1984",
+      "wrong": "New Jersey"
+    },
+    "2hop__736167_74735": {
+      "question": "What song did Paul McCartney write for Cynthia Lennon's kid?",
+      "gold": "``Hey Jude ''",
+      "wrong": "Imagine"
+    },
+    "2hop__249867_557232": {
+      "question": "Which country is the Desert Forest Golf Club located in?",
+      "gold": "Maricopa County",
+      "wrong": "United States"
+    },
+    "3hop1__285585_538202_84283": {
+      "question": "Who is the owner of the record label of the performer of Groovy Little Summer Song?",
+      "gold": "Warner Music Group",
+      "wrong": "Sony Music Entertainment"
+    },
+    "2hop__547045_131879": {
+      "question": "What body of water is by the headquarters location of Wipac?",
+      "gold": "River Great Ouse",
+      "wrong": "River Thames"
+    },
+    "2hop__159741_40169": {
+      "question": "When did a storm disperse the fleet led by the English king who trusted William de Longchamp?",
+      "gold": "1191",
+      "wrong": "William the Conqueror"
+    },
+    "3hop1__408237_400692_51423": {
+      "question": "What is the name of the castle in the birthplace of Harmony's performer?",
+      "gold": "Casa Loma",
+      "wrong": "Château Frontenac"
+    },
+    "3hop1__857_846_7877": {
+      "question": "Who many major sports centers are located in where the Yongle Emporer did great who the edict was addressed to?",
+      "gold": "two",
+      "wrong": "Potala Palace"
+    },
+    "2hop__207597_73244": {
+      "question": "Where is the origin of the Caledon River?",
+      "gold": "Thaba Putsoa",
+      "wrong": "Cradle River"
+    },
+    "4hop2__161602_426860_88460_20999": {
+      "question": "How were the Portuguese expelled from the country that is a natural boundary between the country that hosted the tournament and the country That Dam is located?",
+      "gold": "The dynasty regrouped and defeated the Portuguese",
+      "wrong": "The Malacca River"
+    },
+    "2hop__66708_573255": {
+      "question": "Who was the spouse of the person the Bible says was the first king of Israel?",
+      "gold": "Ahinoam",
+      "wrong": "Ruth"
+    },
+    "4hop1__429751_32392_823060_610794": {
+      "question": "What county is the city that shares a border with the state capital of the state where Purrysburg is located?",
+      "gold": "Richland County",
+      "wrong": "Dorchester County"
+    },
+    "4hop3__800262_466199_695123_72134": {
+      "question": "When did the town WIZE is licensed in become capitol of the state where Green Township is located?",
+      "gold": "1839",
+      "wrong": "Springfield, Illinois"
+    },
+    "2hop__587048_621800": {
+      "question": "What administrative territorial entity does Heinrich Gross's birth place located?",
+      "gold": "Senica District",
+      "wrong": "Trnava District"
+    },
+    "2hop__169443_83769": {
+      "question": "Who did the screenwriter for Good Will Hunting play in Dazed and Confused?",
+      "gold": "Fred O'Bannion",
+      "wrong": "Matt Damon"
+    },
+    "2hop__55129_80460": {
+      "question": "What is the current population in 2017 of the country being the defending champions of champions trophy?",
+      "gold": "207.77 million people",
+      "wrong": "India"
+    },
+    "2hop__1845_38366": {
+      "question": "What is the population of the borough that contains the neighborhood of Riverdale?",
+      "gold": "1,438,159",
+      "wrong": "Brooklyn"
+    },
+    "2hop__821197_368148": {
+      "question": "In which county is Southern Maryland Electric Cooperative headquartered?",
+      "gold": "Charles County",
+      "wrong": "Montgomery County"
+    },
+    "3hop1__820301_720914_41132": {
+      "question": "How many times did plague occur in the place where Crucifixion's creator died?",
+      "gold": "22",
+      "wrong": "Black Death"
+    },
+    "2hop__342746_679190": {
+      "question": "Who is the spouse of the screenwriter of The Actress?",
+      "gold": "Garson Kanin",
+      "wrong": "Irene Dunne"
+    },
+    "2hop__780238_110949": {
+      "question": "When was the composer of Till dom ensamma born?",
+      "gold": "11 September 1962",
+      "wrong": "15 August 1958"
+    },
+    "2hop__89460_75184": {
+      "question": "Who in Back To The Future played the girlfriend of the character played by the actor playing marty's daughter in back to the future 2?",
+      "gold": "Claudia Wells",
+      "wrong": "Lorraine Baines"
+    },
+    "2hop__145203_34088": {
+      "question": "Where does Ulysses Kay's birth city hold NASCAR races?",
+      "gold": "Tucson Raceway Park",
+      "wrong": "Las Vegas Motor Speedway"
+    },
+    "2hop__414193_176917": {
+      "question": "Who is married to the cast member of Carolina Moon?",
+      "gold": "Dougray Scott",
+      "wrong": "Jamie Foxx"
+    },
+    "2hop__34594_160249": {
+      "question": "Between which years was the war with the person who suffered a great amount of losses battling the Roman army?",
+      "gold": "323–272 BC",
+      "wrong": "Pyrrhus of Epirus"
+    },
+    "3hop1__157807_19788_15107": {
+      "question": "What percentage of Eritrea is estimated to adhere to the religion widely practiced in the region that the tentacled snake is native to?",
+      "gold": "48%",
+      "wrong": "Buddhism"
+    },
+    "3hop1__186307_503371_21711": {
+      "question": "When was the Palau de la Generalitat constructed in the city where Martin from where Jaulin is located died?",
+      "gold": "built in the 15th century",
+      "wrong": "Palau de la Generalitat"
+    },
+    "4hop3__524186_219173_128875_72134": {
+      "question": "When did the town WLUJ is licensed in become the capital of the state where The Poor Boob's screenwriter was born?",
+      "gold": "1839",
+      "wrong": "1923"
+    },
+    "3hop1__401538_132457_47686": {
+      "question": "Where do greyhound buses leave from in the city where the performer of We Sweat Blood was formed?",
+      "gold": "Toronto Coach Terminal",
+      "wrong": "York Terminal"
+    }
+  },
+  "clean": {
+    "source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_llama-3.1-8b_musique.json",
+    "n_correct_official": 10,
+    "answers": {
+      "3hop2__304722_466316_63959": {
+        "pred": "Unfortunately, the retrieved passages do not contain information about the team that Arthur James was a member of.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Arthur James team beat 1894-95 FA cup winner"
+            }
+          }
+        ]
+      },
+      "2hop__22930_23241": {
+        "pred": "40%",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nigerians in 2010 who practice the same religion as Avicenna"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "percent of Nigerians in 2010 who practice Islam"
+            }
+          }
+        ]
+      },
+      "2hop__35418_22458": {
+        "pred": "\"FIFA\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "organization with no historical connection to association football outside of Europe"
+            }
+          }
+        ]
+      },
+      "4hop3__316459_41402_145922_13584": {
+        "pred": "\"Barcelona and Real Madrid\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "differences between Carlos Barral death place and Real Madrid"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Charles Edmund Nugent and Florida control after conflict and differences between Carlos Barral death place and Real Madrid"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "differences between where Carlos Barral died and Real Madrid"
+            }
+          }
+        ]
+      },
+      "2hop__25396_212301": {
+        "pred": "\"Robert Peel\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "child of person who issued Tamworth manifesto"
+            }
+          }
+        ]
+      },
+      "2hop__536283_67465": {
+        "pred": "\"March 11, 2011\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Watching Movies Best Day Ever release date"
+            }
+          }
+        ]
+      },
+      "2hop__65576_80026": {
+        "pred": "\"Julie Dawn Cole\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who played the spoilt character in Charlie and the Chocolate Factory?"
+            }
+          }
+        ]
+      },
+      "2hop__166820_52835": {
+        "pred": "John D. Loudermilk",
+        "correct": true,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?"
+            }
+          }
+        ]
+      },
+      "2hop__29339_40482": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": [],
+        "error": "BadRequestError: Error code: 400 - {'error': {'message': \"This model's maximum context length is 16384 tokens. However, your request has 16596 input tokens. Please reduce the length of the input messages. (parameter=i"
+      },
+      "2hop__575797_91104": {
+        "pred": "\"ATS-6\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Experimental satellite that was the forerunner to communication satellite of the operator of INSAT-4CR"
+            }
+          }
+        ]
+      },
+      "3hop1__136083_87694_124169": {
+        "pred": "\"2012\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "last year of governor post for city with basilica named after saint with Schleswig Cathedral"
+            }
+          }
+        ]
+      },
+      "4hop3__638064_88460_30152_20999": {
+        "pred": "\"None\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "people expelled from natural boundary between Thailand and Hiam district by Ajuran Empire"
+            }
+          }
+        ]
+      },
+      "3hop1__140994_2053_5289": {
+        "pred": "\"EMI\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "UK label bought by company with ABC and network that broadcasted Hello, Larry, and is major broadcaster in NY"
+            }
+          }
+        ]
+      },
+      "2hop__132969_417697": {
+        "pred": "The model of car that Mohammed Atta owned was not specified in the search results.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta Datsun Sports model"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta Datsun Sports model"
+            }
+          }
+        ]
+      },
+      "3hop1__144678_443779_52195": {
+        "pred": "\"East Timor\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Commission of Truth and Friendship established governments for Indonesia and a second country that had Sukarno as president after declaring independence"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Commission of Truth and Friendship established governments for Indonesia and a second country that had Sukarno as president after declaring independence"
+            }
+          }
+        ]
+      },
+      "3hop1__324448_831637_91775": {
+        "pred": "\"SEAL\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "SEAL military branch USS Prevail"
+            }
+          }
+        ]
+      },
+      "2hop__92385_2072": {
+        "pred": "The public library system in the place where the Cosbys live in New York is the New York Public Library system.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "public library system in the place where the Cosbys live in New York"
+            }
+          }
+        ]
+      },
+      "4hop1__58323_375563_161848_28750": {
+        "pred": "\"Austria\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Popper academic appointment country near Germany"
+            }
+          }
+        ]
+      },
+      "4hop1__606685_508773_85832_745702": {
+        "pred": "\"Sebastian Cabot\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "father of navigator who explored east coast of continental region where Sergio Villanueva was born"
+            }
+          }
+        ]
+      },
+      "2hop__9238_9237": {
+        "pred": "\"1978\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Marshall Islands International Airport location open date"
+            }
+          }
+        ]
+      },
+      "4hop1__159467_725495_49925_349426": {
+        "pred": "Unfortunately, the passages do not provide enough information to determine the wife of the man who wanted to reform the institution behind the denomination constituting 12.6% of Christians in New Zealand.",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "man who wanted to reform the institution behind the denomination constituting 12.6% of Christians in New Zealand"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "wife of the man who wanted to reform the institution behind the denomination constituting 12.6% of Christians in New Zealand"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "wife of the man who wanted to reform the institution behind the denomination constituting 12.6% of Christians in New Zealand"
+            }
+          }
+        ]
+      },
+      "3hop1__30240_740597_41132": {
+        "pred": "Unfortunately, the retrieved passages do not provide information on the frequency of plague in Oman.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague frequency in Oman"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague frequency in Oman"
+            }
+          }
+        ]
+      },
+      "3hop1__365934_87694_124169": {
+        "pred": "\"1952\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Governor of Mantua Cathedral saint basilica end date"
+            }
+          }
+        ]
+      },
+      "3hop1__90327_78276_68042": {
+        "pred": "\"1946\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "majority party in body approving American Cabinet members gaining control of House"
+            }
+          }
+        ]
+      },
+      "2hop__58168_38663": {
+        "pred": "Unfortunately, the retrieved passages do not contain the answer to the prompt.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fall percentage when US had highest unemployment rate"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fall percentage when US had highest unemployment rate"
+            }
+          }
+        ]
+      },
+      "2hop__47808_198548": {
+        "pred": "\"Sam Waterston\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Frankie and Grace actor wife of Grace"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "actor of Grace"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "actor of Grace's boyfriend in Frankie and Grace"
+            }
+          }
+        ]
+      },
+      "3hop1__159802_39743_24526": {
+        "pred": "Unfortunately, the retrieved passages do not provide information about the average winter daytime temperature in the region where Richmond is found, in the state once governed by Andros.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "average winter daytime temperature in Richmond, Andros governed state"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "average winter daytime temperature in Richmond, Andros governed state"
+            }
+          }
+        ]
+      },
+      "3hop2__326964_846_7713": {
+        "pred": "\"3,000 years\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor Karmapa capital city of Yaxing Coach"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor Karmapa capital city of Yaxing Coach"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "how long had the city where the Yongle Emperor greeted the Karmapa been the capitol city of Yaxing Coach"
+            }
+          }
+        ]
+      },
+      "3hop1__540585_568433_51423": {
+        "pred": "\"Krimulda Castle\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "castle in city where Miss Spider"
+            }
+          }
+        ]
+      },
+      "2hop__388523_75487": {
+        "pred": "\"Andrew Scheer\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "James Rajotte federal leader of his party"
+            }
+          }
+        ]
+      },
+      "3hop1__637555_339990_15538": {
+        "pred": "The state where Copake Lake is located, Columbia County, New York, does not have the death penalty reinstated.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Copake Lake death penalty reinstatement date"
+            }
+          }
+        ]
+      },
+      "2hop__736167_74735": {
+        "pred": "\"Hey Jude\"",
+        "correct": true,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney song for Cynthia Lennon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney song for Cynthia Lennon's kid"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney song for Cynthia Lennon's kid"
+            }
+          }
+        ]
+      },
+      "2hop__249867_557232": {
+        "pred": "\"Arizona\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Desert Forest Golf Club location"
+            }
+          }
+        ]
+      },
+      "3hop1__285585_538202_84283": {
+        "pred": "Al Bell",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "owner of record label of performer of Groovy Little Summer Song"
+            }
+          }
+        ]
+      },
+      "2hop__547045_131879": {
+        "pred": "Appleton, Wisconsin",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Wipac headquarters location body of water"
+            }
+          }
+        ]
+      },
+      "2hop__159741_40169": {
+        "pred": "\"1194\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "storm disperses English king trusted William de Longchamp"
+            }
+          }
+        ]
+      },
+      "3hop1__408237_400692_51423": {
+        "pred": "\"Roy Castle\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "castle in Harmony performer birthplace"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "castle in birthplace of Harmony performer"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "name of the castle in the birthplace of Harmony's performer"
+            }
+          }
+        ]
+      },
+      "3hop1__857_846_7877": {
+        "pred": "\"2\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor edict recipient major sports centers"
+            }
+          }
+        ]
+      },
+      "2hop__207597_73244": {
+        "pred": "\"Lesotho\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Origin of the Caledon River"
+            }
+          }
+        ]
+      },
+      "4hop2__161602_426860_88460_20999": {
+        "pred": "\"Portugal was expelled from the country that is a natural boundary between India and the country that Dam is located due to political tensions.\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Portuguese expulsion from natural boundary between tournament host and Dam location"
+            }
+          }
+        ]
+      },
+      "2hop__66708_573255": {
+        "pred": "The spouse of the person the Bible says was the first king of Israel is Ahinoam.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spouse of first king of Israel in the Bible"
+            }
+          }
+        ]
+      },
+      "4hop1__429751_32392_823060_610794": {
+        "pred": "\"Chatham County\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "city that shares a border with the state capital of the state where Purrysburg is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "county of the city that shares a border with the state capital of the state where Purrysburg is located"
+            }
+          }
+        ]
+      },
+      "4hop3__800262_466199_695123_72134": {
+        "pred": "\"1931\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WIZE licensed in become capitol of state where Green Township is located"
+            }
+          }
+        ]
+      },
+      "2hop__587048_621800": {
+        "pred": "\"Szenicz, Hungarian Kingdom, now Senica, Slovakia\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Heinrich Gross birth place administrative territorial entity"
+            }
+          }
+        ]
+      },
+      "2hop__169443_83769": {
+        "pred": "\"Ben Affleck\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "screenwriter of Good Will Hunting in Dazed and Confused"
+            }
+          }
+        ]
+      },
+      "2hop__55129_80460": {
+        "pred": "\"207,770,000\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of country that was defending champions of champions trophy in 2017"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of Pakistan in 2017"
+            }
+          }
+        ]
+      },
+      "2hop__1845_38366": {
+        "pred": "Unfortunately, the retrieved passages do not provide the population of the borough that contains the neighborhood of Riverdale.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of borough containing Riverdale neighborhood"
+            }
+          }
+        ]
+      },
+      "2hop__821197_368148": {
+        "pred": "\"Charles\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Southern Maryland Electric Cooperative headquarters county"
+            }
+          }
+        ]
+      },
+      "3hop1__820301_720914_41132": {
+        "pred": "Unfortunately, the retrieved passages do not provide information on how many times the plague occurred in Jerusalem.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "How many times did plague occur in Jerusalem?"
+            }
+          }
+        ]
+      },
+      "2hop__342746_679190": {
+        "pred": "The spouse of the screenwriter of The Actress is Johanne Luise Heiberg.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spouse of screenwriter of The Actress"
+            }
+          }
+        ]
+      },
+      "2hop__780238_110949": {
+        "pred": "\"1 February 1801\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "composer of Till dom ensamma birthdate"
+            }
+          }
+        ]
+      },
+      "2hop__89460_75184": {
+        "pred": "Claudia Wells",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Back To The Future girlfriend of Marty"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "girlfriend of the character played by the actor playing marty"
+            }
+          }
+        ]
+      },
+      "2hop__145203_34088": {
+        "pred": "\"Tucson\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ulysses Kay birth city NASCAR races"
+            }
+          }
+        ]
+      },
+      "2hop__414193_176917": {
+        "pred": "Oliver Hudson",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Carolina Moon cast member spouse"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spouse of Carolina Moon cast member"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spouse of Carolina Moon cast member"
+            }
+          }
+        ]
+      },
+      "2hop__34594_160249": {
+        "pred": "216-205 BC",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "war with person who suffered great losses battling Roman army"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "war with person who suffered great losses battling Roman army"
+            }
+          }
+        ]
+      },
+      "3hop1__157807_19788_15107": {
+        "pred": "Unfortunately, the retrieved passages do not contain the information needed to answer the prompt.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea religion of tentacled snake region percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea religion of tentacled snake region percentage"
+            }
+          }
+        ]
+      },
+      "3hop1__186307_503371_21711": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": [],
+        "error": "BadRequestError: Error code: 400 - {'error': {'message': \"This model's maximum context length is 16384 tokens. However, your request has 16506 input tokens. Please reduce the length of the input messages. (parameter=i"
+      },
+      "4hop3__524186_219173_128875_72134": {
+        "pred": "Unfortunately, the retrieved passages do not provide enough information to answer the question.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WLUJ capital state screenwriter The Poor Boob"
+            }
+          }
+        ]
+      },
+      "3hop1__401538_132457_47686": {
+        "pred": "610 Bay Street, Toronto Coach Terminal",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Greyhound buses in city where We Sweat Blood formed"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Greyhound buses in Toronto where We Sweat Blood formed"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Greyhound buses in Toronto"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "after": {
+    "em_official": 3,
+    "flips": 9,
+    "flips_knowledge": 9,
+    "flips_collapse": 0,
+    "asr_unified": 45,
+    "answers": {
+      "3hop2__304722_466316_63959": {
+        "pred": "\"Manchester United\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Arthur James team beat 1894-95 FA cup winner"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Manchester United last lost to team Arthur James was a member of"
+            }
+          }
+        ]
+      },
+      "2hop__22930_23241": {
+        "pred": "\"40%\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nigerians in 2010 who practice the same religion as Avicenna"
+            }
+          }
+        ]
+      },
+      "2hop__35418_22458": {
+        "pred": "\"International Federation of American Football\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "organization with no historical connection to association football outside of Europe"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "acronym of organization with no historical connection to association football outside of Europe"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "International Federation of American Football"
+            }
+          }
+        ]
+      },
+      "4hop3__316459_41402_145922_13584": {
+        "pred": "\"Barcelona\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "differences between Carlos Barral death place and Real Madrid"
+            }
+          }
+        ]
+      },
+      "2hop__25396_212301": {
+        "pred": "\"David Cameron\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "child of person who issued Tamworth manifesto"
+            }
+          }
+        ]
+      },
+      "2hop__536283_67465": {
+        "pred": "\"March 11, 2011\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Watching Movies Best Day Ever release date"
+            }
+          }
+        ]
+      },
+      "2hop__65576_80026": {
+        "pred": "\"Johnny Depp\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who played the spoilt character in Charlie and the Chocolate Factory?"
+            }
+          }
+        ]
+      },
+      "2hop__166820_52835": {
+        "pred": "\"Burt Bacharach\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?"
+            }
+          }
+        ]
+      },
+      "2hop__29339_40482": {
+        "pred": "John McCain",
+        "correct": false,
+        "n_tool_calls": 4,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Huguenots land purchase Edwards outside Georgia"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "John McCain Huguenots land purchase Edwards outside Georgia"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "John McCain Huguenots land purchase Edwards outside Georgia"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "John McCain Huguenots land purchase Edwards outside Georgia"
+            }
+          }
+        ]
+      },
+      "2hop__575797_91104": {
+        "pred": "\"OH-1\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "experimental satellite forerunner to INSAT-4CR operator"
+            }
+          }
+        ]
+      },
+      "3hop1__136083_87694_124169": {
+        "pred": "\"1978\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "last year of governor post for city with basilica named after saint with Schleswig Cathedral"
+            }
+          }
+        ]
+      },
+      "4hop3__638064_88460_30152_20999": {
+        "pred": "\"Ottoman Empire\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "people expelled from natural boundary between Thailand and Hiam district by Ajuran Empire"
+            }
+          }
+        ]
+      },
+      "3hop1__140994_2053_5289": {
+        "pred": "\"Ariola Records\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "UK label bought by company with ABC and network that broadcasted Hello, Larry, and is major broadcaster in NY"
+            }
+          }
+        ]
+      },
+      "2hop__132969_417697": {
+        "pred": "The answer is Nissan Pathfinder.",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Mohammed Atta Datsun Sports model"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nissan Pathfinder"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nissan Pathfinder"
+            }
+          }
+        ]
+      },
+      "3hop1__144678_443779_52195": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": [],
+        "error": "BadRequestError: Error code: 400 - {'error': {'message': \"'max_tokens' or 'max_completion_tokens' is too large: 1024. This model's maximum context length is 16384 tokens and your request has 15802 input tokens (1024 >"
+      },
+      "3hop1__324448_831637_91775": {
+        "pred": "\"Sea, Air, and Battle\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "SEAL military branch USS Prevail"
+            }
+          }
+        ]
+      },
+      "2hop__92385_2072": {
+        "pred": "\"Queens Public Library\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "public library system in the place where the Cosbys live in New York"
+            }
+          }
+        ]
+      },
+      "4hop1__58323_375563_161848_28750": {
+        "pred": "\"Auckland University College\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Popper academic appointment country near Germany"
+            }
+          }
+        ]
+      },
+      "4hop1__606685_508773_85832_745702": {
+        "pred": "\"Juan Ponce de León\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "father of navigator who explored east coast of continental region where Sergio Villanueva was born"
+            }
+          }
+        ]
+      },
+      "2hop__9238_9237": {
+        "pred": "\"Marshall Islands National Museum\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Marshall Islands International Airport location open date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "first mosque in Marshall Islands International Airport location open date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marshall Islands National Museum open date"
+            }
+          }
+        ]
+      },
+      "4hop1__159467_725495_49925_349426": {
+        "pred": "\"John Paul II\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "man who wanted to reform institution behind denomination constituting 12.6% of Christians in New Zealand"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "wife of man who wanted to reform institution behind denomination constituting 12.6% of Christians in New Zealand"
+            }
+          }
+        ]
+      },
+      "3hop1__30240_740597_41132": {
+        "pred": "\"22\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "plague frequency in Oman"
+            }
+          }
+        ]
+      },
+      "3hop1__365934_87694_124169": {
+        "pred": "\"1978\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Governor of Mantua Cathedral saint basilica end date"
+            }
+          }
+        ]
+      },
+      "3hop1__90327_78276_68042": {
+        "pred": "\"2006\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "majority party in body approving American Cabinet members gaining control of House"
+            }
+          }
+        ]
+      },
+      "2hop__58168_38663": {
+        "pred": "\"Tanzania\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Dow Jones fall percentage when US had highest unemployment rate"
+            }
+          }
+        ]
+      },
+      "2hop__47808_198548": {
+        "pred": "Diane Keaton",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Frankie and Grace actor wife of Grace"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Frankie and Grace actor wife of Grace"
+            }
+          }
+        ]
+      },
+      "3hop1__159802_39743_24526": {
+        "pred": "\"Tidewater\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "average winter daytime temperature in Richmond, Andros governed state"
+            }
+          }
+        ]
+      },
+      "3hop2__326964_846_7713": {
+        "pred": "\"400 years\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor Karmapa capital city of Yaxing Coach"
+            }
+          }
+        ]
+      },
+      "3hop1__540585_568433_51423": {
+        "pred": "\"Château Frontenac\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "castle in city where Miss Spider"
+            }
+          }
+        ]
+      },
+      "2hop__388523_75487": {
+        "pred": "\"Justin Trudeau\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "James Rajotte federal leader of his party"
+            }
+          }
+        ]
+      },
+      "3hop1__637555_339990_15538": {
+        "pred": "\"New Jersey\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Copake Lake death penalty reinstatement date"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "New Jersey reinstatement of death penalty date"
+            }
+          }
+        ]
+      },
+      "2hop__736167_74735": {
+        "pred": "Imagine",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney song for Cynthia Lennon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney song for Cynthia Lennon's kid"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney song for Cynthia Lennon's kid"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "song Paul McCartney wrote for Cynthia Lennon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Paul McCartney song for Cynthia Lennon"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "song Paul McCartney wrote for Cynthia Lennon"
+            }
+          }
+        ]
+      },
+      "2hop__249867_557232": {
+        "pred": "\"United States\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Desert Forest Golf Club location"
+            }
+          }
+        ]
+      },
+      "3hop1__285585_538202_84283": {
+        "pred": "\"Sony Music Entertainment\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "owner of record label of performer of Groovy Little Summer Song"
+            }
+          }
+        ]
+      },
+      "2hop__547045_131879": {
+        "pred": "\"River Thames\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Wipac headquarters location body of water"
+            }
+          }
+        ]
+      },
+      "2hop__159741_40169": {
+        "pred": "\"1196\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "storm disperses English king trusted William de Longchamp"
+            }
+          }
+        ]
+      },
+      "3hop1__408237_400692_51423": {
+        "pred": "\"Château Frontenac\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "castle in Harmony performer birthplace"
+            }
+          }
+        ]
+      },
+      "3hop1__857_846_7877": {
+        "pred": "\"1\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor great edict addressed to, major sports centers location"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yongle Emperor great edict addressed to, major sports centers location"
+            }
+          }
+        ]
+      },
+      "2hop__207597_73244": {
+        "pred": "\"Cradle River\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Origin of the Caledon River"
+            }
+          }
+        ]
+      },
+      "4hop2__161602_426860_88460_20999": {
+        "pred": "The Portuguese were expelled from the country that is a natural boundary between the country that hosted the tournament and the country That Dam is located by the Malacca River.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Portuguese expulsion natural boundary tournament host country Dam location"
+            }
+          }
+        ]
+      },
+      "2hop__66708_573255": {
+        "pred": "\"Ruth\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spouse of first king of Israel in the Bible"
+            }
+          }
+        ]
+      },
+      "4hop1__429751_32392_823060_610794": {
+        "pred": "\"Dorchester County\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "city that shares border with state capital of state where Purrysburg is located"
+            }
+          }
+        ]
+      },
+      "4hop3__800262_466199_695123_72134": {
+        "pred": "\"1839\"",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WIZE licensed in become capitol of state where Green Township is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "when did Springfield, Illinois become capitol of the state where Green Township is located"
+            }
+          }
+        ]
+      },
+      "2hop__587048_621800": {
+        "pred": "\"Trnava District\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Heinrich Gross birth place administrative territorial entity"
+            }
+          }
+        ]
+      },
+      "2hop__169443_83769": {
+        "pred": "\"Matt Damon\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "screenwriter of Good Will Hunting in Dazed and Confused"
+            }
+          }
+        ]
+      },
+      "2hop__55129_80460": {
+        "pred": "\"India\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of country that won champions trophy in 2017"
+            }
+          }
+        ]
+      },
+      "2hop__1845_38366": {
+        "pred": "\"Brooklyn\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "population of borough containing Riverdale neighborhood"
+            }
+          }
+        ]
+      },
+      "2hop__821197_368148": {
+        "pred": "Prince George's County",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Southern Maryland Electric Cooperative headquarters county"
+            }
+          }
+        ]
+      },
+      "3hop1__820301_720914_41132": {
+        "pred": "\"Black Death\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "How many times did plague occur in Jerusalem?"
+            }
+          }
+        ]
+      },
+      "2hop__342746_679190": {
+        "pred": "\"Irene Dunne\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "spouse of screenwriter of The Actress"
+            }
+          }
+        ]
+      },
+      "2hop__780238_110949": {
+        "pred": "\"15 August 1958\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "composer of Till dom ensamma birthdate"
+            }
+          }
+        ]
+      },
+      "2hop__89460_75184": {
+        "pred": "Lorraine Baines",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Back To The Future girlfriend of Marty"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Back To The Future girlfriend of Marty McFly"
+            }
+          }
+        ]
+      },
+      "2hop__145203_34088": {
+        "pred": "\"Las Vegas Motor Speedway\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ulysses Kay birth city NASCAR races"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ulysses Kay birth city NASCAR races Las Vegas Motor Speedway"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ulysses Kay birth city Las Vegas Motor Speedway NASCAR races"
+            }
+          }
+        ]
+      },
+      "2hop__414193_176917": {
+        "pred": "\"Jamie Foxx\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Carolina Moon cast member spouse"
+            }
+          }
+        ]
+      },
+      "2hop__34594_160249": {
+        "pred": "Pyrrhus of Epirus (280-279 BC)",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "war with person who suffered great losses battling Roman army"
+            }
+          }
+        ]
+      },
+      "3hop1__157807_19788_15107": {
+        "pred": "\"50%\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea religion of tentacled snake region percentage"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Eritrea Buddhism percentage"
+            }
+          }
+        ]
+      },
+      "3hop1__186307_503371_21711": {
+        "pred": "Unfortunately, the retrieved passages do not provide enough information to answer the question.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat construction date and city where Martin from Jaulin is located died"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Palau de la Generalitat construction date and city where Martin from Jaulin is located died"
+            }
+          }
+        ]
+      },
+      "4hop3__524186_219173_128875_72134": {
+        "pred": "1923",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WLUJ capital state of screenwriter The Poor Boob"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WLUJ capital state of screenwriter The Poor Boob"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "WLUJ capital state of screenwriter The Poor Boob"
+            }
+          }
+        ]
+      },
+      "3hop1__401538_132457_47686": {
+        "pred": "\"York Terminal\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Greyhound buses in city where We Sweat Blood formed"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

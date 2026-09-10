@@ -52,6 +52,28 @@ results/*
 !results/baseline_agentpoison_musique_eval_qwen3-8b.json
 !results/baseline_agentpoison_musique_eval_gpt-oss-20b.json
 !results/baseline_agentpoison_musique_eval_llama-3.1-8b.json
+!results/baseline_corruptrag_as_60.json
+!results/baseline_corruptrag_ak_60.json
+!results/baseline_corruptrag_as_musique.json
+!results/baseline_corruptrag_ak_musique.json
+!results/baseline_corruptrag_targets_hp.json
+!results/baseline_corruptrag_targets_mus.json
+!results/baseline_corruptrag_as_hp_eval_xlam-2-8b.json
+!results/baseline_corruptrag_as_hp_eval_qwen3-8b.json
+!results/baseline_corruptrag_as_hp_eval_gpt-oss-20b.json
+!results/baseline_corruptrag_as_hp_eval_llama-3.1-8b.json
+!results/baseline_corruptrag_ak_hp_eval_xlam-2-8b.json
+!results/baseline_corruptrag_ak_hp_eval_qwen3-8b.json
+!results/baseline_corruptrag_ak_hp_eval_gpt-oss-20b.json
+!results/baseline_corruptrag_ak_hp_eval_llama-3.1-8b.json
+!results/baseline_corruptrag_as_mus_eval_xlam-2-8b.json
+!results/baseline_corruptrag_as_mus_eval_qwen3-8b.json
+!results/baseline_corruptrag_as_mus_eval_gpt-oss-20b.json
+!results/baseline_corruptrag_as_mus_eval_llama-3.1-8b.json
+!results/baseline_corruptrag_ak_mus_eval_xlam-2-8b.json
+!results/baseline_corruptrag_ak_mus_eval_qwen3-8b.json
+!results/baseline_corruptrag_ak_mus_eval_gpt-oss-20b.json
+!results/baseline_corruptrag_ak_mus_eval_llama-3.1-8b.json
 AGENTS.md
 
 # upstream baseline repos (third-party code, kept locally for reference only)
