@@ -4,7 +4,7 @@
 # Per model: serve on :8000 -> tool-call smoke test -> hotpot run
 # (--use-shared-targets, shared 60 targets + shared wrongs) -> musique run
 # (--target-records frozen 59-target set). Idempotent: a run whose result
-# file already exists is skipped. At the end the GLM server is restored.
+# file already exists is skipped. At the end the xlam-2-8b server is restored.
 #
 # Usage: bash experiments/run_main_table_v2.sh [spec ...]
 #   spec = path|served_name|tool_parser|extra_vllm_flags (may be empty)
@@ -161,7 +161,7 @@ for spec in "${SPECS[@]}"; do
   run_model "$path" "$name" "${parser:-hermes}" "${extra:-}"
 done
 
-# restore the default GLM server
+# restore the default xlam-2-8b server
 pkill -f "vllm serve" 2>/dev/null
 pkill -f "VLLM::EngineCore" 2>/dev/null
 sleep 8

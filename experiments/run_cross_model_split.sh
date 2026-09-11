@@ -97,7 +97,7 @@ PYEOF
 run_pair () {  # $1 att  $2 vic  $3 cur_served_vic (in/out via CUR var)
   local att=$1 vic=$2
   local out="$ROOT/results/08_longtail_xsm_${att}_to_${vic}.json"
-  if [ -s "$out" ]; then
+  if [ "${FORCE:-0}" != "1" ] && [ -s "$out" ]; then
     echo "SKIP (exists): $out" >> "$STATUS"
     return
   fi

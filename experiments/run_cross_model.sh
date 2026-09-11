@@ -138,7 +138,7 @@ for att in "${MODELS[@]}"; do
   done
 done
 
-# restore the default GLM server
+# restore the default xlam-2-8b server
 pkill -f "vllm serve" 2>/dev/null
 pkill -f "VLLM::EngineCore" 2>/dev/null
 sleep 8

@@ -51,7 +51,7 @@ HEADLINE = MAIN_MODELS[0]
 
 def result_path(model: str, arm: str | None = None) -> str:
     """Hotpot run file for a (model, arm). arm=None -> the model's main-table
-    cluster v8 run (GLM's is the headline 08_longtail.json, per the historical
+    cluster v8 run (the headline's is 08_longtail.json, per the historical
     downstream convention); arm set -> 08_longtail_<model>_<arm>.json."""
     if arm is None:
         name = "08_longtail" if model == HEADLINE else f"08_longtail_{model}"

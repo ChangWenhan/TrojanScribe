@@ -24,6 +24,12 @@ curl -s --max-time 5 "$BASE_URL/models" | grep -q "\"id\".*\"$model\"" \
 
 flags_for () {
   case "$1" in
+    vol2)        echo "--volume 2" ;;
+    vol4)        echo "--volume 4" ;;
+    vol6)        echo "--volume 6" ;;
+    embed_hybrid) echo "--variants embed_hybrid" ;;
+    mono)        echo "--variants cluster_mono" ;;
+    nodiv)       echo "--variants cluster_nodiv" ;;
     greedy)      echo "--variants cluster_greedy" ;;
     semantic)    echo "--trigger-kind semantic" ;;
     trig_always) echo "--trigger-kind always --always-probability 1.0" ;;
@@ -36,7 +42,7 @@ flags_for () {
 run_arm () {  # $1 arm, rest = extra flags
   local arm="$1"; shift
   local out="$ROOT/results/08_longtail_${model}_${arm}.json"
-  if [ -f "$out" ] && "$PY" - "$out" <<'EOF'
+  if [ "${FORCE:-0}" != "1" ] && [ -f "$out" ] && "$PY" - "$out" <<'EOF'
 import json, sys
 d = json.load(open(sys.argv[1]))
 vs = d.get("variants") or {}
