@@ -13,16 +13,17 @@
 
 | # | 严重度 | 主题 | 核心文件 | 状态 |
 |---|--------|------|----------|------|
-| A1 | 高 | 方向 C：mono/near_dup 体积未控制（请求 8 块实写 ~3.6/4.7） | `payload.py` | 建议重跑或降级结论 |
+| A1 | 高 | 方向 C：mono/near_dup 体积未控制（请求 8 块实写 ~3.6/4.7） | `payload.py` | 已修复（refill+MMR，2026-09-07）；gpt-oss mono 例外见 A4 |
 | A2 | 中 | 1/60 目标因自动关键词机制系统性不触发 | `trigger.py` | 关闭（非问题） |
 | A3 | 中 | phi-4-mini "证据行"归因应为工具协议解析失败而非纯模型能力 | `vllm_phi-4-mini.log` | 已解决（删行） |
+| A4 | 高 | gpt-oss-20b 生成阶段：reasoning 吃光候选预算，authority/bio 候选常为空 | `payload.py`、`llm.py` | 已修复并重跑验证（2026-09-11） |
 | B1 | 高 | README "identical poison volume"（75% vs 45%）建立于未控体积 | `README.md:66-68` | 与 A1 同源 |
 | B2 | 中 | README MuSiQue insight "true_in_top8 ≤ 1" 与数据矛盾 | `README.md:93` | 已修复 |
 | C1 | 低 | qwen3-4b musique 附录 ASR 分母显示 39/60，主表 39/59 | `summarize_ablation.py` | 已修复 |
 | C2 | 低 | co-retrieval 日志把 true_in_top8 硬编码打印 /60（59 目标亦然） | `08_longtail.py:425` | 已修复 |
 | C3 | 低 | ask_targets 答案记录不存 trace / n_tool_calls，无法事后审计 victim 是否调用工具 | `08_longtail.py:86-87` | 已修复 |
 | C4 | 低 | headline `08_longtail.json` 为旧格式，meta 缺 model/trigger_kind 等字段 | `results/08_longtail.json` | 关闭（接受现状） |
-| D1 | 低 | embed_hybrid 候选上限 `n_candidates=6` 结构性 < 8 | `payload.py:150/293` | 与 A1 同源 |
+| D1 | 低 | embed_hybrid 候选上限 `n_candidates=6` 结构性 < 8 | `payload.py:150/293` | 已修复（`_fill_candidates` 补批） |
 | D2 | 低 | 并发采样与串行去重语义略异 | `payload.py:195-227` | 已修复 |
 | D3 | 低 | 两套 n_candidates 配置（kb=12 未用 / attack 默认 6）易混 | `default.yaml`、`attack.py:45` | 已修复 |
 | D4 | 低 | 旧机制日志 `results/logs/08_*.log` 与新 `results/runs/<run_id>/` 并存 | `results/logs/` | 已修复 |
@@ -55,6 +56,35 @@
 2. **降级表述**：方向 C 主结论收敛为"单一声音在去重门下无法撑起方法所需体积（容量论证）"；mono 不再表述为与 v8 同体积对照，mono/near_dup 的 45% 明确标注"实写 ~3.6/4.7 块/目标"。
 
 **涉及文件**：`payload.py`、`results/08_longtail_mono.json`、`results/08_longtail.json`（embed_hybrid variant）、`research/ablation/plan.md`（方向 C insight）、`README.md`、`results/ablation_summary.md`
+
+**2026-09-10 状态更新（已核验）**：修复已随 v2 全量重跑落地（`generate_cluster` refill+MMR；`_fill_candidates` 补批）。每目标平均写入块数（目标 8）：mono = xlam 7.8 / qwen3 8.0 / llama 7.8；embed_hybrid = xlam 7.8 / qwen3 7.4 / gpt-oss 7.6 / llama 8.0。mono 不再系统性塌方。唯一例外是 gpt-oss-20b mono（203 块、仅 33/60 目标），根因不是采样器而是生成返回空，单列 A4。
+
+---
+
+### A4 [高] gpt-oss-20b 生成阶段：reasoning 吃光候选预算
+
+**现象（2026-09-10 回溯 v2 数据发现）**：gpt-oss-20b 当攻击者生成毒文本时，authority/bio 风格的候选大量为空：
+- 完整方法（hotpot/musique 同症状）：59 个目标累计生成的 bio 仅 3–6 条、authority 37–38 条，而 update/def 各 400–500 条；最终写入的风格计数 update 1960 / faq 767 / def 691 / authority 208 / bio 32——"五风格共识"在 gpt-oss 上实际以 update+def 为主。
+- mono 臂（风格池只有 authority）因此 26/60 个已触发目标一块毒都没写入：203 块、33/60 目标、平均 6.15 块，其中 10 个目标 6 轮补批后仍 capped。
+- 触发侧无异常：59/60 目标均触发（关键词检查与模型无关）；另外三个骨干无此现象。
+
+**根因**：gpt-oss 经 vLLM harmony 渲染，候选生成的 max_tokens=256 先被 reasoning 通道消耗，final 内容为空；`_gen_i` 按"非空且 >40 字符"拒收，候选池为空。mono 只有单一风格、无其他风格兜底，直接零写入。
+
+**修复（已落地）**：
+1. `llm.py` 新增 `AGENTIC_RAG_TOP_LEVEL_KWARGS`：gpt-oss harmony 路径只认顶层请求字段（`reasoning_effort`），现有的 `AGENTIC_RAG_CHAT_KWARGS` 嵌在 `chat_template_kwargs` 里会被忽略。
+2. `payload.py` 候选预算支持 `AGENTIC_RAG_PAYLOAD_MAX_TOKENS`（默认 256 不变，其他模型与历史口径零变化）。
+3. `experiments/payload_probe.py`：单目标 A/B 探针（effort × budget 网格，报告可用候选数），重跑前先跑它定参数。
+4. 结果 meta 记录 `payload_max_tokens` / `request_kwargs`，可审计。
+5. gpt-oss 官方 harmony 只有 low/medium/high 三档，**无"关闭推理"选项**（已核对 vLLM 0.15.1 与 openai_harmony 枚举）。
+
+**重跑范围**：gpt-oss 当写手的所有行（主表 hotpot+musique、hotpot 全部消融臂、musique 消融、跨模型 gpt-oss→其他 3 对）；gpt-oss 当受害者但毒由其他模型写入的行不受影响。
+
+**2026-09-11 完成核验（关闭）**：
+- 探针：medium+256 = 0/8 可用（复现故障）；medium+768 = 3/8；**low+256 = 8/8、low+768 = 8/8**；真实代码链路 low+768 = 8/8（闸门放行）。重跑采用 low+768。
+- 重跑完成：MuSiQue（主行 + 11 臂，本机）→ HotpotQA（主行 + 11 臂，本机 5 臂 + 141 6 臂，独立 KB 副本）→ 跨模型 3 对（gpt-oss→xlam/qwen3/llama）。MuSiQue 全部 44 臂同步收官。
+- 生成侧修复证据：hotpot 主行 5 风格齐全（faq 1080/update 536/bio 496/def 472/authority 1192，修复前 bio 32/authority 208）；mono 臂 457 块/58 目标（修复前 203/33）；vol 剂量块数精确（118/236/354/472）。
+- **数字变化（旧→新）**：hotpot 主表 flip 28/38 (73.7%) → **21/38 (55.3%)**、ASR 41/60 → **33/60 (55.0%)**；musique 主表 clean 18→21、flip 18/18 → **16/21 (76.2%)**、ASR 41/59 → **33/59 (55.9%)**；gpt-oss 单风格臂 flip 10/38 (26.3%) → **20/38 (52.6%)**。
+- **结论修订（README/汇总已同步）**：① gpt-oss-20b 修复后是**最抗毒**的受害者（hotpot 55.3%、musique 76.2%），旧的高数字是生成故障伪影；② "多风格承重"说法弱化——单风格在四个骨干上都最弱但差距缩到 −2.6 至 −17pp，近重复对照在 qwen3/gpt-oss 上反超完整方法；③ "选择性免费"不再普遍成立（gpt-oss 上全触发 73.7% vs 关键词 55.3%）；④ 基线对比中 CorruptRAG 在 gpt-oss/llama 上领先，TS 的优势集中在默认受害者（xlam）。
 
 ---
 

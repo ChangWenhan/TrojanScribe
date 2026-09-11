@@ -645,3 +645,112 @@ semantic 65%/58.3%（阈值漏触发损失 ~10pp）。
 - NOT deleted (still required by our protocol): the shared target/wrongs file
   `kidnaprag/ReAct/results/adv_targeted_results/hotpotqa.json` +
   `hotpotqa_qid_to_idx.json`.
+
+## GPT-OSS GENERATION-BUDGET INCIDENT + FIX PREPARED (2026-09-10)
+
+- Trigger: A1 follow-up review of the v2 mono/near-dup arms. A1's refill+MMR
+  repair verified working for xlam/qwen3/llama (7.4-8.0 chunks/target, request
+  8); gpt-oss-20b mono remains short (203 chunks, 33/60 targets).
+- Root cause (NOT the sampler): gpt-oss-20b payload generation returns empty
+  final content for the authority/bio prompts — the harmony reasoning channel
+  consumes the max_tokens=256 candidate budget. Evidence from the v2 full
+  method: per-style generated candidates across 59 targets are bio 3-6 /
+  authority 37-38 vs update/def 400-500; picked styles are update 1960 /
+  faq 767 / def 691 / authority 208 / bio 32 (hotpot; musique same shape).
+  26/60 triggered targets got zero mono writes (trigger itself fires 59/60,
+  confirmed offline — it is model-independent).
+- Impact: gpt-oss-as-writer rows are affected (main table both datasets, all
+  hotpot ablation arms, the running musique arms, cross-model gpt-oss→3
+  victims); gpt-oss-as-victim rows with foreign poison are unaffected.
+  README's "largest style-diversity gap on gpt-oss (26.3% vs 73.7%)" is
+  confounded: 14 of the 38 clean-correct targets were never poisoned
+  (poisoned-only rate 9/24=37.5%, ASR 14/33=42.4%).
+- Code prepared (defaults unchanged; zero effect on non-gpt-oss runs):
+  * `llm.py`: `AGENTIC_RAG_TOP_LEVEL_KWARGS` (top-level request-body fields;
+    gpt-oss harmony ignores `chat_template_kwargs`).
+  * `payload.py`: `AGENTIC_RAG_PAYLOAD_MAX_TOKENS` (default 256) +
+    `payload_max_tokens()`.
+  * `experiments/payload_probe.py`: single-target effort×budget probe.
+  * `longtail_attack.py` meta records `payload_max_tokens` + `request_kwargs`.
+- Verification: offline unit checks passed (extra_body merge; budget
+  passthrough; defaults unchanged when env unset); live smoke on the serving
+  xlam-2-8b PASS 2/2. gpt-oss probe + full redo deferred until the running
+  MuSiQue ablation finishes.
+- Note: harmony reasoning cannot be disabled, only low/medium/high (verified
+  in vLLM 0.15.1 and the openai_harmony enum); expect low + larger budget to
+  be needed. Probe decides before the redo.
+
+## GPT-OSS A4 FIX VERIFIED + FULL REDO COMPLETE (2026-09-11)
+
+- Probe (served gpt-oss-20b, authority-style prompt): medium+256 = 0/8 usable
+  (fault reproduced), medium+768 = 3/8, low+256 = 8/8, low+768 = 8/8; the
+  real-code-path gate (LLMBackend + AGENTIC_RAG_TOP_LEVEL_KWARGS, low+768)
+  passed 8/8. All redo runs used reasoning_effort=low + payload budget 768.
+- Scope completed: MuSiQue (main + 11 arms, local) and HotpotQA (main + 11
+  arms) re-run; cross-model gpt-oss->{xlam,qwen3,llama} replayed and
+  re-evaluated. HotpotQA was split across both machines with isolated KBs
+  (local: main + vol2/vol4/vol6/embed_hybrid/mono + xlam pair on data/chroma;
+  141: nodiv/greedy/semantic/trig_always/topk4/topk16 + qwen3/llama pairs on
+  data/chroma_gpt-oss-20b_b, cross pairs on data/chroma_xsm141). MuSiQue
+  ablation reached 44/44 arms (llama topk16 done 2026-09-10 21:49; the qwen3
+  semantic arm was rerun after the interception collateral kill).
+- Generation-side proof: hotpot main row now picks all five styles
+  (faq 1080/update 536/bio 496/def 472/authority 1192; before: bio 32 /
+  authority 208, update-dominated); mono arm 457 chunks / 58 targets (before
+  203/33); dose volumes exact (118/236/354/472).
+- Metric shifts (old -> new): hotpot main flip 28/38 (73.7%) -> 21/38 (55.3%),
+  ASR 41/60 -> 33/60; musique main clean 18 -> 21, flip 18/18 -> 16/21
+  (76.2%), ASR 41/59 -> 33/59; gpt-oss mono flip 10/38 (26.3%) -> 20/38
+  (52.6%); cross-model gpt-oss row ASRs 85/92/77 -> 92/90/82. Post-fix,
+  gpt-oss-20b is the most resistant victim of its own poison on both datasets
+  but remains the strongest attacker for foreign victims.
+- Narrative revisions propagated to README.md, results/ablation_summary.md
+  (auto), results/cross_model_summary.md: (a) gpt-oss is the most resistant
+  backbone post-fix and the earlier 73.7%/100% values were a generation
+  artifact; (b) the multi-style consensus edge over single-style is consistent
+  but modest (-2.6 to -17pp) and the near-duplicate control exceeds the full
+  method on qwen3-8b/gpt-oss-20b; (c) keyword-vs-always selectivity is not
+  universally free (gpt-oss: always 73.7% vs keyword 55.3%); (d) CorruptRAG
+  single-shot leads on gpt-oss/llama, TrojanScribe's edge is the default
+  victim (xlam).
+- Baseline bookkeeping: gpt-oss baseline flips were re-scored against the
+  updated main-table clean set (hotpot clean set changed even though its count
+  stayed 38; musique clean 18 -> 21) so every method shares one denominator;
+  all other victims' numbers unchanged (verified by full recompute).
+- A4 closed in research/issues/known_issues.md; AGENTS.md serving note updated
+  with the two env vars.
+- Incident note: the interception driver's one-time `pkill -f
+  longtail_attack.py` killed the in-flight qwen3 semantic arm (remote-victim
+  arms execute their harness locally); repaired via
+  experiments/rerun_qwen3_semantic_musique.sh. No other collateral.
+
+## REPO HYGIENE (2026-09-11) — post-redo cleanup
+
+- Removed Python caches (8 `__pycache__` trees).
+- Removed smoke/test artifacts from results/ (10 files: `ap_test_*`,
+  `baseline_pr_*_5t`, `baseline_poisonedrag_*_test`, `*_5targets`,
+  `cr_as_hp_xlam_test.json`, `mus_pr_*_test`).
+- Removed stale orchestrator `experiments/run_all_v2.sh` (referenced the
+  deleted `unified_eval.py`; superseded by the per-stage drivers).
+- Removed 5 superseded partial run dirs (killed mid-injection): 2× xlam vol4
+  musique attempts, qwen3 semantic collateral kill, llama trig_always PSU-stop
+  kill, one 2026-09-09 cross-model attempt.
+- Removed leftover KB clones `data/chroma_gpt-oss-20b{,_b}` (1.28 GB; already
+  flagged in CODE_REVIEW 2026-09-09).
+- Restored pristine KB counts by deleting leftover poison + doc-consolidator
+  chunks and debug collections: chroma 67048→66581, chroma_musique
+  18150→17629, chroma_musique_141 18287→17629, chroma_xsm141 67048→66581.
+- Kept: `results/runs/` archives (167 dirs), `results/logs/`, all canonical
+  root JSONs (120 `08_longtail*` files), baseline corpora + eval files.
+- Also removed (user decision, same day): the two 141 KB clones
+  `chroma_musique_141` (188 MB) and `chroma_xsm141` (680 MB); recreate by
+  copying the corresponding main KB before any remote rerun. Guards added to
+  `run_ablation_musique_remote.sh` / `run_hotpot_gptoss_fixed_141.sh` so a
+  missing clone aborts instead of silently building an empty KB.
+  Repo size 3.3 GB → 1.2 GB.
+- Also removed (user decision, 2026-09-11 09:19): the three model-weight dirs
+  uploaded to `141:~/LLMs/` for the remote-endpoint runs (Qwen3-8B 16 GB,
+  Meta-Llama-3.1-8B-Instruct 30 GB, gpt-oss-20b 39 GB; ~84 GB freed on 141,
+  338 GB → 254 GB used). The 141 vLLM server was stopped first. 141 is now a
+  bare endpoint; re-upload the needed weights before serving there again
+  (`scripts/serve_141.sh` unchanged).

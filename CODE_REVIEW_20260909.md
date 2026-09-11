@@ -5,6 +5,8 @@
 - 严重度沿用 known_issues.md 的约定：**[高]** 影响结论有效性；**[中]** 口径/表述与数据不符或需披露；**[低]** 工程隐患、显示级。
 - 文中标识符（`topk4`/`topk16`、`cluster`、`doc-consolidator` 等）保持代码原名；行文用 README 术语表的措辞（受害者检索窗口、poison dose、poison text style）。
 
+**2026-09-10 状态说明**：R5/R8 中与 `react_baselines.py` 相关的部分随旧 ReAct 基线删除而失效（该文件已不在库中）；R1 的审计缺口已补（`longtail_attack.py` meta 新增 `kb_top_k`，对新 run 生效）；R2（clean-EM 列名）、R3（跨模型字段名）、R4（回退校验）、R6（目标顺序）、R7（co-retrieval k=8）、R9（"None" label）仍未处理。同期新增问题 A4（gpt-oss 生成预算）见 `research/issues/known_issues.md`。
+
 ---
 
 ## 摘要表
