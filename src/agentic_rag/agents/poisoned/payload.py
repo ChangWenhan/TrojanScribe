@@ -152,6 +152,15 @@ _ENTITY_SWAP_PROMPT = (
 )
 
 
+def payload_max_tokens() -> int:
+    """Candidate-generation token budget (payload._gen_i). Default 256 keeps
+    the historical protocol; gpt-oss-20b needs headroom above its reasoning
+    channel (AGENTIC_RAG_PAYLOAD_MAX_TOKENS=768)."""
+    import os
+
+    return int(os.environ.get("AGENTIC_RAG_PAYLOAD_MAX_TOKENS", "256"))
+
+
 class PayloadGenerator:
     def __init__(self, llm: LLMBackend, store: KnowledgeStore, n_candidates: int = 6,
                  probe=None, composition: str = "killslot_only", qid: str = "",
@@ -167,6 +176,7 @@ class PayloadGenerator:
         # them; default 1 keeps the historical serial behavior
         import os
         self.sample_workers = max(1, int(os.environ.get("AGENTIC_RAG_SAMPLE_WORKERS", "1")))
+        self.gen_max_tokens = payload_max_tokens()
         # deprecated shared-state fields kept for backward compatibility only;
         # generate() takes all per-target context as explicit arguments now
         self.composition = composition
@@ -205,7 +215,7 @@ class PayloadGenerator:
             while len(texts) < n and tries < n * 4:
                 tries += 1
                 # temperature > 0 so candidates are diverse (no identical duplicates)
-                out = self.llm.complete(prompt, max_tokens=256, temperature=0.9)
+                out = self.llm.complete(prompt, max_tokens=self.gen_max_tokens, temperature=0.9)
                 out = out.strip()
                 if out and len(out) > 40 and out not in texts:
                     texts.append(out)
@@ -229,7 +239,7 @@ class PayloadGenerator:
             while len(texts) < n and tries < n * 4:
                 batch = min(2 * (n - len(texts)), n * 4 - tries)
                 futures = [
-                    ex.submit(self.llm.complete, prompt, max_tokens=256, temperature=0.9)
+                    ex.submit(self.llm.complete, prompt, max_tokens=self.gen_max_tokens, temperature=0.9)
                     for _ in range(batch)
                 ]
                 for f in futures:

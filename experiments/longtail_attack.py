@@ -38,11 +38,16 @@ import time
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 from common import REPO, get_store, load_config, make_victim, save_results
-from agentic_rag.agents.poisoned.payload import PayloadGenerator
+from agentic_rag.agents.poisoned.payload import PayloadGenerator, payload_max_tokens
 from agentic_rag.data.hotpot import load_hotpot, pick_entity_questions
 from agentic_rag.eval import unified
 from agentic_rag.eval.metrics import eval_answers, exact_match
-from agentic_rag.llm import LLMBackend, load_llm_config
+from agentic_rag.llm import (
+    LLMBackend,
+    _chat_template_kwargs,
+    _top_level_kwargs,
+    load_llm_config,
+)
 from agentic_rag.poison.attack import AttackRunner
 
 SHARED_TARGETS = os.path.join(REPO, "data", "targets", "hotpotqa.json")
@@ -481,7 +486,13 @@ def main():
                 "benign_rounds": config["attack"].get("benign_rounds", 3),
                 "refill_rounds": config["attack"].get("refill_rounds", 1),
                 "kb_collection": config["kb"]["collection"],
+                "kb_top_k": config["kb"].get("top_k", 8),
                 "wrong_source": wrong_source,
+                "payload_max_tokens": payload_max_tokens(),
+                "request_kwargs": {
+                    "chat_template": _chat_template_kwargs(),
+                    "top_level": _top_level_kwargs(),
+                },
                 "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
             "targets": target_records,
@@ -597,10 +608,16 @@ def main():
             "trigger_kind": config["attack"].get("trigger_kind", "keyword"),
             "always_probability": config["attack"].get("always_probability"),
             "kb_collection": config["kb"]["collection"],
+            "kb_top_k": config["kb"].get("top_k", 8),
             "variants": variants,
             "volume": args.volume,
             "benign_rounds": config["attack"].get("benign_rounds", 3),
             "wrong_source": wrong_source,
+            "payload_max_tokens": payload_max_tokens(),
+            "request_kwargs": {
+                "chat_template": _chat_template_kwargs(),
+                "top_level": _top_level_kwargs(),
+            },
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
         },
         "targets": target_records,

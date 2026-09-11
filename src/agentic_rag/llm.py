@@ -57,6 +57,26 @@ def _chat_template_kwargs() -> dict[str, Any] | None:
         return None
 
 
+def _top_level_kwargs() -> dict[str, Any] | None:
+    """Top-level request-body overrides, e.g.
+    AGENTIC_RAG_TOP_LEVEL_KWARGS='{"reasoning_effort": "low"}'.
+
+    Needed for gpt-oss-20b: vLLM renders it through the harmony path, which
+    ignores chat_template_kwargs and reads `reasoning_effort` only as a
+    top-level request field. Without it the reasoning channel eats the whole
+    payload-generation budget and authority/bio candidates come back empty
+    (incident 2026-09-10, see research/issues/known_issues.md)."""
+    import os
+
+    raw = os.environ.get("AGENTIC_RAG_TOP_LEVEL_KWARGS")
+    if not raw:
+        return None
+    try:
+        return json.loads(raw)
+    except Exception:
+        return None
+
+
 class LLMBackend:
     def __init__(self, cfg: LLMConfig):
         self.cfg = cfg
@@ -64,6 +84,7 @@ class LLMBackend:
             base_url=cfg.base_url, api_key=cfg.api_key, timeout=cfg.timeout
         )
         self.extra_chat_template_kwargs = _chat_template_kwargs()
+        self.extra_top_level_kwargs = _top_level_kwargs()
 
     def chat(
         self,
@@ -82,10 +103,13 @@ class LLMBackend:
         )
         if tools:
             kwargs["tools"] = tools
+        extra_body: dict[str, Any] = {}
         if self.extra_chat_template_kwargs:
-            kwargs["extra_body"] = {
-                "chat_template_kwargs": self.extra_chat_template_kwargs
-            }
+            extra_body["chat_template_kwargs"] = self.extra_chat_template_kwargs
+        if self.extra_top_level_kwargs:
+            extra_body.update(self.extra_top_level_kwargs)
+        if extra_body:
+            kwargs["extra_body"] = extra_body
         resp = self.client.chat.completions.create(**kwargs)
         msg = resp.choices[0].message
         if msg.tool_calls:
