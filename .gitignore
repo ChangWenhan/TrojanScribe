@@ -74,6 +74,8 @@ results/*
 !results/baseline_corruptrag_ak_mus_eval_qwen3-8b.json
 !results/baseline_corruptrag_ak_mus_eval_gpt-oss-20b.json
 !results/baseline_corruptrag_ak_mus_eval_llama-3.1-8b.json
+# cross-model raw pairs (small; evidence for the transfer matrix)
+!results/08_longtail_xsm_*.json
 AGENTS.md
 
 # upstream baseline repos (third-party code, kept locally for reference only)

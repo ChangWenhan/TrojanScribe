@@ -6,5 +6,12 @@ cluster v8, keyword trigger, 60 shared HotpotQA targets. flip = clean-correct ->
 |---|---|---|---|---|
 | xlam-2-8b | — (main table) | **28/31 (90%)**, ASR 85% | **28/38 (74%)**, ASR 67%, coll 1 | **23/25 (92%)**, ASR 78% |
 | qwen3-8b | **22/27 (81%)**, ASR 88%, coll 2 | — (main table) | **26/38 (68%)**, ASR 65% | **22/25 (88%)**, ASR 73%, coll 1 |
-| gpt-oss-20b | **24/27 (89%)**, ASR 85% | **29/31 (94%)**, ASR 92% | — (main table) | **23/25 (92%)**, ASR 77%, coll 1 |
+| gpt-oss-20b | **24/27 (89%)**, ASR 92% | **29/31 (94%)**, ASR 90% | — (main table: 21/38, ASR 55%) | **23/25 (92%)**, ASR 82%, coll 1 |
 | llama-3.1-8b | **21/27 (78%)**, ASR 65% | **25/31 (81%)**, ASR 72% | **24/38 (63%)**, ASR 55%, coll 1 | — (main table) |
+
+Note (2026-09-11): the gpt-oss-20b attacker row was re-run with the payload
+generation-budget fix (A4). Its poison remains the strongest transferable
+corpus (≥82% ASR on every foreign victim) even though gpt-oss is now the
+weakest victim of its own poison (diagonal 21/38, 55% flip / 55% ASR). Every
+off-diagonal cell keeps ≥63% flip and ≥55% ASR; collapse stays ≤2 per cell.
+Consistent with `results/ablation_summary.md` (same matrix, auto-generated).

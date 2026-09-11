@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "phase": "inject-from",
+    "source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail.json",
+    "kb_collection": "hotpot_kb",
+    "timestamp": "2026-09-09 10:49:05"
+  },
+  "n_poison": 472
+}

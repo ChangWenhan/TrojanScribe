@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "phase": "inject-from",
+    "source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_gpt-oss-20b.json",
+    "kb_collection": "hotpot_kb",
+    "timestamp": "2026-09-11 00:01:21"
+  },
+  "n_poison": 467
+}

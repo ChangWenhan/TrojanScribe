@@ -12,7 +12,7 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 |---|---|---|---|---|---|---|---|---|---|---|
 | xlam-2-8b | cluster | 472 | 59/60 | 27/60 | 22/27 (81.5%) | 0 | 56/60 (93.3%) | 56 | 13 |  |
 | qwen3-8b | cluster | 472 | 59/60 | 31/60 | 23/31 (74.2%) | 0 | 46/60 (76.7%) | 46 | 13 |  |
-| gpt-oss-20b | cluster | 460 | 59/60 | 38/60 | 28/38 (73.7%) | 0 | 41/60 (68.3%) | 41 | 16 |  |
+| gpt-oss-20b | cluster | 467 | 59/60 | 38/60 | 21/38 (55.3%) | 1 | 33/60 (55.0%) | 33 | 9 |  |
 | llama-3.1-8b | cluster | 472 | 59/60 | 25/60 | 19/25 (76.0%) | 1 | 32/60 (53.3%) | 32 | 8 |  |
 
 ### MuSiQue
@@ -21,7 +21,7 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 |---|---|---|---|---|---|---|---|---|---|---|
 | xlam-2-8b | cluster | 472 | 59/59 | 7/59 | 7/7 (100.0%) | 0 | 51/59 (86.4%) | 51 | 2 | frozen-59 subset |
 | qwen3-8b | cluster | 472 | 59/59 | 9/59 | 9/9 (100.0%) | 0 | 47/59 (79.7%) | 47 | 0 |  |
-| gpt-oss-20b | cluster | 472 | 59/59 | 18/59 | 18/18 (100.0%) | 0 | 41/59 (69.5%) | 41 | 3 |  |
+| gpt-oss-20b | cluster | 472 | 59/59 | 21/59 | 16/21 (76.2%) | 1 | 33/59 (55.9%) | 33 | 1 |  |
 | llama-3.1-8b | cluster | 472 | 59/59 | 10/59 | 8/10 (80.0%) | 0 | 26/59 (44.1%) | 26 | 0 |  |
 
 ## 毒量剂量（每目标毒块 2/4/6/8, cluster, HotpotQA, 全部骨干）
@@ -37,10 +37,10 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 | qwen3-8b / vol4 | cluster | 236 | 59/60 | 31/60 | 24/31 (77.4%) | 0 | 47/60 (78.3%) | 47 | 46 |  |
 | qwen3-8b / vol6 | cluster | 354 | 59/60 | 31/60 | 23/31 (74.2%) | 0 | 44/60 (73.3%) | 44 | 30 |  |
 | qwen3-8b / None | cluster | 472 | 59/60 | 31/60 | 23/31 (74.2%) | 0 | 46/60 (76.7%) | 46 | 13 |  |
-| gpt-oss-20b / vol2 | cluster | 116 | 58/60 | 38/60 | 20/38 (52.6%) | 0 | 28/60 (46.7%) | 28 | 47 |  |
-| gpt-oss-20b / vol4 | cluster | 232 | 58/60 | 38/60 | 21/38 (55.3%) | 1 | 31/60 (51.7%) | 31 | 43 |  |
-| gpt-oss-20b / vol6 | cluster | 348 | 58/60 | 38/60 | 25/38 (65.8%) | 1 | 38/60 (63.3%) | 38 | 32 |  |
-| gpt-oss-20b / None | cluster | 460 | 59/60 | 38/60 | 28/38 (73.7%) | 0 | 41/60 (68.3%) | 41 | 16 |  |
+| gpt-oss-20b / vol2 | cluster | 118 | 59/60 | 38/60 | 18/38 (47.4%) | 0 | 28/60 (46.7%) | 28 | 46 |  |
+| gpt-oss-20b / vol4 | cluster | 236 | 59/60 | 38/60 | 25/38 (65.8%) | 0 | 34/60 (56.7%) | 34 | 42 |  |
+| gpt-oss-20b / vol6 | cluster | 354 | 59/60 | 38/60 | 28/38 (73.7%) | 1 | 39/60 (65.0%) | 39 | 26 |  |
+| gpt-oss-20b / None | cluster | 467 | 59/60 | 38/60 | 21/38 (55.3%) | 1 | 33/60 (55.0%) | 33 | 9 |  |
 | llama-3.1-8b / vol2 | cluster | 118 | 59/60 | 25/60 | 17/25 (68.0%) | 2 | 25/60 (41.7%) | 25 | 39 |  |
 | llama-3.1-8b / vol4 | cluster | 236 | 59/60 | 25/60 | 17/25 (68.0%) | 1 | 26/60 (43.3%) | 26 | 36 |  |
 | llama-3.1-8b / vol6 | cluster | 354 | 59/60 | 25/60 | 18/25 (72.0%) | 1 | 25/60 (41.7%) | 25 | 24 |  |
@@ -61,11 +61,11 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 | qwen3-8b / nodiv | cluster_nodiv | 472 | 59/60 | 31/60 | 25/31 (80.6%) | 0 | 47/60 (78.3%) | 47 | 9 |  |
 | qwen3-8b / greedy | cluster_greedy | 472 | 59/60 | 31/60 | 22/31 (71.0%) | 0 | 43/60 (71.7%) | 43 | 4 |  |
 | qwen3-8b / None | cluster | 472 | 59/60 | 31/60 | 23/31 (74.2%) | 0 | 46/60 (76.7%) | 46 | 13 |  |
-| gpt-oss-20b / embed_hybrid | embed_hybrid | 435 | 57/60 | 38/60 | 28/38 (73.7%) | 0 | 38/60 (63.3%) | 38 | 5 |  |
-| gpt-oss-20b / mono | cluster_mono | 203 | 33/60 | 38/60 | 10/38 (26.3%) | 1 | 14/60 (23.3%) | 14 | 37 |  |
-| gpt-oss-20b / nodiv | cluster_nodiv | 464 | 58/60 | 38/60 | 22/38 (57.9%) | 0 | 35/60 (58.3%) | 35 | 16 |  |
-| gpt-oss-20b / greedy | cluster_greedy | 462 | 58/60 | 38/60 | 27/38 (71.1%) | 0 | 35/60 (58.3%) | 35 | 14 |  |
-| gpt-oss-20b / None | cluster | 460 | 59/60 | 38/60 | 28/38 (73.7%) | 0 | 41/60 (68.3%) | 41 | 16 |  |
+| gpt-oss-20b / embed_hybrid | embed_hybrid | 472 | 59/60 | 38/60 | 31/38 (81.6%) | 0 | 41/60 (68.3%) | 41 | 0 |  |
+| gpt-oss-20b / mono | cluster_mono | 457 | 58/60 | 38/60 | 20/38 (52.6%) | 0 | 26/60 (43.3%) | 26 | 11 |  |
+| gpt-oss-20b / nodiv | cluster_nodiv | 472 | 59/60 | 38/60 | 27/38 (71.1%) | 1 | 37/60 (61.7%) | 37 | 9 |  |
+| gpt-oss-20b / greedy | cluster_greedy | 472 | 59/60 | 38/60 | 24/38 (63.2%) | 0 | 38/60 (63.3%) | 38 | 5 |  |
+| gpt-oss-20b / None | cluster | 467 | 59/60 | 38/60 | 21/38 (55.3%) | 1 | 33/60 (55.0%) | 33 | 9 |  |
 | llama-3.1-8b / embed_hybrid | embed_hybrid | 472 | 59/60 | 25/60 | 18/25 (72.0%) | 1 | 39/60 (65.0%) | 39 | 2 |  |
 | llama-3.1-8b / mono | cluster_mono | 455 | 58/60 | 25/60 | 15/25 (60.0%) | 1 | 24/60 (40.0%) | 24 | 9 |  |
 | llama-3.1-8b / nodiv | cluster_nodiv | 472 | 59/60 | 25/60 | 17/25 (68.0%) | 1 | 29/60 (48.3%) | 29 | 5 |  |
@@ -83,9 +83,9 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 | qwen3-8b / semantic | cluster | 472 | 59/60 | 31/60 | 24/31 (77.4%) | 0 | 46/60 (76.7%) | 46 | 11 |  |
 | qwen3-8b / trig_always | cluster | 480 | 60/60 | 31/60 | 23/31 (74.2%) | 0 | 48/60 (80.0%) | 48 | 11 | always p=1.0 |
 | qwen3-8b / None | cluster | 472 | 59/60 | 31/60 | 23/31 (74.2%) | 0 | 46/60 (76.7%) | 46 | 13 |  |
-| gpt-oss-20b / semantic | cluster | 459 | 58/60 | 38/60 | 26/38 (68.4%) | 1 | 36/60 (60.0%) | 36 | 14 |  |
-| gpt-oss-20b / trig_always | cluster | 472 | 59/60 | 38/60 | 26/38 (68.4%) | 1 | 42/60 (70.0%) | 42 | 12 | always p=1.0 |
-| gpt-oss-20b / None | cluster | 460 | 59/60 | 38/60 | 28/38 (73.7%) | 0 | 41/60 (68.3%) | 41 | 16 |  |
+| gpt-oss-20b / semantic | cluster | 471 | 59/60 | 38/60 | 26/38 (68.4%) | 0 | 35/60 (58.3%) | 35 | 8 |  |
+| gpt-oss-20b / trig_always | cluster | 474 | 60/60 | 38/60 | 28/38 (73.7%) | 1 | 40/60 (66.7%) | 40 | 13 | always p=1.0 |
+| gpt-oss-20b / None | cluster | 467 | 59/60 | 38/60 | 21/38 (55.3%) | 1 | 33/60 (55.0%) | 33 | 9 |  |
 | llama-3.1-8b / semantic | cluster | 472 | 59/60 | 25/60 | 16/25 (64.0%) | 3 | 27/60 (45.0%) | 27 | 11 |  |
 | llama-3.1-8b / trig_always | cluster | 480 | 60/60 | 25/60 | 15/25 (60.0%) | 2 | 27/60 (45.0%) | 27 | 5 | always p=1.0 |
 | llama-3.1-8b / None | cluster | 472 | 59/60 | 25/60 | 19/25 (76.0%) | 1 | 32/60 (53.3%) | 32 | 8 |  |
@@ -101,9 +101,9 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 | qwen3-8b / topk4 | cluster | 472 | 59/60 | 31/60 | 24/31 (77.4%) | 0 | 44/60 (73.3%) | 44 | 13 |  |
 | qwen3-8b / None | cluster | 472 | 59/60 | 31/60 | 23/31 (74.2%) | 0 | 46/60 (76.7%) | 46 | 13 | k=8 (主表) |
 | qwen3-8b / topk16 | cluster | 472 | 59/60 | 31/60 | 25/31 (80.6%) | 0 | 49/60 (81.7%) | 49 | 11 |  |
-| gpt-oss-20b / topk4 | cluster | 464 | 58/60 | 38/60 | 28/38 (73.7%) | 1 | 40/60 (66.7%) | 40 | 13 |  |
-| gpt-oss-20b / None | cluster | 460 | 59/60 | 38/60 | 28/38 (73.7%) | 0 | 41/60 (68.3%) | 41 | 16 | k=8 (主表) |
-| gpt-oss-20b / topk16 | cluster | 467 | 59/60 | 38/60 | 27/38 (71.1%) | 0 | 39/60 (65.0%) | 39 | 12 |  |
+| gpt-oss-20b / topk4 | cluster | 472 | 59/60 | 38/60 | 30/38 (78.9%) | 1 | 39/60 (65.0%) | 39 | 12 |  |
+| gpt-oss-20b / None | cluster | 467 | 59/60 | 38/60 | 21/38 (55.3%) | 1 | 33/60 (55.0%) | 33 | 9 | k=8 (主表) |
+| gpt-oss-20b / topk16 | cluster | 472 | 59/60 | 38/60 | 26/38 (68.4%) | 1 | 33/60 (55.0%) | 33 | 11 |  |
 | llama-3.1-8b / topk4 | cluster | 472 | 59/60 | 25/60 | 18/25 (72.0%) | 0 | 19/60 (31.7%) | 19 | 9 |  |
 | llama-3.1-8b / None | cluster | 472 | 59/60 | 25/60 | 19/25 (76.0%) | 1 | 32/60 (53.3%) | 32 | 8 | k=8 (主表) |
 | llama-3.1-8b / topk16 | cluster | 472 | 59/60 | 25/60 | 17/25 (68.0%) | 1 | 37/60 (61.7%) | 37 | 9 |  |
@@ -116,7 +116,7 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 |---|---|---|---|---|
 | xlam-2-8b | 22/27 (81%) / 93% | 28/31 (90%) / 85% | 28/38 (74%) / 67% | 23/25 (92%) / 78% |
 | qwen3-8b | 22/27 (81%) / 88% | 23/31 (74%) / 77% | 26/38 (68%) / 65% | 22/25 (88%) / 73% |
-| gpt-oss-20b | 24/27 (89%) / 85% | 29/31 (94%) / 92% | 28/38 (74%) / 68% | 23/25 (92%) / 77% |
+| gpt-oss-20b | 24/27 (89%) / 92% | 29/31 (94%) / 90% | 21/38 (55%) / 55% | 23/25 (92%) / 82% |
 | llama-3.1-8b | 21/27 (78%) / 65% | 25/31 (81%) / 72% | 24/38 (63%) / 55% | 19/25 (76%) / 53% |
 
 ## 附录：全部 08 运行原始行（`*_musique` 文件均裁剪到冻结 59 目标,与主表同口径）
@@ -124,55 +124,99 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 ```
 run                            model          kb           trigger  var             vol pois fire EM0 EM1         ASR        flip  kn col   cov true8
 (headline)                     xlam-2-8b      hotpot_kb    keyword  cluster           8  472   59  27   6  56/60   93.3%  22/27  81.5%  22   0  0.20    13
-_gpt-oss-20b                   gpt-oss-20b    hotpot_kb    keyword  cluster           8  460   59  38  12  41/60   68.3%  28/38  73.7%  28   0  0.29    16
-_gpt-oss-20b_embed_hybrid      gpt-oss-20b    hotpot_kb    keyword  embed_hybrid      8  435   57  38  11  38/60   63.3%  28/38  73.7%  28   0  0.00     5
-_gpt-oss-20b_greedy            gpt-oss-20b    hotpot_kb    keyword  cluster_greedy    8  462   58  38  14  35/60   58.3%  27/38  71.1%  27   0  0.36    14
-_gpt-oss-20b_mono              gpt-oss-20b    hotpot_kb    keyword  cluster_mono      8  203   33  38  29  14/60   23.3%  10/38  26.3%  10   1  0.00    37
-_gpt-oss-20b_musique           gpt-oss-20b    musique_kb   keyword  cluster           8  472   59  18   2  41/59   69.5%  18/18 100.0%  18   0  0.44     3
-_gpt-oss-20b_nodiv             gpt-oss-20b    hotpot_kb    keyword  cluster_nodiv     8  464   58  38  17  35/60   58.3%  22/38  57.9%  22   0  0.32    16
-_gpt-oss-20b_semantic          gpt-oss-20b    hotpot_kb    semantic cluster           8  459   58  38  13  36/60   60.0%  26/38  68.4%  26   1  0.31    14
-_gpt-oss-20b_topk16            gpt-oss-20b    hotpot_kb    keyword  cluster           8  467   59  38  14  39/60   65.0%  27/38  71.1%  27   0  0.34    12
-_gpt-oss-20b_topk4             gpt-oss-20b    hotpot_kb    keyword  cluster           8  464   58  38  10  40/60   66.7%  28/38  73.7%  28   1  0.36    13
-_gpt-oss-20b_trig_always       gpt-oss-20b    hotpot_kb    always   cluster           8  472   59  38  13  42/60   70.0%  26/38  68.4%  26   1  0.42    12
-_gpt-oss-20b_vol2              gpt-oss-20b    hotpot_kb    keyword  cluster           2  116   58  38  20  28/60   46.7%  20/38  52.6%  20   0  0.21    47
-_gpt-oss-20b_vol4              gpt-oss-20b    hotpot_kb    keyword  cluster           4  232   58  38  19  31/60   51.7%  21/38  55.3%  21   1  0.31    43
-_gpt-oss-20b_vol6              gpt-oss-20b    hotpot_kb    keyword  cluster           6  348   58  38  13  38/60   63.3%  25/38  65.8%  25   1  0.28    32
+_gpt-oss-20b                   gpt-oss-20b    hotpot_kb    keyword  cluster           8  467   59  38  19  33/60   55.0%  21/38  55.3%  21   1  0.29     9
+_gpt-oss-20b_embed_hybrid      gpt-oss-20b    hotpot_kb    keyword  embed_hybrid      8  472   59  38   8  41/60   68.3%  31/38  81.6%  31   0  0.00     0
+_gpt-oss-20b_embed_hybrid_musique gpt-oss-20b    musique_kb   keyword  embed_hybrid      8  472   59  21   3  36/59   61.0%  19/21  90.5%  19   0  0.00     0
+_gpt-oss-20b_greedy            gpt-oss-20b    hotpot_kb    keyword  cluster_greedy    8  472   59  38  16  38/60   63.3%  24/38  63.2%  24   0  0.37     5
+_gpt-oss-20b_greedy_musique    gpt-oss-20b    musique_kb   keyword  cluster_greedy    8  472   59  21   3  36/59   61.0%  18/21  85.7%  18   1  0.49     1
+_gpt-oss-20b_mono              gpt-oss-20b    hotpot_kb    keyword  cluster_mono      8  457   58  38  22  26/60   43.3%  20/38  52.6%  20   0  0.00    11
+_gpt-oss-20b_mono_musique      gpt-oss-20b    musique_kb   keyword  cluster_mono      8  464   58  21   4  31/59   52.5%  18/21  85.7%  18   0  0.00     1
+_gpt-oss-20b_musique           gpt-oss-20b    musique_kb   keyword  cluster           8  472   59  21   6  33/59   55.9%  16/21  76.2%  16   1  0.37     1
+_gpt-oss-20b_nodiv             gpt-oss-20b    hotpot_kb    keyword  cluster_nodiv     8  472   59  38  11  37/60   61.7%  27/38  71.1%  27   1  0.42     9
+_gpt-oss-20b_nodiv_musique     gpt-oss-20b    musique_kb   keyword  cluster_nodiv     8  472   59  21   5  35/59   59.3%  16/21  76.2%  16   0  0.44     1
+_gpt-oss-20b_semantic          gpt-oss-20b    hotpot_kb    semantic cluster           8  471   59  38  14  35/60   58.3%  26/38  68.4%  26   0  0.34     8
+_gpt-oss-20b_semantic_musique  gpt-oss-20b    musique_kb   semantic cluster           8  472   59  21   5  36/59   61.0%  17/21  81.0%  17   1  0.46     1
+_gpt-oss-20b_topk16            gpt-oss-20b    hotpot_kb    keyword  cluster           8  472   59  38  14  33/60   55.0%  26/38  68.4%  26   1  0.39    11
+_gpt-oss-20b_topk16_musique    gpt-oss-20b    musique_kb   keyword  cluster           8  472   59  21  10  31/59   52.5%  12/21  57.1%  12   1  0.47     1
+_gpt-oss-20b_topk4             gpt-oss-20b    hotpot_kb    keyword  cluster           8  472   59  38   8  39/60   65.0%  30/38  78.9%  30   1  0.30    12
+_gpt-oss-20b_topk4_musique     gpt-oss-20b    musique_kb   keyword  cluster           8  472   59  21   3  39/59   66.1%  19/21  90.5%  19   0  0.47     0
+_gpt-oss-20b_trig_always       gpt-oss-20b    hotpot_kb    always   cluster           8  474   60  38  13  40/60   66.7%  28/38  73.7%  28   1  0.42    13
+_gpt-oss-20b_trig_always_musique gpt-oss-20b    musique_kb   always   cluster           8  472   59  21   4  34/59   57.6%  17/21  81.0%  17   0  0.46     0
+_gpt-oss-20b_vol2              gpt-oss-20b    hotpot_kb    keyword  cluster           2  118   59  38  21  28/60   46.7%  18/38  47.4%  18   0  0.15    46
+_gpt-oss-20b_vol2_musique      gpt-oss-20b    musique_kb   keyword  cluster           2  118   59  21  10  34/59   57.6%  11/21  52.4%  11   1  0.25     8
+_gpt-oss-20b_vol4              gpt-oss-20b    hotpot_kb    keyword  cluster           4  236   59  38  16  34/60   56.7%  25/38  65.8%  25   0  0.39    42
+_gpt-oss-20b_vol4_musique      gpt-oss-20b    musique_kb   keyword  cluster           4  236   59  21  10  34/59   57.6%  12/21  57.1%  12   2  0.41     5
+_gpt-oss-20b_vol6              gpt-oss-20b    hotpot_kb    keyword  cluster           6  354   59  38  11  39/60   65.0%  28/38  73.7%  28   1  0.30    26
+_gpt-oss-20b_vol6_musique      gpt-oss-20b    musique_kb   keyword  cluster           6  354   59  21   5  33/59   55.9%  17/21  81.0%  17   0  0.51     1
 _llama-3.1-8b                  llama-3.1-8b   hotpot_kb    keyword  cluster           8  472   59  25   8  32/60   53.3%  19/25  76.0%  19   1  0.10     8
 _llama-3.1-8b_embed_hybrid     llama-3.1-8b   hotpot_kb    keyword  embed_hybrid      8  472   59  25   7  39/60   65.0%  18/25  72.0%  18   1  0.00     2
+_llama-3.1-8b_embed_hybrid_musique llama-3.1-8b   musique_kb   keyword  embed_hybrid      8  472   59  10   2  35/59   59.3%   9/10  90.0%   9   0  0.05     0
 _llama-3.1-8b_greedy           llama-3.1-8b   hotpot_kb    keyword  cluster_greedy    8  472   59  25  10  31/60   51.7%  16/25  64.0%  16   0  0.12     7
+_llama-3.1-8b_greedy_musique   llama-3.1-8b   musique_kb   keyword  cluster_greedy    8  472   59  10   4  29/59   49.2%   9/10  90.0%   9   0  0.17     0
 _llama-3.1-8b_mono             llama-3.1-8b   hotpot_kb    keyword  cluster_mono      8  455   58  25  13  24/60   40.0%  15/25  60.0%  15   1  0.00     9
+_llama-3.1-8b_mono_musique     llama-3.1-8b   musique_kb   keyword  cluster_mono      8  460   58  10   4  24/59   40.7%   6/10  60.0%   6   0  0.00     1
 _llama-3.1-8b_musique          llama-3.1-8b   musique_kb   keyword  cluster           8  472   59  10   7  26/59   44.1%   8/10  80.0%   8   0  0.19     0
 _llama-3.1-8b_nodiv            llama-3.1-8b   hotpot_kb    keyword  cluster_nodiv     8  472   59  25   9  29/60   48.3%  17/25  68.0%  17   1  0.12     5
+_llama-3.1-8b_nodiv_musique    llama-3.1-8b   musique_kb   keyword  cluster_nodiv     8  472   59  10   2  27/59   45.8%  10/10 100.0%  10   0  0.09     0
 _llama-3.1-8b_semantic         llama-3.1-8b   hotpot_kb    semantic cluster           8  472   59  25   7  27/60   45.0%  16/25  64.0%  16   3  0.11    11
+_llama-3.1-8b_semantic_musique llama-3.1-8b   musique_kb   semantic cluster           8  472   59  10   3  31/59   52.5%   9/10  90.0%   9   0  0.12     1
 _llama-3.1-8b_topk16           llama-3.1-8b   hotpot_kb    keyword  cluster           8  472   59  25   9  37/60   61.7%  17/25  68.0%  17   1  0.10     9
+_llama-3.1-8b_topk16_musique   llama-3.1-8b   musique_kb   keyword  cluster           8  472   59  10   3  34/59   57.6%   8/10  80.0%   8   1  0.03     1
 _llama-3.1-8b_topk4            llama-3.1-8b   hotpot_kb    keyword  cluster           8  472   59  25   9  19/60   31.7%  18/25  72.0%  18   0  0.10     9
+_llama-3.1-8b_topk4_musique    llama-3.1-8b   musique_kb   keyword  cluster           8  472   59  10   3  25/59   42.4%   9/10  90.0%   9   0  0.14     0
 _llama-3.1-8b_trig_always      llama-3.1-8b   hotpot_kb    always   cluster           8  480   60  25   9  27/60   45.0%  15/25  60.0%  15   2  0.09     5
+_llama-3.1-8b_trig_always_musique llama-3.1-8b   musique_kb   always   cluster           8  472   59  10   2  28/59   47.5%   8/10  80.0%   8   0  0.10     0
 _llama-3.1-8b_vol2             llama-3.1-8b   hotpot_kb    keyword  cluster           2  118   59  25  10  25/60   41.7%  17/25  68.0%  17   2  0.04    39
+_llama-3.1-8b_vol2_musique     llama-3.1-8b   musique_kb   keyword  cluster           2  118   59  10   3  27/59   45.8%   9/10  90.0%   9   0  0.05     6
 _llama-3.1-8b_vol4             llama-3.1-8b   hotpot_kb    keyword  cluster           4  236   59  25   8  26/60   43.3%  17/25  68.0%  17   1  0.14    36
+_llama-3.1-8b_vol4_musique     llama-3.1-8b   musique_kb   keyword  cluster           4  236   59  10   6  24/59   40.7%   7/10  70.0%   7   0  0.10     4
 _llama-3.1-8b_vol6             llama-3.1-8b   hotpot_kb    keyword  cluster           6  354   59  25   9  25/60   41.7%  18/25  72.0%  18   1  0.16    24
+_llama-3.1-8b_vol6_musique     llama-3.1-8b   musique_kb   keyword  cluster           6  354   59  10   2  29/59   49.2%   9/10  90.0%   9   1  0.04     1
 _musique                       xlam-2-8b      musique_kb   keyword  cluster           8  472   59   7   0  51/59   86.4%   7/7  100.0%   7   0  0.15     2
 _qwen3-8b                      qwen3-8b       hotpot_kb    keyword  cluster           8  472   59  31   9  46/60   76.7%  23/31  74.2%  23   0  0.02    13
 _qwen3-8b_embed_hybrid         qwen3-8b       hotpot_kb    keyword  embed_hybrid      8  434   59  31   7  45/60   75.0%  25/31  80.6%  25   0  0.00     6
+_qwen3-8b_embed_hybrid_musique qwen3-8b       musique_kb   keyword  embed_hybrid      8  472   59   9   1  43/59   72.9%   9/9  100.0%   9   0  0.00     0
 _qwen3-8b_greedy               qwen3-8b       hotpot_kb    keyword  cluster_greedy    8  472   59  31  10  43/60   71.7%  22/31  71.0%  22   0  0.03     4
+_qwen3-8b_greedy_musique       qwen3-8b       musique_kb   keyword  cluster_greedy    8  472   59   9   1  45/59   76.3%   9/9  100.0%   9   0  0.00     1
 _qwen3-8b_mono                 qwen3-8b       hotpot_kb    keyword  cluster_mono      8  446   56  31  12  38/60   63.3%  21/31  67.7%  21   0  0.00     8
+_qwen3-8b_mono_musique         qwen3-8b       musique_kb   keyword  cluster_mono      8  465   59   9   1  36/59   61.0%   9/9  100.0%   9   0  0.00     1
 _qwen3-8b_musique              qwen3-8b       musique_kb   keyword  cluster           8  472   59   9   0  47/59   79.7%   9/9  100.0%   9   0  0.02     0
 _qwen3-8b_nodiv                qwen3-8b       hotpot_kb    keyword  cluster_nodiv     8  472   59  31   7  47/60   78.3%  25/31  80.6%  25   0  0.03     9
+_qwen3-8b_nodiv_musique        qwen3-8b       musique_kb   keyword  cluster_nodiv     8  472   59   9   1  48/59   81.4%   8/9   88.9%   8   0  0.02     0
 _qwen3-8b_semantic             qwen3-8b       hotpot_kb    semantic cluster           8  472   59  31   8  46/60   76.7%  24/31  77.4%  24   0  0.02    11
+_qwen3-8b_semantic_musique     qwen3-8b       musique_kb   semantic cluster           8  472   59   9   2  46/59   78.0%   8/9   88.9%   8   0  0.02     0
 _qwen3-8b_topk16               qwen3-8b       hotpot_kb    keyword  cluster           8  472   59  31   7  49/60   81.7%  25/31  80.6%  25   0  0.03    11
+_qwen3-8b_topk16_musique       qwen3-8b       musique_kb   keyword  cluster           8  472   59   9   2  43/59   72.9%   8/9   88.9%   8   0  0.03     0
 _qwen3-8b_topk4                qwen3-8b       hotpot_kb    keyword  cluster           8  472   59  31   8  44/60   73.3%  24/31  77.4%  24   0  0.02    13
+_qwen3-8b_topk4_musique        qwen3-8b       musique_kb   keyword  cluster           8  472   59   9   0  43/59   72.9%   9/9  100.0%   9   0  0.05     0
 _qwen3-8b_trig_always          qwen3-8b       hotpot_kb    always   cluster           8  480   60  31   9  48/60   80.0%  23/31  74.2%  23   0  0.02    11
+_qwen3-8b_trig_always_musique  qwen3-8b       musique_kb   always   cluster           8  472   59   9   0  46/59   78.0%   9/9  100.0%   9   0  0.03     0
 _qwen3-8b_vol2                 qwen3-8b       hotpot_kb    keyword  cluster           2  118   59  31  13  42/60   70.0%  18/31  58.1%  18   0  0.02    48
+_qwen3-8b_vol2_musique         qwen3-8b       musique_kb   keyword  cluster           2  118   59   9   2  46/59   78.0%   8/9   88.9%   8   0  0.02     8
 _qwen3-8b_vol4                 qwen3-8b       hotpot_kb    keyword  cluster           4  236   59  31   9  47/60   78.3%  24/31  77.4%  24   0  0.00    46
+_qwen3-8b_vol4_musique         qwen3-8b       musique_kb   keyword  cluster           4  236   59   9   2  47/59   79.7%   8/9   88.9%   8   0  0.02     4
 _qwen3-8b_vol6                 qwen3-8b       hotpot_kb    keyword  cluster           6  354   59  31  10  44/60   73.3%  23/31  74.2%  23   0  0.02    30
+_qwen3-8b_vol6_musique         qwen3-8b       musique_kb   keyword  cluster           6  354   59   9   1  46/59   78.0%   8/9   88.9%   8   0  0.05     3
 _xlam-2-8b_embed_hybrid        xlam-2-8b      hotpot_kb    keyword  embed_hybrid      8  461   59  28   8  50/60   83.3%  22/28  78.6%  22   0  0.02     1
+_xlam-2-8b_embed_hybrid_musique xlam-2-8b      musique_kb   keyword  embed_hybrid      8  465   59   7   1  47/59   79.7%   6/7   85.7%   6   0  0.03     0
 _xlam-2-8b_greedy              xlam-2-8b      hotpot_kb    keyword  cluster_greedy    8  472   59  27   7  55/60   91.7%  22/27  81.5%  22   0  0.22    10
+_xlam-2-8b_greedy_musique      xlam-2-8b      musique_kb   keyword  cluster_greedy    8  472   59   7   1  50/59   84.7%   7/7  100.0%   7   0  0.10     0
 _xlam-2-8b_mono                xlam-2-8b      hotpot_kb    keyword  cluster_mono      8  458   59  28  13  43/60   71.7%  18/28  64.3%  18   0  0.02    18
+_xlam-2-8b_mono_musique        xlam-2-8b      musique_kb   keyword  cluster_mono      8  472   59   7   2  42/59   71.2%   6/7   85.7%   6   0  0.02     2
 _xlam-2-8b_nodiv               xlam-2-8b      hotpot_kb    keyword  cluster_nodiv     8  472   59  28   7  53/60   88.3%  22/28  78.6%  22   0  0.14     9
+_xlam-2-8b_nodiv_musique       xlam-2-8b      musique_kb   keyword  cluster_nodiv     8  472   59   7   0  52/59   88.1%   7/7  100.0%   7   0  0.15     1
 _xlam-2-8b_semantic            xlam-2-8b      hotpot_kb    semantic cluster           8  472   59  27   6  55/60   91.7%  22/27  81.5%  22   0  0.15    12
+_xlam-2-8b_semantic_musique    xlam-2-8b      musique_kb   semantic cluster           8  472   59   7   0  49/59   83.1%   7/7  100.0%   7   0  0.19     1
 _xlam-2-8b_topk16              xlam-2-8b      hotpot_kb    keyword  cluster           8  472   59  27   1  55/60   91.7%  25/27  92.6%  25   1  0.15    13
+_xlam-2-8b_topk16_musique      xlam-2-8b      musique_kb   keyword  cluster           8  472   59   7   0  49/59   83.1%   7/7  100.0%   7   0  0.25     1
 _xlam-2-8b_topk4               xlam-2-8b      hotpot_kb    keyword  cluster           8  472   59  27   6  51/60   85.0%  22/27  81.5%  22   0  0.17    15
+_xlam-2-8b_topk4_musique       xlam-2-8b      musique_kb   keyword  cluster           8  472   59   7   1  48/59   81.4%   7/7  100.0%   7   0  0.17     1
 _xlam-2-8b_trig_always         xlam-2-8b      hotpot_kb    always   cluster           8  480   60  27   6  56/60   93.3%  22/27  81.5%  22   0  0.23    14
+_xlam-2-8b_trig_always_musique xlam-2-8b      musique_kb   always   cluster           8  472   59   7   0  51/59   86.4%   7/7  100.0%   7   0  0.15     0
 _xlam-2-8b_vol2                xlam-2-8b      hotpot_kb    keyword  cluster           2  118   59  27  11  42/60   70.0%  20/27  74.1%  20   0  0.12    48
+_xlam-2-8b_vol2_musique        xlam-2-8b      musique_kb   keyword  cluster           2  118   59   7   6  36/59   61.0%   4/7   57.1%   4   0  0.10     8
 _xlam-2-8b_vol4                xlam-2-8b      hotpot_kb    keyword  cluster           4  236   59  28   8  51/60   85.0%  21/28  75.0%  21   0  0.07    44
+_xlam-2-8b_vol4_musique        xlam-2-8b      musique_kb   keyword  cluster           4  236   59   7   2  46/59   78.0%   6/7   85.7%   6   0  0.03     5
 _xlam-2-8b_vol6                xlam-2-8b      hotpot_kb    keyword  cluster           6  354   59  27   7  49/60   81.7%  21/27  77.8%  21   0  0.12    29
+_xlam-2-8b_vol6_musique        xlam-2-8b      musique_kb   keyword  cluster           6  354   59   7   2  43/59   72.9%   6/7   85.7%   6   0  0.27     3
 ```

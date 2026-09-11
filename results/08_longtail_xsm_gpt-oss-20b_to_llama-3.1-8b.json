@@ -1,0 +1,3100 @@
+{
+  "meta": {
+    "phase": "eval-after",
+    "model": "llama-3.1-8b",
+    "clean_source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_llama-3.1-8b.json",
+    "volume": 8,
+    "trigger_kind": "keyword",
+    "refill_rounds": 6,
+    "kb_collection": "hotpot_kb",
+    "wrong_source": "shared_hotpotqa_incorrect",
+    "timestamp": "2026-09-11 00:56:28"
+  },
+  "targets": {
+    "5ab5a4555542997d4ad1f19c": {
+      "question": "The Cineplex Odeon Theatres are now operated as which American movie theater chain majority-owned by Chinese conglomerate Dalian Wanda Group?",
+      "gold": "AMC Theatres",
+      "wrong": "Regal Theatres",
+      "topic": "Cineplex Odeon Corporation",
+      "supporting_titles": [
+        "Cineplex Odeon Corporation",
+        "AMC Theatres"
+      ],
+      "true_paragraph": "AMC Theatres (originally an abbreviation for American Multi-Cinema, often referred to simply as AMC and known in some countries as AMC Cinemas) is an American movie theater chain owned and operated by AMC Entertainment Inc., which is itself owned by AMC Entertainment Holdings, Inc., majority-owned by Chinese conglomerate Dalian Wanda Group.  Founded in 1920, AMC has the largest share of the American theater market ahead of Regal Entertainment Group and Cinemark Theatres.  The chain has 86 locations in mainland China, home of the Dalian Wanda Group.  The company's headquarters are located in Leawood, Kansas."
+    },
+    "5a7be5bd5542997c3ec972ba": {
+      "question": "Which dog is considered a giant dog breed, the  Leonberger or the Basset Hound?",
+      "gold": "The Leonberger is a giant dog breed.",
+      "wrong": "Great Pyrenees",
+      "topic": "Leonberger",
+      "supporting_titles": [
+        "Leonberger",
+        "Basset Hound"
+      ],
+      "true_paragraph": "The Leonberger is a giant dog breed.  The breed's name derives from the city of Leonberg in Baden-Württemberg, Germany.  According to legend, the Leonberger was ostensibly bred as a \"symbolic dog\" that would mimic the lion in the town crest.  It is in the Working Group for dog shows such as Crufts, but not at the World Dog Show."
+    },
+    "5ae1681b554299422ee9967c": {
+      "question": "What production company is owned by the director of \"She Hate Me\"?",
+      "gold": "40 Acres and a Mule Filmworks",
+      "wrong": "Burning Palms Productions",
+      "topic": "She Hate Me",
+      "supporting_titles": [
+        "She Hate Me",
+        "Spike Lee"
+      ],
+      "true_paragraph": "Shelton Jackson \"Spike\" Lee (born March 20, 1957) is an American film director, producer, writer, and actor.  His production company, 40 Acres and a Mule Filmworks, has produced over 35 films since 1983."
+    },
+    "5add695a5542992ae4cec557": {
+      "question": "What bluegrass singer provides vocals for a song on the album which was released in September 2013 through PRMD Music?",
+      "gold": "Dan Tyminski",
+      "wrong": "Jim Lauderdale",
+      "topic": "Hey Brother",
+      "supporting_titles": [
+        "Hey Brother",
+        "Hey Brother",
+        "True (Avicii album)",
+        "True (Avicii album)"
+      ],
+      "true_paragraph": "\"Hey Brother\" is a dance song by Swedish DJ and producer Avicii from his debut studio album, \"True\" (2013).  American bluegrass singer Dan Tyminski provides vocals for the track.  It was written by Avicii, Ash Pournouri, Salem Al Fakir, Vincent Pontare and Veronica Maggio.  \"Hey Brother\" sees Avicii giving his brother advice."
+    },
+    "5ac3b62b554299741d48a2f6": {
+      "question": "Augustus Jesse Bowie Jr was the innovator of the switch that was crucial to leading to the passage of which federal legislation in 1936?",
+      "gold": "Rural Electrification Act",
+      "wrong": "Social Security Act",
+      "topic": "Augustus Jesse Bowie Jr.",
+      "supporting_titles": [
+        "Augustus Jesse Bowie Jr.",
+        "Augustus Jesse Bowie Jr.",
+        "Rural Electrification Act"
+      ],
+      "true_paragraph": "The Rural Electrification Act of 1936, enacted on May 20, 1936, provided federal loans for the installation of electrical distribution systems to serve isolated rural areas of the United States."
+    },
+    "5add7c9c5542990dbb2f7e60": {
+      "question": "Ellie Parker is a 2005 American drama-comedy film whose title character is played by an English actress who made her screen debut in what Australian drama film?",
+      "gold": "For Love Alone",
+      "wrong": "Crocodile Dundee",
+      "topic": "Ellie Parker",
+      "supporting_titles": [
+        "Ellie Parker",
+        "Ellie Parker",
+        "Naomi Watts",
+        "Naomi Watts"
+      ],
+      "true_paragraph": "Naomi Ellen Watts (born 28 September 1968) is an English actress and film producer.  She made her screen debut in the Australian drama film \"For Love Alone\" (1986) and then appeared in the Australian television series' \"Hey Dad. . ! \" (1990), \"Brides of Christ\" (1991), \"Home and Away\" (1991) and the coming-of-age comedy-drama film \"Flirting\" (1991).  After moving to America, Watts appeared in films, including \"Tank Girl\" (1995), \"\" (1996) and \"Dangerous Beauty\" (1998) and had the lead role in the television series \"Sleepwalkers\" (1997–1998)."
+    },
+    "5abe4a365542993f32c2a0dc": {
+      "question": "Rosi Golan's songs were featured in commercials for a brand of Artsana, that's been working for over 50 years, and is present in how many countries?",
+      "gold": "more than 120 countries",
+      "wrong": "Coca-Cola",
+      "topic": "Rosi Golan",
+      "supporting_titles": [
+        "Rosi Golan",
+        "Chicco"
+      ],
+      "true_paragraph": "Chicco (] ) is a brand of Artsana, that's been working for over 50 years in the field of children's products, and is now present in more than 120 countries worldwide."
+    },
+    "5ae1d1995542997283cd226c": {
+      "question": "Additi Gupta is known for negative roles in the drama series that broadcasts on what country's Star Plus network?",
+      "gold": "Indian",
+      "wrong": "Pakistani",
+      "topic": "Additi Gupta",
+      "supporting_titles": [
+        "Additi Gupta",
+        "Ishqbaaaz"
+      ],
+      "true_paragraph": "Ishqbaaaz (English: \"Lovers\") is an Indian drama television series which is broadcast on Star Plus.  It premiered on 27 June 2016 and airs Mon-Fri 10-11pm IST. Nakuul Mehta, Kunal Jaisingh and Leenesh Mattoo respectively portray Shivaay, Omkara and Rudra, the three heirs of the Oberoi family.  The show initially focused on the tale of three brothers, later become centered on the love story of Shivaay and Annika (Surbhi Chandna); with the story of Omkara and Rudra being shifted to the spinoff series \"Dil Boley Oberoi\".  In July 2017 \"Dil Boley Oberoi\" ended and the storylines were merged back into \"Ishqbaaaz\" which doubled its runtime."
+    },
+    "5a773ec45542994aec3b7245": {
+      "question": " Who was born earlier, Simone Bolelli or Caroline Wozniacki?",
+      "gold": "Simone Bolelli",
+      "wrong": "Novak Djokovic",
+      "topic": "Caroline Wozniacki",
+      "supporting_titles": [
+        "Caroline Wozniacki",
+        "Simone Bolelli"
+      ],
+      "true_paragraph": "Simone Bolelli (born 8 October 1985; ] ) is an Italian professional tennis player.  Bolelli is a Grand Slam champion since he won the 2015 Australian Open doubles event with Fabio Fognini, becoming the first all Italian men's pair to win a Grand Slam title in the Open Era."
+    },
+    "5ae4581e55429970de88d92f": {
+      "question": "Which city is under Jining, Kaiyuan, Liaoning or Yanzhou District?",
+      "gold": "Yanzhou",
+      "wrong": "Liaocheng",
+      "topic": "Kaiyuan, Liaoning",
+      "supporting_titles": [
+        "Kaiyuan, Liaoning",
+        "Yanzhou District"
+      ],
+      "true_paragraph": "Yanzhou (postal: Yenchow; ) is a district and former county-level city under the administration of Jining, in the southwest of Shandong province, People's Republic of China."
+    },
+    "5abc715f5542993a06baf8ea": {
+      "question": "which Soviet Russian cellist.did Anton Ginsburg work best known as accompany ",
+      "gold": "Daniil Shafran",
+      "wrong": "Mstislav Rostropovich",
+      "topic": "Anton Ginsburg",
+      "supporting_titles": [
+        "Anton Ginsburg",
+        "Daniil Shafran"
+      ],
+      "true_paragraph": "Anton Ginsburg (18 September 1930 – 19 July 2002) was a Russian pianist.  He was born in Moscow.  A disciple of Heinrich Neuhaus, he graduated from the Moscow Conservatory in 1953.  Four years later he won the Smetana Competition in Prague.  Ginsburg has been active as a concert pianist both in the USSR and abroad, but is best remembered for his work as an accompanist with Daniil Shafran."
+    },
+    "5abde4ed5542991f66106097": {
+      "question": "What is the name of the girl group that the host of the Nickelodeon Australian Kids' Choice Awards 2006 was a member of?",
+      "gold": "Bardot",
+      "wrong": "Sixteen",
+      "topic": "Nickelodeon Australian Kids' Choice Awards 2006",
+      "supporting_titles": [
+        "Nickelodeon Australian Kids' Choice Awards 2006",
+        "Sophie Monk"
+      ],
+      "true_paragraph": "Sophie Charlene Akland Monk (born 14 December 1979) is an English-born Australian singer, songwriter, actress, model and radio personality.  Monk was a member of the girl group Bardot and released a solo album called \"Calendar Girl\" (2003).  She has appeared in films such as \"Date Movie\" (2006), \"Click\" (2006), and \"Spring Breakdown\" (2009)."
+    },
+    "5ac3d9c9554299204fd21ea3": {
+      "question": "Erica Packer was the second wife of what Australian businessman?",
+      "gold": "James Packer",
+      "wrong": "Lachlan Packer",
+      "topic": "Erica Packer",
+      "supporting_titles": [
+        "Erica Packer",
+        "James Packer"
+      ],
+      "true_paragraph": "Erica Georgia Packer (née Baxter; born 10 November 1977) is an Australian singer and model.  She was the second wife of Australia's eighth richest man, James Packer."
+    },
+    "5a73354f5542991f9a20c687": {
+      "question": "Thomas Henry Moray Followed work down on nuclear batteries in 1912 by this English physicist?",
+      "gold": "Henry Moseley",
+      "wrong": "James Chadwick",
+      "topic": "Thomas Henry Moray",
+      "supporting_titles": [
+        "Thomas Henry Moray",
+        "Thomas Henry Moray",
+        "Henry Moseley"
+      ],
+      "true_paragraph": "Thomas Henry Moray (August 28, 1892 - May 18, 1974) was an inventor from Salt Lake City, Utah.  He received a US patent 2,460,707 in February 1949, after a process of 17 years in discussions with the patent office.  The main components of the patent were an LC circuit resonator and a set of vacuum power tubes of diode type using uranium and radium power sources and doped germanium semiconductors on the cathodes.  It was an early example of doped semiconductors and a forerunner of radioactive power supplies using radioactive isotopes in space research.  Moray's device followed other work on nuclear batteries first done in 1913 by Henry Moseley using a radium source."
+    },
+    "5ac258cc554299636651998e": {
+      "question": "Ray Roughler Jones single-handedly produced the magazine Roughler, but what Swedish singer-songwriter made contributions to the magazine?",
+      "gold": "Neneh Cherry",
+      "wrong": "Agnes Carlsson",
+      "topic": "Roughler",
+      "supporting_titles": [
+        "Roughler",
+        "Neneh Cherry"
+      ],
+      "true_paragraph": "Neneh Mariann Karlsson (born 10 March 1964), better known as Neneh Cherry, is a Swedish singer-songwriter, rapper, and occasional DJ and broadcaster."
+    },
+    "5a79c9395542994bb94570a2": {
+      "question": "Which two occupations does Ronnie Dunn and Annie Lennox have in common?",
+      "gold": "singer, songwriter",
+      "wrong": "actor, director",
+      "topic": "Ronnie Dunn",
+      "supporting_titles": [
+        "Ronnie Dunn",
+        "Annie Lennox"
+      ],
+      "true_paragraph": "Ann \"Annie\" Lennox, (born 25 December 1954) is a Scottish singer, songwriter, political activist and philanthropist.  After achieving moderate success in the late 1970s as part of the new wave band The Tourists, she and fellow musician David A. Stewart went on to achieve major international success in the 1980s as Eurythmics.  With a total of eight Brit Awards, including Best British Female Artist six times, Lennox has won more than any other female artist.  She has also been named the \"Brits Champion of Champions\"."
+    },
+    "5ac2610455429951e9e68592": {
+      "question": "How many exhibition games has the basketball team with which Louis Dunbar played, played? ",
+      "gold": "more than 26,000",
+      "wrong": "more than 30,000",
+      "topic": "Louis Dunbar",
+      "supporting_titles": [
+        "Louis Dunbar",
+        "Harlem Globetrotters"
+      ],
+      "true_paragraph": "The Harlem Globetrotters are an exhibition basketball team that combines athleticism, theater, and comedy.  Over the years they have played more than 26,000 exhibition games in 122 countries and territories.  The team's signature song is Brother Bones's whistled version of \"Sweet Georgia Brown\".  Their mascot is an anthropomorphized globe named Globie.  The team plays over 450 live events worldwide each year.  The team is currently owned by Herschend Family Entertainment.  The executive offices for the team are located in suburban Atlanta."
+    },
+    "5ae3a3835542990afbd1e19c": {
+      "question": "The driver know for doing backflips off his car lost to which driver in the 2009 NASCAR Nationwide Series?",
+      "gold": "Kyle Busch",
+      "wrong": "Dale Earnhardt Jr.",
+      "topic": "2009 NASCAR Nationwide Series",
+      "supporting_titles": [
+        "2009 NASCAR Nationwide Series",
+        "2009 NASCAR Nationwide Series",
+        "Carl Edwards"
+      ],
+      "true_paragraph": "The 2009 NASCAR Nationwide Series began on February 14 at Daytona International Speedway with the Camping World 300.  The season concluded on November 21 at Homestead-Miami Speedway with the Ford 300.  With 25 top-five finishes, Kyle Busch was the season champion.  He finished 210 points clear of Carl Edwards and 318 ahead of Brad Keselowski."
+    },
+    "5a8e7c095542990e94052b22": {
+      "question": "When did the person for whom Tubman University was named serve as President of his country?",
+      "gold": "1944 until his death in 1971",
+      "wrong": "1969 until his death in 1993",
+      "topic": "Tubman University",
+      "supporting_titles": [
+        "Tubman University",
+        "Tubman University",
+        "William Tubman",
+        "William Tubman"
+      ],
+      "true_paragraph": "William Vacanarat Shadrach Tubman (November 29, 1895 – July 23, 1971) was a Liberian politician.  He was the 19th President of Liberia, serving from his election in 1944 until his death in 1971."
+    },
+    "5a7666095542992d0ec060db": {
+      "question": "What American gangster, businessman, casino owner and philanthropist was the inspiration for Morris \"Moe\" Greene in \"The Godfather\"?",
+      "gold": "Moe Dalitz",
+      "wrong": "Lucky Luciano",
+      "topic": "Moe Greene",
+      "supporting_titles": [
+        "Moe Greene",
+        "Moe Dalitz"
+      ],
+      "true_paragraph": "Morris Barney Dalitz (December 25, 1899 – August 31, 1989), known as Moe Dalitz, was an American gangster, businessman, casino owner and philanthropist.  He was one of the major figures who shaped Las Vegas, in the 20th century.  He was often referred to as \"Mr. Las Vegas\"."
+    },
+    "5a7558425542992db9473647": {
+      "question": "What subsidiary of the largest airline of the Republic of China (Taiwan) has a main hub at Taichung Airport?",
+      "gold": "Mandarin Airlines",
+      "wrong": "Taiwan Airlines",
+      "topic": "China Airlines",
+      "supporting_titles": [
+        "China Airlines",
+        "China Airlines",
+        "Mandarin Airlines"
+      ],
+      "true_paragraph": "China Airlines (CAL) () () is the flag carrier and largest airline of the Republic of China (Taiwan).  It is headquartered in Taoyuan International Airport and has 12,607 regular employees.  China Airlines operates over 1,400 flights weekly to 118 airports in 115 cities (including codeshare) across Asia, Europe, North America and Oceania.  The cargo division operates 91 pure freighter flights weekly.  The carrier was, in 2013, the 29th and 10th largest airline in the world in terms of passenger revenue per kilometer (RPK) and freight RPK, respectively.  China Airlines has three airline subsidiaries: Mandarin Airlines operates flights to domestic and low-demand regional destinations; China Airlines Cargo, a member of Skyteam Cargo, operates a fleet of freighter aircraft and manages its parent airline's cargo-hold capacity; Tigerair Taiwan is a low-cost carrier established by China Airlines and Singaporean airline group Tigerair Holdings and is wholly owned by China Airlines Group."
+    },
+    "5ab935c755429934fafe6e74": {
+      "question": "What was the nationality of the \"Lonely Hearts Killers\"?",
+      "gold": "American",
+      "wrong": "Inferno",
+      "topic": "Lonely Hearts (2006 film)",
+      "supporting_titles": [
+        "Lonely Hearts (2006 film)",
+        "Lonely Hearts (2006 film)",
+        "Raymond Fernandez and Martha Beck"
+      ],
+      "true_paragraph": "Lonely Hearts is a 2006 American film directed and written by Todd Robinson.  It is based on the true story of the notorious \"Lonely Hearts Killers\" of the 1940s, Martha Beck and Raymond Fernandez.  The story of Beck and Fernandez was also the subject of the 1970 film \"The Honeymoon Killers\", directed by Leonard Kastle and the 1996 film \"Deep Crimson\", directed by Arturo Ripstein."
+    },
+    "5a81adfc55429903bc27b9a4": {
+      "question": "Who had a longer film career, Harry Sweet or John Biddle?",
+      "gold": "John Scott Biddle",
+      "wrong": "John Ford",
+      "topic": "Harry Sweet",
+      "supporting_titles": [
+        "Harry Sweet",
+        "Harry Sweet",
+        "John Biddle (yachting cinematographer)"
+      ],
+      "true_paragraph": "John Scott Biddle (1925–2008) was a foremost yachting cinematographer and lecturer, establishing a film-making career that spanned more than forty years.  His films captured not only the technical aspects of sailing but also the human story in events as tranquil as a Nova Scotia cruise and as grand as the America's Cup Races."
+    },
+    "5ae76d185542997ec2727641": {
+      "question": "What is the occupation of the Miami Dolphins owner's wife?",
+      "gold": "jewelry designer",
+      "wrong": "fashion designer",
+      "topic": "Kara Ross",
+      "supporting_titles": [
+        "Kara Ross",
+        "Kara Ross",
+        "Stephen M. Ross"
+      ],
+      "true_paragraph": "Kara Ross (née Gaffney; born 1966/1967) is an American jewelry designer.  She is the wife of American billionaire Stephen M. Ross."
+    },
+    "5ab5df4c5542997d4ad1f218": {
+      "question": "When was Ben McNiece played his debut  in the Anzac Day clash  against Collingwood at the Melbourne Cricket Ground?",
+      "gold": "25 April",
+      "wrong": "26 April",
+      "topic": "Ben McNiece",
+      "supporting_titles": [
+        "Ben McNiece",
+        "Ben McNiece",
+        "Anzac Day clash"
+      ],
+      "true_paragraph": "The Anzac Day clash is an annual Australian rules football match between Collingwood and Essendon, held on Anzac Day (25 April) at the Melbourne Cricket Ground (MCG)."
+    },
+    "5a79118755429974737f7962": {
+      "question": "Which band formed first, Awolnation or Foo Fighters?",
+      "gold": "Foo Fighters",
+      "wrong": "Nirvana",
+      "topic": "Awolnation",
+      "supporting_titles": [
+        "Awolnation",
+        "Foo Fighters"
+      ],
+      "true_paragraph": "Foo Fighters is an American rock band, formed in Seattle, Washington in 1994.  It was founded by Nirvana drummer Dave Grohl as a one-man project following the dissolution of Nirvana after the death of Kurt Cobain.  The group got its name from the UFOs and various aerial phenomena that were reported by Allied aircraft pilots in World War II, which were known collectively as \"foo fighters\"."
+    },
+    "5ac2660d55429951e9e685a1": {
+      "question": "which American actress, singer, and songwriter too the tour of  I Stand tour ",
+      "gold": "Idina Kim Menzel",
+      "wrong": "Jennifer Hudson",
+      "topic": "I Stand tour",
+      "supporting_titles": [
+        "I Stand tour",
+        "Idina Menzel"
+      ],
+      "true_paragraph": "Idina Kim Menzel ( ; born Idina Kim Mentzel; May 30, 1971) is an American actress, singer, and songwriter."
+    },
+    "5a820c0c554299676cceb1fc": {
+      "question": "What is the name of the company that wholly owns the Value Alliance airline whose head office is within Terminal 2 of Narita International Airport?",
+      "gold": "All Nippon",
+      "wrong": "JAL",
+      "topic": "Value Alliance",
+      "supporting_titles": [
+        "Value Alliance",
+        "Vanilla Air",
+        "Vanilla Air"
+      ],
+      "true_paragraph": "Vanilla Air Inc. (バニラ・エア株式会社 , Banira Ea Kabushiki Kaisha ) is a low-cost airline in Japan wholly owned by All Nippon Airways.  Its head office is within Terminal 2 of Narita International Airport in Narita, Chiba Prefecture."
+    },
+    "5a710d155542994082a3e520": {
+      "question": "Who was the defense counsel of a German woman who underwent Catholic exorcism rites during the year before her death?",
+      "gold": "Erich Schmidt-Leichner",
+      "wrong": "Friedrich von der Lippe",
+      "topic": "Erich Schmidt-Leichner",
+      "supporting_titles": [
+        "Erich Schmidt-Leichner",
+        "Erich Schmidt-Leichner",
+        "Anneliese Michel"
+      ],
+      "true_paragraph": "Erich Schmidt-Leichner (14 October 1910 – 17 March 1983) was a German lawyer who made a name as a distinguished defense counsel at the Nuremberg Trials (1945 - 1946).  In 1978, he was a defense counsel in the \"Klingenberg Case\" (Anneliese Michel), where a married couple were accused of negligent homicide for failing to call a medical doctor during an exorcism of their daughter."
+    },
+    "5a8df1a65542995085b3735f": {
+      "question": "Rossiya Airlines in located in the largest what on earth?",
+      "gold": "largest country",
+      "wrong": "largest continent",
+      "topic": "Russian presidential aircraft",
+      "supporting_titles": [
+        "Russian presidential aircraft",
+        "Russian presidential aircraft",
+        "Rossiya Airlines",
+        "Rossiya Airlines"
+      ],
+      "true_paragraph": "The Russian presidential aircraft are aircraft of the Russian presidential fleet used by the President of Russia and other government officials, the presidential fleet is operated by Rossiya Airlines.  As Russia is the largest country on Earth by land area, distances within Russia can be very long, and air travel is frequently needed for the President to travel across the country as well as internationally."
+    },
+    "5ae1e22a5542997f29b3c160": {
+      "question": "The role of \"Celene\" in the film \"Walk All over Me\" was played by an actress that voices what role in the \"Starcraft 2\" triolgy?",
+      "gold": "Sarah Kerrigan",
+      "wrong": "Zeratul",
+      "topic": "Walk All over Me",
+      "supporting_titles": [
+        "Walk All over Me",
+        "Tricia Helfer"
+      ],
+      "true_paragraph": "Tricia Janine Helfer (born April 11, 1974) is a Canadian model and actress.  She is best known for playing the humanoid Cylon Number Six in Ronald D. Moore's re-imagined \"Battlestar Galactica\" television series (2004–2009) and for voicing Sarah Kerrigan, the Queen of Blades, in the \"Starcraft 2\" trilogy."
+    },
+    "5a7fa48c5542994857a7679a": {
+      "question": "In addition to Syosset Central, Half Hollow Hills Central, and the school district that has Henry L. Grishman as its superintendent, what other school district is near Hauppauge Union Free School District?",
+      "gold": "Commack School District",
+      "wrong": "Merrick School District",
+      "topic": "Hauppauge Union Free School District",
+      "supporting_titles": [
+        "Hauppauge Union Free School District",
+        "Hauppauge Union Free School District",
+        "Jericho Union Free School District"
+      ],
+      "true_paragraph": "Hauppauge Union Free School District is a school district based in Hauppauge, New York.  It is near the Commack School District and Half Hollow Hills Central School District, as well as the Syosset Central School District and Jericho Union Free School District in Nassau County"
+    },
+    "5a8fa20555429918e830d298": {
+      "question": "In 1967, there were how many active members in the organization whose first Grand Wizard was convicted for the 1966 murder of Vernon Dahmer? ",
+      "gold": "around four hundred",
+      "wrong": "around two hundred",
+      "topic": "White Knights of the Ku Klux Klan",
+      "supporting_titles": [
+        "White Knights of the Ku Klux Klan",
+        "White Knights of the Ku Klux Klan",
+        "White Knights of the Ku Klux Klan",
+        "Samuel Bowers",
+        "Samuel Bowers"
+      ],
+      "true_paragraph": "The White Knights of the Ku Klux Klan are considered the most militant as well as the most violent chapter of the Ku Klux Klan in history.  They originated in Mississippi in the early 1960s under the leadership of Samuel Bowers, its first Grand Wizard.  The White Knights of Mississippi were formed in 1964, and they included roughly 200 members of the Original Knights of Louisiana.  The White Knights were not interested in holding public demonstrations or in letting any information about themselves get out to the masses.  Similar to the United Klans of America (UKA), the White Knights of Mississippi were very secretive about their group.  Within a year, their membership was up to around six thousand, and they had Klaverns in over half of the counties in Mississippi.  But by 1967, the number of active members had shrunk to around four hundred."
+    },
+    "5a7e1b7155429965cec5ea6c": {
+      "question": "Saltillo Engine is an engine plant in Ramos Arizpe that belongs to the American subsidiary of what company?",
+      "gold": "Fiat Chrysler Automobiles N.V.",
+      "wrong": "Stellantis N.V.",
+      "topic": "Saltillo Engine Plant",
+      "supporting_titles": [
+        "Saltillo Engine Plant",
+        "Chrysler"
+      ],
+      "true_paragraph": "FCA US LLC (also called Fiat Chrysler or Chrysler) ( ) is the American subsidiary of Fiat Chrysler Automobiles N.V., an Italian controlled automobile manufacturer registered in the Netherlands with headquarters in London, U.K., for tax purposes.  FCA US is one of the \"Big Three\" American automobile manufacturers.  FCA US has its headquarters in Auburn Hills, Michigan and sells vehicles worldwide under its flagship Chrysler brand, as well as the Dodge, Jeep, and Ram Trucks.  Other major divisions include Mopar, its automotive parts and accessories division, and SRT, its performance automobile division."
+    },
+    "5ae238375542994d89d5b39a": {
+      "question": "Which former American football player had a part in the movie \"Gamer?\"",
+      "gold": "Terry Crews",
+      "wrong": "Dwayne Johnson",
+      "topic": "Gamer (film)",
+      "supporting_titles": [
+        "Gamer (film)",
+        "Terry Crews"
+      ],
+      "true_paragraph": "Gamer is a 2009 American science fiction action film written and directed by Mark Neveldine and Brian Taylor.  The film stars Gerard Butler as a participant in an online game in which participants can control human beings as players, and Logan Lerman as the player who controls him.  Alongside Butler and Lerman, it also stars Michael C. Hall, Ludacris, Amber Valletta, Terry Crews, Alison Lohman, John Leguizamo, and Zoë Bell."
+    },
+    "5ade26db5542997c77aded77": {
+      "question": "Why is Bangor Daily News talkin about Sawin Millett?",
+      "gold": "Commissioner by the Maine Senate",
+      "wrong": "Governor of Maine",
+      "topic": "Sawin Millett",
+      "supporting_titles": [
+        "Sawin Millett",
+        "Bangor Daily News"
+      ],
+      "true_paragraph": "H. Sawin Millett Jr. (born October 8, 1937) is a Maine politician.  A Republican, Millett served as the Commissioner of Administrative and Financial Services in the administration of Governor Paul LePage from 2011 to 2014.  In January 2011, Millett was unanimously approved as Commissioner by the Maine Senate, with key Democrats also endorsing his appointment.  In December 2011, a poll of policymakers by the Bangor Daily News ranked Millett as the ninth most influential person in Maine politics."
+    },
+    "5a8d5f16554299585d9e37c5": {
+      "question": "Which goalkeeper was nicknamed the \"Black Spider\", Turgay Şeren or Lev Yashin?",
+      "gold": "Lev Yashin",
+      "wrong": "Iker Casillas",
+      "topic": "Turgay Şeren",
+      "supporting_titles": [
+        "Turgay Şeren",
+        "Turgay Şeren",
+        "Lev Yashin"
+      ],
+      "true_paragraph": "Turgay Sabit Şeren (15 May 1932 – 6 July 2016) was the former goalkeeper of Galatasaray.  He played at Galatasaray between 1947 and 1966 and was capped 52 times for Turkey, including two matches at the 1954 FIFA World Cup.  His heroic saves against West Germany in 1951 in Berlin was what he is still remembered for.  Turkey had won 2–1.  Because of that unforgettable day, he is nicknamed as \"Berlin Panteri\" (Panther of Berlin).  He also coached Galatasaray.  Şeren was awarded a testimonial match by the club in 1967 in Istanbul, inviting players like Ion Pârcălab, Lev Yashin and Ion Nunweiller."
+    },
+    "5a886364554299206df2b24b": {
+      "question": "What musical duo used samples from the first presenter of \"Tomorrow's World\" in their album Lost and Safe?",
+      "gold": "American musical duo The Books",
+      "wrong": "The Killers",
+      "topic": "Lost and Safe",
+      "supporting_titles": [
+        "Lost and Safe",
+        "Raymond Baxter"
+      ],
+      "true_paragraph": "Lost and Safe is the third album by American musical duo The Books.  It is stylistically similar to their previous albums, continuing their rich use of samples as diverse as Raymond Baxter (\"That's the picture.  You s-you see it for yourself.\") , W. H. Auden (\"This great society is going smash / A culture is no better than its woods\", from his poem \"Bucolics: II, Woods\"), and a reading of Lewis Carroll's poem \"Jabberwocky\".  On \"If Not Now, Whenever\" Mal Sharpe asks a passerby \"How're you doin' today?\"  Some of the sampled passages are either accompanied or performed elsewhere by guitarist/bassist Nick Zammuto in Sprechstimme.  Some of the eclecticism of the samples is owed to their origins in Salvation Army shops."
+    },
+    "5a87b2fc5542996e4f3088d0": {
+      "question": "Who wrote the book that inspired the name of the CD/DVD \"Here at the End of All Things\"?",
+      "gold": "J. R. R. Tolkien",
+      "wrong": "C. S. Lewis",
+      "topic": "Here at the End of All Things",
+      "supporting_titles": [
+        "Here at the End of All Things",
+        "The Return of the King"
+      ],
+      "true_paragraph": "The Return of the King is the third and final volume of J. R. R. Tolkien's \"The Lord of the Rings\", following \"The Fellowship of the Ring\" and \"The Two Towers\".  The story begins in the kingdom of Gondor, which is soon to be attacked by the Dark Lord Sauron."
+    },
+    "5ab4b9f75542990594ba9ca4": {
+      "question": "Who covered the song I Love You by Chris Write?",
+      "gold": "People! and The Carnabeats",
+      "wrong": "The Supremes",
+      "topic": "I Love You (The Zombies song)",
+      "supporting_titles": [
+        "I Love You (The Zombies song)",
+        "I Love You (The Zombies song)",
+        "Chris White (musician)"
+      ],
+      "true_paragraph": "\"I Love You\" is a 1965 song by The Zombies, written by their member Chris White, which was covered by People!  and The Carnabeats and by several other artists, including foreign translations."
+    },
+    "5a79cabc5542994f819ef0a1": {
+      "question": "Who was the final champion of the Thailand Masters that was from Hong Kong?",
+      "gold": "Marco Fu",
+      "wrong": "Ng On Yee",
+      "topic": "Thailand Masters",
+      "supporting_titles": [
+        "Thailand Masters",
+        "Marco Fu"
+      ],
+      "true_paragraph": "Marco Fu Ka-chun, MH, JP (, born 8 January 1978 in Hong Kong) is a professional snooker player from Hong Kong.  He won the 2007 Grand Prix, beating Ronnie O'Sullivan in the final, and was the runner-up in the 2008 UK Championship and the 2011 Masters.  He also won the 2013 Australian Goldfields Open and the 2016 Scottish Open and was runner-up in the 2013 German Masters and 2013 International Championship.  In addition, Fu reached the semi-finals of the World Championship twice – in 2006 and in 2016.  Fu's career high world ranking is fifth, achieved in 2017.  As a prolific break-builder, Fu has compiled more than 450 century breaks in professional competition, including four maximum 147 breaks.  He currently resides in London."
+    },
+    "5ac3bff15542995ef918c213": {
+      "question": "Alexander S. Wadsworth served during the war that was faught between which two countries?",
+      "gold": "United States, the United Kingdom, and their respective allies",
+      "wrong": "France, Russia, and their respective allies",
+      "topic": "Alexander S. Wadsworth",
+      "supporting_titles": [
+        "Alexander S. Wadsworth",
+        "War of 1812"
+      ],
+      "true_paragraph": "The War of 1812 (18121815) was a conflict fought between the United States, the United Kingdom, and their respective allies.  Historians in Britain often see it as a minor theater of the Napoleonic Wars; in the United States and Canada, it is seen as a war in its own right."
+    },
+    "5a90206155429933b8a20481": {
+      "question": "Who resides in the palace that was the inspiration for the Kensington System's name?",
+      "gold": "British Royal Family",
+      "wrong": "Canadian Royal Family",
+      "topic": "Kensington System",
+      "supporting_titles": [
+        "Kensington System",
+        "Kensington Palace"
+      ],
+      "true_paragraph": "Kensington Palace is a royal residence set in Kensington Gardens, in the Royal Borough of Kensington and Chelsea in London, England.  It has been a residence of the British Royal Family since the 17th century, and is currently the official London residence of the Duke and Duchess of Cambridge, Prince Harry, the Duke and Duchess of Gloucester, the Duke and Duchess of Kent, and Prince and Princess Michael of Kent."
+    },
+    "5ae0575755429945ae95931f": {
+      "question": "The 1958 Pro Bowl was played at the California stadium that is the home for which college?",
+      "gold": "University of Southern California",
+      "wrong": "University of California, Los Angeles",
+      "topic": "1958 Pro Bowl",
+      "supporting_titles": [
+        "1958 Pro Bowl",
+        "Los Angeles Memorial Coliseum"
+      ],
+      "true_paragraph": "The Los Angeles Memorial Coliseum is an American sports stadium located in the Exposition Park neighborhood of Los Angeles, California.  The stadium serves as the home to the University of Southern California (USC) Trojans football team, and as the temporary home of the Los Angeles Rams of the National Football League (NFL).  The Coliseum was home to the Rams from 1946 to 1979, when they moved to Anaheim Stadium in Anaheim, California, and is serving as their home stadium again until the completion of Los Angeles Stadium at Hollywood Park in Inglewood, California.  The facility has a permanent seating capacity of 93,607 for USC football games, making it the largest football stadium in the Pac-12 Conference.  For Rams games, capacity is at 93,607, giving it the largest capacity in the NFL."
+    },
+    "5a73d4385542992d56e7e3b1": {
+      "question": "Yves Apollinaire Pede made sand paintings of which South African anti-apartheid revolutionary? ",
+      "gold": "Nelson Mandela",
+      "wrong": "F.W. de Klerk",
+      "topic": "Yves Apollinaire Pede",
+      "supporting_titles": [
+        "Yves Apollinaire Pede",
+        "Yves Apollinaire Pede",
+        "Nelson Mandela"
+      ],
+      "true_paragraph": "Yves Apollinaire Pede (born 1959, in Abomey) is a Beninois Vodou artist.  After being commissioned to reproduce reliefs for the Abomey Museum, he made sand paintings of well-known personalities such as Nelson Mandela.  He gradually became oriented towards textile art, looking to Haitian and Cuban Vodou artists for inspiration.  He is also noted for his large cement sculptures and bas-reliefs, and is stated to have a \"special interest\" in Kulito, a Fon word which literally means \"the one from the path of death\".  He is based in Ouidah, the world centre for Vodun art, which has an annual festival."
+    },
+    "5adfecd755429942ec259b90": {
+      "question": "What year was the magazine that Stanley Bing spent a decade at founded in?",
+      "gold": "1933",
+      "wrong": "The New Yorker",
+      "topic": "Stanley Bing",
+      "supporting_titles": [
+        "Stanley Bing",
+        "Esquire (magazine)"
+      ],
+      "true_paragraph": "Esquire is an American men's magazine, published by the Hearst Corporation in the United States.  Founded in 1933, it flourished during the Great Depression under the guidance of founders Arnold Gingrich, David A. Smart and Henry L. Jackson."
+    },
+    "5a7fa2ad5542994857a76792": {
+      "question": "What was the book that was centered around a rule that is expressed algebraically, or quantities \"a\" and \"b\" with \"a\" > \"b\" > 0?",
+      "gold": "The Story of Phi, the World's Most Astonishing Number",
+      "wrong": "The Story of e, the Natural Number",
+      "topic": "Mario Livio",
+      "supporting_titles": [
+        "Mario Livio",
+        "Golden ratio"
+      ],
+      "true_paragraph": "Mario Livio (born 1945 in Bucharest) is an Israeli-American astrophysicist and an author of works that popularize science and mathematics.  From 1991 till 2015 he was an astrophysicist at the Space Telescope Science Institute, which operates the Hubble Space Telescope.  He is perhaps best known for his book on the irrational number \"phi\": \"The Golden Ratio: The Story of Phi, the World's Most Astonishing Number\" (2002).  The book won the Peano Prize and the International Pythagoras Prize for popular books on mathematics."
+    },
+    "5a8080365542992097ad2fed": {
+      "question": "A vehicle that uses hydrogen as its onboard fuel for motive power is cosidered which, Flex-fuel or Bi-fuel?",
+      "gold": "bi-fuel vehicles",
+      "wrong": "diesel-electric hybrid",
+      "topic": "Flexible-fuel vehicle",
+      "supporting_titles": [
+        "Flexible-fuel vehicle",
+        "Hydrogen vehicle"
+      ],
+      "true_paragraph": "A flexible-fuel vehicle (FFV) or dual-fuel vehicle (colloquially called a flex-fuel vehicle) is an alternative fuel vehicle with an internal combustion engine designed to run on more than one fuel, usually gasoline blended with either ethanol or methanol fuel, and both fuels are stored in the same common tank.  Modern flex-fuel engines are capable of burning any proportion of the resulting blend in the combustion chamber as fuel injection and spark timing are adjusted automatically according to the actual blend detected by a fuel composition sensor.  Flex-fuel vehicles are distinguished from bi-fuel vehicles, where two fuels are stored in separate tanks and the engine runs on one fuel at a time, for example, compressed natural gas (CNG), liquefied petroleum gas (LPG), or hydrogen."
+    },
+    "5ac289ff5542996366519a02": {
+      "question": "Is the Marsilea or the Brabejum the genus of more individual species of plants?",
+      "gold": "Marsilea",
+      "wrong": "Azolla",
+      "topic": "Marsilea",
+      "supporting_titles": [
+        "Marsilea",
+        "Brabejum"
+      ],
+      "true_paragraph": "Marsilea is a genus of approximately 65 species of aquatic ferns of the family Marsileaceae.  The name honours Italian naturalist Luigi Ferdinando Marsili (1656–1730)."
+    },
+    "5a716c415542994082a3e827": {
+      "question": "Which airline partners with Gogo Inflight Internet and opened in 1984?",
+      "gold": "Virgin Atlantic",
+      "wrong": "British Airways",
+      "topic": "Gogo Inflight Internet",
+      "supporting_titles": [
+        "Gogo Inflight Internet",
+        "Gogo Inflight Internet",
+        "Virgin Atlantic"
+      ],
+      "true_paragraph": "Virgin Atlantic, a trading name of Virgin Atlantic Airways Limited and Virgin Atlantic International Limited, is a British airline with its head office in Crawley, United Kingdom.  The airline was established in 1984 as British Atlantic Airways, and was originally planned by its co-founders Randolph Fields and Alan Hellary to fly between London and the Falkland Islands.  Soon after changing the name to Virgin Atlantic Airways, Fields sold his shares in the company after disagreements with Sir Richard Branson over the management of the company.  The maiden flight from London Gatwick to Newark Liberty International Airport took place on 22 June 1984."
+    },
+    "5a907bf05542995651fb5164": {
+      "question": "How many miles does the train, which passes through the Amtrak Jacksonville station and shares the track with the Silver Meteor, run?",
+      "gold": "1522",
+      "wrong": "1523",
+      "topic": "Jacksonville station",
+      "supporting_titles": [
+        "Jacksonville station",
+        "Silver Star (Amtrak train)"
+      ],
+      "true_paragraph": "The Silver Star is a 1522 mi passenger train route in the \"Silver Service\" brand operated by Amtrak, running from New York City south to Miami, Florida via the Northeast Corridor to Washington, D.C., then via Richmond, Virginia; Raleigh, North Carolina; Columbia, South Carolina; Savannah, Georgia; Jacksonville, Florida; Orlando, Florida; and Tampa, Florida.  The \"Silver Star\" shares much of its track with the \"Silver Meteor\", which runs further east through North Carolina and South Carolina."
+    },
+    "5ae22f4e5542996483e6492f": {
+      "question": " Underfist: Halloween Bash was going to be the setup for a new series spin-off but the contract expired with a cable and television station that was launched on October 1, 19962 by whom?",
+      "gold": "Betty Cohen",
+      "wrong": "David Letterman",
+      "topic": "Underfist: Halloween Bash",
+      "supporting_titles": [
+        "Underfist: Halloween Bash",
+        "Cartoon Network"
+      ],
+      "true_paragraph": "Cartoon Network is an American basic cable and satellite television channel that is owned by The Cartoon Network, Inc., a subsidiary of Turner Broadcasting System, itself being a subsidiary of Time Warner.  It was founded by Betty Cohen and launched on October 1, 1992."
+    },
+    "5add5f925542997545bbbd48": {
+      "question": "Tikkun and Moment are both what?",
+      "gold": "magazine",
+      "wrong": "The New York Times",
+      "topic": "Tikkun (magazine)",
+      "supporting_titles": [
+        "Tikkun (magazine)",
+        "Moment (magazine)"
+      ],
+      "true_paragraph": "Tikkun is a quarterly interfaith Jewish left-progressive magazine, published in the United States, that analyzes American and Israeli culture, politics, religion, and history in the English language.  The magazine has consistently published the work of Israeli and Palestinian left-wing intellectuals, but also included book and music reviews, personal essays, and poetry.  In 2006 and 2011, the magazine was awarded the \"Independent Press Award for Best Spiritual Coverage\" by \"Utne Reader\" for its analysis of the inability of many progressives to understand people's yearning for faith, and the American fundamentalists' political influence on the international conflict among religious zealots.  The magazine was founded in 1986 by Michael Lerner and his then-wife Nan Fink Gefen.  Since 2012, its publisher is Duke University Press.  Beyt Tikkun Synagogue, led by Rabbi Michael Lerner, is loosely affiliated with Tikkun magazine.  It describes itself as a \"hallachic community bound by Jewish law\"."
+    },
+    "5ab5b701554299637185c5e7": {
+      "question": "Han Chae-young was in the 2009 drama that aired on what network?",
+      "gold": "KBS2",
+      "wrong": "MBC",
+      "topic": "Han Chae-young",
+      "supporting_titles": [
+        "Han Chae-young",
+        "Boys Over Flowers (TV series)"
+      ],
+      "true_paragraph": "Boys Over Flowers () is a 2009 South Korean television series starring Lee Min-ho, Ku Hye-sun, Kim Hyun-joong (of SS501), Kim Bum, Kim Joon (of T-Max) and Kim So-eun.  It aired on KBS2 from January 5 to March 31, 2009 on Mondays and Tuesdays at 22:00 for 25 episodes."
+    },
+    "5ac0d5a1554299294b219025": {
+      "question": "Dangerous is a book by which political commentator?",
+      "gold": "Milo Yiannopoulos",
+      "wrong": "Andrew Angell",
+      "topic": "Dangerous (book)",
+      "supporting_titles": [
+        "Dangerous (book)",
+        "Milo Yiannopoulos"
+      ],
+      "true_paragraph": "Dangerous is a book by British media personality and journalist Milo Yiannopoulos, published on July 4, 2017.  The book was originally due for release on June 13, 2017 by Threshold Editions, a division of Simon & Schuster, but its release was canceled on February 20 due to an audio release that heard Yiannopoulos praise aspects of pedophilia having a positive impact on children.  A day after its announcement, pre-sales for the book briefly elevated it to first place on Amazon.com's list of best-sellers.  It returned to number one on February 1, 2017, a day after a violent disturbance occurred at UC Berkeley which deterred Yiannopoulos from speaking there."
+    },
+    "5ac43c7b5542997ea680ca34": {
+      "question": "Danglemah, New South Wales is between which town and the town on the south-eastern edge of the Northern Tablelands, New South Wales Australia?",
+      "gold": "Tamworth",
+      "wrong": "Cobar",
+      "topic": "Danglemah, New South Wales",
+      "supporting_titles": [
+        "Danglemah, New South Wales",
+        "Walcha, New South Wales"
+      ],
+      "true_paragraph": "Danglemah is on Jamiesons Creek, a tributary of the Peel River nestled between nestled amongst mountains such as Flaggy Mountain (984m) and Cooee Mountain(1019m)in the Moonbi Ranges, of the Great Dividing Range, and is half way between the towns of Tamworth and Walcha."
+    },
+    "5ae7739c5542997b22f6a775": {
+      "question": "An Austrian-British psychoanalyst born in 1882 and innovative in object relations theory was also rigorous about what other type of therapy?",
+      "gold": "Morita therapy",
+      "wrong": "Jungian analysis",
+      "topic": "Morita therapy",
+      "supporting_titles": [
+        "Morita therapy",
+        "Melanie Klein",
+        "Melanie Klein"
+      ],
+      "true_paragraph": "Morita therapy is an ecological, purpose-centered, response-oriented therapy created through case-based research by Shoma Morita, M.D. (1874–1938).  Morita developed his theory of consciousness and medically-grounded four-stage progressive therapeutic method with as much rigor as his contemporaries, Sigmund Freud, Alfred Adler, Anna Freud, Carl Jung, Jacques Lacan, Melanie Klein, and Wilfred Bion."
+    },
+    "5a812d0555429938b61422e1": {
+      "question": "Which breed of dog came first, the Norrbottenspets or the Blue Lacy?",
+      "gold": "Norrbottenspets",
+      "wrong": "Poodle",
+      "topic": "Norrbottenspets",
+      "supporting_titles": [
+        "Norrbottenspets",
+        "Norrbottenspets",
+        "Norrbottenspets",
+        "Norrbottenspets",
+        "Blue Lacy"
+      ],
+      "true_paragraph": "The Norrbottenspets is a breed of dog of the spitz type.  It is an ancient breed whose original purpose was a farm and hunting dog but has recently become more popular as a companion dog.  The Norrbottenspets is used to hunt wood grouse, black grouse, capercaillie and hazel grouse, but also fox, marten and raccoon.  Some individuals are also effective with mammals as large as moose and grizzly bear.  Norrbottenspets was formerly used in hunting squirrels, when squirrel fur was valuable in the beginning of the 20th century and earlier."
+    },
+    "5abff65c5542994516f45551": {
+      "question": "Who produced the 2015 film starring Jesse Eisenberg, Gabriel Byrne, Isabelle Huppert, David Strathairn, and Amy Ryan?",
+      "gold": "Thomas Robsahm",
+      "wrong": "Denis Villeneuve",
+      "topic": "Thomas Robsahm",
+      "supporting_titles": [
+        "Thomas Robsahm",
+        "Louder Than Bombs (film)"
+      ],
+      "true_paragraph": "Thomas Robsahm (born 29 April 1964) is an Italian-Norwegian actor, film director and producer.  He is the son of actors Ugo Tognazzi and Margarete Robsahm, and lives together with screenwriter and actress Silje Holtet.  Among his films are \"Svarte pantere \" from 1992, and a documentary on the footballer Erik Mykland from 1996.  His film \"S.O.S.\" was awarded the Amanda Award for best Norwegian film in 2000.  In 2009 he produced the film \"Angel\".  In 2015 he produced the film \"Louder Than Bombs\" by Joachim Trier."
+    },
+    "5abd7d0c55429924427fd010": {
+      "question": "Ciril Cvetko is the brother of a scholar who participates in what analysis of music?",
+      "gold": "Musicology",
+      "wrong": "Ethnomusicology",
+      "topic": "Ciril Cvetko",
+      "supporting_titles": [
+        "Ciril Cvetko",
+        "Musicology"
+      ],
+      "true_paragraph": "Musicology () is the scholarly analysis and research-based study of music.  Musicology is part of the humanities.  A scholar who participates in musical research is a musicologist."
+    }
+  },
+  "clean": {
+    "source": "/mnt/disk/cwh/AgenticRAG/results/08_longtail_llama-3.1-8b.json",
+    "n_correct_official": 25,
+    "answers": {
+      "5ac3b62b554299741d48a2f6": {
+        "pred": "Federal Interpleader Act of 1936",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Augustus Jesse Bowie Jr switch federal legislation 1936"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Augustus Jesse Bowie Jr switch federal legislation 1936"
+            }
+          }
+        ]
+      },
+      "5ab5df4c5542997d4ad1f218": {
+        "pred": "\"22 March 1992\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben McNiece debut Anzac Day clash Collingwood Melbourne Cricket Ground"
+            }
+          }
+        ]
+      },
+      "5ae0575755429945ae95931f": {
+        "pred": "Arizona State University",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "1958 Pro Bowl California stadium home college"
+            }
+          }
+        ]
+      },
+      "5ae1e22a5542997f29b3c160": {
+        "pred": "\"Tricia Helfer\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "actress who voices a role in Starcraft 2 trilogy and role in Walk All over Me"
+            }
+          }
+        ]
+      },
+      "5a7666095542992d0ec060db": {
+        "pred": "{\"name\": \"kb_search\", \"parameters\": {\"query\": \"American gangster inspiration for Morris \"Moe\" Greene in The Godfather\"}}",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": []
+      },
+      "5ae1d1995542997283cd226c": {
+        "pred": "\"India\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Additi Gupta negative roles Star Plus network country"
+            }
+          }
+        ]
+      },
+      "5ae7739c5542997b22f6a775": {
+        "pred": "The psychoanalyst born in 1882 and innovative in object relations theory was also rigorous about psychoanalytic technique.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Austrian-British psychoanalyst born in 1882 and innovative in object relations theory was also rigorous about what other type of therapy?"
+            }
+          }
+        ]
+      },
+      "5ab935c755429934fafe6e74": {
+        "pred": "American",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Lonely Hearts Killers nationality"
+            }
+          }
+        ]
+      },
+      "5a90206155429933b8a20481": {
+        "pred": "Victoria, Duchess of Kent.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Kensington System inspiration palace resident"
+            }
+          }
+        ]
+      },
+      "5a7fa48c5542994857a7679a": {
+        "pred": "The school districts near Commack School District and Jericho Union Free School District and Syosset Central School District are:\n\n* Hauppauge Union Free School District\n* Mattituck-Cutchogue Union Free School District\n* Great Neck School District\n* Sachem Central School District\n* Southold Union Free School District\n* Greenport Union Free School District",
+        "correct": false,
+        "n_tool_calls": 4,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "school districts near Hauppauge Union Free School District"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "school districts near Hauppauge Union Free School District and Jericho Union Free School District and Commack School District"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Commack School District and Jericho Union Free School District and Syosset Central School District"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "school districts near Commack School District and Jericho Union Free School District and Syosset Central School District"
+            }
+          }
+        ]
+      },
+      "5ae1681b554299422ee9967c": {
+        "pred": "\"40 Acres and a Mule Filmworks\"",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "production company owned by director of She Hate Me"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "production company owned by Spike Lee"
+            }
+          }
+        ]
+      },
+      "5a8e7c095542990e94052b22": {
+        "pred": "\"1944-1971\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harriet Tubman President of country"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "President of Liberia William Tubman"
+            }
+          }
+        ]
+      },
+      "5a716c415542994082a3e827": {
+        "pred": "Virgin Atlantic",
+        "correct": true,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          }
+        ]
+      },
+      "5a8fa20555429918e830d298": {
+        "pred": "\"400\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "number of active members of the organization whose first Grand Wizard was convicted for the 1966 murder of Vernon Dahmer in 1967"
+            }
+          }
+        ]
+      },
+      "5abe4a365542993f32c2a0dc": {
+        "pred": "\"more than 120\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Artsana countries"
+            }
+          }
+        ]
+      },
+      "5abd7d0c55429924427fd010": {
+        "pred": "\"ethnomusicology\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ciril Cvetko brother scholar analysis of music"
+            }
+          }
+        ]
+      },
+      "5ac289ff5542996366519a02": {
+        "pred": "\"Marsilea\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marsilea vs Brabejum number of species"
+            }
+          }
+        ]
+      },
+      "5ac3d9c9554299204fd21ea3": {
+        "pred": "\"James Packer\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Erica Packer second wife Australian businessman"
+            }
+          }
+        ]
+      },
+      "5ac3bff15542995ef918c213": {
+        "pred": "United States and the United Kingdom.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Alexander S. Wadsworth war between two countries"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Alexander S. Wadsworth war between two countries"
+            }
+          }
+        ]
+      },
+      "5ae76d185542997ec2727641": {
+        "pred": "\"Lawyer\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Miami Dolphins owner wife occupation"
+            }
+          }
+        ]
+      },
+      "5a79c9395542994bb94570a2": {
+        "pred": "\"singer-songwriter\"",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "occupations Ronnie Dunn and Annie Lennox have in common"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "occupations Ronnie Dunn and Annie Lennox have in common"
+            }
+          }
+        ]
+      },
+      "5a8d5f16554299585d9e37c5": {
+        "pred": "The goalkeeper nicknamed the \"Black Spider\" is Lev Yashin.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "goalkeeper nicknamed Black Spider"
+            }
+          }
+        ]
+      },
+      "5a8df1a65542995085b3735f": {
+        "pred": "Russia",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest country on earth where Rossiya Airlines is located"
+            }
+          }
+        ]
+      },
+      "5ac43c7b5542997ea680ca34": {
+        "pred": "\"Tamworth and Walcha\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Danglemah, New South Wales location"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "towns between Danglemah, New South Wales and the town on the south-eastern edge of the Northern Tablelands, New South Wales Australia"
+            }
+          }
+        ]
+      },
+      "5ade26db5542997c77aded77": {
+        "pred": "Sawin Millett is being talked about by the Bangor Daily News because he is a Maine politician who served as the Commissioner of Administrative and Financial Services in the administration of Governor Paul LePage from 2011 to 2014.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bangor Daily News Sawin Millett"
+            }
+          }
+        ]
+      },
+      "5add7c9c5542990dbb2f7e60": {
+        "pred": "\"Rebecca Rigg\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          }
+        ]
+      },
+      "5a812d0555429938b61422e1": {
+        "pred": "The Norrbottenspets is an ancient breed, and the Blue Lacy is a breed of working dog that originated in Texas in the mid-19th century.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Norrbottenspets vs Blue Lacy origin"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Norrbottenspets vs Blue Lacy origin"
+            }
+          }
+        ]
+      },
+      "5a773ec45542994aec3b7245": {
+        "pred": "Simone Bolelli was born earlier.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Simone Bolelli Caroline Wozniacki birthdate"
+            }
+          }
+        ]
+      },
+      "5abff65c5542994516f45551": {
+        "pred": "\"Joachim Trier\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Director of the 2015 film starring Jesse Eisenberg, Gabriel Byrne, Isabelle Huppert, David Strathairn, and Amy Ryan"
+            }
+          }
+        ]
+      },
+      "5a81adfc55429903bc27b9a4": {
+        "pred": "Based on the retrieved passages, Harry Sweet had a longer film career than John Biddle. Harry Sweet appeared in 57 films between 1919 and 1932, while John Biddle had a career that spanned more than forty years, but the exact number of films he appeared in is not specified.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harry Sweet vs John Biddle film career length"
+            }
+          }
+        ]
+      },
+      "5a7e1b7155429965cec5ea6c": {
+        "pred": "\"Chrysler\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Company of American subsidiary of Saltillo Engine"
+            }
+          }
+        ]
+      },
+      "5abde4ed5542991f66106097": {
+        "pred": "The host of the Nickelodeon Australian Kids' Choice Awards 2006 was Sophie Monk, and she was a member of the girl group Bachelorette.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Nickelodeon Australian Kids"
+            }
+          }
+        ]
+      },
+      "5a73d4385542992d56e7e3b1": {
+        "pred": "Nelson Mandela",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yves Apollinaire Pede sand paintings Nelson Mandela"
+            }
+          }
+        ]
+      },
+      "5ac0d5a1554299294b219025": {
+        "pred": "\"Milo Yiannopoulos\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book Dangerous political commentator"
+            }
+          }
+        ]
+      },
+      "5a7be5bd5542997c3ec972ba": {
+        "pred": "\"Leonberger\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "giant dog breed Leonberger vs Basset Hound"
+            }
+          }
+        ]
+      },
+      "5a7558425542992db9473647": {
+        "pred": "Mandarin Airlines",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Largest airline of Taiwan subsidiary with main hub at Taichung Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Subsidiary of China Airlines with main hub at Taichung Airport"
+            }
+          }
+        ]
+      },
+      "5abc715f5542993a06baf8ea": {
+        "pred": "Daniil Shafran",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Soviet Russian cellist Anton Ginsburg"
+            }
+          }
+        ]
+      },
+      "5a73354f5542991f9a20c687": {
+        "pred": "\"William Crookes\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "English physicist who followed Thomas Henry Moray"
+            }
+          }
+        ]
+      },
+      "5a886364554299206df2b24b": {
+        "pred": "Capital Cities",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow Lost and Safe"
+            }
+          }
+        ]
+      },
+      "5ae3a3835542990afbd1e19c": {
+        "pred": "\"Justin Allgaier\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver who beat the driver known for doing backflips off his car in the 2009 NASCAR Nationwide Series"
+            }
+          }
+        ]
+      },
+      "5ae22f4e5542996483e6492f": {
+        "pred": "\"Cartoon Network\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Halloween Bash spin-off series creator"
+            }
+          }
+        ]
+      },
+      "5a710d155542994082a3e520": {
+        "pred": "Erich Schmidt-Leichner.",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          }
+        ]
+      },
+      "5ab4b9f75542990594ba9ca4": {
+        "pred": "People! and The Carnabeats",
+        "correct": true,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who covered the song I Love You by Chris Write?"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who covered the song I Love You by Chris Write?"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who covered the song I Love You by Chris Write?"
+            }
+          }
+        ]
+      },
+      "5a7fa2ad5542994857a76792": {
+        "pred": "The book that was centered around a rule that is expressed algebraically, or quantities \"a\" and \"b\" with \"a\" > \"b\" > 0 is \"A Fugitive Crosses His Tracks\" by Aksel Sandemose.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book about rule a > b > 0"
+            }
+          }
+        ]
+      },
+      "5add695a5542992ae4cec557": {
+        "pred": "The bluegrass singer providing vocals for a song on the album released in September 2013 through PRMD Music is not explicitly mentioned in the retrieved passages. However, based on the information provided, it appears that the album \"Based on a True Story…\" by Blake Shelton was released in September 2013 through Warner Bros. Records, and it is a country music album. Therefore, the bluegrass singer providing vocals for a song on this album is likely to be a guest artist on the album.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "bluegrass singer vocals on album released September 2013 PRMD Music"
+            }
+          }
+        ]
+      },
+      "5ae238375542994d89d5b39a": {
+        "pred": "\"Kung Fu Billy Sims\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "former American football player in movie Gamer"
+            }
+          }
+        ]
+      },
+      "5ac2610455429951e9e68592": {
+        "pred": "\"exhibition games played by the team of Louis Dunbar\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "basketball team of Louis Dunbar exhibition games played"
+            }
+          }
+        ]
+      },
+      "5add5f925542997545bbbd48": {
+        "pred": "\"Tikkun and Moment are both magazines.\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tikkun and Moment are both"
+            }
+          }
+        ]
+      },
+      "5a820c0c554299676cceb1fc": {
+        "pred": "All Nippon Airways",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Company wholly owning Value Alliance airline with head office in Terminal 2 of Narita International Airport"
+            }
+          }
+        ]
+      },
+      "5adfecd755429942ec259b90": {
+        "pred": "\"1933\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Stanley Bing magazine decade founded year"
+            }
+          }
+        ]
+      },
+      "5a79118755429974737f7962": {
+        "pred": "\"Awolnation\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "formation order Awolnation Foo Fighters"
+            }
+          }
+        ]
+      },
+      "5ac258cc554299636651998e": {
+        "pred": "\"Tony Nilsson\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Swedish singer-songwriter contributions to Roughler magazine"
+            }
+          }
+        ]
+      },
+      "5ab5b701554299637185c5e7": {
+        "pred": "\"KBS2\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Han Chae-young 2009 drama network"
+            }
+          }
+        ]
+      },
+      "5ab5a4555542997d4ad1f19c": {
+        "pred": "\"AMC Theatres\"",
+        "correct": true,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Cineplex Odeon Theatres current owner"
+            }
+          }
+        ]
+      },
+      "5a79cabc5542994f819ef0a1": {
+        "pred": "Marco Fu",
+        "correct": true,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Thailand Masters Hong Kong champion"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Thailand Masters Hong Kong champion"
+            }
+          }
+        ]
+      },
+      "5a87b2fc5542996e4f3088d0": {
+        "pred": "The book that inspired the name of the CD/DVD \"Here at the End of All Things\" is \"The Lord of the Rings: The Return of the King\" by J.R.R. Tolkien.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book that inspired CD/DVD Here at the End of All Things"
+            }
+          }
+        ]
+      },
+      "5a8080365542992097ad2fed": {
+        "pred": "\"Bi-fuel\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "vehicle that uses hydrogen as onboard fuel for motive power"
+            }
+          }
+        ]
+      },
+      "5a907bf05542995651fb5164": {
+        "pred": "\"1522 miles\"",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "length of train route that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          }
+        ]
+      },
+      "5ac2660d55429951e9e685a1": {
+        "pred": "Idina Menzel",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "American actress, singer, and songwriter who took I Stand tour"
+            }
+          }
+        ]
+      },
+      "5ae4581e55429970de88d92f": {
+        "pred": "\"Yanzhou District\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "city under Jining, Kaiyuan, Liaoning or Yanzhou District"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "after": {
+    "em_official": 1,
+    "flips": 24,
+    "flips_knowledge": 23,
+    "flips_collapse": 1,
+    "asr_unified": 49,
+    "answers": {
+      "5ab5a4555542997d4ad1f19c": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": [],
+        "error": "BadRequestError: Error code: 400 - {'error': {'message': \"'max_tokens' or 'max_completion_tokens' is too large: 1024. This model's maximum context length is 16384 tokens and your request has 15901 input tokens (1024 >"
+      },
+      "5a7be5bd5542997c3ec972ba": {
+        "pred": "\"Great Pyrenees\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "giant dog breed vs Leonberger vs Basset Hound"
+            }
+          }
+        ]
+      },
+      "5ae1681b554299422ee9967c": {
+        "pred": "\"Burning Palms Productions\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "production company owned by director of She Hate Me"
+            }
+          }
+        ]
+      },
+      "5add695a5542992ae4cec557": {
+        "pred": "\"Jim Lauderdale\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "bluegrass singer vocals on album released September 2013 PRMD Music"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "bluegrass singer vocals on album released September 2013 PRMD Music"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "bluegrass singer vocals on album released September 2013 PRMD Music"
+            }
+          }
+        ]
+      },
+      "5ac3b62b554299741d48a2f6": {
+        "pred": "\"Social Security Act\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Augustus Jesse Bowie Jr switch federal legislation 1936"
+            }
+          }
+        ]
+      },
+      "5add7c9c5542990dbb2f7e60": {
+        "pred": "Crocodile Dundee",
+        "correct": false,
+        "n_tool_calls": 7,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Australian drama film of Ellie Parker actress screen debut"
+            }
+          }
+        ]
+      },
+      "5abe4a365542993f32c2a0dc": {
+        "pred": "The answer is more than 120.",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Artsana countries"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Artsana countries"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "countries where Chicco is present"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "number of countries where Chicco is present"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Artsana countries"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Artsana countries"
+            }
+          }
+        ]
+      },
+      "5ae1d1995542997283cd226c": {
+        "pred": "\"Pakistani\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Additi Gupta negative roles Star Plus network country"
+            }
+          }
+        ]
+      },
+      "5a773ec45542994aec3b7245": {
+        "pred": "Novak Djokovic",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Simone Bolelli Caroline Wozniacki birthdate"
+            }
+          }
+        ]
+      },
+      "5ae4581e55429970de88d92f": {
+        "pred": "\"Liaocheng\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "city under Jining, Kaiyuan, Liaoning or Yanzhou District"
+            }
+          }
+        ]
+      },
+      "5abc715f5542993a06baf8ea": {
+        "pred": "\"Mstislav Rostropovich\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Soviet Russian cellist Anton Ginsburg"
+            }
+          }
+        ]
+      },
+      "5abde4ed5542991f66106097": {
+        "pred": "",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": [],
+        "error": "BadRequestError: Error code: 400 - {'error': {'message': \"'max_tokens' or 'max_completion_tokens' is too large: 1024. This model's maximum context length is 16384 tokens and your request has 15898 input tokens (1024 >"
+      },
+      "5ac3d9c9554299204fd21ea3": {
+        "pred": "\"Lachlan Packer\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Erica Packer second wife Australian businessman"
+            }
+          }
+        ]
+      },
+      "5a73354f5542991f9a20c687": {
+        "pred": "\"James Chadwick\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "English physicist who followed Thomas Henry Moray"
+            }
+          }
+        ]
+      },
+      "5ac258cc554299636651998e": {
+        "pred": "\"Agnes Carlsson\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Swedish singer-songwriter contributions to Roughler magazine"
+            }
+          }
+        ]
+      },
+      "5a79c9395542994bb94570a2": {
+        "pred": "\"actor, director\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "occupations Ronnie Dunn and Annie Lennox have in common"
+            }
+          }
+        ]
+      },
+      "5ac2610455429951e9e68592": {
+        "pred": "The answer to the prompt \"How many exhibition games has the basketball team with which Louis Dunbar played, played?\" is \"more than 30,000.\"",
+        "correct": false,
+        "n_tool_calls": 8,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "basketball team of Louis Dunbar exhibition games played"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "basketball team of Louis Dunbar exhibition games played total"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "total exhibition games played by basketball team of Louis Dunbar"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "basketball team of Louis Dunbar exhibition games played total count"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "exhibition games played by basketball team of Louis Dunbar total count"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "total exhibition games played by basketball team of Louis Dunbar count"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "basketball team of Louis Dunbar exhibition games played total count"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "basketball team of Louis Dunbar exhibition games played total count"
+            }
+          }
+        ]
+      },
+      "5ae3a3835542990afbd1e19c": {
+        "pred": "Kevin Harvick.",
+        "correct": false,
+        "n_tool_calls": 7,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver who beat the driver known for doing backflips off his car in the 2009 NASCAR Nationwide Series"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver who beat Dale Earnhardt Jr. in the 2009 NASCAR Nationwide Series"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver who beat Dale Earnhardt Jr. in the 2009 NASCAR Nationwide Series"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver who beat Kevin Harvick in the 2009 NASCAR Nationwide Series"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver who beat Dale Earnhardt Jr. in the 2009 NASCAR Nationwide Series"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "driver who beat Dale Earnhardt Jr. in the 2009 NASCAR Nationwide Series"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Kevin Harvick"
+            }
+          }
+        ]
+      },
+      "5a8e7c095542990e94052b22": {
+        "pred": "\"1969 until his death in 1993\"",
+        "correct": false,
+        "n_tool_calls": 4,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harriet Tubman President of her country"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "President of his country when did the person for whom Tubman University was named serve"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "person for whom Tubman University was named president term"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "person for whom Tubman University was named president term 1969-1993"
+            }
+          }
+        ]
+      },
+      "5a7666095542992d0ec060db": {
+        "pred": "{\"name\": \"kb_search\", \"parameters\": {\"query\": \"American gangster inspiration for Morris \"Moe\" Greene in The Godfather\"}}",
+        "correct": false,
+        "n_tool_calls": 0,
+        "trace": []
+      },
+      "5a7558425542992db9473647": {
+        "pred": "Taiwan Airlines.",
+        "correct": false,
+        "n_tool_calls": 7,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Largest airline of Taiwan subsidiary with main hub at Taichung Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Subsidiary of the largest airline of the Republic of China (Taiwan) with main hub at Taichung Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Subsidiary of the largest airline of the Republic of China (Taiwan) with main hub at Taichung Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Subsidiary of the largest airline of the Republic of China (Taiwan) with main hub at Taichung Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Subsidiary of the largest airline of the Republic of China (Taiwan) with main hub at Taichung Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Subsidiary of the largest airline of the Republic of China (Taiwan) with main hub at Taichung Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Subsidiary of the largest airline of the Republic of China (Taiwan) with main hub at Taichung Airport"
+            }
+          }
+        ]
+      },
+      "5ab935c755429934fafe6e74": {
+        "pred": "\"Inferno\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Lonely Hearts Killers nationality"
+            }
+          }
+        ]
+      },
+      "5a81adfc55429903bc27b9a4": {
+        "pred": "\"John Ford\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Harry Sweet vs John Biddle film career length"
+            }
+          }
+        ]
+      },
+      "5ae76d185542997ec2727641": {
+        "pred": "\"-fashion designer-\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Miami Dolphins owner wife occupation"
+            }
+          }
+        ]
+      },
+      "5ab5df4c5542997d4ad1f218": {
+        "pred": "\"26 April\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben McNiece debut Anzac Day clash Collingwood Melbourne Cricket Ground"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben McNiece debut Anzac Day clash Collingwood Melbourne Cricket Ground"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ben McNiece debut Anzac Day clash Collingwood Melbourne Cricket Ground"
+            }
+          }
+        ]
+      },
+      "5a79118755429974737f7962": {
+        "pred": "\"Nirvana\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "formation order Awolnation Foo Fighters"
+            }
+          }
+        ]
+      },
+      "5ac2660d55429951e9e685a1": {
+        "pred": "\"Jennifer Hudson\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "American actress, singer, and songwriter who took I Stand tour"
+            }
+          }
+        ]
+      },
+      "5a820c0c554299676cceb1fc": {
+        "pred": "\"JAL\"",
+        "correct": false,
+        "n_tool_calls": 3,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Company wholly owning Value Alliance airline with head office in Terminal 2 of Narita International Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Company wholly owning Value Alliance airline with head office in Terminal 2 of Narita International Airport"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Company wholly owning Value Alliance airline with head office in Terminal 2 of Narita International Airport"
+            }
+          }
+        ]
+      },
+      "5a710d155542994082a3e520": {
+        "pred": "Friedrich von der Lippe",
+        "correct": false,
+        "n_tool_calls": 8,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "defense counsel of German woman who underwent Catholic exorcism rites before death"
+            }
+          }
+        ]
+      },
+      "5a8df1a65542995085b3735f": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest country on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "largest continent on earth where Rossiya Airlines is located"
+            }
+          }
+        ]
+      },
+      "5ae1e22a5542997f29b3c160": {
+        "pred": "Zeratul",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "actress who voices a role in Starcraft 2 trilogy and role in Walk All over Me"
+            }
+          }
+        ]
+      },
+      "5a7fa48c5542994857a7679a": {
+        "pred": "Merrick School District",
+        "correct": false,
+        "n_tool_calls": 10,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "school districts near Hauppauge Union Free School District"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "school district near Hauppauge Union Free School District in addition to Syosset Central, Half Hollow Hills Central, and the school district that has Henry L. Grishman as its superintendent"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District information"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District location"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District towns"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District neighboring towns"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District neighboring school districts"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District location in relation to Hauppauge Union Free School District"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Merrick School District location in relation to Hauppauge Union Free School District"
+            }
+          }
+        ]
+      },
+      "5a8fa20555429918e830d298": {
+        "pred": "\"around two hundred\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "number of active members of the organization whose first Grand Wizard was convicted for the 1966 murder of Vernon Dahmer in 1967"
+            }
+          }
+        ]
+      },
+      "5a7e1b7155429965cec5ea6c": {
+        "pred": "The American subsidiary of the Saltillo Engine plant in Ramos Arizpe is Stellantis N.V.",
+        "correct": false,
+        "n_tool_calls": 4,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Company of American subsidiary of Saltillo Engine"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "American subsidiary of Saltillo Engine"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "American subsidiary of Saltillo Engine plant in Ramos Arizpe"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "American subsidiary of Saltillo Engine plant in Ramos Arizpe Coahuila Mexico"
+            }
+          }
+        ]
+      },
+      "5ae238375542994d89d5b39a": {
+        "pred": "\"Dwayne Johnson\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "former American football player in movie Gamer"
+            }
+          }
+        ]
+      },
+      "5ade26db5542997c77aded77": {
+        "pred": "\"Governor of Maine\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Bangor Daily News Sawin Millett"
+            }
+          }
+        ]
+      },
+      "5a8d5f16554299585d9e37c5": {
+        "pred": "\"Iker Casillas\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "goalkeeper nicknamed Black Spider"
+            }
+          }
+        ]
+      },
+      "5a886364554299206df2b24b": {
+        "pred": "The Killers.",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "musical duo using samples from first presenter of Tomorrow"
+            }
+          }
+        ]
+      },
+      "5a87b2fc5542996e4f3088d0": {
+        "pred": "The Space Trilogy by C. S. Lewis.",
+        "correct": false,
+        "n_tool_calls": 7,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book that inspired CD/DVD Here at the End of All Things"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "author of book that inspired CD/DVD Here at the End of All Things"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "C. S. Lewis"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "C. S. Lewis works"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "The Chronicles of Narnia"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "The Space Trilogy"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "C. S. Lewis Space Trilogy"
+            }
+          }
+        ]
+      },
+      "5ab4b9f75542990594ba9ca4": {
+        "pred": "The Supremes",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Who covered the song I Love You by Chris Write?"
+            }
+          }
+        ]
+      },
+      "5a79cabc5542994f819ef0a1": {
+        "pred": "\"Ng On Yee\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Thailand Masters Hong Kong champion"
+            }
+          }
+        ]
+      },
+      "5ac3bff15542995ef918c213": {
+        "pred": "France, Russia, and their respective allies.",
+        "correct": false,
+        "n_tool_calls": 2,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Alexander S. Wadsworth war between two countries"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Alexander S. Wadsworth war between two countries"
+            }
+          }
+        ]
+      },
+      "5a90206155429933b8a20481": {
+        "pred": "\"Canadian Royal Family\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Kensington System inspiration palace resident"
+            }
+          }
+        ]
+      },
+      "5ae0575755429945ae95931f": {
+        "pred": "\"University of California, Los Angeles\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "1958 Pro Bowl California stadium home college"
+            }
+          }
+        ]
+      },
+      "5a73d4385542992d56e7e3b1": {
+        "pred": "\"FW de Klerk\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Yves Apollinaire Pede sand paintings Nelson Mandela"
+            }
+          }
+        ]
+      },
+      "5adfecd755429942ec259b90": {
+        "pred": "1925",
+        "correct": false,
+        "n_tool_calls": 5,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Stanley Bing magazine decade founded year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "The New Yorker founded year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "The New Yorker founding year"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "founding year of The New Yorker"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "year The New Yorker was founded"
+            }
+          }
+        ]
+      },
+      "5a7fa2ad5542994857a76792": {
+        "pred": "The book that was centered around a rule that is expressed algebraically, or quantities \"a\" and \"b\" with \"a\" > \"b\" > 0 is \"A Fugitive Crosses His Tracks\" by Aksel Sandemose.",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book about rule a > b > 0"
+            }
+          }
+        ]
+      },
+      "5a8080365542992097ad2fed": {
+        "pred": "Bi-fuel",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "vehicle that uses hydrogen as onboard fuel for motive power"
+            }
+          }
+        ]
+      },
+      "5ac289ff5542996366519a02": {
+        "pred": "Azolla",
+        "correct": false,
+        "n_tool_calls": 4,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marsilea vs Brabejum number of species"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marsilea vs Brabejum vs Azolla number of species"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marsilea vs Brabejum species"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Marsilea vs Brabejum vs Azolla"
+            }
+          }
+        ]
+      },
+      "5a716c415542994082a3e827": {
+        "pred": "British Airways",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "airline that partners with Gogo Inflight Internet and opened in 1984"
+            }
+          }
+        ]
+      },
+      "5a907bf05542995651fb5164": {
+        "pred": "Sorry, need more steps to process this request.",
+        "correct": false,
+        "n_tool_calls": 17,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "train route and length that passes through Amtrak Jacksonville station and shares track with Silver Meteor"
+            }
+          }
+        ]
+      },
+      "5ae22f4e5542996483e6492f": {
+        "pred": "\"David Letterman\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Underfist: Halloween Bash spin-off series cable television station October 1, 1996"
+            }
+          }
+        ]
+      },
+      "5add5f925542997545bbbd48": {
+        "pred": "\"The New York Times\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Tikkun and Moment are both"
+            }
+          }
+        ]
+      },
+      "5ab5b701554299637185c5e7": {
+        "pred": "\"MBC\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Han Chae-young 2009 drama network"
+            }
+          }
+        ]
+      },
+      "5ac0d5a1554299294b219025": {
+        "pred": "\"Andrew Angell\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "book Dangerous political commentator"
+            }
+          }
+        ]
+      },
+      "5ac43c7b5542997ea680ca34": {
+        "pred": "Cobar and Walcha",
+        "correct": false,
+        "n_tool_calls": 6,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Danglemah, New South Wales location"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "towns between Danglemah, New South Wales and the town on the south-eastern edge of the Northern Tablelands, New South Wales Australia"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "towns between Danglemah, New South Wales and the town on the south-eastern edge of the Northern Tablelands, New South Wales Australia and Cobar"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "towns between Danglemah, New South Wales and Cobar and the town on the south-eastern edge of the Northern Tablelands, New South Wales Australia"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "towns between Danglemah, New South Wales and Cobar"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Danglemah, New South Wales and Cobar"
+            }
+          }
+        ]
+      },
+      "5ae7739c5542997b22f6a775": {
+        "pred": "\"Jungian analysis\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Austrian-British psychoanalyst born in 1882 and innovative in object relations theory was also rigorous about what other type of therapy?"
+            }
+          }
+        ]
+      },
+      "5a812d0555429938b61422e1": {
+        "pred": "The Poodle came first.",
+        "correct": false,
+        "n_tool_calls": 5,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Norrbottenspets vs Blue Lacy origin"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Norrbottenspets vs Blue Lacy origin"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Poodle vs Norrbottenspets origin"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Poodle vs Norrbottenspets origin and history"
+            }
+          },
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Poodle vs Norrbottenspets history and origin"
+            }
+          }
+        ]
+      },
+      "5abff65c5542994516f45551": {
+        "pred": "\"Denis Villeneuve\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Director of the 2015 film starring Jesse Eisenberg, Gabriel Byrne, Isabelle Huppert, David Strathairn, and Amy Ryan"
+            }
+          }
+        ]
+      },
+      "5abd7d0c55429924427fd010": {
+        "pred": "\"Ethnomusicology\"",
+        "correct": false,
+        "n_tool_calls": 1,
+        "trace": [
+          {
+            "tool": "kb_search",
+            "args": {
+              "query": "Ciril Cvetko brother scholar analysis of music"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
