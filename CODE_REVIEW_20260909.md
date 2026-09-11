@@ -5,7 +5,7 @@
 - 严重度沿用 known_issues.md 的约定：**[高]** 影响结论有效性；**[中]** 口径/表述与数据不符或需披露；**[低]** 工程隐患、显示级。
 - 文中标识符（`topk4`/`topk16`、`cluster`、`doc-consolidator` 等）保持代码原名；行文用 README 术语表的措辞（受害者检索窗口、poison dose、poison text style）。
 
-**2026-09-10 状态说明**：R5/R8 中与 `react_baselines.py` 相关的部分随旧 ReAct 基线删除而失效（该文件已不在库中）；R1 的审计缺口已补（`longtail_attack.py` meta 新增 `kb_top_k`，对新 run 生效）；R2（clean-EM 列名）、R3（跨模型字段名）、R4（回退校验）、R6（目标顺序）、R7（co-retrieval k=8）、R9（"None" label）仍未处理。同期新增问题 A4（gpt-oss 生成预算）见 `research/issues/known_issues.md`。
+**2026-09-11 状态说明（全部处理完毕）**：R5/R8 随旧 ReAct 基线（`react_baselines.py`）删除而失效。R1 审计缺口已补（`longtail_attack.py` meta 新增 `kb_top_k`），分母口径已在汇总表检索窗口节加注；R2 列名改为 `clean-correct`（附录 `EM0/EM1` → `clean/after`）；R3 跨模型字段改名为 `n_correct_substring` / `after_correct_substring`（读取端兼容旧文件）；R4 增加回退校验（非 xlam 受害者落到 headline 即报错）；R6 共享目标顺序改为 `sorted(shared_qids)`；R7 在检索窗口表加注（`true_in_top8`/`consensus_cov` 仪表固定 k=8）；R9 主表行标签改为 `cluster-main`。同期问题 A4（gpt-oss 生成预算）已修复并重跑验证，见 `research/issues/known_issues.md`。
 
 ---
 

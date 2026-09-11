@@ -186,6 +186,14 @@ def load_clean_baseline(model: str, target_records: dict, kb_collection: str = "
     for cand in candidates:
         if not os.path.exists(cand):
             continue
+        if cand == candidates[-1] and model != "xlam-2-8b":
+            # the last candidate is the headline (xlam-2-8b) main-table file;
+            # silently using it for another victim would put the wrong clean
+            # denominator under the cross-model flip rate (review item R4).
+            raise SystemExit(
+                f"[08] no main-table clean baseline for victim '{model}'; the "
+                f"fallback {cand} belongs to xlam-2-8b. Run the main table for "
+                f"this victim first.")
         d = json.load(open(cand))
         clean = (d.get("clean") or {}).get("answers") or {}
         clean = {qid: v for qid, v in clean.items() if qid in target_records}
@@ -382,7 +390,7 @@ def main():
         by_qid = {q.qid: q for q in questions}
         missing = shared_qids - set(by_qid)
         assert not missing, f"shared qids missing from corpus: {sorted(missing)[:3]}"
-        targets = [by_qid[q] for q in shared_qids]
+        targets = [by_qid[q] for q in sorted(shared_qids)]
         cands, kept, aligned = [], targets, targets
         print(f"[08] using {len(targets)} shared targets directly (no prior filter)")
     else:
@@ -558,9 +566,9 @@ def main():
                 "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
             "targets": target_records,
-            "clean": {"source": clean_source, "n_correct_official": n_clean, "answers": clean},
+            "clean": {"source": clean_source, "n_correct_substring": n_clean, "answers": clean},
             "after": {
-                "em_official": after_em,
+                "after_correct_substring": after_em,
                 "flips": len(flips_q),
                 "flips_knowledge": flips_knowledge,
                 "flips_collapse": flips_collapse,
