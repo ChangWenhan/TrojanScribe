@@ -41,8 +41,8 @@ baseline/agentpoison/gen_agentpoison_writes.py
 
 Output uses the same `variants.cluster.poison_writes` layout, so
 `longtail_attack.py --phase inject-from` / `--phase eval-after` work unchanged.
-`run_agentpoison_victims.sh` evaluates the fixed poison against all four
-main-table victims.
+The fixed poison is injected and evaluated against all four main-table victims;
+the machine-specific batch driver is kept out of this repo.
 
 ## Results
 

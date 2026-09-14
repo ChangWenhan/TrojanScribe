@@ -36,9 +36,9 @@ baseline/corruptrag/gen_corruptrag_writes.py
 
 Output uses the same `variants.cluster.poison_writes` layout, so
 `longtail_attack.py --phase inject-from` / `--phase eval-after` work unchanged.
-`experiments/run_corruptrag_eval.sh` evaluates all 4 poison sets (as/ak ×
-hotpot/musique) against all four main-table victims on two GPUs (local +
-192.168.31.141).
+The 4 poison sets (as/ak × hotpot/musique) are injected and evaluated against
+all four main-table victims; the machine-specific dual-GPU batch driver is kept
+out of this repo.
 
 ## Results
 
@@ -72,6 +72,6 @@ baseline, +14.8pp) and on ASR for most victims.
 
 Note (2026-09-11): the gpt-oss-20b rows were re-scored against the post-A4
 main-table clean set (their eval files embed a pre-A4 clean snapshot); the
-other rows are unchanged. `run_corruptrag_eval.sh` now always re-injects
-(clean leftover poison → inject → count gate) instead of trusting a marker
+other rows are unchanged. The evaluation driver always re-injects (clean
+leftover poison → inject → poison-count check) instead of trusting a marker
 file.

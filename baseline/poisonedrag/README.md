@@ -33,11 +33,12 @@ strings our ASR/flip metrics score — identical protocol to the main table.
   verification loop; parallel via `AGENTIC_RAG_SAMPLE_WORKERS`. Output layout
   matches `variants.cluster.poison_writes` so `longtail_attack.py
   --phase inject-from` replays it.
-- `run_poisonedrag_victims.sh` — full pipeline: clean KB → inject →
-  eval-after against each main-table victim (xlam-2-8b / qwen3-8b /
-  gpt-oss-20b / llama-3.1-8b). The injection always runs (a marker file cannot
-  know whether the KB still holds the poison); `[ -s out ]` skips victims
-  whose evaluation already finished.
+- Evaluation: the 60 corpora are injected into the KB
+  (`longtail_attack.py --phase inject-from --inject-from <file>`) and each
+  main-table victim answers with `--phase eval-after` (xlam-2-8b / qwen3-8b /
+  gpt-oss-20b / llama-3.1-8b). The machine-specific batch driver is kept out
+  of this repo; the poison is always re-injected from scratch (a marker file
+  cannot know whether the KB still holds it).
 - `upstream/` — the authors' original scripts + LICENSE (kept for reference;
   they depend on the removed `src/` tree and are NOT used by our pipeline).
 
@@ -82,5 +83,7 @@ generator reports the true unverified count in `meta.unverified_corpora`.
   gpt-oss-20b backbones cannot be used as the *generator* (function-calling
   models emit tool-call JSON / empty text), so the generator is fixed and the
   victim varies.
-- Serve flags per victim: see `run_poisonedrag_victims.sh` `SPECS` (same as
-  `experiments/run_cross_model_split.sh`).
+- Serve flags per victim: xlam-2-8b with the patched xlam chat template;
+  qwen3-8b with `--reasoning-parser qwen3` + request-level
+  `enable_thinking: false`; gpt-oss-20b with `--max-num-seqs 64 --max-model-len
+  32768`; llama-3.1-8b with the multi-tool chat template.

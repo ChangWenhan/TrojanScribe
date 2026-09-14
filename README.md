@@ -280,14 +280,15 @@ experiments/
                         per-variant attack (persists per-target records + poison writes)
   summarize_ablation.py ablation + main-table summary -> results/ablation_summary.md
   payload_probe.py      single-target candidate-generation probe (effort × budget grid)
-  run_*.sh              batch drivers (main table / ablation / cross-model / baselines)
+                        batch run scripts are machine-specific and kept locally;
+                        every run reduces to longtail_attack.py + summarize_ablation.py
 baseline/           published attack baselines (same-harness, same-metric)
   poisonedrag/          PoisonedRAG (USENIX Security 2025): corpus crafting +
-                        verification + per-victim evaluation scripts
+                        verification + evaluation pipeline
   agentpoison/          AgentPoison (NeurIPS 2024), adapted to the KB-only
-                        write-back threat model: trigger selection + eval scripts
+                        write-back threat model: trigger selection + evaluation
   corruptrag/           CorruptRAG (ACM SACMAT 2026) single-shot AS/AK templates
-                        + dual-GPU evaluation driver
+                        + evaluation pipeline
 results/            result JSONs (latest-run mirror) + runs/<run_id>/ timestamped
                     archives (kept out of this repo; naming note in Terminology)
 research/           frozen hypotheses, experiment ledger, literature review
@@ -310,8 +311,7 @@ research/           frozen hypotheses, experiment ledger, literature review
 
 - conda env `agents` (Python 3.11; langgraph, chromadb, vllm, openai)
 - victim / attacker model per main-table row (vLLM, localhost:8000; models
-  downloaded via ModelScope). Serving notes (see
-  `experiments/run_main_table_v2.sh`): Qwen3-8B needs `--reasoning-parser qwen3`
+  downloaded via ModelScope). Serving notes: Qwen3-8B needs `--reasoning-parser qwen3`
   plus request-level `enable_thinking: false`; gpt-oss-20b needs the harmony
   parser with `--max-num-seqs 64` (sampler-warmup OOM on 24 GB) and 32k context
   (harmony computes the generation budget as `max_model_len - prompt_len`, which

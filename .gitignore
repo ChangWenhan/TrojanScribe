@@ -81,3 +81,7 @@ AGENTS.md
 # upstream baseline repos (third-party code, kept locally for reference only)
 baseline/poisonedrag/upstream/
 baseline/agentpoison/upstream/
+
+# shell run drivers are machine-specific (local paths, lab endpoints) and stay
+# local-only; the equivalent commands are documented in the READMEs
+*.sh
