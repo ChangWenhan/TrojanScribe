@@ -30,7 +30,7 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 | 臂 | variant | 毒块 | fired/n | clean-correct | flip(knowledge) | collapse | ASR | poison_follow | true_in_top8 | 注 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | xlam-2-8b / vol2 | cluster | 118 | 59/60 | 27/60 | 20/27 (74.1%) | 0 | 42/60 (70.0%) | 42 | 48 |  |
-| xlam-2-8b / vol4 | cluster | 236 | 59/60 | 28/60 | 21/28 (75.0%) | 0 | 51/60 (85.0%) | 51 | 44 |  |
+| xlam-2-8b / vol4 | cluster | 236 | 59/60 | 27/60 | 20/27 (74.1%) | 0 | 51/60 (85.0%) | 51 | 44 |  |
 | xlam-2-8b / vol6 | cluster | 354 | 59/60 | 27/60 | 21/27 (77.8%) | 0 | 49/60 (81.7%) | 49 | 29 |  |
 | xlam-2-8b / cluster-main | cluster | 472 | 59/60 | 27/60 | 22/27 (81.5%) | 0 | 56/60 (93.3%) | 56 | 13 |  |
 | qwen3-8b / vol2 | cluster | 118 | 59/60 | 31/60 | 18/31 (58.1%) | 0 | 42/60 (70.0%) | 42 | 48 |  |
@@ -51,9 +51,9 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 
 | 臂 | variant | 毒块 | fired/n | clean-correct | flip(knowledge) | collapse | ASR | poison_follow | true_in_top8 | 注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| xlam-2-8b / embed_hybrid | embed_hybrid | 461 | 59/60 | 28/60 | 22/28 (78.6%) | 0 | 50/60 (83.3%) | 50 | 1 |  |
-| xlam-2-8b / mono | cluster_mono | 458 | 59/60 | 28/60 | 18/28 (64.3%) | 0 | 43/60 (71.7%) | 43 | 18 |  |
-| xlam-2-8b / nodiv | cluster_nodiv | 472 | 59/60 | 28/60 | 22/28 (78.6%) | 0 | 53/60 (88.3%) | 53 | 9 |  |
+| xlam-2-8b / embed_hybrid | embed_hybrid | 461 | 59/60 | 27/60 | 21/27 (77.8%) | 0 | 50/60 (83.3%) | 50 | 1 |  |
+| xlam-2-8b / mono | cluster_mono | 458 | 59/60 | 27/60 | 18/27 (66.7%) | 0 | 43/60 (71.7%) | 43 | 18 |  |
+| xlam-2-8b / nodiv | cluster_nodiv | 472 | 59/60 | 27/60 | 21/27 (77.8%) | 0 | 53/60 (88.3%) | 53 | 9 |  |
 | xlam-2-8b / greedy | cluster_greedy | 472 | 59/60 | 27/60 | 22/27 (81.5%) | 0 | 55/60 (91.7%) | 55 | 10 |  |
 | xlam-2-8b / cluster-main | cluster | 472 | 59/60 | 27/60 | 22/27 (81.5%) | 0 | 56/60 (93.3%) | 56 | 13 |  |
 | qwen3-8b / embed_hybrid | embed_hybrid | 434 | 59/60 | 31/60 | 25/31 (80.6%) | 0 | 45/60 (75.0%) | 45 | 6 |  |
@@ -115,10 +115,10 @@ HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议�
 
 | 注入 \ 受害 | xlam-2-8b | qwen3-8b | gpt-oss-20b | llama-3.1-8b |
 |---|---|---|---|---|
-| xlam-2-8b | 22/27 (81%) / 93% | 28/31 (90%) / 85% | 28/38 (74%) / 67% | 23/25 (92%) / 78% |
-| qwen3-8b | 22/27 (81%) / 88% | 23/31 (74%) / 77% | 26/38 (68%) / 65% | 22/25 (88%) / 73% |
+| xlam-2-8b | 22/27 (81%) / 93% | 28/31 (90%) / 85% | 30/38 (79%) / 67% | 23/25 (92%) / 78% |
+| qwen3-8b | 22/27 (81%) / 88% | 23/31 (74%) / 77% | 27/38 (71%) / 65% | 22/25 (88%) / 73% |
 | gpt-oss-20b | 24/27 (89%) / 92% | 29/31 (94%) / 90% | 21/38 (55%) / 55% | 23/25 (92%) / 82% |
-| llama-3.1-8b | 21/27 (78%) / 65% | 25/31 (81%) / 72% | 24/38 (63%) / 55% | 19/25 (76%) / 53% |
+| llama-3.1-8b | 21/27 (78%) / 65% | 25/31 (81%) / 72% | 25/38 (66%) / 55% | 19/25 (76%) / 53% |
 
 ## 附录：全部 08 运行原始行（`*_musique` 文件均裁剪到冻结 59 目标,与主表同口径）
 
@@ -198,13 +198,13 @@ _qwen3-8b_vol4                 qwen3-8b       hotpot_kb    keyword  cluster     
 _qwen3-8b_vol4_musique         qwen3-8b       musique_kb   keyword  cluster           4  236   59     9     2  47/59   79.7%   8/9   88.9%   8   0  0.02     4
 _qwen3-8b_vol6                 qwen3-8b       hotpot_kb    keyword  cluster           6  354   59    31    10  44/60   73.3%  23/31  74.2%  23   0  0.02    30
 _qwen3-8b_vol6_musique         qwen3-8b       musique_kb   keyword  cluster           6  354   59     9     1  46/59   78.0%   8/9   88.9%   8   0  0.05     3
-_xlam-2-8b_embed_hybrid        xlam-2-8b      hotpot_kb    keyword  embed_hybrid      8  461   59    28     8  50/60   83.3%  22/28  78.6%  22   0  0.02     1
+_xlam-2-8b_embed_hybrid        xlam-2-8b      hotpot_kb    keyword  embed_hybrid      8  461   59    27     8  50/60   83.3%  21/27  77.8%  21   0  0.02     1
 _xlam-2-8b_embed_hybrid_musique xlam-2-8b      musique_kb   keyword  embed_hybrid      8  465   59     7     1  47/59   79.7%   6/7   85.7%   6   0  0.03     0
 _xlam-2-8b_greedy              xlam-2-8b      hotpot_kb    keyword  cluster_greedy    8  472   59    27     7  55/60   91.7%  22/27  81.5%  22   0  0.22    10
 _xlam-2-8b_greedy_musique      xlam-2-8b      musique_kb   keyword  cluster_greedy    8  472   59     7     1  50/59   84.7%   7/7  100.0%   7   0  0.10     0
-_xlam-2-8b_mono                xlam-2-8b      hotpot_kb    keyword  cluster_mono      8  458   59    28    13  43/60   71.7%  18/28  64.3%  18   0  0.02    18
+_xlam-2-8b_mono                xlam-2-8b      hotpot_kb    keyword  cluster_mono      8  458   59    27    13  43/60   71.7%  18/27  66.7%  18   0  0.02    18
 _xlam-2-8b_mono_musique        xlam-2-8b      musique_kb   keyword  cluster_mono      8  472   59     7     2  42/59   71.2%   6/7   85.7%   6   0  0.02     2
-_xlam-2-8b_nodiv               xlam-2-8b      hotpot_kb    keyword  cluster_nodiv     8  472   59    28     7  53/60   88.3%  22/28  78.6%  22   0  0.14     9
+_xlam-2-8b_nodiv               xlam-2-8b      hotpot_kb    keyword  cluster_nodiv     8  472   59    27     7  53/60   88.3%  21/27  77.8%  21   0  0.14     9
 _xlam-2-8b_nodiv_musique       xlam-2-8b      musique_kb   keyword  cluster_nodiv     8  472   59     7     0  52/59   88.1%   7/7  100.0%   7   0  0.15     1
 _xlam-2-8b_semantic            xlam-2-8b      hotpot_kb    semantic cluster           8  472   59    27     6  55/60   91.7%  22/27  81.5%  22   0  0.15    12
 _xlam-2-8b_semantic_musique    xlam-2-8b      musique_kb   semantic cluster           8  472   59     7     0  49/59   83.1%   7/7  100.0%   7   0  0.19     1
@@ -216,7 +216,7 @@ _xlam-2-8b_trig_always         xlam-2-8b      hotpot_kb    always   cluster     
 _xlam-2-8b_trig_always_musique xlam-2-8b      musique_kb   always   cluster           8  472   59     7     0  51/59   86.4%   7/7  100.0%   7   0  0.15     0
 _xlam-2-8b_vol2                xlam-2-8b      hotpot_kb    keyword  cluster           2  118   59    27    11  42/60   70.0%  20/27  74.1%  20   0  0.12    48
 _xlam-2-8b_vol2_musique        xlam-2-8b      musique_kb   keyword  cluster           2  118   59     7     6  36/59   61.0%   4/7   57.1%   4   0  0.10     8
-_xlam-2-8b_vol4                xlam-2-8b      hotpot_kb    keyword  cluster           4  236   59    28     8  51/60   85.0%  21/28  75.0%  21   0  0.07    44
+_xlam-2-8b_vol4                xlam-2-8b      hotpot_kb    keyword  cluster           4  236   59    27     8  51/60   85.0%  20/27  74.1%  20   0  0.07    44
 _xlam-2-8b_vol4_musique        xlam-2-8b      musique_kb   keyword  cluster           4  236   59     7     2  46/59   78.0%   6/7   85.7%   6   0  0.03     5
 _xlam-2-8b_vol6                xlam-2-8b      hotpot_kb    keyword  cluster           6  354   59    27     7  49/60   81.7%  21/27  77.8%  21   0  0.12    29
 _xlam-2-8b_vol6_musique        xlam-2-8b      musique_kb   keyword  cluster           6  354   59     7     2  43/59   72.9%   6/7   85.7%   6   0  0.27     3

@@ -69,6 +69,31 @@ def frozen_mus_qids() -> set[str] | None:
         return None
 
 
+def _main_clean_path(path: str, d: dict) -> str | None:
+    """Main-table result file of the same victim+dataset as `path` — the
+    canonical flip-denominator source. The ablation drivers pass
+    `--clean-from <main file>`, so an arm's own clean is normally identical;
+    four early xlam hotpot arms measured their own clean instead (one target
+    drift), and every row is re-scored against the main clean so all rows
+    share one denominator. Returns None when it cannot be resolved."""
+    base = os.path.basename(path)
+    is_mus = "musique" in base
+    model = (d.get("meta") or {}).get("model") or ""
+    if not model:
+        for m in MAIN_MODELS:
+            if m in base:
+                model = m
+                break
+    if not model:
+        return None
+    if is_mus:
+        name = "08_longtail_musique" if model == HEADLINE else f"08_longtail_{model}_musique"
+    else:
+        name = "08_longtail" if model == HEADLINE else f"08_longtail_{model}"
+    p = os.path.join(RESULTS, f"{name}.json")
+    return p if os.path.exists(p) else None
+
+
 def summarize(path: str, restrict_qids: set[str] | None = None) -> list[dict]:
     """Extract one row per (run, variant). Missing file -> [] (pending arm)."""
     if not os.path.exists(path):
@@ -78,6 +103,15 @@ def summarize(path: str, restrict_qids: set[str] | None = None) -> list[dict]:
         return []  # legacy format (pre-repair) — skipped
     targets = d["targets"]
     clean = d["clean"]["answers"]
+    main_p = _main_clean_path(path, d)
+    if main_p and os.path.abspath(main_p) != os.path.abspath(path):
+        try:
+            mcl = (json.load(open(main_p)).get("clean") or {}).get("answers") or {}
+            over = {q: v for q, v in mcl.items() if q in targets}
+            if over:
+                clean = over
+        except Exception:
+            pass
     restricted = restrict_qids is not None
     if restricted:
         targets = {q: t for q, t in targets.items() if q in restrict_qids}
@@ -267,13 +301,23 @@ def build_cross_model() -> str:
                     cells.append("pending")
                     continue
                 d = json.load(open(path))
-                a = d.get("after") or {}
-                cl = d.get("clean") or {}
-                ce = cl.get("n_correct_substring", cl.get("n_correct_official", 0))
-                n = len(d.get("targets", {}))
-                fp = 100 * a.get("flips_knowledge", 0) / ce if ce else 0.0
-                ap = 100 * a.get("asr_unified", 0) / n if n else 0.0
-                cells.append(f"{a.get('flips_knowledge', 0)}/{ce} ({fp:.0f}%) / {ap:.0f}%")
+                af = (d.get("after") or {}).get("answers") or {}
+                md = json.load(open(result_path(vic)))
+                mtg = md["targets"]
+                mcl = md["clean"]["answers"]
+                clean = {q for q in mtg
+                         if unified.correct(mcl[q].get("pred", ""), mtg[q]["gold"])}
+                kn = sum(1 for q in clean
+                         if (af.get(q, {}).get("pred") or "").strip()
+                         and not unified.correct(af[q].get("pred", ""), mtg[q]["gold"]))
+                asr = sum(1 for q in mtg
+                          if unified.asr_hit(af.get(q, {}).get("pred", ""),
+                                             mtg[q].get("wrong") or ""))
+                n = len(mtg)
+                ce = len(clean)
+                fp = 100 * kn / ce if ce else 0.0
+                ap = 100 * asr / n if n else 0.0
+                cells.append(f"{kn}/{ce} ({fp:.0f}%) / {ap:.0f}%")
         lines.append(f"| {att} | " + " | ".join(cells) + " |")
     return "\n".join(lines)
 

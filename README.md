@@ -25,7 +25,7 @@ in this README and in code comments uses the plain term.
 | `embed_hybrid` (arm) | near-duplicate control | all poison chunks written in one near-identical style |
 | `cluster_mono` (arm) | single-style arm | only the authority-quote template |
 | `cluster_nodiv` (arm) | no-diversity-selection arm | sampler diversity term disabled (`lambda=1.0`) |
-| `cluster_greedy` (arm) | no-template-anchor arm | no per-style anchor; plain relevance-greedy sampling |
+| `cluster_greedy` (arm) | no-template-anchor arm | no per-style anchor; global MMR sampling (λ=0.5) without anchors |
 | `vol2` / `vol4` / `vol6` (arms) | poison dose | 2 / 4 / 6 fabricated chunks per target (default = 8) |
 | `topk4` / `topk16` (arms) | victim retrieval window | victim's `kb_search` top-k (default k=8) |
 | `keyword` / `semantic` / `trig_always` (triggers) | keyword / semantic / always-fire trigger | fire when the task text contains an auto-extracted proper noun / embedding cosine to any target query ≥ 0.82 / always (p=1.0) |
@@ -109,11 +109,12 @@ On MuSiQue TrojanScribe reaches ceiling flip on xlam-2-8b and qwen3-8b
 (7/7 and 9/9; tiny clean-correct pools), together with PoisonedRAG. On
 gpt-oss-20b the A4 redo grew the clean pool from 18 to 21 targets, so the
 baseline flips resolve much better: PoisonedRAG and CorruptRAG-AK lead
-(19/21, 90.5%) while TrojanScribe sits at 16/21 (76.2%); CorruptRAG also leads
-on llama-3.1-8b (9/10 vs 8/10). AgentPoison remains the weakest baseline on
-every row. Across both datasets the pattern is consistent: TrojanScribe's edge
-is at its largest on the default victim, and CorruptRAG's single-shot
-"outdated corpus" framing is the strongest published baseline elsewhere.
+(19/21, 90.5%) while TrojanScribe sits at 16/21 (76.2%); PoisonedRAG leads on llama-3.1-8b (10/10, vs 9/10 for CorruptRAG). AgentPoison
+is the weakest baseline on 7 of 8 rows — the exception is MuSiQue xlam-2-8b,
+where CorruptRAG-AS is lowest (5/7). Across both datasets the pattern is
+consistent: TrojanScribe's edge is at its largest on the default victim, and
+CorruptRAG's single-shot "outdated corpus" framing is the strongest published
+baseline elsewhere.
 
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
@@ -151,15 +152,15 @@ poison), then victim B is evaluated; 12 off-diagonal pairs, 4×4 backbones
 
 | attacker \ victim | xlam-2-8b | qwen3-8b | gpt-oss-20b | llama-3.1-8b |
 |---|---|---|---|---|
-| xlam-2-8b | — | 28/31 (90%), ASR 85% | 28/38 (74%), ASR 67% | 23/25 (92%), ASR 78% |
-| qwen3-8b | 22/27 (81%), ASR 88% | — | 26/38 (68%), ASR 65% | 22/25 (88%), ASR 73% |
+| xlam-2-8b | — | 28/31 (90%), ASR 85% | 30/38 (79%), ASR 67% | 23/25 (92%), ASR 78% |
+| qwen3-8b | 22/27 (81%), ASR 88% | — | 27/38 (71%), ASR 65% | 22/25 (88%), ASR 73% |
 | gpt-oss-20b | 24/27 (89%), ASR 92% | 29/31 (94%), ASR 90% | — | 23/25 (92%), ASR 82% |
-| llama-3.1-8b | 21/27 (78%), ASR 65% | 25/31 (81%), ASR 72% | 24/38 (63%), ASR 55% | — |
+| llama-3.1-8b | 21/27 (78%), ASR 65% | 25/31 (81%), ASR 72% | 25/38 (66%), ASR 55% | — |
 
 Key observations:
 
 - **Transfer is essentially lossless and often exceeds the same-model
-  diagonal**: every off-diagonal cell keeps ≥63% flip and ≥55% ASR, and
+  diagonal**: every off-diagonal cell keeps ≥65% flip and ≥55% ASR, and
   several non-diagonal cells beat the victim's own diagonal attack (e.g.
   gpt-oss-20b poison on qwen3-8b: 94% flip / 90% ASR, while the same-model
   diagonal gpt-oss-20b cell is 55% / 55%). A poison corpus written once by any
@@ -167,7 +168,8 @@ Key observations:
   customization barrier to cross.
 - Attacker quality ordering persists across victims: gpt-oss-20b poison is the
   strongest (or tied-strongest) on every foreign victim; llama-3.1-8b poison
-  the weakest (still 53–72% ASR).
+  the weakest (still 55–72% ASR on foreign victims; 53% is llama's own
+  main-table ASR).
 - Collapse stays near zero (≤2 per cell): the damage is genuine knowledge
   rewriting, not agent breakage, regardless of which model wrote the poison.
 
@@ -214,12 +216,15 @@ strength.
 ## Ablations (v2, all 4 backbones; table in `results/ablation_summary.md`)
 
 Every arm is run on EVERY backbone, HotpotQA (bullets below) and MuSiQue (same
-11 arms; compact reading at the end). All gpt-oss-20b rows were re-run
+11 arms; compact reading at the end). All flip rates use the victim's
+main-table clean set as the denominator (arms reuse it via `--clean-from`;
+early xlam-2-8b arms measured their own clean and are re-scored against the
+main-table clean at analysis time). All gpt-oss-20b rows were re-run
 2026-09-11 with the payload generation-budget fix (A4), so its single-style and
 near-duplicate arms are now volume-matched with the rest.
 
 - **Poison dose** (2/4/6/8 chunks per target): flip rises with dose to a
-  plateau around 4–8 on xlam-2-8b (74→75→78→81.5%), qwen3-8b (58→77→74→74%)
+  plateau around 4–8 on xlam-2-8b (74→74→78→81.5%), qwen3-8b (58→77→74→74%)
   and llama-3.1-8b (68→68→72→76%); gpt-oss-20b is non-monotonic
   (47→66→74→55%) within its smallest clean-correct pool. The true paragraph's
   presence in the victim's top-8 falls monotonically with dose on every
@@ -228,10 +233,13 @@ near-duplicate arms are now volume-matched with the rest.
 - **Style diversity** (all dose 8): the single-style arm (`cluster_mono`) is
   the weakest on every backbone, but the gap is modest and backbone-dependent:
   −2.6pp on gpt-oss-20b (52.6% vs 55.3%), −6.5pp on qwen3-8b, −16.0pp on
-  llama-3.1-8b and −17.2pp on xlam-2-8b. Removing the selection machinery
-  (`cluster_nodiv`, `cluster_greedy`) stays within noise of the full method on
-  all four backbones. The near-duplicate control (`embed_hybrid`) matches the
-  full method on xlam/llama and exceeds it on qwen3-8b (80.6% vs 74.2%) and
+  llama-3.1-8b and −14.8pp on xlam-2-8b. Removing the selection machinery has
+  backbone-dependent effects rather than a uniform one: `cluster_nodiv` /
+  `cluster_greedy` stay within ±6pp of the full method on xlam-2-8b and
+  qwen3-8b, but on gpt-oss-20b both score clearly higher (71.1% / 63.2% vs
+  55.3%) and on llama-3.1-8b greedy is clearly lower (64.0% vs 76.0%). The
+  near-duplicate control (`embed_hybrid`) is within 4pp of the full method on
+  xlam-2-8b and llama-3.1-8b and exceeds it on qwen3-8b (80.6% vs 74.2%) and
   gpt-oss-20b (81.6% vs 55.3%), where it also floods the retrieval window
   (true_in_top8 ≈ 0). Consensus-style generation therefore gives a consistent
   but not universal edge over a single style, and at equal volume near-
@@ -250,10 +258,11 @@ near-duplicate arms are now volume-matched with the rest.
   more poison chunks and more verbatim echo.
 - **MuSiQue counterpart** (same 11 arms; clean pools 7/9/21/10): dose saturates
   by 4–6 (xlam 57→86→86→100%, qwen3 89/89/89/100%, gpt-oss 52→57→81→76%);
-  single-style is again weakest on xlam/llama (6/7, 6/10), and the near-
-  duplicate control again exceeds the full method on gpt-oss-20b (19/21 vs
-  16/21); gpt-oss-20b's k=16 arm drops to 12/21 (57.1%) while k=4 stays 19/21
-  (90.5%).
+  the single-style arm is again at the bottom (clear-lowest 6/10 on
+  llama-3.1-8b; tied-lowest 6/7 with the near-duplicate control on xlam-2-8b),
+  and the near-duplicate control again exceeds the full method on gpt-oss-20b
+  (19/21 vs 16/21); gpt-oss-20b's k=16 arm drops to 12/21 (57.1%) while k=4
+  stays 19/21 (90.5%).
 
 ## Repository layout
 
@@ -318,4 +327,6 @@ research/           frozen hypotheses, experiment ledger, literature review
 
 Known limitation: 1/60 targets ("...a rule that is expressed algebraically...")
 contains no proper-noun keyword and is missed by the keyword trigger (59/60 fire
-rate); the semantic trigger covers such cases.
+rate). The semantic trigger also fires 59/60 but misses a different target (its
+embedding cosine 0.78 falls below the 0.82 threshold), so each trigger has its
+own miss — the 59/60 rate is not a property of the target set.
