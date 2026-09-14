@@ -1,13 +1,13 @@
 #!/bin/bash
-# Ablation driver v2 — MuSiQue (59 frozen targets), all arms on ALL 4 backbones.
-# Mirrors run_ablation_v2.sh but for the musique KB:
+# Ablation driver v2 — MuSiQue (59 frozen targets), all 11 ablation settings on
+# all four models. Mirrors run_ablation_v2.sh but for the musique KB:
 #   poison dose        : vol2 / vol4 / vol6              (8 = main-table cluster row)
 #   style diversity    : embed_hybrid / mono / nodiv / greedy (full = main table)
 #   trigger            : semantic / trig_always          (keyword = main table)
 #   retrieval window   : topk4 / topk16                  (k=8 = main table)
 # Idempotent: a result file with an 'after' section is skipped. Restores xlam-2-8b.
 #
-# Usage: bash experiments/run_ablation_musique_v2.sh [model ...]  (default: 4 backbones)
+# Usage: bash experiments/run_ablation_musique_v2.sh [model ...]  (default: all four models)
 set -u
 export PYTHONUNBUFFERED=1
 export AGENTIC_RAG_ASK_WORKERS=8
@@ -87,7 +87,7 @@ run_arm () {  # $1 model  $2 arm  $3... 08 args
   if [ -s "$out" ] && "$PY" -c "import json,sys
 try:
     d=json.load(open('$out')); v=d.get('variants',{})
-    sys.exit(0 if any('after' in x for x in v.values()) else 1)
+    sys.exit(0 if any(isinstance(x, dict) and 'after' in x and 'co_retrieval' in x for x in v.values()) else 1)
 except Exception:
     sys.exit(1)" 2>/dev/null; then
     echo "SKIP (done): $out"

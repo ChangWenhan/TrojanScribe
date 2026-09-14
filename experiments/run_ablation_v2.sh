@@ -1,7 +1,7 @@
 #!/bin/bash
 # Ablation driver v2 (2026-09-08): dose / style-diversity / trigger /
-# retrieval-window arms on ALL 4 backbones with the refill+MMR sampler
-# (only method version).
+# retrieval-window settings on all four backbones, using the current sampler
+# (candidate top-up + MMR selection).
 #   poison dose        : vol2 / vol4 / vol6              (8 = main-table cluster row)
 #   style diversity    : embed_hybrid / mono / nodiv / greedy (full = main table)
 #   trigger            : semantic / trig_always          (keyword = main table)
@@ -9,7 +9,7 @@
 # Idempotent: a result file that already exists is skipped. Ends by restoring
 # the default xlam-2-8b server.
 #
-# Usage: bash experiments/run_ablation_v2.sh [spec ...]   (default: 4 backbones)
+# Usage: bash experiments/run_ablation_v2.sh [spec ...]   (default: all four models)
 
 set -u
 export PYTHONUNBUFFERED=1
@@ -85,7 +85,7 @@ run_arm () {  # $1 model  $2 arm  $3... 08 args
   if [ -s "$out" ] && "$PY" -c "import json,sys
 try:
     d=json.load(open('$out')); v=d.get('variants',{})
-    sys.exit(0 if any('after' in x for x in v.values()) else 1)
+    sys.exit(0 if any(isinstance(x, dict) and 'after' in x and 'co_retrieval' in x for x in v.values()) else 1)
 except Exception:
     sys.exit(1)" 2>/dev/null; then
     echo "SKIP (done): $out"

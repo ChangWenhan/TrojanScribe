@@ -1,9 +1,9 @@
 #!/bin/bash
-# run_ablation_musique_remote.sh — MuSiQue ablation arms for a victim served on
-# a REMOTE vLLM endpoint (192.168.31.141). Code + KB stay local; the victim's
-# poison generation (inject) AND eval all go through AGENTIC_RAG_BASE_URL.
+# run_ablation_musique_remote.sh — MuSiQue ablation settings for a victim
+# served on a REMOTE vLLM endpoint (192.168.31.141). Code + KB stay local; the
+# victim's poison generation (inject) AND eval all go through AGENTIC_RAG_BASE_URL.
 #
-# Idempotent: an arm result with an 'after' section is skipped.
+# Idempotent: a setting whose result already has an 'after' section is skipped.
 # Usage: bash experiments/run_ablation_musique_remote.sh <victim> <status_file>
 set -u
 export PYTHONUNBUFFERED=1
@@ -36,7 +36,7 @@ run_arm () {  # $1 arm  $2... 08 args
   if [ -s "$out" ] && "$PY" -c "import json,sys
 try:
     d=json.load(open('$out')); v=d.get('variants',{})
-    sys.exit(0 if any('after' in x for x in v.values()) else 1)
+    sys.exit(0 if any(isinstance(x, dict) and 'after' in x and 'co_retrieval' in x for x in v.values()) else 1)
 except Exception:
     sys.exit(1)" 2>/dev/null; then
     echo "SKIP (done): $out" >> "$STATUS"

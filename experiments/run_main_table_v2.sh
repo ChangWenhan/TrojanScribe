@@ -90,7 +90,7 @@ skip_if_done () {  # $1 result file -> 0 only when a variant has after answers
   "$PY" -c "import json,sys
 try:
     d=json.load(open('$1')); v=d.get('variants',{})
-    sys.exit(0 if any('after' in x for x in v.values()) else 1)
+    sys.exit(0 if any(isinstance(x, dict) and 'after' in x and 'co_retrieval' in x for x in v.values()) else 1)
 except Exception:
     sys.exit(1)" && echo "SKIP (done): $1" && return 0
   return 1

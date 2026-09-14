@@ -5,8 +5,8 @@
 #   AGENTIC_RAG_PAYLOAD_MAX_TOKENS=768..1536 (escalated if the probe is partial)
 #
 # Waits for the running xlam driver (run_ablation_musique_v2.sh) to finish its
-# last arm, takes over the GPU, hard-gates on payload_probe.py, then reruns the
-# gpt-oss main row (volume 8 cluster) + all 11 ablation arms on MuSiQue.
+# last setting, takes over the GPU, hard-gates on payload_probe.py, then reruns
+# the gpt-oss main row (volume 8 cluster) + all 11 ablation settings on MuSiQue.
 # Restores the xlam-2-8b server at the end.
 #
 # Idempotency intentionally ABSENT: this is a forced rerun; existing

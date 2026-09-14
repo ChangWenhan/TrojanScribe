@@ -1,8 +1,8 @@
 #!/bin/bash
-# run_ablation_split.sh — run an EXPLICIT subset of gpt-oss-20b ablation arms
-# against one vLLM endpoint with one dedicated KB dir (two instances of this
-# script with disjoint arms + disjoint KB dirs can run in parallel).
-# Usage: bash experiments/run_ablation_split.sh <base_url> <kb_dir> <status_file> <arm>...
+# run_ablation_split.sh — run an explicit subset of the gpt-oss-20b ablation
+# settings against one vLLM endpoint with one dedicated KB dir (two instances of
+# this script with disjoint settings + disjoint KB dirs can run in parallel).
+# Usage: bash experiments/run_ablation_split.sh <base_url> <kb_dir> <status_file> <setting>...
 set -u
 ROOT=/mnt/disk/cwh/AgenticRAG
 PY=/home/cwh/anaconda3/envs/agents/bin/python
