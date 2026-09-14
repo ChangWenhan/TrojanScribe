@@ -13,21 +13,26 @@ under controlled variables.
 ## Terminology (single source of truth)
 
 The code and result files use a few internal names. This table maps every one of
-them to its plain meaning. Arm names and JSON keys below are **identifiers — they
-must not be renamed** (existing result files already use them); everything else
-in this README and in code comments uses the plain term.
+them to its plain meaning. The names below are **identifiers — they must not be
+renamed** (existing result files already use them); everything else in this
+README and in code comments uses the plain term. Two words recur throughout:
+a **backbone** is the LLM that runs the victim agent (we test four: xlam-2-8b,
+Qwen3-8B, gpt-oss-20b, Llama-3.1-8B); an **ablation setting** is one
+configuration of our method that we test in isolation (for example "write only
+4 poison chunks per target" or "use a single text style"), identified by the
+short names in the table.
 
 | identifier (code / results) | plain term | meaning |
 |---|---|---|
 | `cluster` (method name) | **consensus-style multi-template poisoning** — public name: **TrojanScribe** | for each target, fabricate ~8 short passages that all state the same injected wrong answer, each in a **different text style** so retrieved hits look like independent sources agreeing |
 | `archetype` (code / JSON key `picked_archetypes`) | **poison text style (template)** | one of five fabricated styles: `faq` (FAQ entry), `update` (update notice), `bio` (biography), `def` (definition list), `authority` (authority quote) |
 | "multi-voice" (old docs) | **multi-style consensus** | the property above: texts agree with each other but read as different source types |
-| `embed_hybrid` (arm) | near-duplicate control | all poison chunks written in one near-identical style |
-| `cluster_mono` (arm) | single-style arm | only the authority-quote template |
-| `cluster_nodiv` (arm) | no-diversity-selection arm | sampler diversity term disabled (`lambda=1.0`) |
-| `cluster_greedy` (arm) | no-template-anchor arm | no per-style anchor; global MMR sampling (λ=0.5) without anchors |
-| `vol2` / `vol4` / `vol6` (arms) | poison dose | 2 / 4 / 6 fabricated chunks per target (default = 8) |
-| `topk4` / `topk16` (arms) | victim retrieval window | victim's `kb_search` top-k (default k=8) |
+| `embed_hybrid` (setting name) | near-duplicate control | all poison chunks written in one near-identical style |
+| `cluster_mono` (setting name) | single-style setting | only the authority-quote template |
+| `cluster_nodiv` (setting name) | no-diversity-selection setting | sampler diversity term disabled (`lambda=1.0`) |
+| `cluster_greedy` (setting name) | no-template-anchor setting | no per-style anchor; global MMR sampling (λ=0.5) without anchors |
+| `vol2` / `vol4` / `vol6` (setting names) | poison dose | 2 / 4 / 6 fabricated chunks per target (default = 8) |
+| `topk4` / `topk16` (setting names) | victim retrieval window | victim's `kb_search` top-k (default k=8) |
 | `keyword` / `semantic` / `trig_always` (triggers) | keyword / semantic / always-fire trigger | fire when the task text contains an auto-extracted proper noun / embedding cosine to any target query ≥ 0.82 / always (p=1.0) |
 | `flip` | knowledge flip | clean-correct target answered with a NON-EMPTY wrong answer after the attack |
 | `collapse` | collapse (DoS) | clean-correct target answered with an empty answer or crash — never counted as a flip |
@@ -215,13 +220,13 @@ strength.
 
 ## Ablations (v2, all 4 backbones; table in `results/ablation_summary.md`)
 
-Every arm is run on EVERY backbone, HotpotQA (bullets below) and MuSiQue (same
-11 arms; compact reading at the end). All flip rates use the victim's
-main-table clean set as the denominator (arms reuse it via `--clean-from`;
-early xlam-2-8b arms measured their own clean and are re-scored against the
-main-table clean at analysis time). All gpt-oss-20b rows were re-run
-2026-09-11 with the payload generation-budget fix (A4), so its single-style and
-near-duplicate arms are now volume-matched with the rest.
+Every ablation setting is run on all four backbones, HotpotQA (bullets below)
+and MuSiQue (same 11 settings; compact reading at the end). All flip rates use
+the victim's main-table clean set as the denominator (settings reuse it via
+`--clean-from`; four early xlam-2-8b settings measured their own clean and are
+re-scored against the main-table clean at analysis time). All gpt-oss-20b rows
+were re-run 2026-09-11 with the payload generation-budget fix (A4), so its
+single-style and near-duplicate settings are now volume-matched with the rest.
 
 - **Poison dose** (2/4/6/8 chunks per target): flip rises with dose to a
   plateau around 4–8 on xlam-2-8b (74→74→78→81.5%), qwen3-8b (58→77→74→74%)
@@ -230,7 +235,7 @@ near-duplicate arms are now volume-matched with the rest.
   presence in the victim's top-8 falls monotonically with dose on every
   backbone (xlam 48→44→29→13, qwen3 48→46→30→13, gpt-oss 46→42→26→9) —
   displacement keeps growing past the flip saturation point.
-- **Style diversity** (all dose 8): the single-style arm (`cluster_mono`) is
+- **Style diversity** (all dose 8): the single-style setting (`cluster_mono`) is
   the weakest on every backbone, but the gap is modest and backbone-dependent:
   −2.6pp on gpt-oss-20b (52.6% vs 55.3%), −6.5pp on qwen3-8b, −16.0pp on
   llama-3.1-8b and −14.8pp on xlam-2-8b. Removing the selection machinery has
@@ -256,12 +261,12 @@ near-duplicate arms are now volume-matched with the rest.
   and only llama-3.1-8b clearly loses at k=16 (68.0%). Window size mainly
   modulates ASR (xlam 85→93→92%, llama 32→53→62%): a larger window surfaces
   more poison chunks and more verbatim echo.
-- **MuSiQue counterpart** (same 11 arms; clean pools 7/9/21/10): dose saturates
+- **MuSiQue counterpart** (same 11 settings; clean pools 7/9/21/10): dose saturates
   by 4–6 (xlam 57→86→86→100%, qwen3 89/89/89/100%, gpt-oss 52→57→81→76%);
-  the single-style arm is again at the bottom (clear-lowest 6/10 on
+  the single-style setting is again at the bottom (clear-lowest 6/10 on
   llama-3.1-8b; tied-lowest 6/7 with the near-duplicate control on xlam-2-8b),
   and the near-duplicate control again exceeds the full method on gpt-oss-20b
-  (19/21 vs 16/21); gpt-oss-20b's k=16 arm drops to 12/21 (57.1%) while k=4
+  (19/21 vs 16/21); gpt-oss-20b's k=16 setting drops to 12/21 (57.1%) while k=4
   stays 19/21 (90.5%).
 
 ## Repository layout

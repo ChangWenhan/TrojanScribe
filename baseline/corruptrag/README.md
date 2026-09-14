@@ -48,7 +48,7 @@ hotpot/musique) against all four main-table victims on two GPUs (local +
 |---|---|---|---|---|---|---|---|
 | xlam-2-8b | 27/60 | 18/27 (66.7%) | 16/27 (59.3%) | 14/27 (51.9%) | **22/27 (81.5%)** | 41/60 | **56/60** |
 | qwen3-8b | 31/60 | 22/31 (71.0%) | 24/31 (77.4%) | 21/31 (67.7%) | **23/31 (74.2%)** | 43/60 | **46/60** |
-| gpt-oss-20b | 38/60 | 27/38 (71.1%) | 29/38 (76.3%) | 18/38 (47.4%) | **28/38 (73.7%)** | 43/60 | **41/60** |
+| gpt-oss-20b | 38/60 | 28/38 (73.7%) | 30/38 (78.9%) | 19/38 (50.0%) | **21/38 (55.3%)** | 43/60 | **33/60** |
 | llama-3.1-8b | 25/60 | 21/25 (84.0%) | 21/25 (84.0%) | 19/25 (76.0%) | 19/25 (76.0%) | 42/60 | 32/60 |
 
 ### MuSiQue (59 frozen targets, 1 chunk per target)
@@ -57,13 +57,21 @@ hotpot/musique) against all four main-table victims on two GPUs (local +
 |---|---|---|---|---|---|---|---|
 | xlam-2-8b | 7/59 | 5/7 (71.4%) | 6/7 (85.7%) | 7/7 (100%) | 7/7 (100%) | 44/59 | **51/59** |
 | qwen3-8b | 9/59 | 8/9 (88.9%) | 7/9 (77.8%) | 9/9 (100%) | 9/9 (100%) | 51/59 | 47/59 |
-| gpt-oss-20b | 18/59 | 15/18 (83.3%) | 17/18 (94.4%) | 16/18 (88.9%) | **18/18 (100%)** | 46/59 | **41/59** |
+| gpt-oss-20b | 21/59 | 17/21 (81.0%) | 19/21 (90.5%) | 19/21 (90.5%) | **16/21 (76.2%)** | 46/59 | **33/59** |
 | llama-3.1-8b | 10/59 | 9/10 (90.0%) | 9/10 (90.0%) | 10/10 (100%) | 8/10 (80.0%) | 43/59 | 26/59 |
 
 ## Takeaways
 
 CorruptRAG is the strongest of our three baselines despite using only ONE
 poisoned text per target — the "outdated corpus / latest data confirms" framing
-steers the victim well. It beats PoisonedRAG (5 chunks) on most rows and even
-exceeds TrojanScribe on llama-3.1-8b flip. TrojanScribe still leads flip on
-the larger clean pools (xlam-2-8b hotpot +30pp) and on ASR for most victims.
+steers the victim well. It beats PoisonedRAG (5 chunks) on most rows and also
+beats TrojanScribe on the gpt-oss-20b and llama-3.1-8b victims (on llama-3.1-8b
+PoisonedRAG, not CorruptRAG, is the leader at 10/10). TrojanScribe still leads
+on the default victim (xlam-2-8b HotpotQA: 81.5% vs 66.7% for the best
+baseline, +14.8pp) and on ASR for most victims.
+
+Note (2026-09-11): the gpt-oss-20b rows were re-scored against the post-A4
+main-table clean set (their eval files embed a pre-A4 clean snapshot); the
+other rows are unchanged. `run_corruptrag_eval.sh` now always re-injects
+(clean leftover poison → inject → count gate) instead of trusting a marker
+file.

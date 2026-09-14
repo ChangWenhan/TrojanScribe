@@ -52,7 +52,7 @@ main-table victims.
 |---|---|---|---|---|---|---|---|
 | xlam-2-8b | 27/60 | 12/27 (44.4%) | 14/27 (51.9%) | **22/27 (81.5%)** | 30/60 | 41/60 | **56/60** |
 | qwen3-8b | 31/60 | 18/31 (58.1%) | 21/31 (67.7%) | **23/31 (74.2%)** | 36/60 | 40/60 | **46/60** |
-| gpt-oss-20b | 38/60 | 12/38 (31.6%) | 18/38 (47.4%) | **28/38 (73.7%)** | 18/60 | 24/60 | **41/60** |
+| gpt-oss-20b | 38/60 | 11/38 (28.9%) | 19/38 (50.0%) | **21/38 (55.3%)** | 18/60 | 24/60 | **33/60** |
 | llama-3.1-8b | 25/60 | 11/25 (44.0%) | 19/25 (76.0%) | 19/25 (76.0%) | 33/60 | **42/60** | 32/60 |
 
 The adapted AgentPoison is the weakest of the three because its retrieval-side
@@ -67,5 +67,11 @@ cross-model transfer; the other three rows are transfers from Qwen3-8B.
 |---|---|---|---|---|---|---|---|
 | xlam-2-8b | 7/59 | 6/7 (85.7%) | 7/7 (100%) | 7/7 (100%) | 38/59 | 42/59 | **51/59** |
 | qwen3-8b | 9/59 | 7/9 (77.8%) | 9/9 (100%) | 9/9 (100%) | **48/59** | 40/59 | 47/59 |
-| gpt-oss-20b | 18/59 | 9/18 (50.0%) | 16/18 (88.9%) | **18/18 (100%)** | 29/59 | 26/59 | **41/59** |
+| gpt-oss-20b | 21/59 | 11/21 (52.4%) | 19/21 (90.5%) | **16/21 (76.2%)** | 29/59 | 26/59 | **33/59** |
 | llama-3.1-8b | 10/59 | 8/10 (80.0%) | 10/10 (100%) | 8/10 (80.0%) | **40/59** | 34/59 | 26/59 |
+
+Notes (2026-09-11): the two victim scripts now include the KB injection step
+(clean leftover poison → inject → count gate) instead of assuming a manual
+injection. The gpt-oss-20b rows were re-scored against the post-A4 main-table
+clean set (their eval files embed a pre-A4 clean snapshot); all other rows are
+unchanged.
