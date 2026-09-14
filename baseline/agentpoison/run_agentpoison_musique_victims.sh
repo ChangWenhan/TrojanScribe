@@ -14,6 +14,7 @@ export PYTHONUNBUFFERED=1
 export AGENTIC_RAG_ASK_WORKERS=8
 export AGENTIC_RAG_BASE_URL=http://localhost:8000/v1
 TARGET_REC=$ROOT/results/baseline_agentpoison_musique_targets.json
+POISON_JSON=$ROOT/results/baseline_agentpoison_musique.json
 KB_DIR=$ROOT/data/chroma_musique
 KB_COLL=musique_kb
 VICTIMS=(xlam-2-8b qwen3-8b gpt-oss-20b llama-3.1-8b)
@@ -48,14 +49,32 @@ serve_victim () {  # $1 victim name
 }
 
 # target records already built (baseline_agentpoison_musique_targets.json)
-# poison already injected (59 chunks) — verify
+# inject before evaluation (no marker guard — the KB may have been cleaned
+# since any earlier injection)
+echo "=== clean musique KB poison leftovers ==="
 ( cd "$ROOT/experiments" && "$PY" -c "
 import chromadb
 client = chromadb.PersistentClient(path='$KB_DIR')
 coll = client.get_collection('$KB_COLL')
-poison = coll.get(where={'is_poison': 1})
-print('musique poison chunks:', len(poison['ids']))
+ids = coll.get(where={'is_poison': 1})['ids']
+if ids:
+    coll.delete(ids=ids)
+    print('cleaned', len(ids), 'poison')
+else:
+    print('KB already clean')
 " )
+echo "=== inject AgentPoison poison (59 chunks) into musique KB ==="
+( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID="baseline_ap_mus_inject" "$PY" longtail_attack.py \
+    --phase inject-from --inject-from "$POISON_JSON" \
+    --kb-dir "$KB_DIR" --kb-collection "$KB_COLL" \
+    --results-name ap_mus_inj 2>&1 | tail -2 )
+n_poison=$( cd "$ROOT/experiments" && "$PY" -c "
+import chromadb
+c = chromadb.PersistentClient(path='$KB_DIR')
+print(len(c.get_collection('$KB_COLL').get(where={'is_poison': 1})['ids']))
+" )
+[ "${n_poison:-0}" -gt 0 ] || { echo "KB has 0 poison chunks — aborting"; exit 1; }
+echo "KB poison chunks: $n_poison"
 
 for V in "${VICTIMS[@]}"; do
   OUT="$ROOT/results/baseline_agentpoison_musique_eval_${V}.json"

@@ -445,7 +445,9 @@ class PayloadGenerator:
                              supporting_titles: list[str]) -> str | None:
         if not qid or not supporting_titles:
             return None
-        sources = {f"hotpotqa:{qid}:{t}" for t in supporting_titles}
+        # sources carry a dataset prefix (hotpotqa:/musique:); accept both so
+        # the lookup works on either knowledge base
+        sources = {f"{ds}:{qid}:{t}" for ds in ("hotpotqa", "musique") for t in supporting_titles}
         for c in self.store.search(question, k=50):
             if c.source in sources:
                 return c.text
@@ -464,7 +466,9 @@ class PayloadGenerator:
         """Max similarity of the true supporting paragraph (by source metadata)."""
         if not qid or not supporting_titles:
             return None
-        sources = {f"hotpotqa:{qid}:{t}" for t in supporting_titles}
+        # sources carry a dataset prefix (hotpotqa:/musique:); accept both so
+        # the lookup works on either knowledge base
+        sources = {f"{ds}:{qid}:{t}" for ds in ("hotpotqa", "musique") for t in supporting_titles}
         for c in self.store.search(question, k=k):
             if c.source in sources:
                 return c.score

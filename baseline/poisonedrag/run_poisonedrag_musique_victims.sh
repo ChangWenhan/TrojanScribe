@@ -16,7 +16,6 @@ export AGENTIC_RAG_ASK_WORKERS=8
 export AGENTIC_RAG_BASE_URL=http://localhost:8000/v1
 POISON_JSON=$ROOT/results/baseline_poisonedrag_musique.json
 TARGET_REC=$ROOT/results/baseline_poisonedrag_musique_targets.json
-INJECT_MARKER=$ROOT/results/baseline_poisonedrag_musique_injected.flag
 KB_DIR=$ROOT/data/chroma_musique
 KB_COLL=musique_kb
 VICTIMS=(xlam-2-8b qwen3-8b gpt-oss-20b llama-3.1-8b)
@@ -63,12 +62,10 @@ EOF
   )
 fi
 
-# inject once (guarded)
-if [ ! -f "$INJECT_MARKER" ]; then
-  echo "=== clean musique KB poison leftovers ==="
-  ( cd "$ROOT/experiments" && "$PY" -c "
-import sys, yaml
-sys.path.insert(0, '../src')
+# inject before evaluation. No marker guard: a marker only records that some
+# past run injected, not that the CURRENT KB still holds the poison.
+echo "=== clean musique KB poison leftovers ==="
+( cd "$ROOT/experiments" && "$PY" -c "
 import chromadb
 client = chromadb.PersistentClient(path='$KB_DIR')
 coll = client.get_collection('$KB_COLL')
@@ -79,13 +76,18 @@ if ids:
 else:
     print('KB already clean')
 " )
-  echo "=== inject PoisonedRAG poison (295 chunks) into musique KB ==="
-  ( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID=baseline_pr_mus_main "$PY" longtail_attack.py \
-      --phase inject-from --inject-from "$POISON_JSON" \
-      --kb-dir "$KB_DIR" --kb-collection "$KB_COLL" \
-      --results-name baseline_pr_mus_inj 2>&1 | tail -2 )
-  touch "$INJECT_MARKER"
-fi
+echo "=== inject PoisonedRAG poison (295 chunks) into musique KB ==="
+( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID=baseline_pr_mus_main "$PY" longtail_attack.py \
+    --phase inject-from --inject-from "$POISON_JSON" \
+    --kb-dir "$KB_DIR" --kb-collection "$KB_COLL" \
+    --results-name baseline_pr_mus_inj 2>&1 | tail -2 )
+n_poison=$( cd "$ROOT/experiments" && "$PY" -c "
+import chromadb
+c = chromadb.PersistentClient(path='$KB_DIR')
+print(len(c.get_collection('$KB_COLL').get(where={'is_poison': 1})['ids']))
+" )
+[ "${n_poison:-0}" -gt 0 ] || { echo "KB has 0 poison chunks — aborting"; exit 1; }
+echo "KB poison chunks: $n_poison"
 
 for V in "${VICTIMS[@]}"; do
   OUT="$ROOT/results/baseline_poisonedrag_musique_eval_${V}.json"

@@ -3,18 +3,20 @@
 V2 (2026-09-08): full rerun with the refill+MMR sampler as the only method
 version. Backbones: xlam-2-8b / qwen3-8b / gpt-oss-20b / llama-3.1-8b
 (Qwen3-4B retired; the default victim / headline slot results/08_longtail.json
-is xlam-2-8b since the v2 rerun). Every ablation arm is run on EVERY backbone,
-plus the cross-model matrix (attacker A's poison replayed into victim B).
+is xlam-2-8b since the v2 rerun). Every ablation setting (one method
+configuration under test, e.g. a different poison count) is run on all four
+backbones, plus the cross-model matrix (attacker A's poison replayed into
+victim B).
 
 Sections:
   1. main table   : 4 backbones x {hotpotqa, musique} (cluster v8, keyword)
-  2. poison dose  : per-target poison chunks 2/4/6/8 (arms vol2/vol4/vol6),
+  2. poison dose  : per-target poison chunks 2/4/6/8 (settings vol2/vol4/vol6),
                     per backbone
   3. style diversity: near-duplicate control (embed_hybrid) / single-style
                     (mono, authority) / no-diversity-selection (nodiv) /
                     no-template-anchor (greedy) / full method (cluster)
   4. trigger      : keyword / semantic(cosine>=0.82) / always-fire(p=1.0)
-  5. retrieval window: victim top-k in {4, 8, 16} (arms topk4/topk16)
+  5. retrieval window: victim top-k in {4, 8, 16} (settings topk4/topk16)
   6. cross-model  : inject model A -> victim model B matrix (diagonal =
      main table same-model rows)
 
@@ -52,9 +54,10 @@ HEADLINE = MAIN_MODELS[0]
 
 
 def result_path(model: str, arm: str | None = None) -> str:
-    """Hotpot run file for a (model, arm). arm=None -> the model's main-table
-    cluster v8 run (the headline's is 08_longtail.json, per the historical
-    downstream convention); arm set -> 08_longtail_<model>_<arm>.json."""
+    """Hotpot run file for a (model, setting). setting=None -> the model's
+    main-table cluster v8 run (the headline's is 08_longtail.json, per the
+    historical downstream convention); setting set ->
+    08_longtail_<model>_<setting>.json."""
     if arm is None:
         name = "08_longtail" if model == HEADLINE else f"08_longtail_{model}"
     else:
@@ -72,8 +75,8 @@ def frozen_mus_qids() -> set[str] | None:
 def _main_clean_path(path: str, d: dict) -> str | None:
     """Main-table result file of the same victim+dataset as `path` — the
     canonical flip-denominator source. The ablation drivers pass
-    `--clean-from <main file>`, so an arm's own clean is normally identical;
-    four early xlam hotpot arms measured their own clean instead (one target
+    `--clean-from <main file>`, so a setting's own clean is normally identical;
+    four early xlam hotpot settings measured their own clean instead (one target
     drift), and every row is re-scored against the main clean so all rows
     share one denominator. Returns None when it cannot be resolved."""
     base = os.path.basename(path)
@@ -95,7 +98,7 @@ def _main_clean_path(path: str, d: dict) -> str | None:
 
 
 def summarize(path: str, restrict_qids: set[str] | None = None) -> list[dict]:
-    """Extract one row per (run, variant). Missing file -> [] (pending arm)."""
+    """Extract one row per (run, setting). Missing file -> [] (pending)."""
     if not os.path.exists(path):
         return []
     d = json.load(open(path))
@@ -125,6 +128,8 @@ def summarize(path: str, restrict_qids: set[str] | None = None) -> list[dict]:
     n_clean = sum(clean_em_q.values())
     rows = []
     for variant, r in d.get("variants", {}).items():
+        if "after" not in r or "co_retrieval" not in r:
+            continue  # half-written run (crashed before metrics): treat as missing
         after = r["after"]["answers"]
         if restricted:
             after = {q: v for q, v in after.items() if q in restrict_qids}
@@ -149,8 +154,8 @@ def summarize(path: str, restrict_qids: set[str] | None = None) -> list[dict]:
             "trigger": d["meta"].get("trigger_kind", ""),
             "variant": variant,
             "volume": d["meta"].get("volume"),
-            "n_poison": r["n_poison"],
-            "fired": r["n_targets_fired"],
+            "n_poison": r.get("n_poison"),
+            "fired": r.get("n_targets_fired"),
             "n": len(after),
             "clean_em": n_clean,
             "after_em": after_em,
@@ -158,9 +163,9 @@ def summarize(path: str, restrict_qids: set[str] | None = None) -> list[dict]:
             "flips": kn,
             "flips_knowledge": kn,
             "flips_collapse": col,
-            "poison_follow": r["after"].get("poison_follow"),
-            "consensus_cov": round(r["co_retrieval"]["consensus_cov"], 3),
-            "true_in_top8": r["co_retrieval"].get("true_in_top8"),
+            "poison_follow": (r.get("after") or {}).get("poison_follow"),
+            "consensus_cov": round((r.get("co_retrieval") or {}).get("consensus_cov") or 0.0, 3),
+            "true_in_top8": (r.get("co_retrieval") or {}).get("true_in_top8"),
         })
     return rows
 
@@ -176,8 +181,8 @@ def fmt_row(label: str, r: dict, note: str = "") -> str:
             f"| {r['true_in_top8'] if r['true_in_top8'] is not None else '—'} | {note} |")
 
 
-HEADER = ("| 臂 | variant | 毒块 | fired/n | clean-correct | flip(knowledge) "
-          "| collapse | ASR | poison_follow | true_in_top8 | 注 |\n"
+HEADER = ("| 实验配置 | variant | 毒文本条数 | fired/n | clean-correct | flip(knowledge) "
+          "| collapse | ASR | poison_follow | true_in_top8 | 备注 |\n"
           "|---|---|---|---|---|---|---|---|---|---|---|")
 
 
@@ -194,8 +199,10 @@ def one_row(label: str, path: str, variant: str | None = None,
 def per_model_table(section_title: str, arms: list[tuple[str, str]],
                     restrict_qids: set[str] | None = None,
                     arm_note: dict[str, str] | None = None) -> str:
-    """One table with a row per (model, arm). arms = [(arm_suffix, variant), ...];
-    arm_suffix None -> main-table cluster row (arm label = 'cluster')."""
+    """One table with a row per (model, setting).
+
+    `arms` is a list of (setting_suffix, variant) pairs; setting_suffix None ->
+    the model's main-table cluster row (label 'cluster-main')."""
     arm_note = arm_note or {}
     lines = [section_title, "", HEADER]
     for m in MAIN_MODELS:
@@ -213,7 +220,7 @@ def per_model_table(section_title: str, arms: list[tuple[str, str]],
 
 def build_main_table() -> str:
     mus_qids = frozen_mus_qids()
-    lines = ["## 主表：4 骨干 × 2 数据集（cluster v8, keyword 触发, 共享/冻结目标）", "",
+    lines = ["## 主表：4 个模型 × 2 个数据集（cluster v8, keyword 触发, 共享/冻结目标）", "",
              "HotpotQA 行：共享 60 目标 + 共享 wrongs（与 ReAct baselines 同协议）。"
              "MuSiQue 行：冻结 59 目标（xlam-2-8b 行在分析期裁剪到同一 59 qid）。", "",
              "### HotpotQA", "", HEADER]
@@ -232,8 +239,8 @@ def build_volume() -> str:
     arms = [("vol2", "cluster"), ("vol4", "cluster"), ("vol6", "cluster"),
             (None, "cluster")]
     return per_model_table(
-        "## 毒量剂量（每目标毒块 2/4/6/8, cluster, HotpotQA, 全部骨干）\n"
-        "行 = 骨干 / 臂;arm=cluster 即该骨干主表行（volume 8）。",
+        "## 毒量剂量（每目标毒文本 2/4/6/8 条, cluster, HotpotQA, 全部模型）\n"
+        "行 = 模型 / 实验配置;配置 cluster 即该模型主表行（volume 8）。",
         arms)
 
 
@@ -242,8 +249,8 @@ def build_diversity() -> str:
             ("nodiv", "cluster_nodiv"), ("greedy", "cluster_greedy"),
             (None, "cluster")]
     return per_model_table(
-        "## 风格多样性分解（全部毒量 8, HotpotQA, 全部骨干, refill+MMR v2）\n"
-        "行 = 骨干 / 臂;arm=cluster 即该骨干主表行（full）。",
+        "## 风格多样性分解（全部毒量 8, HotpotQA, 全部模型, refill+MMR v2）\n"
+        "行 = 模型 / 实验配置;配置 cluster 即该模型主表行（完整方法）。",
         arms)
 
 
@@ -256,8 +263,8 @@ def build_trigger() -> str:
         ("llama-3.1-8b", "trig_always"): "always p=1.0",
     }
     return per_model_table(
-        "## 触发方式（cluster 毒量 8, HotpotQA, 全部骨干）\n"
-        "行 = 骨干 / 臂;arm=cluster 即该骨干主表行（keyword）。",
+        "## 触发方式（cluster 毒量 8, HotpotQA, 全部模型）\n"
+        "行 = 模型 / 实验配置;配置 cluster 即该模型主表行（keyword）。",
         arms, arm_note=notes)
 
 
@@ -266,18 +273,19 @@ def build_topk() -> str:
     notes = {("xlam-2-8b", None): "k=8 (主表)", ("qwen3-8b", None): "k=8 (主表)",
              ("gpt-oss-20b", None): "k=8 (主表)", ("llama-3.1-8b", None): "k=8 (主表)"}
     return per_model_table(
-        "## 受害者检索窗口（top-k=4/8/16, cluster 毒量 8, HotpotQA, 全部骨干）\n"
-        "行 = 骨干 / 臂;k=8 行即该骨干主表 cluster 行;topk 只作用于 victim 检索侧。\n"
-        "注意：flip 的 clean 分母统一复用该骨干 k=8 主表答对题集合（窗口变化不换分母）；"
-        "true_in_top8 / consensus_cov 仪表固定按 k=8 统计，不代表该臂实际窗口。",
+        "## 受害者检索窗口（top-k=4/8/16, cluster 毒量 8, HotpotQA, 全部模型）\n"
+        "行 = 模型 / 实验配置;k=8 行即该模型主表 cluster 行;top-k 只作用于受害者检索侧。\n"
+        "注意：flip 的 clean 分母统一复用该模型 k=8 主表答对题集合（窗口变化不换分母）；"
+        "true_in_top8 / consensus_cov 仪表固定按 k=8 统计，不代表该配置实际窗口。",
         arms, arm_note=notes)
 
 
 def build_cross_model() -> str:
     lines = ["## 跨模型投毒迁移（攻击者 A 的毒文本 → 受害者 B, HotpotQA, cluster 毒量 8）",
              "",
-             "对角线 = 主表同模型行（A==B）;非对角 = 08 脚本 phase inject+eval-after 结果,"
-             "clean 分母取受害模型主表。单元格 = flips/clean-correct (flip%) / ASR%。",
+             "对角线 = 攻击者与受害者同一个模型（主表行）;其他格 = 用一个模型写的毒文本去攻击"
+             "另一个模型（直接回放，不重新生成），分母为受害者自己的主表答对题集合。"
+             "单元格 = 改写数/答对数 (改写%) / ASR%。",
              "",
              "| 注入 \\ 受害 | " + " | ".join(MAIN_MODELS) + " |",
              "|---|---|---|---|---|"]
@@ -349,8 +357,11 @@ def main() -> None:
     parts = [
         "# Ablation + Main Table summary v2 (auto-generated by experiments/summarize_ablation.py)",
         "",
-        "All runs: LangGraph victim, refill+MMR sampler (v2), bge KB, benign_rounds=3, "
-        "unified scoring. flip(knowledge) = clean-correct -> non-empty wrong; "
+        "All runs use the same victim agent and knowledge base and the same "
+        "scoring. Sampling (v2): generate candidate texts, top them up until the "
+        "requested count is reached, then pick with a relevance-vs-redundancy "
+        "trade-off (MMR). "
+        "flip(knowledge) = clean-correct -> non-empty wrong; "
         "collapse = -> empty; ASR = injected-wrong-substring hits; denominators explicit.",
         "",
         build_main_table(),

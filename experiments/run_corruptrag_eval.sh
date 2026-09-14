@@ -79,22 +79,27 @@ serve_remote () {  # $1 victim (qwen3-8b|llama-3.1-8b)
   echo "FAILED remote serve $1" >&2; return 1
 }
 
-inject_set () {  # $1 poison_json  $2 kb_dir  $3 kb_collection  $4 marker
-  local marker="$4"
-  if [ ! -f "$marker" ]; then
-    ( cd "$ROOT/experiments" && "$PY" -c "
+inject_set () {  # $1 poison_json  $2 kb_dir  $3 kb_collection
+  # always (re-)inject: a marker file only records that a past run injected,
+  # not that the CURRENT KB still holds the poison (the KB is cleaned between
+  # experiments). inject-from deletes leftover poison first.
+  ( cd "$ROOT/experiments" && "$PY" -c "
 import chromadb
 c = chromadb.PersistentClient(path='$2')
 coll = c.get_collection('$3')
 ids = coll.get(where={'is_poison': 1})['ids']
 if ids: coll.delete(ids=ids)
 " )
-    ( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID="corruptrag_$(basename $1 .json)" \
-        "$PY" longtail_attack.py --phase inject-from --inject-from "$1" \
-        --kb-dir "$2" --kb-collection "$3" \
-        --results-name "corruptrag_inj_$(basename $1 .json)" 2>&1 | tail -1 )
-    touch "$marker"
-  fi
+  ( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID="corruptrag_$(basename $1 .json)" \
+      "$PY" longtail_attack.py --phase inject-from --inject-from "$1" \
+      --kb-dir "$2" --kb-collection "$3" \
+      --results-name "corruptrag_inj_$(basename $1 .json)" 2>&1 | tail -1 )
+  n_poison=$( cd "$ROOT/experiments" && "$PY" -c "
+import chromadb
+c = chromadb.PersistentClient(path='$2')
+print(len(c.get_collection('$3').get(where={'is_poison': 1})['ids']))
+" )
+  [ "${n_poison:-0}" -gt 0 ] || { echo "KB has 0 poison chunks after injection — aborting" >&2; exit 1; }
 }
 
 # run_eval_one: $1 victim  $2 kb_dir  $3 kb_collection  $4 target_rec  $5 results_name  $6 url
@@ -142,7 +147,7 @@ for setname in as_hp ak_hp as_mus ak_mus; do
     *_mus) KBD="$ROOT/data/chroma_musique"; KBC=musique_kb; REC="$REC_MUS" ;;
   esac
   echo "=== set $setname: inject + eval (dual GPU) ==="
-  inject_set "$PJ" "$KBD" "$KBC" "$ROOT/results/corruptrag_${setname}_inj.flag"
+  inject_set "$PJ" "$KBD" "$KBC"
   # run both sides concurrently; both read the same KB (already injected)
   eval_side "$setname" "$KBD" "$KBC" "$REC" local  > "$LOGDIR/cr_${setname}_local.log" 2>&1 &
   LPID=$!

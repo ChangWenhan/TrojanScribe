@@ -16,6 +16,7 @@ export PYTHONUNBUFFERED=1
 export AGENTIC_RAG_ASK_WORKERS=8
 export AGENTIC_RAG_BASE_URL=http://localhost:8000/v1
 TARGET_REC=$ROOT/results/baseline_agentpoison_targets.json
+POISON_JSON=$ROOT/results/baseline_agentpoison_60.json
 VICTIMS=(xlam-2-8b qwen3-8b gpt-oss-20b llama-3.1-8b)
 
 declare -A SPECS=(
@@ -46,6 +47,34 @@ serve_victim () {  # $1 victim name
   done
   echo "FAILED to serve $vname" >&2; return 1
 }
+
+# inject before evaluation. No marker guard: a marker only records that some
+# past run injected, not that the CURRENT KB still holds the poison (the KB is
+# cleaned between experiments); inject-from deletes leftover poison first.
+echo "=== clean KB poison leftovers ==="
+( cd "$ROOT/experiments" && "$PY" -c "
+import yaml, chromadb
+cfg = yaml.safe_load(open('../configs/default.yaml'))
+client = chromadb.PersistentClient(path=cfg['kb']['persist_dir'])
+coll = client.get_collection(cfg['kb']['collection'])
+ids = coll.get(where={'is_poison': 1})['ids']
+if ids:
+    coll.delete(ids=ids)
+    print('cleaned', len(ids), 'poison')
+else:
+    print('KB already clean')
+" )
+echo "=== inject AgentPoison poison (60 chunks) ==="
+( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID="baseline_ap_main_inject" "$PY" longtail_attack.py \
+    --phase inject-from --inject-from "$POISON_JSON" --results-name ap_main_inj 2>&1 | tail -2 )
+n_poison=$( cd "$ROOT/experiments" && "$PY" -c "
+import yaml, chromadb
+cfg = yaml.safe_load(open('../configs/default.yaml'))
+c = chromadb.PersistentClient(path=cfg['kb']['persist_dir'])
+print(len(c.get_collection(cfg['kb']['collection']).get(where={'is_poison': 1})['ids']))
+" )
+[ "${n_poison:-0}" -gt 0 ] || { echo "KB has 0 poison chunks — aborting"; exit 1; }
+echo "KB poison chunks: $n_poison"
 
 for V in "${VICTIMS[@]}"; do
   OUT="$ROOT/results/baseline_agentpoison_eval_${V}.json"

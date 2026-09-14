@@ -135,6 +135,8 @@ def main():
         "targets": targets,
         "variants": {"cluster": {"poison_writes": out_writes}},
     }
+    if args.variant == "ak":
+        result["meta"]["ak_fallbacks"] = n_fail  # targets that fell back to the AS template
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     json.dump(result, open(args.out, "w"), ensure_ascii=False, indent=1)
     print(f"[corruptrag] saved {len(out_writes)} chunks ({args.variant}) -> {args.out}")

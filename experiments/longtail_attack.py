@@ -90,6 +90,7 @@ def ask_targets(store, config, targets, label: str) -> dict:
         rec = {
             "pred": r["answer"],
             "correct": exact_match(r["answer"], q.answer),
+            "correct_substring": unified.correct(r["answer"], q.answer),
             "n_tool_calls": r.get("n_tool_calls", 0),
             "trace": r.get("trace", []),
         }
@@ -308,7 +309,10 @@ def main():
         n = 0
         for w in writes:
             qid = w.get("qid") or ""
-            wrong = (tr.get(qid) or {}).get("wrong", "")
+            rec = tr.get(qid) or {}
+            # generator files name the wrong answer "wrong" (our format) or
+            # "incorrect answer" (the shared target files) — accept both
+            wrong = rec.get("wrong") or rec.get("incorrect answer") or ""
             store.write(
                 w.get("text", ""), author_id="doc-consolidator", source="reused-poison",
                 is_poison=True,
@@ -563,6 +567,7 @@ def main():
                 "refill_rounds": config["attack"].get("refill_rounds", 1),
                 "kb_collection": config["kb"]["collection"],
                 "wrong_source": wrong_source,
+                "n_poison": store.count(poison_only=True),
                 "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
             "targets": target_records,
@@ -582,6 +587,13 @@ def main():
 
     if args.clean_from:
         d = json.load(open(args.clean_from))
+        src_model = (d.get("meta") or {}).get("model")
+        eff_model = args.model or llm_cfg.model
+        if src_model and eff_model and src_model != eff_model:
+            raise SystemExit(
+                f"[08] --clean-from {args.clean_from} belongs to model '{src_model}' "
+                f"but this run is '{eff_model}' — the flip denominator would come "
+                f"from the wrong victim. Pass the matching main-table file.")
         base = {qid: v for qid, v in (d.get("clean") or {}).get("answers", {}).items()
                 if qid in target_records}
         missing = set(target_records) - set(base)
@@ -620,6 +632,7 @@ def main():
             "variants": variants,
             "volume": args.volume,
             "benign_rounds": config["attack"].get("benign_rounds", 3),
+            "refill_rounds": config["attack"].get("refill_rounds", 1),
             "wrong_source": wrong_source,
             "payload_max_tokens": payload_max_tokens(),
             "request_kwargs": {

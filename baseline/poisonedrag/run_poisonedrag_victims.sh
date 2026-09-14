@@ -20,7 +20,6 @@ export AGENTIC_RAG_ASK_WORKERS=8
 export AGENTIC_RAG_BASE_URL=http://localhost:8000/v1
 POISON_JSON=$ROOT/results/baseline_poisonedrag_60.json
 TARGET_REC=$ROOT/results/baseline_poisonedrag_targets.json
-INJECT_MARKER=$ROOT/results/baseline_poisonedrag_injected.flag
 VICTIMS=(qwen3-8b gpt-oss-20b llama-3.1-8b)   # xlam-2-8b already done (flip 14/27)
 
 declare -A SPECS=(
@@ -65,16 +64,16 @@ EOF
   )
 fi
 
-# inject once (guarded)
-if [ ! -f "$INJECT_MARKER" ]; then
-  echo "=== clean KB poison leftovers ==="
-  ( cd "$ROOT/experiments" && "$PY" -c "
+# inject before evaluation. No marker guard: a marker only records that some
+# past run injected, not that the CURRENT KB still holds the poison (the KB is
+# cleaned between experiments). inject-from deletes leftover poison first, so
+# re-running it is safe.
+echo "=== clean KB poison leftovers ==="
+( cd "$ROOT/experiments" && "$PY" -c "
 import sys, yaml
 sys.path.insert(0, '../src')
-from agentic_rag.kb.store import KnowledgeStore
-cfg = yaml.safe_load(open('../configs/default.yaml'))
-s = KnowledgeStore(persist_dir=cfg['kb']['persist_dir'], collection=cfg['kb']['collection'], model_path=cfg['embedding']['model_path'], dim=cfg['embedding']['dim'])
 import chromadb
+cfg = yaml.safe_load(open('../configs/default.yaml'))
 client = chromadb.PersistentClient(path=cfg['kb']['persist_dir'])
 coll = client.get_collection(cfg['kb']['collection'])
 ids = coll.get(where={'is_poison': 1})['ids']
@@ -84,11 +83,17 @@ if ids:
 else:
     print('KB already clean')
 " )
-  echo "=== inject PoisonedRAG poison (300 chunks) ==="
-  ( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID=baseline_pr_main "$PY" longtail_attack.py \
-      --phase inject-from --inject-from "$POISON_JSON" --results-name baseline_pr_main_inj 2>&1 | tail -2 )
-  touch "$INJECT_MARKER"
-fi
+echo "=== inject PoisonedRAG poison (300 chunks) ==="
+( cd "$ROOT/experiments" && AGENTIC_RAG_RUN_ID=baseline_pr_main "$PY" longtail_attack.py \
+    --phase inject-from --inject-from "$POISON_JSON" --results-name baseline_pr_main_inj 2>&1 | tail -2 )
+n_poison=$( cd "$ROOT/experiments" && "$PY" -c "
+import yaml, chromadb
+cfg = yaml.safe_load(open('../configs/default.yaml'))
+c = chromadb.PersistentClient(path=cfg['kb']['persist_dir'])
+print(len(c.get_collection(cfg['kb']['collection']).get(where={'is_poison': 1})['ids']))
+" )
+[ "${n_poison:-0}" -gt 0 ] || { echo "KB has 0 poison chunks — aborting"; exit 1; }
+echo "KB poison chunks: $n_poison"
 
 for V in "${VICTIMS[@]}"; do
   OUT="$ROOT/results/baseline_poisonedrag_eval_${V}.json"

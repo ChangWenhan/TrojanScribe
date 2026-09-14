@@ -75,18 +75,26 @@ def _llm_answer(llm: LLMBackend, question: str, context: str) -> str:
     return (llm.complete(prompt, max_tokens=64, temperature=0.1) or "").strip()
 
 
-def _craft_one(llm: LLMBackend, question: str, wrong: str, max_trials: int) -> tuple[str, int]:
-    """Generate II with the paper's verification loop. Returns (ii, n_trials)."""
+def _craft_one(llm: LLMBackend, question: str, wrong: str, max_trials: int) -> tuple[str, int, bool]:
+    """Generate II with the paper's verification loop.
+
+    Returns (ii, n_trials, verified). `verified` is False when no trial in
+    `max_trials` made the LLM answer the wrong answer; the last non-empty
+    trial is kept (flagged in the output) so the count of unverified corpora
+    is auditable. A failed verification on trial L is NOT the same as failure
+    to generate — the previous version conflated the two."""
+    last_ii = ""
     for trial in range(1, max_trials + 1):
         prompt = ADV_PROMPT.format(question=question, answer=wrong)
         ii = (llm.complete(prompt, max_tokens=128, temperature=0.9) or "").strip()
         if not ii:
             continue
+        last_ii = ii
         # verification: II alone must make the LLM produce the wrong answer
         ans = _llm_answer(llm, question, ii)
         if wrong.lower() in ans.lower():
-            return ii, trial
-    return ii, max_trials
+            return ii, trial, True
+    return last_ii, max_trials, False
 
 
 def main() -> None:
@@ -127,25 +135,26 @@ def main() -> None:
         for k in range(args.adv_per_query):
             tasks.append((qid, rec["question"], rec["incorrect answer"]))
 
-    n_failed = 0
-    results: list[tuple[str, str, str, int]] = []
+    n_unverified = 0
+    results: list[tuple[str, str, str, int, bool]] = []
     with ThreadPoolExecutor(max_workers=workers) as ex:
         futs = {ex.submit(_craft_one, llm, q, w, args.max_trials): (qid, q)
                 for (qid, q, w) in tasks}
         done = 0
         for f in as_completed(futs):
             qid, q = futs[f]
-            ii, trials = f.result()
-            if trials == args.max_trials:
-                n_failed += 1
-            results.append((qid, f"{q}. {ii}", q, trials))
+            ii, trials, verified = f.result()
+            if not verified:
+                n_unverified += 1
+            results.append((qid, f"{q}. {ii}", q, trials, verified))
             done += 1
             if done % 60 == 0 or done == len(tasks):
                 print(f"[gen] {done}/{len(tasks)} corpora", flush=True)
 
-    for qid, text, q, _ in results:
+    for qid, text, q, trials, verified in results:
         out["variants"]["cluster"]["poison_writes"].append(
-            {"qid": qid, "target": q, "text": text})
+            {"qid": qid, "target": q, "text": text,
+             "trials": trials, "verified": verified})
     for qid, rec in targets.items():
         out["targets"][qid] = {
             "question": rec["question"],
@@ -153,7 +162,9 @@ def main() -> None:
             "correct": rec.get("correct answer", ""),
         }
 
-    print(f"[gen] verification failures (used last trial): {n_failed}", flush=True)
+    print(f"[gen] corpora not verified within L={args.max_trials} trials: "
+          f"{n_unverified} (last trial kept, flagged in the output)", flush=True)
+    out["meta"]["unverified_corpora"] = n_unverified
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)

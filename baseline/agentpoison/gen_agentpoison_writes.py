@@ -50,7 +50,7 @@ def candidate_triggers(wrong):
     frags.update(["Based on the context", "The correct answer", "Recall that",
                   "Note that", "Importantly", "As stated", "In fact",
                   "According to the passage", "The passage confirms"])
-    return list(frags)
+    return sorted(frags)  # deterministic order (set iteration is not)
 
 
 def phase_gen(args, targets):
@@ -114,7 +114,7 @@ def phase_retriever(args, targets):
     result = {
         "meta": {"baseline": "AgentPoison(adapted)", "llm_model": args.llm_model,
                  "trigger_source": "qwen3-8b sampling + bge retrieval score",
-                 "kb_collection": "hotpot_kb"},
+                 "kb_collection": "musique_kb" if "musique" in (args.out or "") else "hotpot_kb"},
         "targets": targets,
         "variants": {"cluster": {"poison_writes": out_writes}},
     }
