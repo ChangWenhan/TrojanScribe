@@ -77,6 +77,7 @@ class PoisonedAgent:
                 supporting_titles=target.get("supporting_titles") or [],
                 composition=target.get("composition", "killslot_only"),
                 true_paragraph=target.get("true_paragraph") or "",
+                probe_queries=list(target.get("probe_queries") or []),
             )
             for text in chunks:
                 cid = self.store.write(

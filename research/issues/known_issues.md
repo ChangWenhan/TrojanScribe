@@ -1,5 +1,7 @@
 # AgenticRAG 代码/实验已知问题清单
 
+> 2026-10-26 更新：下文保留历次审查记录；A2 中“不进 ASR 分母”“各模型都不进 flip 分母”的解释不适用于当前数据。最新核对见 [README 与实验数据审查](../monitor/results_audit_20261026.md)：主表数字按现有评分规则一致，但 88 份消融逐题结果未公开、15 份文件保留旧攻击前答案，且部分 README 结论需要修正。
+
 - 审计日期：2026-09-07（主表 5 骨干 × 2 数据集 + 消融 B/C/D 完成后）
 - 审计方式：通读代码 + vLLM 0.15.1 注册表核对 + 逐模型 serving/运行日志 + 用 `unified.normalize` 从结果 JSON 独立重算全部指标
 - 严重度定义：
@@ -23,6 +25,11 @@
 | C2 | 低 | co-retrieval 日志把 true_in_top8 硬编码打印 /60（59 目标亦然） | `08_longtail.py:425` | 已修复 |
 | C3 | 低 | ask_targets 答案记录不存 trace / n_tool_calls，无法事后审计 victim 是否调用工具 | `08_longtail.py:86-87` | 已修复 |
 | C4 | 低 | headline `08_longtail.json` 为旧格式，meta 缺 model/trigger_kind 等字段 | `results/08_longtail.json` | 关闭（接受现状） |
+| E1 | 高 | OLMo-3-7B 的 chat 模板在有 system 消息时不注入函数调用格式说明 → 0 次工具调用、瞎编答案 | `agents/base.py` | 已修复（`AGENTIC_RAG_TOOL_FORMAT_HINT=1`） |
+| E2 | 中 | 两份 D_c 是在旧四模型（含 llama）上冻结的，不含 OLMo → OLMo 攻击前就错 12 / 39 道 | `data/targets/dc_*` | 已解决（仍除以 100，"攻击前就答错"单列） |
+| E3 | 中 | 复制基线结果文件复用到新模型时，把上一模型的 `answers` 带进了新模型的结果文件 | `results/dc_*_musique.json` | 已修复（剥掉 answers） |
+| E4 | 中 | OLMo 在 MuSiQue 只查一次就作答（两跳题走一跳到）→ clean 68/100 | — | 模型特性，报告披露 |
+| E5 | 中 | 旧协议 88 份消融结果全部作废，新协议下需重跑（不是 bug，是协议更换） | —（旧结果已删） | 待重跑 |
 | D1 | 低 | embed_hybrid 候选上限 `n_candidates=6` 结构性 < 8 | `payload.py:150/293` | 已修复（`_fill_candidates` 补批） |
 | D2 | 低 | 并发采样与串行去重语义略异 | `payload.py:195-227` | 已修复 |
 | D3 | 低 | 两套 n_candidates 配置（kb=12 未用 / attack 默认 6）易混 | `default.yaml`、`attack.py:45` | 已修复 |
@@ -197,6 +204,58 @@ gpt-oss-20b is the outlier at 5/59"（phi-4-mini 行已删，不再列出）。
 ### D4 [低] 旧日志与 run 目录并存（过渡期）
 
 `results/logs/08_*.log`（旧机制产物）与新机制 `results/runs/<run_id>/08_*.log` 并存；`results/logs/` 仍保留 vllm_*.log、toolsmoke_*.log 等启动/服务日志。旧 08_*.log 无 run_id 对应关系，仅作历史参考，可整批移入一个 `results/logs/legacy/` 或删除。
+
+---
+
+## E. 新协议（D_c，100 题固定分母）时期
+
+> A–D 各条记录的是**旧协议（60 题）**时期的问题，保留作历史。新协议下 A1/B1/B2/C1/C2 等
+> 与分母、体积相关的条目已随协议更换而失效（新协议分母恒为 100，写入量逐题强制核对）。
+
+### E1 [高] OLMo 模板缺陷：有 system 消息时丢失函数调用格式说明（已修）
+
+OLMo-3-7B-Instruct 的 `chat_template.jinja` 只在**没有 system 消息**时注入
+"You are provided with function signatures… Output any function calls within
+`<function_calls></function_calls>` XML tags"。我们传 `SYSTEM_VICTIM` 作为 system 消息，
+这段说明被跳过，模型于是输出残缺调用 `kb_search(query="…")</function_calls>`
+（缺开头标签），vLLM `olmo3` 解析器只认成对的 `<function_calls>…</function_calls>`，
+解析失败 → `tool_calls=0` → 智能体拿着纯文本当答案，并开始编造。
+**不是模型能力问题**：直接调接口、把格式说明放进 system 消息后 `tool_calls=1`。
+修法见 `src/agentic_rag/agents/base.py` 的 `_TOOL_FORMAT_HINT` / `with_tool_format_hint()`，
+由 `AGENTIC_RAG_TOOL_FORMAT_HINT=1` 开启，受害者与写作助手都要加。
+
+### E2 [中] D_c 的冻结模型集合不含 OLMo
+
+`dc_hotpot_100.json` / `dc_musique_100.json` 的选题条件是"xlam + qwen3-4b + gpt-oss + llama
+都答对"，冻结时 OLMo 尚未纳入。因此 OLMo 在攻击前就会错一些：HotpotQA 错 12 道、MuSiQue 错 39 道
+（judge 口径；字符串口径分别为 12、32）。
+
+**口径决定（2026-10-27，用户明确要求）**：不换题、不换分母，**所有数字照样除以 100**。
+模型自己的错误率单独列一列"攻击前就答错"，不当作攻击战果；表格满足
+`攻击成功 + 攻击后仍答对 + 判不清 + 攻击前就答错 = 100`，四个模型可以直接横比。
+此前实现按"该模型 clean 答对数"做分母（OLMo 显示成 75/88），已改掉。
+
+### E3 [中] 复用基线毒文本时带进了上一模型的答案（已修）
+
+基线毒文本与受害者无关，可复制复用：`dc_<条件>_xlam-2-8b_musique.json` →
+`dc_<条件>_olmo-3-7b_musique.json`。但这些是**结果文件**，同时含 `poison_writes` 与 `answers`，
+直接改名会让新模型的文件里装着旧模型的答案（本次已发生，4 个文件受影响）。
+已剥掉 `answers`/`summary`，只留 `poison_writes` + 说明性 meta；`dc_run.py` 读
+`variants[..].poison_writes` 或顶层 `poison_writes`，剥答案不影响使用。
+**规则**：凡是复制基线文件到新模型，必须先剥答案。
+
+### E4 [中] OLMo 在 MuSiQue 上多跳失败率高
+
+攻击前答对 61/100（judge 口径；xlam 92 / qwen3-4b 98 / gpt-oss 96）。失败样本几乎全是 `n_tool_calls=1`：
+两跳题只检索一次就作答，答案停在中转实体上。属模型特性，非流程 bug；
+报告需把 clean 作为天花板并列，避免把"本来就答不对"算成攻击效果。
+
+### E5 [中] 旧协议 88 份消融全部作废，需在新协议下重跑
+
+作废理由：①旧分母是各模型 27/31/38/25，互不可比；②基础环境不一致（旧流程只有我们的方法每题先写正常资料）
+（三臂实测 30/38 → 21/38）；③qwen3-8b 下线、llama 剔除，模型换掉一半。
+旧结果已于 2026-10-27 删除（确认不可用）。重跑范围：11 个设置 × 4 模型 × 2 数据集 = 88 次运行，
+约 40 小时 GPU（基线毒文本可复用，不需重跑）。
 
 ---
 

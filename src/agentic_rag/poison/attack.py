@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 
 from ..agents.poisoned.agent import PoisonedAgent
 from ..agents.poisoned.payload import PayloadGenerator
+from ..agents.poisoned.probe import AnswerProbe
 from ..agents.poisoned.trigger import build_trigger
 from ..data.hotpot import HotpotQuestion
 from ..kb.store import KnowledgeStore
@@ -36,16 +37,27 @@ class Target:
     # frozen hypothesis AR5); empty string when unavailable
     true_paragraph: str = ""
     wrong_source: str = "shared"
+    # the victim's own retrieval queries (from its clean run trace). Used ONLY
+    # by the response-checked selection to rank candidates against the
+    # passages the victim will really compete with; empty = use the question.
+    probe_queries: list = field(default_factory=list)
 
 
 class AttackRunner:
     def __init__(self, store: KnowledgeStore, llm_cfg: LLMConfig, attack_cfg: dict):
         self.store = store
         self.llm = LLMBackend(llm_cfg)
+        # response-checked selection (proposal groups C/D): the trial answer is
+        # produced by the same served backbone that writes and is attacked, the
+        # same self-verification the published baselines use (PoisonedRAG's
+        # TextGeneration loop, CorruptRAG-AK's L-trial validation). It is only
+        # invoked by the `checked*` variants.
+        self.probe = AnswerProbe(self.llm, store)
         self.payload = PayloadGenerator(
             self.llm, store,
             n_candidates=attack_cfg.get("n_candidates", 6),
             refill_rounds=attack_cfg.get("refill_rounds", 1),
+            probe=self.probe,
         )
         self.cfg = attack_cfg
 
@@ -54,6 +66,7 @@ class AttackRunner:
         questions: list[HotpotQuestion],
         variants: list[str],
         wrong_by_qid: dict[str, str] | None = None,
+        probe_queries: dict[str, list[str]] | None = None,
     ) -> list[Target]:
         """Build one Target per (question, variant).
 
@@ -62,6 +75,7 @@ class AttackRunner:
         (flagged wrong_source='generated' so the results show it).
         """
         wrong_by_qid = wrong_by_qid or {}
+        probe_queries = probe_queries or {}
         targets = []
         for q in questions:
             # topic label = first supporting title (the gold doc's title), not
@@ -87,6 +101,7 @@ class AttackRunner:
                         supporting_titles=sup,
                         true_paragraph=true_para,
                         wrong_source=wrong_source,
+                        probe_queries=list(probe_queries.get(q.qid, [])),
                     )
                 )
         return targets

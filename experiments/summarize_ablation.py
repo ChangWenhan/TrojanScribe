@@ -254,6 +254,24 @@ def build_diversity() -> str:
         arms)
 
 
+def build_checked() -> str:
+    arms = [("checked_retr_tpl", "checked_retr_tpl"),
+            ("checked_retr", "checked_retr"),
+            ("checked_win", "checked_win"), ("checked_cons", "checked_cons"),
+            ("checked", "checked"), (None, "cluster")]
+    return per_model_table(
+        "## 试答挑选（response-checked selection, 毒量 8, HotpotQA）\n"
+        "行 = 模型 / 实验配置;配置 cluster 即该模型主表行（无试答）。\n"
+        "checked_retr = 用受害者自己 trace 里的检索词把候选和真实资料一起排序，只试答"
+        "「受害者真正会看到的那一窗」，再按 0/2/4/8 条混入第二种风格做小锦标赛；\n"
+        "checked_retr_tpl = 同上，候选池额外加入 8 条固定的「旧资料/最新数据」更正模板；\n"
+        "checked_win = 每种文本风格各写满 8 条后整窗试答，选真正能把模型带偏的那一种；\n"
+        "checked_cons = 单条候选混入正常资料试答，再按获胜风格重画 8 条；\n"
+        "checked = 单条候选试答后按通过/相关度选 8 条（候选池含 assert 家族）。\n"
+        "额外成本：每题 4-21 次短试答调用（见 poison_writes.selection_stats.probe_calls）。",
+        arms)
+
+
 def build_trigger() -> str:
     arms = [("semantic", "cluster"), ("trig_always", "cluster"), (None, "cluster")]
     notes = {
@@ -369,6 +387,8 @@ def main() -> None:
         build_volume(),
         "",
         build_diversity(),
+        "",
+        build_checked(),
         "",
         build_trigger(),
         "",

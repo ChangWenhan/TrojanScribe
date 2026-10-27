@@ -1,0 +1,28 @@
+{
+ "dataset": "musique",
+ "n": 100,
+ "models": [
+  "xlam-2-8b",
+  "qwen3-4b-instruct",
+  "gpt-oss-20b",
+  "llama-3.1-8b"
+ ],
+ "window_k": 8,
+ "kb": {
+  "collection": "musique_kb",
+  "total": 21100,
+  "poison": 0,
+  "content_sha256": "611b05cfda721f562e5b13b24fb5766ff8db6c886b9c98a40d23897573aac1b9"
+ },
+ "pool_file": "../data/targets/dc_pool_musique.json",
+ "seed": 42,
+ "survivors": 110,
+ "sha256_questions": "e6d42a74ed863aa6a60ac10e5d408ea54250f7bbb8825182cd988ddb495e9e61",
+ "served_models_seen": [
+  "llama-3.1-8b"
+ ],
+ "criterion": "every listed model answers correctly on the clean KB, retrieval was used (n_tool_calls>0), and the gold answer is not bare yes/no; flip denominator therefore equals |D_c|=100 for all of them",
+ "timestamp": "2026-10-27 13:57:50",
+ "sha256_targets": "f9703e06bcfed34b42040fced384c6b02bd3b81194142370daf4401e2a015094",
+ "prepared_at": "2026-10-27 14:08:06"
+}

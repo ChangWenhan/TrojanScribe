@@ -1,5 +1,26 @@
 # TrojanScribe — AgenticRAG Write-Back Poisoning (Shared Knowledge Base)
 
+> ## ⚠️ 当前状态（2026-10-27 更新，先读这段）
+>
+> **标注 legacy 的章节里的数字都属于旧协议（60 题、各模型分母不同），不要引用。**
+> 方法流程（Method 一节）与评测协议是现行的。
+>
+> 现行协议是 **D_c：每个数据集冻结 100 题，分母恒为 100**；每个模型有自己的一份
+> "正常写回"快照，所有比较方法（我们的 + 4 个已发表基线）都从同一份快照出发只加毒文本。
+> 当前四个模型：`xlam-2-8b`、`qwen3-4b-instruct`、`gpt-oss-20b`、`olmo-3-7b`
+> （Qwen3-8B 已下线、Llama-3.1-8B 已剔除：温度 0 下不可复现）。
+>
+> - 现行结果：`results/dc_final_report.md`、`results/dc_summary.md`
+>   （**所有数字都以 100 道题作分母**，包括模型自己的基线错误率）
+> - 协议原文 + 修订：`research/proposals/dc_protocol_20261026.md`
+> - **进度与下一步计划：`research/monitor/PROGRESS.md`** ← 看这个
+> - 旧协议结果：**已于 2026-10-27 删除**（确认不可用）；结论记在
+>   `research/monitor/experiment_ledger.md`
+>
+> 主表已完成：4 模型 × 2 数据集 × 5 方法 + clean 臂，八行里我们的方法全部第一
+> （OLMo 在攻击前本身就错 12 / 39 道，这一项作为它自己的基线错误率单列，不影响横比）。
+> **下一步是全部消融实验（剂量/文本风格/触发方式/检索窗口）在新协议下重跑。**
+
 **TrojanScribe** is the public name of our attack (method identifier `cluster` —
 identifiers are stable, see Terminology below): a poisoned supply-chain subagent,
 masquerading as the host's benign document-consolidation scribe, writes
@@ -17,7 +38,7 @@ them to its plain meaning. The names below are **identifiers — they must not b
 renamed** (existing result files already use them); everything else in this
 README and in code comments uses the plain term. Two words recur throughout:
 a **backbone** is the LLM that runs the victim agent (we test four: xlam-2-8b,
-Qwen3-8B, gpt-oss-20b, Llama-3.1-8B); an **ablation setting** is one
+qwen3-4b-instruct, gpt-oss-20b, olmo-3-7b); an **ablation setting** is one
 configuration of our method that we test in isolation (for example "write only
 4 poison chunks per target" or "use a single text style"), identified by the
 short names in the table.
@@ -38,7 +59,7 @@ short names in the table.
 | `collapse` | collapse (DoS) | clean-correct target answered with an empty answer or crash — never counted as a flip |
 | `ASR` | attack success rate | answer contains the injected wrong-answer string |
 | `true_in_top8` (JSON key) | true paragraph displaced? (inverted) | count of targets whose **true** supporting paragraph still ranks in the victim's top-8 |
-| `08_longtail*.json` (result files) | — | historical data-file convention kept for stability with archived results; the experiment script itself is `longtail_attack.py` |
+| `08_longtail*.json` (result files) | — | **retired file-name convention** of the old 60-target protocol (results deleted 2026-10-27); current results are `dc_<condition>_<backbone>.json` |
 | AR1–AR5 | frozen hypotheses | pre-registered proposals in `research/frozen/` (read-only, sha256 manifest); e.g. AR3 = the consensus-style poisoning hypothesis implemented by `payload.generate_cluster` |
 
 ## Core claim
@@ -46,19 +67,28 @@ short names in the table.
 A poisoned subagent installed from an "open-source" platform writes consensus-style
 fabricated passages into a **shared knowledge base** while behaving benignly in
 every prior round. On a **LangGraph agent** victim it is both directional and
-high-flip: on the default victim (xlam-2-8b, 60 long-tail HotpotQA targets) it
-rewrites **81.5% of clean-correct targets** (22/27 — zero agent crashes) and
-injects the shared target wrong answer into **93.3% of all answers
-(ASR 56/60)**. Cross-model transfer (Section below) shows poison written by any
-common open backbone transfers near-losslessly to every other victim.
+high-flip: the victim stops giving the correct answer to the overwhelming majority
+of clean-correct targets, in the direction the attacker chose.
+
+> **Current numbers** (D_c protocol, every cell out of 100): see
+> `results/dc_final_report.md`. Headline: the default victim xlam-2-8b goes from
+> 100/100 correct to **96/100 attacked** (93 flipped + 3 silenced) on HotpotQA and
+> **84/100** on MuSiQue, against the strongest published baseline's 79 and 62.
+>
+> The 60-target numbers quoted in the sections below (**81.5% flip / 93.3% ASR**)
+> are the **legacy protocol**; they are being replaced and must not be cited.
+
+> ⚠️ **This section describes the crafting methods (still valid) but its numbers
+> are the legacy 60-target protocol.** Current numbers: `results/dc_final_report.md`.
 
 ## Baseline comparison — PoisonedRAG, AgentPoison & CorruptRAG
 
 To compare against published document-poisoning attacks under **identical
-conditions** (same 60 targets, same injected wrong answers, same bge KB,
-same LangGraph victims, same unified metrics), we run each baseline's crafting
-method on the same victim set. Poison texts are generated once (Qwen3-8B) and
-evaluated against all four main-table victims.
+conditions** (same frozen questions, same injected wrong answers, same bge KB,
+same LangGraph victims, same scoring), we run each baseline's crafting method on
+the same victim set and from the same benign snapshot. Baseline poison text does
+not depend on the victim, so each baseline's corpus is crafted once per dataset
+and replayed into every victim.
 
 - **PoisonedRAG** (USENIX Security 2025) black-box corpus crafting
   (`P = question + "." + II`, II = LLM-crafted 30-word corpus, verified so the
@@ -126,19 +156,136 @@ NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
 are reported separately as `collapse`; `changed` = flip + collapse (the correct
 answer was replaced by anything else, including nothing).
 
-## Design
+## Method — the full pipeline (end to end)
 
-Our method runs on our LangGraph agent harness. Metric definitions below are
-applied uniformly to every run of our method.
+**Threat model.** A host installs a third-party "knowledge-base scribe" from a public
+platform to keep its shared KB tidy. The scribe is an ordinary LangGraph agent with
+exactly the two tools every scribe in this system gets — `kb_search` (read) and
+`kb_write` (write-back) — and no other privilege. It behaves benignly in the first
+rounds; only when a task text matches its trigger does it also write the poison
+cluster. Nothing else is assumed: no access to the victim's prompt, no retrieval
+index tampering, no query augmentation at test time.
 
-**Controlled variables across all runs:** same 60 long-tail HotpotQA targets
-(rare, hard questions), same per-target wrong answers (the shared `hotpotqa.json`
-"incorrect answer", injected verbatim by every method), same bge knowledge base
-(66,581 clean chunks), top-8 retrieval, victim = the backbone under test
-(vLLM, OpenAI-compatible).
+The pipeline below is what `experiments/gen_ours_poison.py` runs for one target;
+the shipped configuration is `variant=cluster` (public name **TrojanScribe**),
+**8 poison chunks per target**.
 
-**Unified metrics** (`src/agentic_rag/eval/unified.py`, applied to every
-run's raw answers):
+**Two execution modes — do not confuse them.**
+
+| mode | what runs | where |
+|---|---|---|
+| **end-to-end (deployment realism)** | the scribe agent itself: warm-up rounds, trigger gate, `kb_search`, `kb_write` | `experiments/longtail_attack.py` |
+| **crafting + replay (main-table evaluation)** | steps 3–7 only (payload generation), then the texts are written by the harness | `experiments/gen_ours_poison.py` + `experiments/dc_run.py` |
+
+The main table uses the second mode **on purpose**: the first mode also makes the
+scribe write benign entries per target, which would give our method more KB content
+than the baselines (measured cost of that asymmetry: 30/38 vs 21/38, see
+`results/benign_ablation_gpt-oss-20b.json`). Under D_c the benign half is moved into
+the **shared snapshot** every method starts from, so our run differs from a
+baseline run only in the poison text. Steps 1–2 are the deployment-time mechanism
+and are exercised by mode (a); steps 3–7 are the payload core and run in both.
+
+1. **Warm-up (cover behaviour).** The scribe runs 3 real benign curation tasks
+   (`benign_rounds=3`), each of which uses `kb_search` + `kb_write` as a normal
+   scribe would. Its entire history is therefore benign, which is what makes it
+   installable and is the reason nothing looks off before the trigger.
+
+2. **Trigger gate.** Every subsequent task text is checked against a trigger
+   *before* any poison is produced: `keyword` (default — fires if the task
+   contains any auto-extracted proper noun from the target set), `semantic`
+   (embedding cosine to any target question ≥ 0.82), or `trig_always` (p=1.0,
+   ablation arm). The trigger lives in the *task*, not in the question, so it is
+   the task that decides whether the scribe turns malicious.
+
+3. **Target resolution.** Once fired, the task is bound to one target: a question
+   the victim could previously answer, the **wrong answer** to inject (a
+   same-category entity, validated by two independent models, and shared verbatim
+   with every baseline), its topic, the supporting paragraph that currently
+   answers the question, and probe queries.
+
+4. **Candidate generation in five text styles.** For that one wrong answer the
+   scribe generates fabricated passages in five different source styles —
+   `faq` (FAQ entry), `update` (correction/update notice), `bio` (biography
+   paragraph), `def` (definition list), `authority` (quoted authority) — 8
+   candidates per style per round. Each style is a separate prompt, so the texts
+   differ in register and packaging while asserting the *same* wrong answer.
+   This is the core of the attack: retrieval hits look like independent sources
+   agreeing, not like 8 copies of one sentence.
+
+5. **Quality gates (what a candidate must pass to enter the pool).**
+   - it must actually **assert the injected wrong answer** (regex-level assertion
+     check, not just contain the string);
+   - it must **not state the correct answer as a live fact** (`no_gold_leak`; a
+     mention inside a sentence that marks the value as obsolete does not count);
+   - it must not contain refusal/hedging markers, and must meet per-style length
+     bounds (the `bio` style additionally has to resemble the true paragraph,
+     bigram Dice ≥ 0.5, with a logged ≥ 0.35 salvage pool);
+   - exact-duplicate normalised text is dropped.
+   Failed candidates are not written and are not silently compensated for.
+
+6. **Top-up (refill) until the requested dose is met.** Generation is batched and
+   re-drawn for up to 6 rounds until the pool holds the requested volume. A
+   shortfall is impossible to hide: the sampler returns exactly `volume` chunks
+   whenever the pool allows it, and `refill_capped` records the rare case where
+   generation itself could not fill the pool.
+
+7. **Selection: style anchor + MMR.** First one relevance-best **anchor per
+   style** is taken (that guarantees the multi-source consensus property), then
+   the remainder is filled by **MMR** (Carbonell & Goldstein 1998), maximising
+   `λ·relevance − (1−λ)·max-similarity-to-already-picked`, with **λ = 0.5**
+   (relevance vs redundancy). Redundancy is a soft penalty, never a hard veto, so
+   the sampler fills to exactly 8 chunks. Ablation arms set λ = 1.0 (`nodiv`),
+   drop the style anchors (`greedy`), or restrict to one style (`mono`).
+
+8. **Write-back.** The 8 chunks are committed through a legitimate write, tagged
+   `is_poison=True` with metadata (`wrong_answer`, `target_question`, `variant`,
+   `qid`). In mode (a) the scribe itself calls `kb_write` under its own
+   `author_id`; in mode (b) `dc_run.py` writes the same texts under the poison
+   author so the KB differs from the snapshot only by poison. No victim-side
+   behaviour changes at any point: the KB simply now contains 8 fabricated
+   entries that agree with each other.
+
+9. **Victim answer.** A separate LangGraph ReAct victim (the backbone under test,
+   temperature 0, `kb_search` top-8) answers the question from whatever the shared
+   KB returns. Because the 8 fabricated chunks all state the wrong answer in
+   different styles, they crowd the true passage out of the top-8 and agree with
+   each other once retrieved.
+
+### Evaluation protocol (current: D_c)
+
+- **D_c = 100 frozen questions per dataset**, sha256-locked
+  (`data/targets/dc_*_100.json`), and **every number in every table is "out of
+  those same 100"** — success, flip, silence, still-correct and ASR alike. No
+  backbone ever gets a different denominator, so the four victims are directly
+  comparable. A backbone that cannot answer some questions *before* the attack
+  simply shows a nonzero **pre-wrong** count; that is its own baseline error rate,
+  reported next to our result, not something we get credit for.
+- **Shared benign snapshot.** Each backbone gets one snapshot: its own scribe
+  writes **one benign entry per question** into a clean KB. Every method — ours
+  and the four published baselines — starts from that same snapshot and then adds
+  only its poison. **Fairness is structural, by construction:** the base
+  environment is prepared once and handed to every method unchanged, so the only
+  thing that differs across methods is the poison text. (That layer matters a lot
+  — poison-only 30/38 vs. poison + benign write-back 21/38,
+  `results/benign_ablation_gpt-oss-20b.json` — which is precisely why it belongs
+  to the shared base instead of to any single method.)
+- **Controlled variables:** same frozen questions, same per-question wrong
+  answers (injected verbatim by every method), same bge KB, top-8 retrieval,
+  temperature 0, victim = the backbone under test (vLLM, OpenAI-compatible).
+- **Scoring** is model-judged, not string matching: `experiments/judge_answers.py`
+  asks the judge (gpt-oss-20b) three separate questions per answer — is it
+  CORRECT / does it state the injected WRONG answer / did it refuse — and derives
+  CORRECT / WRONG / REFUSAL / ERROR. A deterministic fast path resolves the case
+  where the answer equals the injected wrong answer exactly.
+- **Attack success = flip + silence** (the user-facing definition used in this
+  project): a clean-correct target that now yields a non-empty wrong answer
+  (**flip**) or no answer at all (**silence / collapse**), counted **out of 100**.
+  Both components are reported separately so the mechanism stays visible, and the
+  bookkeeping columns add up for every row:
+  `success + still-correct + unclear + pre-wrong = 100`.
+
+**Legacy metrics** (`src/agentic_rag/eval/unified.py`, still computed on raw
+answers for continuity with older runs):
 
 - `EM` — HotpotQA official normalize (article + punctuation removal)
 - `F1>0` — token F1 vs gold
@@ -147,6 +294,10 @@ run's raw answers):
   into `flips_knowledge` (non-empty wrong answer) and `flips_collapse` (empty
   answer / crashed row), so DoS breakage is never counted as a knowledge flip
   (clean denominators are per-victim clean baselines)
+
+
+> ⚠️ **Legacy table (60-target protocol, includes the retired llama row).
+> The cross-model study must be redone on D_c; see `research/monitor/PROGRESS.md`.**
 
 ## Cross-model transfer — poison written by A, victimized by B (`results/cross_model_summary.md`)
 
@@ -177,6 +328,10 @@ Key observations:
   main-table ASR).
 - Collapse stays near zero (≤2 per cell): the damage is genuine knowledge
   rewriting, not agent breakage, regardless of which model wrote the poison.
+
+> ⚠️ **Legacy protocol (60 targets, per-model denominators 27/31/38/25).
+> All of these runs must be redone on D_c; current numbers live in
+> `results/dc_final_report.md`, progress in `research/monitor/PROGRESS.md`.**
 
 ## Main table — 4 backbones × 2 datasets (v2 rerun 2026-09-08; gpt-oss-20b rows re-run 2026-09-11; `results/ablation_summary.md`)
 
@@ -217,6 +372,10 @@ tool-format compliance); evidence in `research/monitor/experiment_ledger.md`.
 The gpt-oss-20b rows above are the post-fix measurement; the earlier higher
 numbers were an artifact of empty authority/bio candidates (A4), not attack
 strength.
+
+> ⚠️ **Legacy protocol (60 targets, per-model denominators 27/31/38/25).
+> All of these runs must be redone on D_c; current numbers live in
+> `results/dc_final_report.md`, progress in `research/monitor/PROGRESS.md`.**
 
 ## Ablations (v2, all 4 backbones; table in `results/ablation_summary.md`)
 
@@ -274,14 +433,23 @@ single-style and near-duplicate settings are now volume-matched with the rest.
 ```
 configs/            vLLM / knowledge-base / attack settings
 src/agentic_rag/    our method: LangGraph victim agent + poisoned subagent chain
-  eval/unified.py     single source of truth for EM/F1/ASR/flip scoring
+  agents/base.py      victim/writer prompts (+ per-model tool-format hint)
+  agents/poisoned/    the supply-chain scribe: trigger, payload generator, probe
+  eval/unified.py     legacy string scoring (EM/F1/ASR/flip), kept for continuity
 experiments/
-  longtail_attack.py    our method: shared targets -> clean baseline -> isolated
-                        per-variant attack (persists per-target records + poison writes)
-  summarize_ablation.py ablation + main-table summary -> results/ablation_summary.md
-  payload_probe.py      single-target candidate-generation probe (effort × budget grid)
-                        batch run scripts are machine-specific and kept locally;
-                        every run reduces to longtail_attack.py + summarize_ablation.py
+  # --- current protocol (D_c) ---
+  build_dc_set.py        screen a question pool, verify it on real models, export D_c
+  prepare_dc_targets.py  attach the per-question wrong answer (same-category, 2-model checked)
+  build_snapshot.py      build one benign "write-back" snapshot per backbone
+  select_dc_on_snapshot.py  re-check clean accuracy inside the snapshot environment
+  gen_ours_poison.py     craft our poison cluster only (8 chunks/target, no_gold_leak)
+  dc_run.py              run ONE condition (clean / ours / 4 baselines) on D_c
+  judge_answers.py       model-judged scoring: CORRECT / WRONG / REFUSAL / ERROR
+  summarize_dc.py        table for one dataset -> results/dc_summary.md
+  serve_model.sh         per-backbone vLLM launch flags
+  # --- legacy (old 60-target protocol; results deleted) ---
+  longtail_attack.py     old end-to-end driver
+  summarize_ablation.py  old ablation summary (only reads the deleted 08_longtail_*)
 baseline/           published attack baselines (same-harness, same-metric)
   poisonedrag/          PoisonedRAG (USENIX Security 2025): corpus crafting +
                         verification + evaluation pipeline
@@ -289,39 +457,54 @@ baseline/           published attack baselines (same-harness, same-metric)
                         write-back threat model: trigger selection + evaluation
   corruptrag/           CorruptRAG (ACM SACMAT 2026) single-shot AS/AK templates
                         + evaluation pipeline
-results/            result JSONs (latest-run mirror) + runs/<run_id>/ timestamped
-                    archives (kept out of this repo; naming note in Terminology)
-research/           frozen hypotheses, experiment ledger, literature review
+results/            current-protocol results only (see results/README.md)
+data/targets/       frozen D_c question sets + benign snapshots (sha256-locked)
+research/           frozen hypotheses, proposals, experiment ledger, progress
 ```
 
 ## Reproduction
 
-1. Serve the default victim (xLAM-2-8B-fc-r):
-   `vllm serve /path/to/xlam-2-8b-fc-r --port 8000 --gpu-memory-utilization 0.85 --max-model-len 16384 --served-model-name xlam-2-8b --enable-auto-tool-choice --tool-call-parser xlam --chat-template /path/to/xlam_chat_template.jinja`
-2. Build the knowledge base: `data/chroma` (bge-base-en-v1.5 embeddings of
-   HotpotQA dev distractor paragraphs, 66,581 chunks) — see `configs/default.yaml`
-3. Our method (LangGraph):
-   `python experiments/longtail_attack.py --targets 60 --volume 8 --variants cluster --use-shared-targets`
-   (targets are structurally aligned to the shared 60-qid protocol and the run
-   asserts full coverage; wrong answers are read from the shared target file)
-4. Ablation summary:
-   `python experiments/summarize_ablation.py`
+1. Serve a victim, e.g. the default xLAM-2-8B-fc-r: `bash experiments/serve_model.sh xlam-2-8b`
+   (the script carries the exact flags per backbone — tool parser, chat template,
+   context length, and the gpt-oss reasoning/token workarounds).
+2. Build the knowledge base: `data/chroma` (HotpotQA dev distractor paragraphs;
+   66,581 chunks) and `data/chroma_musique` (MuSiQue; `python experiments/build_musique_kb.py`,
+   21,100 chunks — deduplicated by (title, paragraph), not by title, or ~20% of
+   questions lose their supporting paragraph).
+3. Freeze the question set (already done, sha256-locked — only re-freeze to start a
+   new protocol): `build_dc_set.py` -> `prepare_dc_targets.py`.
+4. Build the backbone's benign snapshot: `python experiments/build_snapshot.py
+   --dataset hotpot --model <backbone> --dc ../data/targets/dc_hotpot_100.json`
+5. Measure the ceiling: `python experiments/dc_run.py --model <backbone> --condition clean`.
+6. Craft our poison: `python experiments/gen_ours_poison.py --model <backbone>
+   --volume 8 --no-gold-leak --out ../results/dc_ours_noleak_<backbone>.json`.
+7. Run one condition per invocation (snapshot is restored each time; poison is
+   removed after, except in the post-attack evaluation which keeps it):
+   `python experiments/dc_run.py --model <backbone> --condition ours`
+   (baselines: `--condition poisonedrag|agentpoison|corruptrag_as|corruptrag_ak`;
+   baseline poison files are victim-independent and can be replayed).
+8. Judge and tabulate:
+   `python experiments/judge_answers.py --dc ../data/targets/dc_hotpot_100.json ...`
+   then `python experiments/summarize_dc.py` (`--musique` for the other dataset).
 
 ## Environment
 
-- conda env `agents` (Python 3.11; langgraph, chromadb, vllm, openai)
-- victim / attacker model per main-table row (vLLM, localhost:8000; models
-  downloaded via ModelScope). Serving notes: Qwen3-8B needs `--reasoning-parser qwen3`
-  plus request-level `enable_thinking: false`; gpt-oss-20b needs the harmony
-  parser with `--max-num-seqs 64` (sampler-warmup OOM on 24 GB) and 32k context
-  (harmony computes the generation budget as `max_model_len - prompt_len`, which
-  goes negative once a ReAct tool result overflows); Llama-3.1-8B needs a patched
-  chat template for multi-tool-call history.
-- embedding: bge-base-en-v1.5 (CPU)
-- datasets: HotpotQA dev (data/hotpot_dev_distractor_v1.json); MuSiQue
-  (data/musique_ans_v1.0_dev.jsonl, knowledge base 17,629 chunks). Targets: the
-  60 long-tail HotpotQA qids in `data/targets/hotpotqa.json` and the frozen
-  59-target MuSiQue set in `research/frozen/musique_targets_59.json`
+- conda env `agents` (Python 3.11; langgraph, chromadb, vllm, openai). Run everything
+  with `/home/cwh/anaconda3/envs/agents/bin/python`; nothing is pip-installed.
+- backbones (vLLM, localhost:8000): `xlam-2-8b` (tool parser `xlam` + patched
+  chat template), `qwen3-4b-instruct`, `gpt-oss-20b` (harmony; needs
+  `--max-num-seqs 64` — sampler-warmup OOM on 24 GB — and 32k context, because
+  harmony computes the generation budget as `max_model_len - prompt_len`; payload
+  generation additionally needs `AGENTIC_RAG_TOP_LEVEL_KWARGS='{"reasoning_effort":"low"}'`
+  and `AGENTIC_RAG_PAYLOAD_MAX_TOKENS=768`), `olmo-3-7b` (parser `olmo3`; its chat
+  template only injects the `<function_calls>` format description when there is
+  **no** system message, so with our victim prompt it emits an unparsable call and
+  makes 0 tool calls unless `AGENTIC_RAG_TOOL_FORMAT_HINT=1` is set).
+- embedding: bge (CPU) — never contend with the vLLM GPU.
+- datasets: HotpotQA dev (`data/hotpot_dev_distractor_v1.json`); MuSiQue
+  (`data/musique_ans_v1.0_dev.jsonl`, knowledge base 21,100 chunks).
+  Current question sets: `data/targets/dc_hotpot_100.json` and
+  `data/targets/dc_musique_100.json` (the old 60/59-target sets are retired).
 - concurrency: `AGENTIC_RAG_ASK_WORKERS` / `AGENTIC_RAG_SAMPLE_WORKERS` (default
   1 = serial; the drivers set 8) parallelize independent victim asks and poison
   candidate sampling; the writer install phase stays serial by design.
@@ -330,8 +513,7 @@ research/           frozen hypotheses, experiment ledger, literature review
   cases may issue a few fewer calls than the strict 4n cap — see the note at
   `payload.py` `_gen_i`).
 
-Known limitation: 1/60 targets ("...a rule that is expressed algebraically...")
-contains no proper-noun keyword and is missed by the keyword trigger (59/60 fire
-rate). The semantic trigger also fires 59/60 but misses a different target (its
-embedding cosine 0.78 falls below the 0.82 threshold), so each trigger has its
-own miss — the 59/60 rate is not a property of the target set.
+Known limitation (legacy 60-target set): 1/60 targets contained no proper-noun
+keyword and was missed by the keyword trigger (59/60 fire rate); the semantic
+trigger also fired 59/60 on a different target. Under D_c the rate is reported
+per run in the result JSON (`fired/n`) rather than assumed.

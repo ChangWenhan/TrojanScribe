@@ -94,7 +94,11 @@ def phase_gen(args, targets):
 
 def phase_retriever(args, targets):
     from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer(MODEL_PATH, device="cpu").to(f"cuda:{args.gpu}")
+    # CPU only: the retriever is bge-base (110M) and moving it to the GPU fights
+    # the vLLM server for memory. That fight produced a hard CUDA error on
+    # 2026-10-27 ("CUDA kernel errors might be asynchronously reported"), which
+    # aborted the retriever phase mid-run. CPU is fast enough for 100 targets.
+    model = SentenceTransformer(MODEL_PATH, device="cpu")
     model.eval()
     recs = json.load(open(args.in_file))
     out_writes = []

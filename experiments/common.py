@@ -160,7 +160,8 @@ def _correct(pred: str, gold: str) -> bool:
 
 
 def make_victim(store, config, top_k: int | None = None, system_prompt: str | None = None):
-    from agentic_rag.agents.base import SYSTEM_VICTIM, ReActAgent, make_kb_search_tool
+    from agentic_rag.agents.base import (SYSTEM_VICTIM, ReActAgent,
+                                        make_kb_search_tool, victim_system_prompt)
     from agentic_rag.llm import load_llm_config
 
     llm_cfg = load_llm_config(config, "agent")
@@ -169,7 +170,7 @@ def make_victim(store, config, top_k: int | None = None, system_prompt: str | No
         name="victim",
         llm_cfg=llm_cfg,
         store=store,
-        system_prompt=system_prompt or SYSTEM_VICTIM,
+        system_prompt=system_prompt or victim_system_prompt(),
         tools=tools,
         top_k=top_k or config["kb"]["top_k"],
         max_iterations=config["attack"].get("max_iterations", 8),

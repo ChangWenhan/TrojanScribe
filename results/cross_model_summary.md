@@ -1,19 +1,12 @@
-# Cross-model matrix F — poison texts by attacker A replayed into victim B
+# 跨模型迁移汇总（待重做）
 
-cluster v8, keyword trigger, 60 shared HotpotQA targets. flip = clean-correct -> NON-EMPTY wrong answer (denominator = victim's own main-table clean-correct); ASR = injected wrong-answer substring over all 60 targets; coll = collapse (empty/crashed).
+**当前没有有效的跨模型结果。** 这里是占位文件，不是脚本生成的。
 
-| attacker \ victim | xlam-2-8b | qwen3-8b | gpt-oss-20b | llama-3.1-8b |
-|---|---|---|---|---|
-| xlam-2-8b | — (main table) | **28/31 (90%)**, ASR 85% | **30/38 (79%)**, ASR 67%, coll 1 | **23/25 (92%)**, ASR 78% |
-| qwen3-8b | **22/27 (81%)**, ASR 88%, coll 2 | — (main table) | **27/38 (71%)**, ASR 65% | **22/25 (88%)**, ASR 73%, coll 1 |
-| gpt-oss-20b | **24/27 (89%)**, ASR 92% | **29/31 (94%)**, ASR 90% | — (main table: 21/38, ASR 55%) | **23/25 (92%)**, ASR 82%, coll 1 |
-| llama-3.1-8b | **21/27 (78%)**, ASR 65% | **25/31 (81%)**, ASR 72% | **25/38 (66%)**, ASR 55% | — (main table) |
+- 旧协议的跨模型矩阵（`08_longtail_xsm_*`）已于 2026-10-27 随旧协议结果一起删除。
+- 作废原因同消融：旧协议分母不统一、各方法的基础环境不一致、模型换掉一半
+  （qwen3-8b 下线、llama 剔除）。
+- 新协议下要做的范围：4 个模型 → **12 个"甲写毒、乙受害"的不重复组合** × 2 个数据集。
+  毒文本直接重放前一个模型主表里已存档的文本（`--phase inject-from` 的等价流程），
+  不需要再起攻击方服务，每次评测约 3 分钟，合计约 2 小时 + judge。
 
-Note (2026-09-11): the gpt-oss-20b attacker row was re-run with the payload
-generation-budget fix (A4). Its poison remains the strongest transferable
-corpus (≥82% ASR on every foreign victim) even though gpt-oss is now the
-weakest victim of its own poison (diagonal 21/38, 55% flip / 55% ASR). The
-three gpt-oss-victim cells are re-scored against the current post-A4
-main-table clean set (their files embed a pre-A4 clean snapshot; the
-auto-generated `ablation_summary.md` follows the same rule). Every
-off-diagonal cell keeps ≥65% flip and ≥55% ASR; collapse stays ≤2 per cell.
+进度与计划见 `research/monitor/PROGRESS.md`。

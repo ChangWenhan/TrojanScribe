@@ -615,6 +615,21 @@ def main():
     print(f"[08] clean baseline: internal EM={base_em:.3f} correct={n_correct}/{len(targets)} "
           f"(substring {n_correct_sub}) | official-EM={base_em_official}/{len(targets)}")
 
+    # The victim's own retrieval queries, taken from its clean-run trace. Only
+    # the response-checked variants use them, to rank a candidate against the
+    # passages the victim will really compete with (the victim rewrites the
+    # question before searching, so the raw question is the wrong probe).
+    probe_queries: dict[str, list[str]] = {}
+    for qid, rec in base.items():
+        qs = [str((st.get("args") or {}).get("query") or "")
+              for st in (rec.get("trace") or []) if st.get("tool") == "kb_search"]
+        qs = [q for q in qs if q]
+        if qs:
+            probe_queries[qid] = qs
+    if probe_queries:
+        print(f"[08] probe queries from clean trace: {len(probe_queries)} targets "
+              f"(e.g. {next(iter(probe_queries.values()))[:2]})")
+
     # ---- per-variant attack (isolated: poison cleaned between variants) ----
     results = {
         "meta": {
@@ -663,7 +678,8 @@ def main():
 
         attack_cfg = dict(config["attack"], poison_chunks_per_target=args.volume)
         runner = AttackRunner(store, llm_cfg, attack_cfg)
-        vtargets = runner.prepare_targets(targets, [variant], wrong_by_qid=wrong_by_qid)
+        vtargets = runner.prepare_targets(targets, [variant], wrong_by_qid=wrong_by_qid,
+                                          probe_queries=probe_queries)
         n_generated_wrong = sum(1 for t in vtargets if t.wrong_source != "shared")
         if n_generated_wrong:
             if is_dataset_ablation:

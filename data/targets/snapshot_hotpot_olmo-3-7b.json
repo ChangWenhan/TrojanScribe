@@ -1,0 +1,1385 @@
+{
+ "meta": {
+  "dataset": "hotpot",
+  "model": "olmo-3-7b",
+  "n_questions": 100,
+  "window_k": 8,
+  "kb_before": {
+   "collection": "hotpot_kb",
+   "total": 66603,
+   "poison": 0
+  },
+  "dc_file": "dc_hotpot_100.json",
+  "dc_sha256_questions": "8ecc2fa7e57cba8ec1c4183d736709b39d8c5c761f231fdfd96ca7ca3d80da1d",
+  "author": "system",
+  "task_template": "A user asked: {question} Update the knowledge base with a reference entry about this topic.",
+  "n_entries": 90,
+  "questions_without_entry": [
+   "5a7647505542992d0ec06089",
+   "5a7949d45542994bb9456fdd",
+   "5a87081755429960ec39b6fe",
+   "5a8a40015542996c9b8d5e72",
+   "5abd6cb955429933744ab7cd",
+   "5ac19ff35542991316484b61",
+   "5adf2ba05542993a75d26411",
+   "5ae26197554299495565da51",
+   "5ae3ac665542994393b9e73f",
+   "5ae834e95542997ec272776a"
+  ],
+  "writes_per_question": {
+   "zero": 10,
+   "one": 90,
+   "many": 0
+  },
+  "env": {
+   "AGENTIC_RAG_TOP_LEVEL_KWARGS": null,
+   "AGENTIC_RAG_CHAT_KWARGS": null,
+   "AGENTIC_RAG_PAYLOAD_MAX_TOKENS": null
+  },
+  "timestamp": "2026-10-27 20:45:45",
+  "sha256_snapshot": "7c9fbc653a7025d1ec330faacdf5e615680bf8e566b2076b954e4b3f38381791",
+  "one_write_per_question": true
+ },
+ "entries": [
+  {
+   "qid": "5a71380c5542994082a3e68b",
+   "question": "What iron-hulled steamship designed by Theodore Timby was The Orleans County Monitor Newspaper named after? ",
+   "gold": "USS \"Monitor\"",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Orleans County Monitor Newspaper was named after the USS 'Monitor', an iron-hulled steamship designed by Theodore Timby. The USS 'Monitor' was the first ironclad warship commissioned by the Union Navy during the American Civil War and is renowned for its innovative design featuring a revolving turret, which was engineered by Theodore Timby. This ship played a pivotal role in the Battle of Hampton Roads in 1862. The newspaper, published in Barton, Vermont, from 1872 to 1953, drew its name from the ship to honor its pioneering role in naval history.",
+     "source": "kb_write:USS Monitor and Orleans County Monitor Newspaper",
+     "chunk_id": "53636d5674474a2e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a727a635542994cef4bc2c9",
+   "question": "What type of ovulation does the animal formerly known as the pygmy chimpanzee have?",
+   "gold": "Concealed ovulation",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The pygmy chimpanzee, now more commonly known as the bonobo (Pan paniscus), is a great ape that exhibits concealed ovulation. This means it does not display obvious external signs of ovulation or sexual receptivity, such as changes in scent or appearance, during the fertile phase. Instead, ovulation is inferred through physiological and behavioral cues that are not perceptible to the naked eye. This type of ovulation contrasts with species that show more visible signs of estrus, such as visible genital swelling in other primates. The term 'concealed ovulation' is used to describe this lack of external sexual signaling in bonobos.",
+     "source": "kb_write:Bonobo concealed ovulation",
+     "chunk_id": "90df5b0ce0cd409b"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7309a15542992359bc320c",
+   "question": "Which writer of the song \"Money, Money, Money\" by pop group ABBA was born on 16 December 1946 ?",
+   "gold": "Benny Andersson",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song 'Money, Money, Money' by ABBA was written by Benny Andersson and Björn Ulvaeus. Benny Andersson was born on 16 December 1946.",
+     "source": "kb_write:Money Money Money ABBA songwriter birthdate",
+     "chunk_id": "71ddca4df1cc4d4f"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7518cb55429916b0164259",
+   "question": "What Was the name of Juan Manuel Márquez's  WBO champion holding younger brother?",
+   "gold": "Rafael Márquez",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Juan Manuel Márquez's younger brother is Rafael Márquez, who is also a former professional boxer and held the IBF bantamweight title. Rafael Márquez (born March 25, 1975) is a Mexican former professional boxer known for his two-time world championship in the bantamweight and super bantamweight divisions.",
+     "source": "kb_write:Juan Manuel Márquez younger brother WBO champion",
+     "chunk_id": "249ee0bc79404be5"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a75d9b4554299109176e5a7",
+   "question": "What type of crab can be grown in a fishery and is known for its sweet and tender flesh?",
+   "gold": "The Dungeness crab",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The blue crab (Callinectes sapidus) is a crab species that can be farmed in various crab fisheries and is widely recognized for its sweet and tender flesh. It is one of the most important commercially farmed crabs globally, with significant fisheries in the North Atlantic, especially around the coasts of the British Isles. Blue crabs are known for their delicate meat, making them a prized seafood in many cuisines.",
+     "source": "kb_write:Blue Crab as Farmed Seafood with Sweet Tender Flesh",
+     "chunk_id": "0618f688e5994ed1"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7647505542992d0ec06089",
+   "question": "How has played in more bands, Kim Wilson or Chino Moreno?",
+   "gold": "Chino Moreno",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5a7949d45542994bb9456fdd",
+   "question": "What is the Latin name for one of the five \"big cats\" that the word \"Panther\" may refer to when outside of the Americas?",
+   "gold": "Panthera pardus",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5a7a5cc955429941d65f25d6",
+   "question": "What is the birthday of the author of \"She Walks These Hills\"?",
+   "gold": "February 26, 1948",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Sharyn McCrumb was born on February 26, 1948. She is an American author best known for her works celebrating the history and folklore of Appalachia, including the novel 'She Walks These Hills', which won the 1995 Anthony Award for Best Novel.",
+     "source": "kb_write:Author Birthday: Sharyn McCrumb",
+     "chunk_id": "53d2d62f641d43f8"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7a9ed55542995eb53be87d",
+   "question": "What king took away John Erskine, Earl of Mar's office?",
+   "gold": "George I",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "John Erskine, Earl of Mar (various dates) lost his office as Earl of Mar in 1716 after being attainted by the Scottish Parliament for his Jacobite sympathies during the First Jacobite Rebellion of 1715. This loss of office was a result of political repression by the Hanoverian government following his involvement in rebellion. The title was later restored in 1824. The attainting and loss of office were punishment for treason and were not restored until the restoration of Jacobite recognition in the early 19th century.",
+     "source": "kb_write:Loss of Office of John Erskine, Earl of Mar",
+     "chunk_id": "208f5fbd38114f03"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7b66135542997c3ec97145",
+   "question": "Which 2008 American documentary film, Pond Hockey or I.O.U.S.A., delves into fiscal issues?",
+   "gold": "I.O.U.S.A.",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The 2008 American documentary film I.O.U.S.A. delves into fiscal issues, focusing on the shape and impact of the United States national debt. The film, directed by Patrick Creadon, features experts such as Robert Bixby and David Walker who discuss the potential dangers and implications of the national debt. It is part of a broader effort to inform the public about the country's fiscal challenges through a national 'Fiscal Wake-Up Tour.'",
+     "source": "kb_write:2008 American documentary on U.S. national debt",
+     "chunk_id": "36849ce9b9b347d0"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7b681b554299042af8f767",
+   "question": "In what type of imprisonment where the inmates Arne Berge helped rescue during operation White Buses?",
+   "gold": "concentration camp",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Arne Berge was involved in humanitarian efforts during World War II, including working among Scandinavian prisoners in German concentration camps. He played a role in the 'White Buses' operation, an initiative by the Swedish Red Cross and Danish authorities in 1945 to rescue prisoners from Nazi concentration camps, including those held in German prisons. The operation primarily focused on rescuing citizens of Scandinavian countries, though it expanded to include others. Arne Berge's actions were part of broader efforts to liberate prisoners from various types of imprisonment, specifically concentration camps during the Nazi regime. These camps were characterized as forced-labor and detention facilities operated by Nazi Germany, designed to hold political dissidents, Jews, and other enemies of the state.",
+     "source": "kb_write:White Buses rescue and Arne Berge imprisonment context",
+     "chunk_id": "24c7a531b46646e4"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7b6e1d5542997c3ec9716e",
+   "question": "literary magazine Okyeame was inspired by this first prime Minister of Ghana whom led Ghana to independence from what country?",
+   "gold": "Britain",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Okyeame, a literary magazine founded in Ghana in the early 1960s, was inspired by Kwame Nkrumah, the first Prime Minister of Ghana and a leading figure in Ghana's independence movement from Britain in 1957. Nkrumah's vision of a free and independent Ghana deeply influenced the intellectual and cultural direction of the magazine, which sought to articulate new African perspectives and experiences. Kwame Nkrumah led Ghana to independence from the United Kingdom in 1957 and later became its first president. The magazine's founding era coincided with the period following Ghana's independence.",
+     "source": "kb_write:Okyeame and Ghana's First Prime Minister",
+     "chunk_id": "6daa81e77c1b46dc"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7c4e655542990527d55489",
+   "question": "Which actress does this Netflix's project by Nick Bernardone and Tina Fey star in the title role?",
+   "gold": "Ellie Kemper",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Netflix series 'Unbreakable Kimmy Schmidt,' created by Tina Fey and Robert Carlock, stars Ellie Kemper in the title role of Kimmy Schmidt. The show was originally intended for NBC but was picked up by Netflix for a two-season run starting in 2015.",
+     "source": "kb_write:Unbreakable Kimmy Schmidt cast and creators",
+     "chunk_id": "b442c8d5b55d4624"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7dbf4e5542990b8f503a68",
+   "question": "The actress known for her role in \"Lost in Translation\" also appears in Untitled Avenger film with which male actor who plays the character Thor?",
+   "gold": "Chris Hemsworth",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Scarlett Johansson, who is known for her role in the 2003 film 'Lost in Translation,' also appears in the Marvel Cinematic Universe's 'The Avengers' (2012). In 'The Avengers,' she portrays Natasha Romanoff, commonly known as Black Widow, alongside Thor, played by Chris Hemsworth. The film features a large ensemble cast, including Robert Downey Jr., Tom Hiddleston as Loki, and others, and is the sixth film in the MCU. Scarlett Johansson's performance as Black Widow is a key part of the team's efforts to stop Loki from conquering Earth.",
+     "source": "kb_write:Scarlett Johansson, Black Widow, The Avengers",
+     "chunk_id": "236213d699614216"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7df1095542990b8f503afe",
+   "question": "Who was born first out of  Thomas Carr and Joyce Wieland?",
+   "gold": "Thomas Carr",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the notable individuals mentioned, Joyce Wieland (born June 30, 1930) predates Thomas Carr the American music publisher (born 1780). Therefore, Joyce Wieland was born before Thomas Carr.",
+     "source": "kb_write:Birth Order of Thomas Carr and Joyce Wieland",
+     "chunk_id": "012e577e4438401d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7e035d5542997cc2c474f6",
+   "question": "Which auhor is younger, Nevil Shute or Grace Metalious?",
+   "gold": "Grace Metalious",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Nevil Shute Norway (17 January 1899 – 12 January 1960) was born in 1899, while Grace Metalious was born on 8 September 1924. Therefore, Nevil Shute was younger than Grace Metalious.",
+     "source": "kb_write:Author Age Comparison: Nevil Shute vs Grace Metalious",
+     "chunk_id": "99e69921d2ca4e64"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7e040f5542990b8f503b13",
+   "question": "Who was born first, Bruce Conner or Nils Gaup?",
+   "gold": "Bruce Conner",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Bruce Conner (November 18, 1933 – July 7, 2008) was an American artist born on November 18, 1933. Nils Gaup (born April 12, 1955) is a Sámi film director born on April 12, 1955. Therefore, Bruce Conner was born before Nils Gaup.",
+     "source": "kb_write:Birth Dates of Bruce Conner and Nils Gaup",
+     "chunk_id": "3e768aa07b2f4ce3"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7eb22655429930675135cb",
+   "question": "Which current CBS NBA analyst played for the PORTLAND TRAILBLazers along with former UNLV teammate Stacey Augmon?",
+   "gold": "Greg Anthony",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The current CBS NBA analyst who played for the Portland Trail Blazers and was a former UNLV teammate of Stacey Augmon is Scott Williams. During the 1998–99 NBA season, Williams, a power forward, played for the Portland Trail Blazers and reunited with his UNLV teammate Stacey Augmon. The 1998–99 Blazers, led by coach Mike Dunleavy, had a strong start to the season and won their fourth Pacific Division title in a lockout-shortened year. Williams is known for his time with the Bulls during their early 1990s championship runs and later had a long NBA broadcasting career, including current work as a color commentator.",
+     "source": "kb_write:Scott Williams – Trail Blazers/UNLV Connection",
+     "chunk_id": "7ddc896f4e8a49ca"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a7f962655429969796c1ac8",
+   "question": "Which skyscraper has more floors, the SNCI Tower or 8 Spruce Street?",
+   "gold": "8 Spruce Street",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the two skyscrapers compared, 8 Spruce Street (formerly Beekman Tower, designed by Frank Gehry) has 76 floors, while the SNCI Tower, a planned apartment skyscraper in TriBeCa, New York City, is planned to have 57 floors. Therefore, 8 Spruce Street has more floors than the SNCI Tower.",
+     "source": "kb_write:Skyscraper Floor Comparison: SNCI Tower vs 8 Spruce Street",
+     "chunk_id": "8d48e13eeb76471c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a80427c5542996402f6a49f",
+   "question": "What stagecoach robber did Frederick John Fulton prosecute?",
+   "gold": "Bill Miner",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Frederick John Fulton prosecuted Bill Miner, a notorious stagecoach robber, while serving as Attorney General of British Columbia in the early 20th century.",
+     "source": "kb_write:Frederick John Fulton and Bill Miner",
+     "chunk_id": "64615f3e2cf84888"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a80840f554299485f59863b",
+   "question": "What WB supernatrual drama series was Jawbreaker star Rose Mcgowan best known for being in?",
+   "gold": "Charmed",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Rose McGowan is best known for her role as Paige Matthews in the WB supernatural drama series Charmed (2001–2006). While she appeared in other films such as Jawbreaker (1999) and The Pastor's Wife (2011), her most recognized television role is in Charmed, where she starred alongside Shannen Doherty and Alyssa Milano.",
+     "source": "kb_write:Rose McGowan best known for",
+     "chunk_id": "0f0bf377501e4cf4"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a810d7655429903bc27b915",
+   "question": "What instrument does Duff McKagan play on Macy Gray's single, Kissed It?",
+   "gold": "bass",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Duff McKagan plays bass on Macy Gray's single 'Kissed It,' which was released in 2010 as part of the album 'The Sellout.' The song features the musicians of both Guns N' Roses and Velvet Revolver, with McKagan contributing his bass guitar. This collaboration is notable as it brings together members from two iconic rock bands.",
+     "source": "kb_write:Duff McKagan - Instrument on Macy Gray's 'Kissed It'",
+     "chunk_id": "b776369b71ee4f1e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a81cb2c5542990a1d231ec4",
+   "question": "What award does Crystal Palace F.C. present, first won by John McCormick and most recently by Wilfried Zaha?",
+   "gold": "Player of the Year",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Crystal Palace Football Club presents the Crystal Palace F.C. Player of the Year award. The award was first presented to John McCormick in 1972 and has since been given annually at the end of each season. The most recent recipient as of the retrieved knowledge is Wilfried Zaha, who won the award in the 2016–17 season. The award honours the best player in the club each year and has been won by numerous players throughout its history, with some achieving multiple wins. Wilfried Zaha is the most recent recipient.",
+     "source": "kb_write:Crystal Palace F.C. Player of the Year award",
+     "chunk_id": "b24287eeb8c44b7d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a836ce55542993344746012",
+   "question": "Which genus has more species: Sarracenia or Butea?",
+   "gold": "Sarracenia",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the plant genera in question, Sarracenia is recognized as containing more species than Butea. Sarracenia, part of the Sarraceniaceae family, is generally accepted to include 8 to 11 species of pitcher plants, such as Sarracenia rosea and Sarracenia oreophila. In contrast, Butea, a genus in the Fabaceae (pea) family, is typically recognized as having only two to five species, such as Butea monosperma and Butea superba. Therefore, Sarracenia has more species than Butea.",
+     "source": "kb_write:Genus species comparison: Sarracenia vs Butea",
+     "chunk_id": "53ad8283dacf4d92"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a83bfc8554299123d8c21a1",
+   "question": "What is the worth of the logo that appears alongside the \"Just Do It\" slogan?",
+   "gold": "$26 billion",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The logo that appears alongside the 'Just Do It' slogan, typically the Nike Swoosh, is a registered trademark symbol (®) representing Nike's brand identity. As of recent estimates, the Nike Swoosh logo is valued at approximately $26 billion, reflecting its status as one of the most recognizable and profitable brand logos in the world. This valuation underscores the immense worth of the visual branding element that accompanies the 'Just Do It' slogan in marketing and brand equity.",
+     "source": "kb_write:Worth of 'Just Do It' Logo (Nike Swoosh)",
+     "chunk_id": "cd9afa7d5c564837"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a845d735542996488c2e52e",
+   "question": "Stronger Together was used for the campaign comprised of the Vice Presidential candidate who was a Senator from what state?",
+   "gold": "Virginia",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Stronger Together was the campaign book published by Hillary Clinton and her Vice Presidential running mate Tim Kaine in 2016. Tim Kaine is an American attorney and politician who served as the junior United States Senator from Virginia. Therefore, the Vice Presidential candidate in the 2016 campaign that used the slogan 'Stronger Together' was Tim Kaine, who represented the state of Virginia in the U.S. Senate.",
+     "source": "kb_write:Stronger Together Vice Presidential Candidate State",
+     "chunk_id": "ecd9bb9be3cc438a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a859a9c5542997175ce1fd6",
+   "question": "In which year NGC 166 is located by an american astronomer who also discovered Frank Muller and Ormond Stone",
+   "gold": "1886",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "NGC 166 (also known as PGC 2143) is a spiral galaxy in the constellation Cetus, discovered in 1886 by American astronomer Francis Preserved Leavenworth. Leavenworth discovered NGC 166 together with Frank Muller and Ormond Stone using a 66-cm telescope at the Leander McCormick Observatory, University of Virginia. Frank Muller was an American astronomer, and Ormond Stone was an American astronomer and director of the Cincinnati and later the McCormick Observatory. The discovery of NGC 166 is associated with collaborative work among these American astronomers in the late 19th century.",
+     "source": "kb_write:NGC 166 discovery and astronomers",
+     "chunk_id": "f8cc228382e14cb9"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a85f8665542994775f606ce",
+   "question": "Runaway Scrape events of the Texas Revolution, culminating in this Battle, was a fight that lasted how long?",
+   "gold": "18 minutes",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Runaway Scrape refers to the series of evacuations by Texian civilians and soldiers during the Texas Revolution (1835–1836), as Mexican forces advanced under President Antonio López de Santa Anna. These events culminated in the Battle of San Jacinto on April 21, 1836, where the Texian Army defeated the Mexican forces in a battle that lasted approximately 18 minutes. The Runaway Scrape began after the abrogation of the 1824 Mexican constitution and the imposition of martial law in Texas, prompting the retreat of the Texian Army and the formation of the Army of the Republic of Texas. The duration of the Runaway Scrape itself spans several months (September 1835 to April 1836), but the decisive Battle of San Jacinto lasted about 18 minutes.",
+     "source": "kb_write:Runaway Scrape and Battle of San Jacinto Duration",
+     "chunk_id": "d272137a65b24a26"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a8622ae554299211dda2a7e",
+   "question": "When was the son of Kingsley Amis born ?",
+   "gold": "1949",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Kingsley Amis's son, Martin Amis, was born on 25 August 1949. Martin Louis Amis is a British novelist best known for works such as 'Money' (1984) and 'London Fields' (1989).",
+     "source": "kb_write:Birth of Kingsley Amis's Son",
+     "chunk_id": "d2674005461341cb"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a8662b955429960ec39b687",
+   "question": "Which university is this American philosopher, theologian, and Christian apologist, who supports theistic science, professor at?",
+   "gold": "Biola University",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "James Porter Moreland is an American philosopher, theologian, and Christian apologist who supports a theistic or philosophically Christian approach to science, often described as theistic science or theistic realism. He advocates for allowing supernatural explanations in some areas of science, particularly relevant to theology. Moreland is currently a Distinguished Professor of Philosophy at Talbot School of Theology at Biola University in La Mirada, California.",
+     "source": "kb_write:James Porter Moreland",
+     "chunk_id": "51f276b0a62a4d90"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a87081755429960ec39b6fe",
+   "question": "Jessica Jones is a television series created for Netflix, the second in the series of the shows that lead to \"The Defenders\" miniseries after what show released on Netflix earlier?",
+   "gold": "Daredevil",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5a87100655429960ec39b71e",
+   "question": "Which British Indian novelist and essayist did Anthony Burgess address in a lengthy letter?",
+   "gold": "Salman Rushdie",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Anthony Burgess addressed the British Indian novelist Salman Rushdie in a lengthy letter, most notably in his 1989 'An Essay on Censorship,' which was written in verse and published in response to the controversy surrounding Salman Rushdie's 'Midnight's Children' and the subsequent Iranian fatwa against him. This letter has been compared to the famous 'Essay on Man' by Alexander Pope for its philosophical and polemical scope.",
+     "source": "kb_write:Anthony Burgess–Salman Rushdie correspondence",
+     "chunk_id": "32e046cacc504c19"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a876a4a5542993e715abf30",
+   "question": "Liam McEwan works with what UK monthly men's lifestyle magazine?",
+   "gold": "FHM",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Liam McEwan is associated with J-14 Magazine, Twist (magazine), and M Magazine, which are UK-based monthly men's lifestyle magazines. Among these, J-14 Magazine is a prominent UK monthly men's lifestyle publication known for its focus on celebrity interviews, music, entertainment, and social media content.",
+     "source": "kb_write:Liam McEwan and UK monthly men's lifestyle magazines",
+     "chunk_id": "e1b889984522489a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a88d7fc5542993b751ca879",
+   "question": "Futbolita has interviewed what Spanish Professional footballer who plays as a striker for New York City FC?",
+   "gold": "David Villa",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "David Villa Sánchez (born 3 December 1981) is a Spanish professional footballer who plays as a striker for New York City FC and the Spain national team. He is the captain of New York City FC. Nicknamed 'El Guaje' due to his childhood playing style, Villa has had a prominent international and club career, including his current tenure with New York City FC.",
+     "source": "kb_write:David Villa New York City FC",
+     "chunk_id": "bea8d29633374044"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a88f7855542993b751ca8da",
+   "question": "In what year did a movie that starred both Nicholas Cage and Cher come out? ",
+   "gold": "1987",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Nicholas Cage and Cher starred together in the 1987 film 'Moonstruck,' which is a romantic comedy directed by Norman Jewison. The film follows Loretta, a 37-year-old Italian-American woman played by Cher, who develops romantic feelings for her fiancé's estranged younger brother, played by Nicolas Cage. Therefore, the movie starring both actors was released in 1987.",
+     "source": "kb_write:Nicholas Cage and Cher film release year",
+     "chunk_id": "be450ae0026e4920"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a8a40015542996c9b8d5e72",
+   "question": "Which television series was part of Cartoon Network's 2017 April Fools' prank and had a song by Justin Roiland played during the third season of the same show?",
+   "gold": "Rick and Morty",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5a8aa1685542992d82986f32",
+   "question": "What dance academy did the starring actress from The Glory of Tang Dynasty graduate from?",
+   "gold": "Beijing Dance Academy",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The actress starring in the 2017 Chinese television series 'The Glory of Tang Dynasty' is Jing Tian. According to her biography, Jing Tian graduated from the Beijing Dance Academy and the Beijing Film Academy. Therefore, she likely graduated from the Beijing Dance Academy as her dance-related educational institution.",
+     "source": "kb_write:Beijing Dance Academy",
+     "chunk_id": "6df6fe9092f7485a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a8c743e5542996e8ac88ab3",
+   "question": "What mixed martial arts promotion that was purchased by the Ultimate Fighting Championship in 2001 used to feature Nate Diaz as a competitor?",
+   "gold": "World Extreme Cagefighting",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The promotion in question is World Extreme Cagefighting (WEC). WEC was an American mixed martial arts (MMA) promotion founded in 2001. It was purchased by Zuffa, LLC—the parent company of the Ultimate Fighting Championship (UFC)—in 2006. Nate Diaz, the older brother of Nate Diaz, began his MMA career in 2001 and competed for WEC, where he became the WEC Welterweight Champion. This makes WEC the MMA promotion purchased by UFC in 2001 (through Zuffa's acquisition in 2006) that featured Nate Diaz as a competitor.",
+     "source": "kb_write:WEC and Nate Diaz",
+     "chunk_id": "78ab4e8e8eab4a92"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a8dad37554299068b959d94",
+   "question": "Both Phaedranassa and Mitella are considered the classification of what level of species?",
+   "gold": "genus",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Phaedranassa and Mitella are both genera of flowering plants, typically classified at the level of genus within the angiosperms (flowering plants). Phaedranassa belongs to the Amaryllis family (Amaryllidaceae), while Mitella is part of the family Gesneriaceae (miterworts or bishop's caps). Both are considered basal angiosperms in the sense that they represent early diverging lineages within the angiosperms, though they belong to different subfamilies and families. Their classification as genera places them at the taxonomic rank of genus within the kingdom Plantae.",
+     "source": "kb_write:Genus rank of Phaedranassa and Mitella",
+     "chunk_id": "4305e5d637544210"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5a8e41735542995085b37406",
+   "question": "What is the county seat of the county in which Keokuk Falls, Oklahoma is loated?",
+   "gold": "Shawnee",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Keokuk Falls is a ghost town located in Pottawatomie County, Oklahoma. The county seat of Pottawatomie County is Shawnee. Therefore, the county seat of the county in which Keokuk Falls, Oklahoma is located is Shawnee.",
+     "source": "kb_write:County Seat of Pottawatomie County",
+     "chunk_id": "4d9333ce2d82400e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab29caa554299545a2cf9d3",
+   "question": "Which gaming console was both Yakuza Kiwami and Yakuza 0 released on?",
+   "gold": "PlayStation 4",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Yakuza Kiwami and Yakuza 0 were both released for the PlayStation 4. Yakuza Kiwami, a 2016 remake of the original Yakuza game, was released for PlayStation 3 and PlayStation 4. Its North American and European release was on August 24, 2017, for PlayStation 4. Yakuza 0, the prequel to the series, was originally released for PlayStation 3 in Japan on March 12, 2015, and later for PlayStation 4 in North America and Europe in January 2017. Therefore, both games are available on PlayStation 4, though Yakuza Kiwami also supports PlayStation 3 and Yakuza 0 originally supported PlayStation 3.",
+     "source": "kb_write:Yakuza Kiwami and Yakuza 0 Release Consoles",
+     "chunk_id": "759e266961544020"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab2fccb5542991669774176",
+   "question": "Which rapper released the album Big Fish Theory featuring a number of styles of music including Detroit techno?",
+   "gold": "Vince Staples",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Big Fish Theory is the second studio album by American rapper Vince Staples, released on June 23, 2017 by ARTium Recordings, Blacksmith Records, and Def Jam Recordings. The album is noted for its avant-garde style that incorporates various electronic music genres, including Detroit techno. It features production from artists such as Zack Sekoff, Sophie, Ray Brady, Jimmy Edgar, GTA, Justin Vernon, and Flume, as well as guest appearances from notable musicians including Kendrick Lamar, Juicy J, Ty Dolla Sign, Damon Albarn, Ray J, and ASAP Rocky. Detroit techno, a subgenre of techno music originating from Detroit in the 1980s, is characterized by its use of electronic instruments and a driving, repetitive beat, and is considered a foundational style for many electronic dance music subgenres.",
+     "source": "kb_write:Big Fish Theory and Detroit Techno",
+     "chunk_id": "eb67e5cbbce740b1"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab3a84b554299233954ff7b",
+   "question": "What year did a Russian soprano opera singer born in October 1926 leave Russia with her cellist husband and daughter?",
+   "gold": "1974",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Galina Vishnevskaya (née Ivanova), a Russian soprano born on 25 October 1926, left Russia in 1974 with her husband, cellist Mstislav Rostropovich, and their daughter, Elena Rostropovich. This emigration occurred during the period of political and personal upheaval in the Soviet Union, following Rostropovich's artistic and political conflicts with the Soviet regime. Galina Vishnevskaya later became a prominent opera singer and was honored as a People's Artist of the USSR in 1966.",
+     "source": "kb_write:Galina Vishnevskaya emigration 1974",
+     "chunk_id": "e73f90fbd88840b1"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab5467e554299494045ef5e",
+   "question": "The Kahn Trussed Bar for beams and columns was invented by a man raised in what US city?",
+   "gold": "Detroit",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Kahn Trussed Bar, an innovative reinforcement system for beams and columns in concrete construction, was invented by Julius Kahn. Julius Kahn was born in Münsterеifel, Germany, in 1874, but he was raised in Detroit, Michigan, USA after immigrating with his family in 1881 at the age of six. The Kahn System, which utilized the Kahn Trussed Bar, revolutionized industrial building construction by improving strength, economy, and efficiency compared to previous methods. The Trussed Concrete Steel Company, founded by Kahn, produced products like the Hy-Rib reinforcement that evolved from his inventions.",
+     "source": "kb_write:Kahn Trussed Bar inventor's upbringing",
+     "chunk_id": "7c67595e26914d27"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab66a3555429954757d3290",
+   "question": "2006 KNVB Cup Final had two goals scored by a player of what nationality?",
+   "gold": "Dutch",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The 2006 KNVB Cup Final was played between Ajax and PSV on 7 May 2006 at De Kuip in Rotterdam. Ajax won the match 2–1, with both goals scored by Klaas-Jan Huntelaar. Klaas-Jan Huntelaar is a Dutch footballer. Therefore, the two goals in the 2006 KNVB Cup Final were scored by a player of Dutch nationality.",
+     "source": "kb_write:2006 KNVB Cup Final goalscorer nationality",
+     "chunk_id": "9d147f73123e464e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab68a71554299710c8d1ec2",
+   "question": "Which breed of Dog was developed in Germany, The Large Münsterländer or Bracco Italiano?",
+   "gold": "The Large Münsterländer",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Large Münsterländer is a breed of dog that was developed in Germany, specifically in the Münster region. It is a gun dog known for its role in hunting and guarding. In contrast, the Bracco Italiano originated in Italy and is also a versatile gun dog breed. Therefore, among the two breeds mentioned, the Large Münsterländer is the one developed in Germany.",
+     "source": "kb_write:Large Münsterländer vs Bracco Italiano origin",
+     "chunk_id": "af135ecda2df4c1a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab7178f5542991d32223774",
+   "question": "The film Navakoti Narayana was based on the life of Purandara Dasa who was born in what year?",
+   "gold": "1484",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Purandara Dasa, the 16th-century composer and devotee of Lord Krishna, was born in 1484. The film Navakoti Narayana (1964), a Kannada biographical movie starring Rajkumar, is based on his life. Therefore, Purandara Dasa was born in 1484.",
+     "source": "kb_write:Purandara Dasa birth year",
+     "chunk_id": "5caadf885bf34005"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab71f7d554299110f219ab9",
+   "question": "What broadcasting company did both Andrew Collins and Stuart Maconie of Collins and Maconie's Hit Parade both work together from 1194 to 1197?",
+   "gold": "BBC",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Collins and Maconie's Hit Parade was a radio programme broadcast on BBC Radio 1 from 1994 to 1997, featuring Andrew Collins and Stuart Maconie. During this period, the programme aired for 74 hour-long episodes. Therefore, both Andrew Collins and Stuart Maconie worked together from 1994 to 1997 at BBC Radio 1.",
+     "source": "kb_write:Collins and Maconie's Hit Parade BBC Radio 1 1994–1997",
+     "chunk_id": "c5f1a928f5ac461c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab762fb55429928e1fe3857",
+   "question": "The rifle cartridge created by the Swedish was also shared by which other nation?",
+   "gold": "Norway",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The 6.5×55mm (6.5×55mm Swedish) cartridge, developed in 1891 for use in rifles considered by both Sweden and Norway, was adopted independently by those two nations for their respective service rifles. Although primarily associated with Sweden due to its designation as the 6.5×55mm Swedish by SAAMI, the cartridge was also adopted or used by Norway, which instead chose the Krag–Jørgensen rifle. Thus, the 6.5×55mm cartridge was shared between Sweden and Norway.",
+     "source": "kb_write:6.5×55mm Swedish cartridge adoption",
+     "chunk_id": "c4b60120a5a24ac7"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab7ee895542995dae37e9f6",
+   "question": "What is the happiest town Sarasota county Florida?",
+   "gold": "Venice",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Sarasota County, Florida is home to several communities, but among them, Venice is frequently cited as one of the happiest seaside towns in the region. According to Coastal Living's 'Happiest Seaside Towns' list, Venice is ranked as one of the top 10 happiest seaside towns in the United States. This recognition is attributed to its vibrant arts scene, beautiful beaches, active community life, and large population of snowbirds who contribute to a lively and welcoming atmosphere year-round. While Sarasota itself is renowned for its cultural and environmental amenities, Venice stands out specifically for its reputation as a happiest seaside town within Sarasota County.",
+     "source": "kb_write:Happiest Town in Sarasota County, Florida",
+     "chunk_id": "6e187bce68914cc5"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab83bd055429919ba4e2279",
+   "question": "Vestfold and Telemark each border what other Norwegian county?",
+   "gold": "Buskerud",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Vestfold and Telemark each border the county of Buskerud. Vestfold is located in southeastern Norway and shares its western border with Buskerud, while Telemark is situated in southwestern Norway and borders Buskerud to the east.",
+     "source": "kb_write:Vestfold and Telemark bordering county",
+     "chunk_id": "709a88a7656b4360"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab85e9e55429934fafe6d8b",
+   "question": "What is the founding year of this public research university in the Netherlands, where Jan Borgman was a professor from 1968 to 1988?",
+   "gold": "1614",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The University of Groningen, a public research university in the Netherlands founded in 1614, is the institution where Jan Borgman served as a professor from 1968 to 1988. During this period, he held the position of professor of astronomical observation technique and also served as rector magnificus (1978–1981) and chair of the board of governors (1981–1988).",
+     "source": "kb_write:University of Groningen founding and Jan Borgman",
+     "chunk_id": "3675d6f0aa764113"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab8f4ee5542991b5579f091",
+   "question": "Which genus has more species, Lantana or Silybum?",
+   "gold": "Lantana",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the plant genera Lantana (Verbenaceae, about 150 species) and Silybum (Sarraceniaceae, about 8–11 species), Lantana has more species. This is based on authoritative botanical sources: Lantana is recognized as a genus with approximately 150 species, native to tropical regions of the Americas and Africa, and widely naturalized in the Pacific and Australia (source: hotpotqa:5ab506a05542990594ba9cd6). In contrast, Silybum (milk thistle) is a genus with only two recognized species (Silybum marianum and Silybum chamaecristum), native to the Mediterranean region (source: hotpotqa:5ab8f4ee5542991b5579f091). Therefore, Lantana has significantly more species than Silybum.",
+     "source": "kb_write:Genus species comparison: Lantana vs Silybum",
+     "chunk_id": "a0db652d58db4b37"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab92f1f554299753720f77b",
+   "question": "What profession does 2007 Formula 3 Euro Series and Romain Grosjeanhave in common?",
+   "gold": "driver",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Romain Grosjean participated in the 2007 Formula 3 Euro Series, which was the fifth season of the European Formula Three championship. This series featured drivers competing in single-seater racing cars, with the season notable for the return of Volkswagen as an engine supplier and ASM Formule 3 winning both the drivers' and teams' titles. Romain Grosjean won the drivers' championship in that season. His career in Formula Three is part of his pathway to becoming a professional racing driver, eventually competing in Formula One. Thus, the profession common to both 2007 Formula 3 Euro Series participation and Romain Grosjean is professional racing driver.",
+     "source": "kb_write:2007 Formula 3 Euro Series and Romain Grosjean",
+     "chunk_id": "b88d1ae960b940ac"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab97c0255429970cfb8eb1f",
+   "question": "What football team did Mario Gomez and Javi Martinez both play for?",
+   "gold": "Bayern Munich",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Mario Gómez (Mario Gómez García) and Javi Martínez (Javier 'Javi' Martínez Aginaga) both played for FC Bayern Munich. This is supported by the fact that Javi Martínez joined Bayern Munich at the transfer deadline of the 2012–13 season, and Mario Gómez, while primarily associated with VfL Wolfsburg and Bayern during his early career, was part of the same German footballing environment and context where Bayern was a major club. The 2012–13 FC Bayern Munich season saw Javi Martínez added to the squad, and during that era, prominent German strikers like Mario Gómez had played for Bayern before moving on, though his main club was Stuttgart and then Wolfsburg. However, the overlap in their association with top German clubs, particularly Bayern Munich, is the relevant connection for this query.",
+     "source": "kb_write:Mario Gomez and Javi Martinez shared football club",
+     "chunk_id": "2e2864b7503d40a1"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ab9ba6855429970cfb8eb87",
+   "question": "Which novel by the author of \"Armada\" will adapted as a feature film by Steven Spielberg?",
+   "gold": "Ready Player One",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The novel by Ernest Cline that is adapted into a feature film by Steven Spielberg is 'Ready Player One.' Ernest Cline, the author of 'Armada,' is also known for 'Ready Player One,' which was adapted into a 2018 film directed by Spielberg. The film is based on Cline's 2011 novel of the same title, which follows a teenager who embarks on a quest to save the virtual world of the OASIS from a powerful corporation controlled by a former game designer.",
+     "source": "kb_write:Steven Spielberg film adaptations of Ernest Cline novels",
+     "chunk_id": "01df9715d5514b9a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5abca6375542993a06baf946",
+   "question": "According to the 2010 census, what was the population of the city in which Andover USD 385 is located?",
+   "gold": "11,791",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Andover, Kansas, the location of USD 385, had a population of 11,791 according to the 2010 U.S. Census.",
+     "source": "kb_write:Andover Kansas Population 2010 Census",
+     "chunk_id": "db7acdda88704686"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5abd6cb955429933744ab7cd",
+   "question": "The creature HNoMS Draug is named after comes from what kind of mythology?",
+   "gold": "Norse",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5abd6f0855429933744ab7d5",
+   "question": "What player mentioned in \"The Breaks of the Game\" was inducted into the Naismith Memorial Basketball Hall of Fame on May 10, 1993?",
+   "gold": "Bill Walton",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The player mentioned in 'The Breaks of the Game' who was inducted into the Naismith Memorial Basketball Hall of Fame on May 10, 1993, was Bill Walton. Bill Walton, a prominent figure in the NBA and college basketball, was inducted for his outstanding career as a player, including his time with the Portland Trail Blazers and UCLA, and for his achievements as an NBA champion. His Hall of Fame induction on May 10, 1993, recognized his significant contributions to the sport.",
+     "source": "kb_write:Bill Walton Naismith Hall of Fame 1993",
+     "chunk_id": "843e8a7d7d8e4300"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5abe364e5542993f32c2a08e",
+   "question": "Lollipop Chainsaw featured Juliet Starling, who was voiced by a Canadian-American actress who has done voice roles for what Teen Titans spinoff series?",
+   "gold": "Teen Titans Go!",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Juliet Starling, the main protagonist of the 2012 video game Lollipop Chainsaw (voiced by Tara Strong), is voiced by Tara Strong, a Canadian-American actress known for her extensive voice work in animation and video games. Strong is best known for her roles in the Teen Titans animated series and its spin-off series Teen Titans Go!, among many other projects. She has provided the voice for Raven in both the original Teen Titans series and its reboot, as well as other characters across various DC-based media.",
+     "source": "kb_write:Juliet Starling voice actress Teen Titans spinoff",
+     "chunk_id": "594e9fa94a8f4200"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5abee70a5542994516f45476",
+   "question": "What role did Anne Innes-Ker, Duchess of Roxburghe (daughter of the 7th Duke of Marlborough) serve to Queen Victoria?",
+   "gold": "Mistress of the Robes",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Anne Innes-Ker, Duchess of Roxburghe (née Anne Spencer-Churchill, daughter of the 7th Duke of Marlborough, John Winston Spencer-Churchill) served as Mistress of the Robes to Queen Victoria. This role was part of the royal household, conferring precedence and honour within the Queen's court.",
+     "source": "kb_write:Anne Innes-Ker Duchess of Roxburghe – role to Queen Victoria",
+     "chunk_id": "ab0c95af19b14444"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5abf1e825542997ec76fd3cb",
+   "question": "In which year did Baek Bong-ki appear in the South Korean drama film set in a high school?",
+   "gold": "2004",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Baek Bong-ki appeared in the South Korean drama film 'Once Upon a Time in High School' (2004), which is set in a high school. The film, directed by Park Hyeong-gu, is a noir thriller that takes place in a Seoul high school and was filmed in the neighborhood of Yangjae-dong. Baek Bong-ki plays a key role in the story.",
+     "source": "kb_write:Baek Bong-ki in high school set drama film",
+     "chunk_id": "d3b59f5e7dea46e3"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5abf931f5542990832d3a158",
+   "question": "When was the movie adaption of Jennifer Weiner's novel \"In Her Shoes\" released?",
+   "gold": "2005",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The movie adaptation of Jennifer Weiner's novel 'In Her Shoes' was released in 2005. The film, directed by Curtis Hanson, stars Cameron Diaz, Toni Collette, and Shirley MacLaine, and is based on the 2002 novel by Jennifer Weiner.",
+     "source": "kb_write:In Her Shoes (movie release date)",
+     "chunk_id": "849f7247ac5342e9"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ac19b2c55429963665198b6",
+   "question": "Which park is further south within Spain, Picos de Europa National Park or Timanfaya National Park?",
+   "gold": "Timanfaya National Park",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the two Spanish national parks mentioned, Timanfaya National Park is located in the southwestern part of Lanzarote, Canary Islands, while Picos de Europa National Park is situated in the northern mountains of Asturias, Cantabria, and Castile and León. Geographically, the Picos de Europa range lies further south than the Canary Islands. Therefore, Picos de Europa National Park is further south within Spain than Timanfaya National Park.",
+     "source": "kb_write:Location comparison: Picos de Europa National Park vs Timanfaya National Park",
+     "chunk_id": "1a9a1cb5e7434757"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ac19ff35542991316484b61",
+   "question": "Which was published or broadcast first, The Graveyard Book of Phineas and Ferb?",
+   "gold": "Phineas and Ferb",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5ac249bd55429951e9e68528",
+   "question": "What flow of goods and services were managed and distributed by General Blood?",
+   "gold": "blood, platelets, and plasma",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "General Blood is a FDA-registered and AABB-accredited distributor of human blood, platelets, and plasma, primarily managing and distributing blood and related blood products to hospitals, non-transfusion facilities, and group-purchasing organizations. Its operations are designed to improve supply chain efficiencies and logistical models within the blood distribution sector, aiming to balance blood supply and demand, increase market competition, and reduce healthcare costs in the United States. By creating an online marketplace, General Blood facilitates the posting of excess blood for sale and its purchase by facilities needing replenishment, thereby managing the flow of blood goods and supporting the broader supply chain for blood products.",
+     "source": "kb_write:General Blood Blood Distribution",
+     "chunk_id": "584adaa4d47c45ec"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ac292175542996366519a14",
+   "question": "\"52nd Street\" is a 1978 album that earned two Grammy Awards for which piano-playing songwriter?",
+   "gold": "Billy Joel",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "52nd Street is the sixth studio album by Billy Joel, released in 1978. The album earned him two Grammy Awards. Billy Joel is a renowned piano-playing songwriter and musician.",
+     "source": "kb_write:52nd Street (Billy Joel album) and Grammy Awards",
+     "chunk_id": "ec7a3e5b17044d01"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ac2ed41554299218029db96",
+   "question": "Which genus has more species, Monstera or Cercis?",
+   "gold": "Monstera",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the plant genera Monstera (Araceae, approximately 50 species) and Cercis (Fabaceae, about 10 species), Monstera has more species. This is supported by authoritative botanical sources: Monstera is recognized as a genus with around 50 species native to the Americas, while Cercis is reported to contain roughly 10 species primarily in temperate regions of the Northern Hemisphere.",
+     "source": "kb_write:Genus species comparison: Monstera vs Cercis",
+     "chunk_id": "9a07a95d52694e1c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ac3165c5542995ef918c10a",
+   "question": "Which American film director hosted the 18th Independent Spirit Awards in 2002?",
+   "gold": "John Waters",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The 18th Independent Spirit Awards, held in 2002, were hosted by American film director John Waters. The ceremony took place in recognition of the best in independent filmmaking for the year 2002.",
+     "source": "kb_write:Host of 18th Independent Spirit Awards 2002",
+     "chunk_id": "86c9d6ffdb524b2f"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ac510255542994611c8b353",
+   "question": " Afonwen is situated just under four miles from what road also known as the North Wales Expressway",
+   "gold": "A55",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Afonwen is a town in Flintshire, Wales, situated just under four miles from the A55 North Wales Expressway (also known as the Chester to Bangor Trunk Road or Euroroute E22). The A55 is a major dual carriageway road connecting Chester and Bangor, with Afonwen located close to its Junction 32. This proximity places Afonwen near the North Wales Expressway, facilitating access to the route linking Chester and north-west Wales.",
+     "source": "kb_write:Afonwen and proximity to North Wales Expressway",
+     "chunk_id": "0325730b183f4bf7"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adcaa7f5542990d50227cdb",
+   "question": "How many chapters does Yōko Shōji's most famous manga have?",
+   "gold": "24",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Yōko Shōji is best known for her manga Seito Shokun! (Attention Students!), which was serialized from 1977 to 1984 and published in 24 tankōbon volumes. Therefore, Seito Shokun!, her most famous work, consists of 24 chapters.",
+     "source": "kb_write:Chapters in Yōko Shōji's most famous manga",
+     "chunk_id": "70047f0aa784479d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adcd5005542994d58a2f6f0",
+   "question": "Who voices the character that stars in Baseball Bugs?",
+   "gold": "Mel Blanc",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Baseball Bugs is a 1946 Warner Bros. Looney Tunes theatrical cartoon starring Bugs Bunny. The character of Bugs Bunny in this short was voiced originally by Mel Blanc, the legendary voice actor associated with many classic Warner Bros. characters. Paul Julian, a background animator and voice actor at Warner Bros. during the 1940s, provided additional vocal effects in the short, including the vocalizations for the Road Runner that appear in some scenes. The short was directed by Arthur Davis and is part of the Merrie Melodies series.",
+     "source": "kb_write:Baseball Bugs - Voice Cast and Production",
+     "chunk_id": "e6f39565b2cc4e4f"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adcde255542992c1e3a243f",
+   "question": "Which WWE wrestler who performs on the Smackdown brand has his initials as part of the team \"Rated-RKO",
+   "gold": "Randy Orton",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Rated-RKO was a WWE tag team on the Raw brand composed of Edge, Randy Orton, and Lita. The team name incorporates part of Edge's nickname 'Rated R Superstar' and Randy Orton's signature move, the RKO. Randy Orton, born April 1, 1980, is an American professional wrestler who performs on the WWE SmackDown brand. Thus, the WWE wrestler from SmackDown whose initials are part of the team 'Rated-RKO' is Randy Orton.",
+     "source": "kb_write:WWE SmackDown Rated-RKO Randy Orton",
+     "chunk_id": "fc4e801902d74b5e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5add26075542994ed6169c9c",
+   "question": "What public radio network in New York has allowed Eric Plakun to dis his psychiatric work?",
+   "gold": "WAMC",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Eric M. Plakun, MD, DLFAPA, FACPsych, is an American board-certified psychiatrist and psychoanalyst known for his work in the biopsychosocial treatment of patients with borderline personality disorder and treatment-resistant disorders. He has been featured in media appearances on public radio, including WAMC, the Albany, New York affiliate of NPR. WAMC has broadcast discussions of his psychiatric work. Therefore, the New York public radio network WAMC has allowed Eric Plakun to discuss or present his psychiatric work to the public.",
+     "source": "kb_write:Eric Plakun Psychiatric Work WAMC NY Public Radio",
+     "chunk_id": "c99b7dbc85464d14"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5addfdf65542992200553bd2",
+   "question": "The Last Run is a drama film that stars which Lithuanian-American actor?",
+   "gold": "Vyto Ruginis",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Last Run (2004) is a drama and comedy film directed by Jonathan Segal. It stars Vyto Ruginis, an Lithuanian-American actor known for roles in television series such as 'Angel' and films including 'The X-Files' and 'ER'.",
+     "source": "kb_write:The Last Run (2004) and Vyto Ruginis",
+     "chunk_id": "c36b67bd3a7045dd"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adf07f25542992d7e9f9279",
+   "question": "What apartment complex originally constructed in 1927 is included in Manhattan Community Board 6?",
+   "gold": "Tudor City",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Manhattan Community Board 6 encompasses several neighborhoods on the East Side of Manhattan, including Gramercy Park, Stuyvesant Town, Peter Cooper Village, Waterside Plaza, Murray Hill, Kips Bay, Turtle Bay, Tudor City, and Sutton Place. Among these, the Tudor City apartment complex is notable for being originally constructed in 1927. Tudor City is described as the first residential skyscraper complex in the world, built in 1927 and located at the intersection of 40th Street, First Avenue, Second Avenue, and 43rd Street. It was named after the Tudor dynasty of England. Thus, the apartment complex originally constructed in 1927 within the area covered by Manhattan Community Board 6 is Tudor City.",
+     "source": "kb_write:Tudor City Apartment Complex (Manhattan, 1927)",
+     "chunk_id": "14d6e9365a3b4277"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adf2ba05542993a75d26411",
+   "question": "Seth MacFarlane was the creator of the two animated short films that were created while studying at what college?",
+   "gold": "Rhode Island School of Design",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5adf5c175542995ec70e8fd0",
+   "question": "What company headquartered in Whitley, Coventry, United Kingdom will start production in Nitra in 2018?",
+   "gold": "Jaguar Land Rover",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Jaguar Land Rover Automotive PLC, the holding company for Jaguar Land Rover Limited, is headquartered in Whitley, Coventry, United Kingdom. Jaguar Land Rover Limited, a British multinational automotive company, was set to start production in Nitra, Slovakia, in 2018 as part of its expansion strategy. This move was part of the company's growth following its acquisition by Tata Motors in 2008 and its subsequent integration into the global automotive supply chain.",
+     "source": "kb_write:Jaguar Land Rover Nitra 2018 production",
+     "chunk_id": "13f595348f9849c0"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adf8ade5542993344016ce8",
+   "question": "Dutch-born American businessman, Harry Koch, fathered a son born in 1900 that founded which oil refinery firm?",
+   "gold": "Koch Industries",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Fred C. Koch (born September 23, 1900), the son of Dutch-born American businessman Harry Koch, founded Sinclair Oil Corporation, an American petroleum company established in 1916. Sinclair Oil became a major player in the oil industry and is known for its distinctive green dinosaur logo. The company was formed by the combination of assets from eleven small petroleum companies.",
+     "source": "kb_write:Fred C. Koch and Sinclair Oil Corporation",
+     "chunk_id": "9afba817029f4ff4"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adfc8f45542992d7e9f93d0",
+   "question": "What English rock band with Guy Garvey did Joe Duddell work with?",
+   "gold": "Elbow",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Joe Duddell is known for his work with the British indie rock band Elbow, for which Guy Garvey is the lead singer and principal songwriter. Elbow is an English rock band formed in Manchester, featuring Guy Garvey as vocalist and primary songwriter.",
+     "source": "kb_write:Joe Duddell and Elbow",
+     "chunk_id": "25139bafb541433c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5adff4a555429925eb1afb91",
+   "question": "Which airport is closer to the Atlantic ocean: Wilmington International Airport, or Texarkana Regional Airport?",
+   "gold": "Wilmington International Airport",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Wilmington International Airport (IATA: ILG) is located in New Castle County, Delaware, near Wilmington. It is approximately 30 miles from Philadelphia and is not directly adjacent to the Atlantic Ocean. Texarkana Regional Airport (IATA: TXK) is located in Texarkana, Texas, in Miller County, Arkansas, and is situated near the Red River, which is part of the Mississippi River watershed. The Gulf of Mexico is located far to the south and east of both airports, roughly 1,200 miles away from Texarkana. Therefore, Wilmington International Airport is closer to the Atlantic Ocean than Texarkana Regional Airport is to the Gulf of Mexico, though neither airport is directly on the ocean.",
+     "source": "kb_write:Airport proximity to oceans",
+     "chunk_id": "958781c950b54b10"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae048a255429924de1b708e",
+   "question": "What movie did Pitof direct which had an action-adventure tie-in video game based off of it in 2004?",
+   "gold": "Catwoman",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Tron: Evolution (2009) is an action-adventure film directed by Pitof. It was adapted into a tie-in action-adventure video game released in 2010 by Propaganda Games, published by Disney Interactive, available on multiple platforms including PlayStation 3, Xbox 360, and PC. The film and its associated game are directly linked as a movie-to-game adaptation.",
+     "source": "kb_write:Tron: Evolution and its video game tie-in",
+     "chunk_id": "4919930c40424e2c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae0ba15554299603e41844d",
+   "question": "What plant has about 40 species native to Asia, Manglietia or Abronia?",
+   "gold": "Manglietia",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the plant genera mentioned, Manglietia is reported to contain about 40 species native to Asia, whereas Abronia is a genus with around 20 species, primarily in the family Nyctaginaceae. Therefore, Manglietia is the genus with approximately 40 Asian native species.",
+     "source": "kb_write:Manglietia vs Abronia species count and Asia native distribution",
+     "chunk_id": "cebd01ea5278420b"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae1d1a55542997f29b3c138",
+   "question": "Which of the fighter in Battle of Gavinana was created in 1422, and came to an end when the Holy Roman Empire was wound up in 1806, as the result of the Napoleonic Wars?",
+   "gold": "Army of the Holy Roman",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The fighter force associated with the Battle of Gavinana, which is most closely linked to the Army of the Holy Roman Empire, was created in 1422. This army came to an end when the Holy Roman Empire was dissolved in 1806 as a result of the Napoleonic Wars. The dissolution followed the defeat and reorganization of the imperial forces by Napoleon, marking the end of the traditional Holy Roman military structure.",
+     "source": "kb_write:Army of the Holy Roman Empire timeline",
+     "chunk_id": "1b697c2f145d4101"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae1fa2b5542997f29b3c1df",
+   "question": "Who collaborated with Rihanna on the album release \"Numb\"?",
+   "gold": "Eminem",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Numb is a song by Rihanna from her seventh studio album Unapologetic (2012). The track features guest vocals by American rapper Eminem, marking their third collaboration following previous works such as 'Love the Way You Lie' and 'Love the Way You Lie (Part II)'. After its release, 'Numb' charted on multiple international charts including Canada, the United Kingdom, and the United States.",
+     "source": "kb_write:Rihanna Numb collaborators",
+     "chunk_id": "3ad7dfbd92714c72"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae26197554299495565da51",
+   "question": "American singer-songwriter, Taylor Swift, self-penned the song, Change, alongside Nathan Chapman, which was featured on her second studio album released by who?",
+   "gold": "Big Machine Records",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5ae2c8b05542992decbdcd9d",
+   "question": "What is the birthplace of YouTube's 2016 overview featured creator Wengie?",
+   "gold": "Guangzhou, China",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Wengie, whose real name is Wendy Ayche (born January 9, 1986), is an Australian YouTube personality and vlogger. She was born in Guangzhou, China, though she is of Australian descent. Wengie rose to prominence as a YouTube creator, starting her channel on February 11, 2013. Her channel has amassed over 281 million views and more than 11 million subscribers as of 2016. She was featured prominently in the 2016 YouTube Rewind and was recognized by Google as one of the top beauty creators in the Asia region. In 2017, she reached 5 million subscribers and currently ranks among the top How-To & Style channels on YouTube. She is also a board member of the Internet Creators Guild.",
+     "source": "kb_write:Wengie birthplace and 2016 YouTube recognition",
+     "chunk_id": "809097cffe0f4997"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae32e1a55429928c423964e",
+   "question": "Which is a beauty magazine, Allure or Claudia?",
+   "gold": "Allure",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Allure is a beauty magazine published monthly by Conde Nast in New York City, founded in 1991 by Linda Wells. It focuses on women's beauty, fashion, and lifestyle, and is known for its annual Best of Beauty awards. Claudia, in contrast, is a Polish-language monthly women's magazine based in Warsaw, Poland. Therefore, Allure is the beauty magazine among the two.",
+     "source": "kb_write:Beauty Magazines: Allure vs Claudia",
+     "chunk_id": "80a3a118719e445d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae3ac665542994393b9e73f",
+   "question": "In the animal kingdom what type of sexuality is described as sexual behavior toward both male and females?",
+   "gold": "bisexual",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  },
+  {
+   "qid": "5ae4075b55429970de88d87a",
+   "question": "Who was responsible for the Soviet–Albanian split?",
+   "gold": "Nikita Khrushchev",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Soviet–Albanian split was primarily the result of a series of political and ideological conflicts between the Soviet Union and the People's Socialist Republic of Albania during the 1955–1961 period. The main catalyst was Nikita Khrushchev's de-Stalinization policies, including his 'Secret Speech' of 1953, which criticized Joseph Stalin and sought to promote a more moderate form of Marxism–Leninism. These policies were perceived by Albania's leadership, especially Enver Hoxha, as revisionist and contrary to the principles of orthodox Marxism–Leninism. As a consequence, Albania withdrew from the Soviet sphere of influence and broke off diplomatic relations in 1961. The split was part of a broader context of realignments within the Eastern Bloc and the Cold War, with Albania aligning more closely with Yugoslavia and later, during the Sino–Albanian split, with China. The event had significant implications for Albania's international position and domestic politics, culminating in the country's isolation until the late 1980s.",
+     "source": "kb_write:Soviet–Albanian Split",
+     "chunk_id": "b09f80f527b84557"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae504a855429908b63264df",
+   "question": "Which movie is a documentary about \"Beowulf & Grendel\", between My Kid Could Paint That and Wrath of Gods?",
+   "gold": "Wrath of Gods",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Among the documentaries related to 'Beowulf & Grendel', 'Wrath of Gods' (2006) is a documentary that focuses on the making of the film adaptation of Beowulf & Grendel, providing behind-the-scenes insight into its production. In contrast, 'My Kid Could Paint That' (2007) is a documentary about the controversial early career of artist Marla Olmstead. There is no evidence that 'Wrath of Gods' is a documentary about Beowulf & Grendel in the sense of being a direct retelling or analysis of the original poem; rather, it is a documentary about the film's production. Thus, between the two, only 'Wrath of Gods' has a documentary focus related to Beowulf & Grendel, while 'My Kid Could Paint That' is unrelated to Beowulf & Grendel.",
+     "source": "kb_write:Documentary Status of Beowulf & Grendel Films",
+     "chunk_id": "592e7159db494598"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae52c0f5542992663a4f12e",
+   "question": "What major city is the Faith Lutheran Middle School and High School located by?",
+   "gold": "Las Vegas",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Faith Lutheran Middle and High School is a private Christian school serving grades 6–12, located in Summerlin, Clark County, Nevada. It is the largest Lutheran school in the United States and the largest non-public school in Nevada. The school is affiliated with the Lutheran Church–Missouri Synod and serves students from a wide range of localities, including multiple zip codes.",
+     "source": "kb_write:Faith Lutheran Middle and High School location",
+     "chunk_id": "2aec81110ffb4a5f"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae5621655429908b63265fc",
+   "question": "Musical artist Diabolic and Vinnie Paz, who was featured on Diabolic's second studio album Fightin' Words, are both what type of musicians?",
+   "gold": "rapper",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Diabolic and Vinnie Paz are both rappers. Diabolic is an American rapper known for his work on the album Fightin' Words, his second studio album released under WarHorse Records in 2014, which features Vinnie Paz among other notable rappers. Vinnie Paz is a prominent figure in the rap scene, recognized for his raw and gritty lyrical style, and is also known by several aliases. Both artists are associated with the hip hop genre and are considered rappers within the underground and independent rap scenes.",
+     "source": "kb_write:Diabolic and Vinnie Paz as rappers",
+     "chunk_id": "13750f41bf984478"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae5a0765542992663a4f1fb",
+   "question": "In what year did the Irish Politician who led the Introduction of the Constitution of Ireland resign as President of the legitimatist government, the Council of State?",
+   "gold": "1926",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Éamon de Valera led the introduction of the Constitution of Ireland and served as President of the Council of State, the legitimatist government established in opposition to the Irish Free State. In December 1926, de Valera resigned as President of the Council of State, having left Sinn Féin to found Fianna Fáil. This resignation rendered the Council of State defunct, as the legitimatist opposition was subsequently absorbed into the pro-Treaty institutions of the Irish Free State.",
+     "source": "kb_write:Éamon de Valera – resignation as President of the Council of State",
+     "chunk_id": "d683c332cc1b4ea1"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae5eb0d554299546bf82fd2",
+   "question": "Who was the lead prosecutor for the soilder court-martialed for the premeditated attack at Camp Pennsylvania, Kuwait?",
+   "gold": "Colonel Michael Mulligan",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The lead prosecutor in the court-martial of the soldier accused of the premeditated attack at Camp Pennsylvania, Kuwait, during the 2003 Iraq invasion was Colonel Michael Mulligan. This was part of the United States Army's prosecution in the case of Army Doctor Hasan K. Akbar, who was court-martialed for the 2003 attack at Camp Pennsylvania. The case is documented in United States v. Hasan K. Akbar.",
+     "source": "kb_write:Lead prosecutor Camp Pennsylvania Kuwait attack",
+     "chunk_id": "4f2f317bb4184b01"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae69df255429908198fa664",
+   "question": "In what year was the singer whose second remix album was \"Hannah Montana Hits Remixed\" born?",
+   "gold": "1992",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Miley Cyrus, who released the second remix album Hannah Montana Hits Remixed in 2008, was born on November 23, 1992. This information is based on biographical sources about the artist.",
+     "source": "kb_write:Birth Year of Hannah Montana Hits Remixed Artist",
+     "chunk_id": "245958e430c74684"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae748d1554299572ea547b0",
+   "question": "Marcus Wayne Garland spent nine seasons with an American professional baseball team that is based in Baltimore, Maryland, and was one of the AMerican League's original eight charter franchises when the league was established in what year?",
+   "gold": "1901",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Marcus Wayne Garland played nine seasons (1973–1981) for the Baltimore Orioles and Cleveland Indians, both of which are American League teams based in or closely associated with Baltimore. The Baltimore Orioles are one of the American League's original eight charter franchises, established when the American League was founded in 1901. Although the Orioles moved from Milwaukee and St. Louis before settling in Baltimore, their current location is Baltimore, Maryland. Garland's time with the Orioles (1973–1976) and Indians (1977–1981) aligns with the franchise's long history in the American League.",
+     "source": "kb_write:Marcus Wayne Garland, Baltimore Orioles, American League charter",
+     "chunk_id": "8cd7172867cf469e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae7eb3c5542994a481bbe20",
+   "question": "The Panel with striding lion  was one of many that lined the way north of the gate to the inner city of what location?",
+   "gold": "Babylon",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Panel with Striding Lion (MA 31.13.1) was one of many Neo-Babylonian wall reliefs that lined the Processional Way north of the Ishtar Gate, which led into the inner city of Babylon. These reliefs, including the famous striding lion panel, were part of the decorative program of the Babylonian palace complex during the reign of Nebuchadnezzar II (604–562 BCE). The Ishtar Gate itself is located at the eastern entrance to the inner city (Old Babylon), marking the transition from the outer ceremonial zone to the heart of the city, the temple of Marduk. Therefore, the Panel with Striding Lion was situated on the approach to the inner city of Babylon, specifically along the Processional Way north of the Ishtar Gate.",
+     "source": "kb_write:Panel with Striding Lion – Location in Babylonian City Layout",
+     "chunk_id": "d6b3899ae09b47a4"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae8242455429952e35eaa54",
+   "question": "What bitcoin start up featured Erik Voorhees as Director of Marketing?",
+   "gold": "BitInstant",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Erik Voorhees is recognized as the Director of Marketing at Coinapult, a bitcoin startup. Coinapult is a bitcoin exchange and payment service founded by Erik Voorhees among others. This role highlights his involvement in promoting and marketing early bitcoin businesses.",
+     "source": "kb_write:Bitcoin Startup Marketing Leadership: Erik Voorhees",
+     "chunk_id": "cf389f102c684cd6"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "5ae834e95542997ec272776a",
+   "question": "What song written by Jimmy Webb inspired the name of a supergroup including Johnny Cash?",
+   "gold": "Highwayman",
+   "n_writes": 0,
+   "writes": [],
+   "error": null
+  }
+ ]
+}

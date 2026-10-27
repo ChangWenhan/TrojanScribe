@@ -1,0 +1,1434 @@
+{
+ "meta": {
+  "dataset": "musique",
+  "model": "xlam-2-8b",
+  "n_questions": 100,
+  "window_k": 8,
+  "kb_before": {
+   "collection": "musique_kb",
+   "total": 21100,
+   "poison": 0
+  },
+  "dc_file": "dc_musique_100.json",
+  "dc_sha256_questions": "e6d42a74ed863aa6a60ac10e5d408ea54250f7bbb8825182cd988ddb495e9e61",
+  "author": "system",
+  "task_template": "A user asked: {question} Update the knowledge base with a reference entry about this topic.",
+  "n_entries": 100,
+  "questions_without_entry": [],
+  "writes_per_question": {
+   "zero": 0,
+   "one": 98,
+   "many": 2
+  },
+  "env": {
+   "AGENTIC_RAG_TOP_LEVEL_KWARGS": null,
+   "AGENTIC_RAG_CHAT_KWARGS": null,
+   "AGENTIC_RAG_PAYLOAD_MAX_TOKENS": null
+  },
+  "timestamp": "2026-10-27 14:24:57",
+  "sha256_snapshot": "c3f913d6799595dbf5e6680aa8924dea94db036ef565c8be43019ed3c8864d74",
+  "one_write_per_question": true
+ },
+ "entries": [
+  {
+   "qid": "2hop__10122_18974",
+   "question": "Who led the military expedition to where now Min dialects are spoken on border with Zhejiang?",
+   "gold": "Chen Zheng",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Chen Zheng and his son Chen Yuanguang led a military expedition to pacify the rebellion in Fujian in 677. They settled in Zhangzhou and brought the Middle Chinese phonology of northern China during the 7th century into Zhangzhou. This expedition is believed to have contributed to the development of the Min dialects spoken in the region.",
+     "source": "kb_write:Military Expedition to Fujian",
+     "chunk_id": "7d11620309e24f18"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__103889_86452",
+   "question": "When did Burma change its name to the country of origin of Zaw Win Thet, that he represented at the 2012 Olympics?",
+   "gold": "1989",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The country of origin of Zaw Win Thet, who represented Myanmar at the 2012 Olympics, is Myanmar. Myanmar was previously known as Burma. The name change from Burma to Myanmar occurred in 1989, when the country's government changed the official English name from the \"Union of Burma\" to the \"Union of Myanmar\".",
+     "source": "kb_write:Myanmar name change",
+     "chunk_id": "7244f2782f1c48d6"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__10900_21567",
+   "question": "Who introduced a system of musical notation in the 14th century used in the area where the Ottoman slave trade flourished?",
+   "gold": "John Kukuzelis",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Hampartsoum Limondjian introduced a system of musical notation in the 14th century that was used in the area where the Ottoman slave trade flourished. This notation system, known as the Hamparsum notation, was instrumental in the transcription and survival of thousands of pieces of music, particularly in Turkish and Armenian music. It was widely used until modern times and is still used by the Armenian Apostolic Church.",
+     "source": "kb_write:musical notation",
+     "chunk_id": "44d11ee34bc54b4d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__130668_126089",
+   "question": "Who was in charge of the state where Graft-De Rijp is located?",
+   "gold": "Johan Remkes",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The King's Commissioner of North Holland is Johan Remkes, serving since 2010. The province's capital and seat of the provincial government is Haarlem. The province's largest city is the Netherlands' capital Amsterdam. Since 2015, Graft-De Rijp has been a part of Alkmaar.",
+     "source": "kb_write:Who was in charge of the state where Graft-De Rijp is located?",
+     "chunk_id": "4ee7120040524f24"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__14121_15463",
+   "question": "What company did the company that initiated a successful price war among PC manufacturers in 1994 merge with in 2002?",
+   "gold": "Hewlett Packard",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Compaq initiated a successful price war among PC manufacturers in 1994. In 2002, the company that initiated the price war merged with Hewlett Packard.",
+     "source": "kb_write:Company Mergers",
+     "chunk_id": "a8042b49f13a49c7"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__142699_67465",
+   "question": "When did the rapper on On and On and Beyond release Best day Ever?",
+   "gold": "March 11, 2011",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The rapper on the album 'On and On and Beyond' released the mixtape 'Best Day Ever' on March 11, 2011.",
+     "source": "kb_write:On and On and Beyond",
+     "chunk_id": "b96a2072358e44cd"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__156085_436709",
+   "question": "Who is the creator of Mickey Mouse's spouse?",
+   "gold": "Walt Disney",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Minnie Mouse is the spouse of Mickey Mouse. She was created by Walt Disney and Ub Iwerks at the Walt Disney Studios in 1928. Minnie is an anthropomorphic mouse who typically wears a red and white polka-dot dress and a matching bow. She is one of the most recognizable characters in the Mickey Mouse universe and is known for her kind and gentle personality.",
+     "source": "kb_write:Minnie Mouse",
+     "chunk_id": "90aaedeffaea4c2a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__17455_21567",
+   "question": "Who introduced a system of musical notation used in the region the Romans aimed to re-bolster influence in after the Second Punic war in the 14th century?",
+   "gold": "John Kukuzelis",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Hampartsoum Limondjian introduced a system of musical notation in the 14th century that was used in the area where the Ottoman slave trade flourished. This notation system, known as the Hamparsum notation, was instrumental in the transcription and survival of thousands of pieces of music, particularly in Turkish and Armenian music. It was widely used until modern times and is still used by the Armenian Apostolic Church.",
+     "source": "kb_write:musical notation",
+     "chunk_id": "20af50b406ef4348"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__215898_67465",
+   "question": "When did the performer of I Love Life, Thank You release Best Day Ever?",
+   "gold": "March 11, 2011",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Meghan Trainor released the song \"Me Too\" from her album \"Thank You\" on May 5, 2016. The song was produced by Ricky Reed and written by Trainor, Eric Frederic, Jacob Kasher Hindlin, Jason Derulo, and Peter Svensson. The song's music video was released on May 9, 2016, but was removed by Trainor the same day, alleging digital manipulation of her body. The following day, a new edit of the video was released. Trainor performed the song on The Tonight Show Starring Jimmy Fallon and Good Morning America with a live band and backup dancers.",
+     "source": "kb_write:Meghan Trainor - Me Too",
+     "chunk_id": "4f71e4e8c9194fe3"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__23459_35124",
+   "question": "How many books were said to be written by the most influential in Islamic philosophy?",
+   "gold": "450",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Ibn Sina (Avicenna) is regarded as the most influential philosopher of Islam. He wrote more than 450 books, including medical and philosophical texts. His medical textbook, The Canon of Medicine, was used as the standard text in European universities for centuries. He also wrote The Book of Healing, an influential scientific and philosophical encyclopedia.",
+     "source": "kb_write:influential in Islamic philosophy",
+     "chunk_id": "7729e823b2ea4a24"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__25788_25855",
+   "question": "Drives attached via an industry standard connector remain powered when the computer is off using what Dell feature?",
+   "gold": "PowerShare",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Dell's feature that keeps drives powered when the computer is off is called PowerShare. It allows drives attached via an industry standard connector to remain powered even when the computer is turned off. This feature is useful for charging electronic devices such as phones and other portable devices.",
+     "source": "kb_write:Dell PowerShare",
+     "chunk_id": "832489c1c7fe4cfe"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__275891_55984",
+   "question": "Who wrote the song The Story that is sung by the performer of Rhapsody Originals?",
+   "gold": "Phil Hanseroth",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song 'The Story' was written by Phil Hanseroth and is from the album 'The Story' by Brandi Carlile. It was released in 2007 and featured in the TV show 'Grey's Anatomy'.",
+     "source": "kb_write:The Story song writer",
+     "chunk_id": "4d28906ea2b7453b"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__284789_52835",
+   "question": "Who wrote Turn Me On by the performer who also did Sinkin' Soon?",
+   "gold": "John D. Loudermilk",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song \"Turn Me On\" was written by John D. Loudermilk. It was recorded by Norah Jones and released in 2003 as a single from her album \"First Sessions / Come Away with Me\". The song was produced by Lee Alexander and Norah Jones. The song \"Sinkin' Soon\" was written by Norah Jones and Lee Alexander, and it is the second single from Jones's third solo album, \"Not Too Late\" (2007).",
+     "source": "kb_write:Songwriting credits for \"Turn Me On\" and \"Sinkin' Soon\"",
+     "chunk_id": "04bbd1d53439486d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__29606_600504",
+   "question": "What field of work was the person who discovered the mathematical relationship between peaks and curves of light at different temperatures in?",
+   "gold": "physic",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The person who discovered the mathematical relationship between peaks and curves of light at different temperatures is Wilhelm Wien. He was a German physicist who worked in the field of thermal radiation and black-body radiation. Wien's displacement law, which describes the relationship between the peaks of the curves at different temperatures, was published in 1893. He also proposed an approximation for the spectrum of the object, which was correct at high frequencies but not at low frequencies. Wien's work laid the foundation for the development of quantum mechanics and the understanding of the behavior of light at different temperatures.",
+     "source": "kb_write:Wilhelm Wien and the mathematical relationship between peaks and curves of light at different temperatures",
+     "chunk_id": "1ddccdf6cd684260"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__329676_119915",
+   "question": "In which year did Taifa of Francisco Giner de los Rios' birthplace cease to exist?",
+   "gold": "1065",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Taifa of Ronda, where Francisco Giner de los Rios was born, existed from 1039 to 1065. It ceased to exist in 1065.",
+     "source": "kb_write:Taifa of Ronda",
+     "chunk_id": "87002a38ad0c46f7"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__39420_39345",
+   "question": "When did the president of Notre Dame in 2012 begin his tenure?",
+   "gold": "2005",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The president of Notre Dame in 2012, John I. Jenkins, C.S.C., began his tenure on July 1, 2005. He has been leading the university since then and has set goals to make Notre Dame a leader in research that recognizes ethics and to build the connection between faith and studies. During his tenure, the university has increased its endowment, enlarged its student body, and undergone many construction projects on campus.",
+     "source": "kb_write:president of Notre Dame 2012 tenure began",
+     "chunk_id": "10fd652730de4c23"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__39954_80303",
+   "question": "What is the name of the game reserve in the country where hunters spend 50 to 100 times more than the average ecotourist?",
+   "gold": "The Selous Game Reserve",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Selous Game Reserve is a game reserve located in the country of Tanzania. It is known for being the place where hunters spend 50 to 100 times more than the average ecotourist. The reserve is one of the largest faunal reserves in the world and was named after the famous big game hunter and conservationist, Sir Frederick Selous. It was designated a UNESCO World Heritage Site in 1982 due to its diverse wildlife and undisturbed nature.",
+     "source": "kb_write:Selous Game Reserve",
+     "chunk_id": "adfb642808b74b6c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__403060_92763",
+   "question": "What is the enrollment at the school that owns the Miami Hurricane?",
+   "gold": "16,801",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The University of Miami, which owns the Miami Hurricane, has a total enrollment of 16,801 students, including 10,849 undergraduates and 5,952 postgraduates.",
+     "source": "kb_write:enrollment at the University of Miami",
+     "chunk_id": "25ac3b826f4a4fc1"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__412633_15781",
+   "question": "Who, along with the author of An Essay on the History of Civil Society, criticized the idea of social contract theorists?",
+   "gold": "David Hume",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "David Hume and Adam Ferguson criticized the idea of social contract theorists. Hume's essay 'Of the Original Contract' argues that governments derived from consent are rarely seen, and civil government is grounded in a ruler's habitual authority and force. Similarly, Ferguson did not believe citizens built the state, rather polities grew out of social development. In his 1767 'An Essay on the History of Civil Society', Ferguson uses the four stages of progress to explain how humans advance from a hunting and gathering society to a commercial and civil society without 'signing' a social contract.",
+     "source": "kb_write:criticized the idea of social contract theorists",
+     "chunk_id": "c3a4170fc38e4578"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__423874_128023",
+   "question": "In which league was Ilsinho's team?",
+   "gold": "Major League Soccer",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Ilsinho's team plays in Major League Soccer (MLS).",
+     "source": "kb_write:Ilsinho's team league",
+     "chunk_id": "5889673be1db4159"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__427249_20057",
+   "question": "Who founded the organization that wrote GNU Free Documentation License?",
+   "gold": "Richard Stallman",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Free Software Foundation (FSF) is a nonprofit organization that wrote the GNU Free Documentation License. It was founded by Richard Stallman in 1985.",
+     "source": "kb_write:Free Software Foundation",
+     "chunk_id": "bf1be3d7a48a4c7e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__435087_55984",
+   "question": "Who wrote the song sung by the performer of The Story?",
+   "gold": "Phil Hanseroth",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song 'The Story' was written by Phil Hanseroth. It is from the album 'The Story' by Brandi Carlile, released in 2007. The song was featured in the TV show 'Grey's Anatomy'.",
+     "source": "kb_write:The Story song writer",
+     "chunk_id": "769534b01bd24874"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__45296_83837",
+   "question": "Who duets with the singer of Someone Else Calling You Baby on the song Home Alone Tonight?",
+   "gold": "Karen Fairchild",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The duet partner for the song 'Home Alone Tonight' is Karen Fairchild of the American country music group Little Big Town.",
+     "source": "kb_write:duet partner for Home Alone Tonight",
+     "chunk_id": "d195d1d638c04860"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__455158_247871",
+   "question": "What county is the NRHEG High School located in?",
+   "gold": "Waseca County",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "NRHEG High School is located in New Richland, Minnesota. New Richland is a city in Waseca County, Minnesota.",
+     "source": "kb_write:NRHEG High School county",
+     "chunk_id": "7a181aca235642c2"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__458672_20057",
+   "question": "Who started the foundation that developed the Free Software Directory?",
+   "gold": "Richard Stallman",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Free Software Foundation (FSF) is a nonprofit organization that developed the Free Software Directory. It was founded by Richard Stallman in 1985.",
+     "source": "kb_write:Free Software Foundation",
+     "chunk_id": "615fc9e11be040d8"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__48033_90973",
+   "question": "Who did the original voice of the character Mila Kunis plays on family Guy?",
+   "gold": "Lacey Chabert",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The original voice of the character Mila Kunis plays on Family Guy is Meg Griffin. Meg was originally voiced by Lacey Chabert during the first season, but has been voiced by Mila Kunis since season 2. Mila Kunis won the role after auditions and a slight rewrite of the character, in part due to her performance on That '70s Show. MacFarlane called Kunis back after her first audition, instructing her to speak slower, and then told her to come back another time and enunciate more. Once she claimed that she had it under control, MacFarlane hired her. Kunis described her character as 'the scapegoat'. She further explained, 'Meg gets picked on a lot. But it's funny. It's like the middle child. She is constantly in the state of being an awkward 14-year-old, when you're kind of going through puberty and what-not. She's just in a perpetual mode of humiliation. And it's fun.'",
+     "source": "kb_write:original voice of Mila Kunis on Family Guy",
+     "chunk_id": "21646f3e31f746c9"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__496961_554601",
+   "question": "What's the place of birth of the former member of The Sunnyboys?",
+   "gold": "Kingscliff",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Jeremy Oxley, the former member of The Sunnyboys, was born in Kingscliff, New South Wales.",
+     "source": "kb_write:Place of birth of Jeremy Oxley",
+     "chunk_id": "df231512a98f4a08"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__500379_126537",
+   "question": "When did Burroughs Corporation merge to form a new corporation?",
+   "gold": "1986",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Burroughs Corporation merged with Sperry in 1986 to form Unisys. The merger was a result of Burroughs buying Sperry for $4.8 billion. The name 'Unisys' was chosen from over 31,000 submissions in an internal competition.",
+     "source": "kb_write:Burroughs Corporation merge",
+     "chunk_id": "33c5cfe97b6140fc"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__50936_90973",
+   "question": "Who did the original voice of the character that Mila Kunis plays in Family Guy?",
+   "gold": "Lacey Chabert",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The original voice of the character Mila Kunis plays in Family Guy is Meg Griffin. Meg was originally voiced by Lacey Chabert during the first season, but has been voiced by Mila Kunis since season 2. Mila Kunis won the role after auditions and a slight rewrite of the character, in part due to her performance on That '70s Show. MacFarlane called Kunis back after her first audition, instructing her to speak slower, and then told her to come back another time and enunciate more. Once she claimed that she had it under control, MacFarlane hired her. Kunis described her character as 'the scapegoat'. She further explained, 'Meg gets picked on a lot. But it's funny. It's like the middle child. She is constantly in the state of being an awkward 14-year-old, when you're kind of going through puberty and what-not. She's just in a perpetual mode of humiliation. And it's fun.'",
+     "source": "kb_write:original voice of Mila Kunis character in Family Guy",
+     "chunk_id": "d366035129264e9a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__510679_57816",
+   "question": "What is the U.S. News ranking of the law school at Abraham Lavender's employer?",
+   "gold": "100",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. News ranking of the law school at Abraham Lavender's employer, Florida International University, is 100 in the United States, according to the 2017 U.S. News & World Report's 'Best Law School Rankings'. This represents an increase of more than 51 spots since 2009.",
+     "source": "kb_write:U.S. News ranking of the law school at Abraham Lavender's employer",
+     "chunk_id": "160472d115cd4150"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__511296_2684",
+   "question": "What was the name of the law passed by the actor from Terminator?",
+   "gold": "\"Donda West Law\"",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The law passed by Arnold Schwarzenegger, the actor from Terminator, is called the 'Donda West Law'. It makes it mandatory for patients to provide medical clearance for elective cosmetic surgery.",
+     "source": "kb_write:Donda West Law",
+     "chunk_id": "f85a6aff28f04cde"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__516918_126537",
+   "question": "In what year was the successor of Sperry Corporation established?",
+   "gold": "1986",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The successor of Sperry Corporation was established in 1986 after the merger with Burroughs Corporation. The new company was named Unisys.",
+     "source": "kb_write:Successor of Sperry Corporation established",
+     "chunk_id": "3ff10fdef6354e06"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__538412_126089",
+   "question": "Who was in charge of the province where Schermer is located?",
+   "gold": "Johan Remkes",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The King's Commissioner of North Holland is Johan Remkes, serving since 2010. The province's capital and seat of the provincial government is Haarlem. The province's largest city is the Netherlands' capital Amsterdam. Since 2015, Schermer has been a part of Alkmaar.",
+     "source": "kb_write:Who was in charge of the province where Schermer is located?",
+     "chunk_id": "217ddd3dd66d46e6"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__543853_124498",
+   "question": "Who is the father of the Labo M performer?",
+   "gold": "Louis Chedid",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The father of the Labo M performer is Louis Chedid. Louis Chedid is the son of the writer Andrée Chedid and the father of Matthieu Chedid (better known as -M-).",
+     "source": "kb_write:father of Labo M performer",
+     "chunk_id": "9e35d10228ec4b5d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__545711_52835",
+   "question": "Who wrote Turn Me On by the performer of Live from Austin, TX?",
+   "gold": "John D. Loudermilk",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song \"Turn Me On\" was written by John D. Loudermilk. It was recorded by Norah Jones and released in 2003 as a single from her album \"First Sessions / Come Away with Me\". The song was produced by Lee Alexander and Norah Jones.",
+     "source": "kb_write:Songwriting credits for \"Turn Me On\"",
+     "chunk_id": "8c17e2e9d811486d"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__549146_223121",
+   "question": "What record label did the person who is part of The Bruce Lee Band start?",
+   "gold": "Asian Man Records",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The person who is part of The Bruce Lee Band started the record label Asian Man Records in 1996.",
+     "source": "kb_write:The Bruce Lee Band record label",
+     "chunk_id": "ddbd9b2321de4e31"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__552607_126089",
+   "question": "Who was in charge of the province which contains Zeevang?",
+   "gold": "Johan Remkes",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The King's Commissioner of North Holland is Johan Remkes, serving since 2010. The province's capital and seat of the provincial government is Haarlem. The province's largest city is the Netherlands' capital Amsterdam. Zeevang is a part of the municipality of Edam-Volendam since 2016.",
+     "source": "kb_write:Who was in charge of the province containing Zeevang?",
+     "chunk_id": "b4c71b46bf604efc"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__5658_161105",
+   "question": "By how many votes did the signer of the decree suspending the Communist Party of the Russian SFSR survive impeachment?",
+   "gold": "72",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The signer of the decree suspending the Communist Party of the Russian SFSR survived impeachment by 72 votes. The impeachment vote was held on March 28, 1991, and the Congress of People's Deputies needed a 2/3 majority to pass the motion. The Russian Unity bloc, which included representatives of the CPRF and the Fatherland faction, played a significant role in the vote.",
+     "source": "kb_write:Impeachment of the signer of the decree suspending the Communist Party of the Russian SFSR",
+     "chunk_id": "79714feaad954411"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__567588_67465",
+   "question": "When did the performer of Goosebumpz release best day ever?",
+   "gold": "March 11, 2011",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The performer of Goosebumpz is Mac Miller. He released the mixtape 'Best Day Ever' on March 11, 2011. It consists of 16 songs produced by nine producers, primarily from ID Labs. The mixtape was released online and was accompanied by a live video stream with Mac Miller. The mixtape received attention for its unique production and Miller's lyrical content.",
+     "source": "kb_write:When did the performer of Goosebumpz release the mixtape 'Best Day Ever'?",
+     "chunk_id": "341f2daf2e934cfd"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__569582_304416",
+   "question": "What record label is the performer of Almost Made Ya signed to?",
+   "gold": "Derrty Entertainment",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The performer of \"Almost Made Ya\" is signed to Derrty Entertainment and Universal Records.",
+     "source": "kb_write:record label of performer signed to \"Almost Made Ya\"",
+     "chunk_id": "ee2b28faff1e4624"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__57543_158262",
+   "question": "When did the famous leader of the Confederate Military end his fight in the Mexican-American war?",
+   "gold": "1848",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The famous leader of the Confederate Military, Jefferson Davis, ended his fight in the Mexican-American war in 1848. He later became the President of the Confederate States of America during the American Civil War.",
+     "source": "kb_write:Jefferson Davis",
+     "chunk_id": "03d545ca87e6428e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__586343_83289",
+   "question": "Who is the guy in the video of the performer of One Last Time?",
+   "gold": "Matt Bennett",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The user asked: Who is the guy in the video of the performer of One Last Time? The knowledge base was updated with a reference entry about this topic.",
+     "source": "kb_write:update knowledge base with a reference entry",
+     "chunk_id": "a897d4e51d50499b"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__590631_110882",
+   "question": "What is the date of birth for the performer of Unbreakable?",
+   "gold": "1 January 1986",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The performer of the song 'Unbreakable' is James Cottriall. He was born on January 1, 1986, in Stratford upon Avon, England.",
+     "source": "kb_write:date of birth for performer of Unbreakable",
+     "chunk_id": "52418d8c393e4ae0"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__59612_42352",
+   "question": "How many people were in British Colonies where does the london broil cut come from ?",
+   "gold": "2 million",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The British Empire was the largest empire in history, covering over 13,000,000 square miles (34,000,000 km2) of territory and ruling over approximately 458 million people. It originated in the late 16th century and reached its peak in the early 20th century. The empire was formed through the colonization of various regions, including North America, Africa, Asia, and the Pacific. The British Empire played a significant role in shaping global politics, economy, and culture. It was responsible for the transfer of people, goods, and ideas across different regions, leaving a lasting legacy in many parts of the world. The London broil cut, a type of beef cut, is believed to have originated in the British Empire, specifically in the colonies in North America. It is a popular cut of beef that is known for its tenderness and flavor. The history of the British Empire and the origin of the London broil cut are closely linked, reflecting the cultural and culinary exchange that occurred during the colonial period.",
+     "source": "kb_write:British Empire and London Broil Cut",
+     "chunk_id": "3da3f36439f149bb"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__608902_653666",
+   "question": "Who is the mother of Katharine Smith Salisbury's brother?",
+   "gold": "Lucy Mack Smith",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The mother of Katharine Smith Salisbury's brother is Lucy Mack Smith. She was the wife of Joseph Smith Sr. and the mother of several children, including Joseph Smith Jr., the founder of the Latter Day Saint movement. Lucy Mack Smith wrote a biography of her son, titled \"History of Joseph Smith by His Mother,\" which was published in 1853.",
+     "source": "kb_write:Katharine Smith Salisbury",
+     "chunk_id": "e91e6d98470e4217"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__609313_20273",
+   "question": "What year did the author of History of the Reformation in Scotland die?",
+   "gold": "1572",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "John Knox, the author of History of the Reformation in Scotland, died in 1572.",
+     "source": "kb_write:Death of John Knox",
+     "chunk_id": "f26753995a41440f"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__613779_55984",
+   "question": "Who wrote the song \"The Story\" that is sung by the performer of \"That Wasn't Me\"?",
+   "gold": "Phil Hanseroth",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song 'The Story' was written by Phil Hanseroth. It is from the album 'The Story' by Brandi Carlile, released in 2007. The song was featured in the TV show 'Grey's Anatomy'.",
+     "source": "kb_write:The Story song writer",
+     "chunk_id": "5b4f2128e24d4c59"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__62020_158262",
+   "question": "When did the president of the Confederacy end his fight in the Mexican-American war?",
+   "gold": "1848",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The president of the Confederacy, Jefferson Davis, ended his fight in the Mexican-American war in 1848. He later became the President of the Confederate States of America during the American Civil War.",
+     "source": "kb_write:Jefferson Davis and the Mexican-American war",
+     "chunk_id": "a8c80a3652c94528"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__64372_83289",
+   "question": "Who is the guy in the One Last Time music video by the singer of a new version of Somewhere Over the Rainbow?",
+   "gold": "Matt Bennett",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The music video for 'One Last Time' by Ariana Grande features Matt Bennett, who was also Grande's co-star from the Nickelodeon sitcom 'Victorious'. The video was directed by Max Landis and was released on February 15, 2015, on Vevo. It surpassed 100 million views on June 8, making it Grande's sixth Vevo-certified music video after 'Love Me Harder'.",
+     "source": "kb_write:One Last Time music video",
+     "chunk_id": "142b0488644e48cc"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__656411_345851",
+   "question": "The singer, who starred in Shake It Up, signed to which record label?",
+   "gold": "Hollywood Records",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Zendaya, the singer who starred in Shake It Up, signed to Hollywood Records.",
+     "source": "kb_write:record label",
+     "chunk_id": "15789eceea1e42e6"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__663184_57816",
+   "question": "What is the U.S. News ranking of the law school at Bruce Nissen's employer?",
+   "gold": "100",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. News ranking of the law school at Bruce Nissen's employer, Florida International University, is 100 in the United States, according to the 2017 U.S. News & World Report's 'Best Law School Rankings'. This represents an increase of more than 51 spots since 2009.",
+     "source": "kb_write:U.S. News ranking of the law school at Bruce Nissen's employer",
+     "chunk_id": "357edec275184363"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__665660_135481",
+   "question": "The 1967 Federation Cup is an instance of this tournament which is named after what organization?",
+   "gold": "International Tennis Federation",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The 1967 Federation Cup is an instance of the Fed Cup, which is named after the International Tennis Federation (ITF).",
+     "source": "kb_write:Fed Cup",
+     "chunk_id": "9e8f6781b88b4871"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__668407_683671",
+   "question": "Who is the father of Empress Wang's husband?",
+   "gold": "Yang Xingmi",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The father of Empress Wang's husband is Yang Xingmi, a warlord of the late-Tang Dynasty. He was the father of Yang Pu, the final ruler and the only emperor of the Wu state.",
+     "source": "kb_write:The father of Empress Wang's husband",
+     "chunk_id": "56a7dd2fbff64144"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__67660_81007",
+   "question": "Who does the narrator on How I Met Your Mother end up with?",
+   "gold": "Tracy McConnell",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The narrator on How I Met Your Mother ends up with Tracy McConnell, played by Cristin Milioti. She is the mother of Ted Mosby's children, Luke and Penny. The show's final episode shows Ted and Tracy living happily together, with Tracy still alive in an alternate ending released on the ninth season DVD. The show's frame story is set in the year 2030, where Ted tells the story of how he met their mother to his children.",
+     "source": "kb_write:How I Met Your Mother narrator ending",
+     "chunk_id": "e24bcb283a934276"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__6827_79845",
+   "question": "How many atms does the bank that bought FleetBoston Financial has are there?",
+   "gold": "15,900",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The bank that bought FleetBoston Financial is Bank of America. As of December 31, 2016, Bank of America operates 4,600 banking centers and 15,900 automated teller machines (ATMs).",
+     "source": "kb_write:Bank of America",
+     "chunk_id": "0df5f127b5a4437c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__685045_19320",
+   "question": "What worldwide ranking does the university where Manuel Isaías López was educated hold?",
+   "gold": "74th",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The National Autonomous University of Mexico (UNAM) is the largest university on the continent, with more than 300,000 students from all backgrounds. It ranked 74th in the Top 200 World University Ranking published by Times Higher Education in 2006, making it the highest ranked Spanish-speaking university in the world. UNAM is the alma mater of Manuel Isaías López.",
+     "source": "kb_write:worldwide ranking of the university where Manuel Isaías López was educated",
+     "chunk_id": "a4a7a5708a984668"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__68590_27628",
+   "question": "Who is the Vice-President of the organization that controls the monetary policy of the EU?",
+   "gold": "Vitor Constâncio",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Vice-President of the organization that controls the monetary policy of the EU is Vitor Constâncio. He is a member of the Executive Board of the European Central Bank (ECB), which is responsible for implementing monetary policy and running the bank on a day-to-day basis. The Executive Board is composed of the President of the Bank, the Vice-President, and four other members. They are all appointed for non-renewable terms of eight years. Vitor Constâncio has been serving as the Vice-President of the ECB since 2010.",
+     "source": "kb_write:Vice-President of the organization that controls the monetary policy of the EU",
+     "chunk_id": "dd2c59f0c2374e53"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__689472_52835",
+   "question": "Who wrote the song turn me on that is performed by performer of Feelin' the Same Way?",
+   "gold": "John D. Loudermilk",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song \"Turn Me On\" was written by John D. Loudermilk. It was recorded by Norah Jones and released in 2003 as a single from her album \"First Sessions / Come Away with Me\". The song was produced by Lee Alexander and Norah Jones.",
+     "source": "kb_write:Songwriting credits for \"Turn Me On\"",
+     "chunk_id": "c110cca4338a47cd"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__73069_88165",
+   "question": "Who did the person considered the founder of three major monotheistic religions marry after the death of Sarah?",
+   "gold": "Keturah",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "After the death of Sarah, the person considered the founder of three major monotheistic religions, Abraham, married Keturah. They had six sons together.",
+     "source": "kb_write:Abraham and Keturah",
+     "chunk_id": "7ddfeeba5b924a5b"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__734582_71302",
+   "question": "Who is played by the director of The Good Shepherd in The Godfather?",
+   "gold": "Vito Corleone",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The director of The Good Shepherd, Robert De Niro, played the role of Vito Corleone in The Godfather and its prequel The Godfather Part II.",
+     "source": "kb_write:The Good Shepherd and The Godfather",
+     "chunk_id": "0519fcc2c9b44ba8"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__736167_74735",
+   "question": "What song did Paul McCartney write for Cynthia Lennon's kid?",
+   "gold": "``Hey Jude ''",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Paul McCartney wrote the song 'Hey Jude' for Cynthia Lennon's son, Julian. It was originally titled 'Hey Jules' and was meant to comfort Julian during his parents' divorce. The song has become one of the Beatles' most popular and enduring songs, known for its iconic 'na-na-na' refrain and powerful vocals. It has been covered by numerous artists and remains a beloved classic to this day.",
+     "source": "kb_write:Paul McCartney wrote a song for Cynthia Lennon's kid",
+     "chunk_id": "e469a6c0621f45c3"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__75207_365216",
+   "question": "In which province is San Clemente, from the country where Fuser and Alberto meet the indigenous couple who were traveling to look for work?",
+   "gold": "Talca Province",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "San Clemente is a city and commune administered by the municipality of San Clemente, located in the Talca Province of Chile's Maule Region. Fuser and Alberto meet an indigenous couple who were traveling to look for work in San Clemente.",
+     "source": "kb_write:San Clemente",
+     "chunk_id": "1bd2996bf8984663"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__76314_177869",
+   "question": "Who was the spouse of a leading speaker against slavery and publisher of an antislavery newspaper?",
+   "gold": "Helen Pitts Douglass",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "William Cooper Nell was a leading speaker against slavery and the publisher of an antislavery newspaper. He was married to Mary Birdsall.",
+     "source": "kb_write:spouse of William Cooper Nell",
+     "chunk_id": "c416e9749fd045ce"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__77134_88165",
+   "question": "Who did the person Sarah married to in the bible marry after the death of Sarah?",
+   "gold": "Keturah",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "After the death of Sarah, Abraham married Keturah. They had six sons together.",
+     "source": "kb_write:Abraham and Keturah",
+     "chunk_id": "f8dc4f7180564e1a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__80546_75184",
+   "question": "Who played the girlfriend of the actor who played Marlene McFly in Back to the Future?",
+   "gold": "Claudia Wells",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The actor who played Marlene McFly in Back to the Future is Michael J. Fox. The girlfriend of Michael J. Fox in the movie is Jennifer Parker, played by Claudia Wells.",
+     "source": "kb_write:Back to the Future",
+     "chunk_id": "349de67193d44a24"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__81659_52835",
+   "question": "Who wrote Turn Me On by the singer of Come Away with Me?",
+   "gold": "John D. Loudermilk",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The song 'Turn Me On' was written by John D. Loudermilk. It was recorded by Norah Jones and released in 2003 as a single from her album 'First Sessions / Come Away with Me'. The song was produced by Lee Alexander and Norah Jones.",
+     "source": "kb_write:Songwriting credits for 'Turn Me On'",
+     "chunk_id": "a9fee3248d3b4235"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__816977_6455",
+   "question": "The developer of Mozilla Sunbird created which browser?",
+   "gold": "Firefox",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The developer of Mozilla Sunbird created the Firefox browser.",
+     "source": "kb_write:Mozilla Sunbird developer created which browser",
+     "chunk_id": "8d1cbe0ea82448fc"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__83405_158262",
+   "question": "When did the president of the Confederate States of America end his fight in the Mexican-American war?",
+   "gold": "1848",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The president of the Confederate States of America, Jefferson Davis, ended his fight in the Mexican-American war in 1848. He later became the President of the Confederate States of America during the American Civil War.",
+     "source": "kb_write:Jefferson Davis and the Mexican-American war",
+     "chunk_id": "b61e934498844cee"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__846415_88165",
+   "question": "Who did Jokshan's father marry after the death of Sarah?",
+   "gold": "Keturah",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "After the death of Sarah, Abraham married Keturah. They had six sons together.",
+     "source": "kb_write:Abraham and Keturah",
+     "chunk_id": "b76bd3becdaf4634"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__8496_21567",
+   "question": "Who introduced a system of musical notation used during the 14th century in the place where there is no evidence of a Slavic settlement before c. 600 AD?",
+   "gold": "John Kukuzelis",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Hampartsoum Limondjian introduced a system of musical notation in the 14th century that was used in the area where the Ottoman slave trade flourished. This notation system, known as the Hamparsum notation, was instrumental in the transcription and survival of thousands of pieces of music, particularly in Turkish and Armenian music. It was widely used until modern times and is still used by the Armenian Apostolic Church.",
+     "source": "kb_write:musical notation",
+     "chunk_id": "5f17af2ca9554314"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__852657_155922",
+   "question": "Into what harbour does the river Lennox Bridge in Parramatta crosses flow?",
+   "gold": "Sydney Harbour",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The river that the Lennox Bridge in Parramatta crosses is the Parramatta River. The Parramatta River is an intermediate tide dominated, drowned valley estuary located in Sydney, New South Wales, Australia. It is the main tributary of Sydney Harbour, a branch of Port Jackson. Secondary tributaries include the smaller Lane Cove and Duck rivers.",
+     "source": "kb_write:Parramatta River",
+     "chunk_id": "2deead1978194caf"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__85931_108632",
+   "question": "Who created the main character of The Godfather?",
+   "gold": "Mario Puzo",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Vito Andolini Corleone is a fictional character in Mario Puzo's novel 'The Godfather' and in the first two of Francis Ford Coppola's film trilogy. He is portrayed by Marlon Brando in 'The Godfather' and then, as a young man, by Robert De Niro in 'The Godfather Part II'. He is an orphaned Sicilian immigrant who builds a Mafia empire. Upon his death, Michael, his youngest son, succeeds him as the don of the Corleone crime family.",
+     "source": "kb_write:Vito Corleone",
+     "chunk_id": "94327ee345b042af"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__91667_81007",
+   "question": "Who does the person telling the story in How I Met Your Mother end up with?",
+   "gold": "Tracy McConnell",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The person telling the story in How I Met Your Mother ends up with Tracy McConnell, played by Cristin Milioti. She is the mother of Ted Mosby's children, Luke and Penny. The show's final episode shows Ted and Tracy living happily together, with Tracy still alive in an alternate ending released on the ninth season DVD. The show's frame story is set in the year 2030, where Ted tells the story of how he met their mother to his children.",
+     "source": "kb_write:How I Met Your Mother narrator ending",
+     "chunk_id": "d75bca3c51334499"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__94629_1110",
+   "question": "In what year was Twilight Princess from the game series on which The Legend of Neil was based originally planned for release?",
+   "gold": "2005",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The original release year of Twilight Princess from the game series on which The Legend of Neil was based was 2005.",
+     "source": "kb_write:Release Year of Twilight Princess",
+     "chunk_id": "83b2f5be31e945cd"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__144439_443779_52195",
+   "question": "who is the president of newly declared independent country of the country of the birthplace of Mulham Arufin–Timor Leste Commission of Truth and Friendship?",
+   "gold": "Francisco Guterres",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The president of the newly declared independent country of the birthplace of Mulham Arufin–Timor Leste Commission of Truth and Friendship is Francisco Guterres. He is the current President of Timor Leste, which was formerly known as East Timor. Timor Leste declared its independence on November 28, 1975, and was annexed by Indonesia on July 17, 1976. The country was administered by UNTAET from October 25, 1999, until May 20, 2002, when it regained its independence. Francisco Guterres has been serving as the President of Timor Leste since May 20, 2017.",
+     "source": "kb_write:president of newly declared independent country of the birthplace of Mulham Arufin–Timor Leste Commission of Truth and Friendship",
+     "chunk_id": "724024374a7941be"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__158848_66089_86107",
+   "question": "Which city of the sea linked to another sea that Theodoric was trying to gain access to by attacking Narbo Martius was the main port of Axum?",
+   "gold": "Adulis",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The city of the sea linked to another sea that Theodoric was trying to gain access to by attacking Narbo Martius was the main port of Axum. The main port of Axum is located in the city of Palermo, Sicily. Palermo is a major port city in the Mediterranean Sea and is connected to the Red Sea through the Suez Canal. The Suez Canal is an artificial waterway that allows ships to pass through the Isthmus of Suez, reducing the journey between the North Atlantic and northern Indian Oceans. The city of Palermo has a rich history and has been an important center of trade and commerce for centuries. It is now a popular tourist destination known for its beautiful beaches, vibrant culture, and rich history.",
+     "source": "kb_write:The city of the sea linked to another sea that Theodoric was trying to gain access to by attacking Narbo Martius was the main port of Axum",
+     "chunk_id": "e2c527429fba48c9"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__232315_831637_91775",
+   "question": "What does seal stand for in the branch of the U.S. military that operates a list of destroyer classes as well as the USS Tarawa?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The United States Navy's Sea, Air, and Land Teams, commonly abbreviated as the Navy SEALs, are the U.S. Navy's primary special operations force and a component of the Naval Special Warfare Command. They conduct small-unit maritime military operations that originate from, and return to, a river, ocean, swamp, delta, or coastline. The SEALs are trained to operate in all environments (Sea, Air, and Land) for which they are named.",
+     "source": "kb_write:Navy SEALs",
+     "chunk_id": "34f5a340125e481e"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__255970_831637_91775",
+   "question": "The military unit that operates destroyers and once had a ship named the USS Sanderling has a force called the seals. What does seal stand for?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for?",
+     "chunk_id": "d87a2714e5354452"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__324448_831637_91775",
+   "question": "What does SEAL stand for in the military branch that operates USS Prevail?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for?",
+     "chunk_id": "c23a58261b874787"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__346416_831637_91775",
+   "question": "What does seal stand for in the U.S. military branch that operates a list of destroyer classes, and also operates NC?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates a list of destroyer classes and also operates NC is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the U.S. military branch that operates a list of destroyer classes and also operates NC?",
+     "chunk_id": "d5240531ff044155"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__534450_831637_91775",
+   "question": "What does seal stand for in the division of the U.S. military branch that operates destroyer classes and the USS Chinquapin?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates destroyer classes and the USS Chinquapin is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the division of the U.S. military branch that operates destroyer classes and the USS Chinquapin?",
+     "chunk_id": "03d073caa12342b1"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__604797_443779_52195",
+   "question": "who is the president of newly declared independent country which is the country of the country of Alabio –Timor Leste Commission of Truth and Friendship?",
+   "gold": "Francisco Guterres",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The president of the newly declared independent country of the birthplace of Mulham Arufin–Timor Leste Commission of Truth and Friendship is Francisco Guterres. He is the current President of Timor Leste, which was formerly known as East Timor. Timor Leste declared its independence on November 28, 1975, and was annexed by Indonesia on July 17, 1976. The country was administered by UNTAET from October 25, 1999, until May 20, 2002, when it regained its independence. Francisco Guterres has been serving as the President of Timor Leste since May 20, 2017.",
+     "source": "kb_write:president of newly declared independent country Alabio –Timor Leste Commission of Truth and Friendship",
+     "chunk_id": "52614de6955847ca"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__673934_831637_91775",
+   "question": "What does seal stand for in the operator of list of destroyer classes of the operator of the USS Kajeruna seals?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the operator of list of destroyer classes of the operator of the USS Kajeruna seals?",
+     "chunk_id": "9c3017fcb08b497c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__699454_831637_91775",
+   "question": "What does seal stand for in the U.S. military branch that operates a list of destroyer classes, as well as the USS Sable?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates destroyer classes and the USS Sable is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the U.S. military branch that operates a list of destroyer classes and the USS Sable?",
+     "chunk_id": "02e9ca5582cd4741"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__754160_831637_91775",
+   "question": "What does seal stand for in the U.S. military branch that operates a list of destroyer classes, as well as the USS Dextrous?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates destroyer classes and the USS Dextrous is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the U.S. military branch that operates destroyer classes and the USS Dextrous?",
+     "chunk_id": "74d4c369d6eb4f51"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__756602_831637_91775",
+   "question": "What does seal stand for in the U.S. military branch that operates a list of destroyer classes as well as the USS Jason?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates destroyer classes and the USS Jason is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the U.S. military branch that operates a list of destroyer classes as well as the USS Jason?",
+     "chunk_id": "64f2be804e0f4464"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__761225_831637_91775",
+   "question": "What does seal stand for in the branch of the U.S. military that operates a list of destroyer classes, as well as containing the rank O-1?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates destroyer classes and the rank O-1 is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the branch of the U.S. military that operates a list of destroyer classes, as well as containing the rank O-1?",
+     "chunk_id": "7c8fe6975f8b4f14"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__838590_831637_91775",
+   "question": "What does seal stand for in the U.S. military branch that operates a list of destroyer classes and the USS Stag?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates destroyer classes and the USS Stag is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the U.S. military branch that operates a list of destroyer classes and the USS Stag?",
+     "chunk_id": "eb849adfa3ed4e34"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__9285_5188_6375",
+   "question": "Who was the first person to control a spacecraft, from the country the top-ranking Warsaw Pact operatives came from, despite it being headquartered in the country called the nobilities commonwealth?",
+   "gold": "Gherman Titov",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The first person to control a spacecraft from Poland, a country where the top-ranking Warsaw Pact operatives came from, was Gherman Titov. He was a Soviet cosmonaut who exercised manual control of his Vostok 2 craft on August 6, 1961. The Soviet Union, which was headquartered in the country called the nobility's commonwealth, demonstrated 24-hour launch pad turnaround and the capability to launch two piloted spacecraft, Vostok 3 and Vostok 4, in essentially identical orbits, on August 11 and 12, 1962. Titov's achievement marked a significant milestone in the Space Race between the Soviet Union and the United States.",
+     "source": "kb_write:Gherman Titov",
+     "chunk_id": "9de833e3d09a4f85"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "4hop1__320457_508773_85832_745702",
+   "question": "Who is the son of the Italian navigator who explored the eastern coast of the continent Ulises Solís' birthplace is located in for England?",
+   "gold": "Sebastian Cabot",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Sebastian Cabot was the son of Italian explorer John Cabot, who explored the eastern coast of the continent for England. Ulises Solís' birthplace is located in Guadalajara, Jalisco, Mexico.",
+     "source": "kb_write:Sebastian Cabot and Ulises Solís",
+     "chunk_id": "beefd63cf1614e9c"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "4hop1__341777_508773_85832_745702",
+   "question": "Who was the child of the Italian navigator who sailed for England, and explored the eastern coast of the continent where the birthplace of Eduardo Cuervo is found?",
+   "gold": "Sebastian Cabot",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Sebastian Cabot was the son of Italian explorer John Cabot, who explored the eastern coast of the continent for England. Ulises Solís' birthplace is located in Guadalajara, Jalisco, Mexico.",
+     "source": "kb_write:Sebastian Cabot and Ulises Solís",
+     "chunk_id": "45af2a8225eb4726"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "4hop1__93963_170667_443779_52195",
+   "question": "Who is the president of the newly declared independent country, that established the Timor Leste Commission of Truth and Friendship, with the country containing the airport that includes Lion Air?",
+   "gold": "Francisco Guterres",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The president of the newly declared independent country that established the Timor Leste Commission of Truth and Friendship is Francisco Guterres. He is the current President of Timor Leste, which was formerly known as East Timor. Timor Leste declared its independence on November 28, 1975, and was annexed by Indonesia on July 17, 1976. The country was administered by UNTAET from October 25, 1999, until May 20, 2002, when it regained its independence. Francisco Guterres has been serving as the President of Timor Leste since May 20, 2017.",
+     "source": "kb_write:president of newly declared independent country",
+     "chunk_id": "0699140effc04302"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "4hop2__161602_426860_88460_86452",
+   "question": "When did Burma change its name to the country on the natural boundary between the country that hosted the tournament and the country where That Dam is from?",
+   "gold": "1989",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Burma changed its name to Myanmar in 1989. The country that hosted the tournament is Sri Lanka, and the country where That Dam is from is Laos. Myanmar is located between Sri Lanka and Laos, making it the country on the natural boundary between the two.",
+     "source": "kb_write:Myanmar name change",
+     "chunk_id": "51db732fd81a4201"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "4hop2__161602_474028_88460_86452",
+   "question": "When did Burma change its name to the country that is the natural boundary between the country that hosted the tournament and the country where A Don is located?",
+   "gold": "1989",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Burma changed its name to Myanmar in 1989. Myanmar is the natural boundary between Sri Lanka and Laos. Myanmar is located between Sri Lanka and Laos, making it the country on the natural boundary between the two.",
+     "source": "kb_write:Myanmar name change",
+     "chunk_id": "6c02b02fbab14b50"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__123166_47134",
+   "question": "What is the mascot of William J. Ripple's university?",
+   "gold": "Benny Beaver",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The mascot of William J. Ripple's university is Benny Beaver. Benny Beaver is the official mascot of Oregon State University and winner of the 2011 Capital One Mascot of the Year write-in campaign. The exact date of when the name was first used as the university's mascot is not known, but photographs in the school's yearbook document its use as early as the 1940s.",
+     "source": "kb_write:mascot of William J. Ripple's university",
+     "chunk_id": "25d7a599dc964a8a"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__445963_6095",
+   "question": "When was the importation of slaves banned in the birthplace of Francis Watson?",
+   "gold": "1792",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The importation of slaves was banned in the birthplace of Francis Watson in 1792. The phased emancipation of over 800 resident slaves did not take place until 1827, which was still some six years before the British Parliament passed legislation to ban slavery in the colonies.",
+     "source": "kb_write:Importation of slaves banned in the birthplace of Francis Watson",
+     "chunk_id": "e6fa5d49f78a41ea"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "3hop1__524212_831637_91775",
+   "question": "What does SEAL stand for in the military group that is part of the branch that operates the USS Askari?",
+   "gold": "Sea, Air, and Land",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The U.S. military branch that operates the USS Askari is the Navy. The Navy SEALs are the U.S. Navy's primary special operations force. They are trained to operate in all environments (Sea, Air, and Land) and conduct small-unit maritime military operations. The name 'SEAL' stands for 'Sea, Air, and Land Teams'.",
+     "source": "kb_write:What does SEAL stand for in the military group that is part of the branch that operates the USS Askari?",
+     "chunk_id": "3ce5630af6cc4c40"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__42464_718451",
+   "question": "The field of work of the physicist making the first to measure value of the Newton Universal Gravitation Constant is what?",
+   "gold": "physic",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "The field of work of the physicist who first measured the value of Newton's Universal Gravitation Constant is physics. Specifically, the physicist, Henry Cavendish, made the measurement using a torsion balance in 1798. This measurement allowed for the calculation of the mass of the Earth, as it is related to the gravitational force between two objects. Newton's Law of Gravitation states that the force on a spherical object of mass m due to the gravitational pull of mass M is proportional to the product of the two masses and inversely proportional to the square of the distance between them. The measurement of the Universal Gravitation Constant has important implications for our understanding of gravity and the behavior of celestial bodies.",
+     "source": "kb_write:physics",
+     "chunk_id": "4874d55d7a434641"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "4hop1__726675_508773_85832_745702",
+   "question": "Who is the child of the Italian navigator who explored the eastern coast of the continent César Gaytan was born in for the English?",
+   "gold": "Sebastian Cabot",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Sebastian Cabot was the son of Italian explorer John Cabot, who explored the eastern coast of the continent for England. Ulises Solís was born in Guadalajara, Jalisco, Mexico.",
+     "source": "kb_write:Sebastian Cabot and Ulises Solís",
+     "chunk_id": "a0706e59d8b645b5"
+    }
+   ],
+   "error": null
+  },
+  {
+   "qid": "2hop__848156_130869",
+   "question": "What state contains the place where Fatata te Miti is displayed?",
+   "gold": "Washington, D.C.",
+   "n_writes": 1,
+   "writes": [
+    {
+     "text": "Fatata te Miti is an oil painting by Paul Gauguin located in the National Gallery of Art in Washington, DC.",
+     "source": "kb_write:Fatata te Miti",
+     "chunk_id": "556a8aaece5d4c77"
+    }
+   ],
+   "error": null
+  }
+ ]
+}

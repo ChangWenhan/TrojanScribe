@@ -63,16 +63,27 @@ class ReActAgent:
         # create() as kwargs, so extra_body (NOT chat_template_kwargs directly)
         # is the correct carrier — chat_template_kwargs as a bare kwarg raises
         # TypeError in the openai SDK (incident 2026-09-06 23:52)
-        from ..llm import _chat_template_kwargs
+        from ..llm import _chat_template_kwargs, _top_level_kwargs
 
+        # BOTH request-level escape hatches must reach the agent too, not just
+        # LLMBackend (which the payload generator uses). Until 2026-10-26 the
+        # victim/writer ran through ChatOpenAI with only chat_template_kwargs,
+        # so AGENTIC_RAG_TOP_LEVEL_KWARGS (e.g. reasoning_effort=low for
+        # gpt-oss-20b) silently had no effect on the agent side.
+        extra: dict = {}
         ctk = _chat_template_kwargs()
+        if ctk:
+            extra["chat_template_kwargs"] = ctk
+        tlk = _top_level_kwargs()
+        if tlk:
+            extra.update(tlk)
         self.model = ChatOpenAI(
             model=llm_cfg.model,
             base_url=llm_cfg.base_url,
             api_key=llm_cfg.api_key,
             temperature=llm_cfg.temperature,
             max_tokens=llm_cfg.max_tokens,
-            extra_body={"chat_template_kwargs": ctk} if ctk else None,
+            extra_body=extra or None,
         )
         self.tools = tools if tools is not None else [make_kb_search_tool(store, top_k)]
         self.max_iterations = max_iterations
@@ -115,6 +126,35 @@ class ReActAgent:
             "n_tool_calls": len(trace),
             "n_messages": len(messages),
         }
+
+
+# Some chat templates only inject the function-call FORMAT description when the
+# request carries no system message. OLMo-3-7B-Instruct's template is like that:
+# with our SYSTEM_VICTIM present it drops "output function calls within
+# <function_calls></function_calls>", so the model emits a malformed call that
+# the vLLM parser cannot read (verified 2026-10-27: tool_calls=0, content
+# 'kb_search(query="...")</function_calls>'). Appending the missing description
+# restores structured calls (tool_calls=1). Opt-in via env so the other
+# backbones keep their exact historical prompts.
+_TOOL_FORMAT_HINT = (
+    "You are provided with function signatures within <functions></functions> "
+    "XML tags. You may call one or more functions to assist with the user query. "
+    "Output any function calls within <function_calls></function_calls> XML tags. "
+    "Do not make assumptions about what values to plug into functions."
+)
+
+
+def with_tool_format_hint(prompt: str) -> str:
+    """Append the function-call format description when the template omits it."""
+    import os
+
+    if os.environ.get("AGENTIC_RAG_TOOL_FORMAT_HINT") == "1":
+        return prompt + "\n\n" + _TOOL_FORMAT_HINT
+    return prompt
+
+
+def victim_system_prompt() -> str:
+    return with_tool_format_hint(SYSTEM_VICTIM)
 
 
 SYSTEM_VICTIM = (
