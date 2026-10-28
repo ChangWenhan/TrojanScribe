@@ -3,6 +3,8 @@
 Conditions (user's list for this round):
   clean      snapshot only, no poison            <- upper bound, must be 100/100
   ours       snapshot + our poison (8 per target)
+  ours_xsm   snapshot + ANOTHER model's poison (cross-model transfer cell;
+             needs --poison-file and --attacker)
   poisonedrag / agentpoison / corruptrag_as / corruptrag_ak
              snapshot + that baseline's poison, replayed from its generated file
 
@@ -13,9 +15,14 @@ Design constraints, each one a bug that already bit us or was caught in review:
     in metadata so it can be removed BY IDENTITY. Never delete by author: the
     corpus shares "system".
   * Every condition starts from exactly "pristine corpus + this model's snapshot",
-    verified by comparing the multiset of (author, source, text) against the
-    expected set. Only checking a poison count is not enough: a leftover benign
-    row would slip through.
+    verified by content, not by a count: the snapshot rows must equal the snapshot
+    file's (author, source, text) multiset, the poison rows must equal exactly the
+    texts this run wrote, and the collection total must equal
+    corpus + snapshot + poison. Only checking a poison count would let a leftover
+    benign row (e.g. an old writer row with a different author) slip through.
+    The corpus size itself is not self-reported either: it is compared against the
+    size the clean run of the same victim recorded, so a leftover row cannot be
+    absorbed into "the corpus" and cancel out in the sum.
   * Poison rows carry the SAME author/source shape as the snapshot/corpus so the
     model cannot tell them apart by provenance (except where a baseline's own
     definition requires a marker).
@@ -54,13 +61,16 @@ DATASETS = {"hotpot": ("data/chroma", "hotpot_kb"),
 SNAPSHOT_AUTHOR = "system"
 POISON_AUTHOR = "doc-consolidator"
 SNAP_TAG = {"snapshot_of": POISON_AUTHOR}
-CONDITIONS = ["clean", "ours", "poisonedrag", "agentpoison",
+CONDITIONS = ["clean", "ours", "ours_xsm", "poisonedrag", "agentpoison",
               "corruptrag_as", "corruptrag_ak"]
 # where each baseline's poison texts live (produced by the baseline generators)
 # {ds} is empty for HotpotQA and "_musique" for MuSiQue: without it a MuSiQue run
 # silently picked up the HotpotQA poison file of the same name (hit 2026-10-27).
 POISON_FILES = {
     "ours": "dc_ours_noleak_{model}{ds}.json",
+    # cross-model cell: the texts come from ANOTHER model, so this default is
+    # never the right file - `ours_xsm` refuses to run without --poison-file.
+    "ours_xsm": "dc_ours_noleak_{model}{ds}.json",
     "poisonedrag": "dc_poisonedrag_{model}{ds}.json",
     "agentpoison": "dc_agentpoison_{model}{ds}.json",
     "corruptrag_as": "dc_corruptrag_as_{model}{ds}.json",
@@ -76,6 +86,52 @@ def kb_multiset(store) -> dict:
         key = (m.get("author_id", ""), m.get("source", ""), t or "")
         out[key] = out.get(key, 0) + 1
     return out
+
+
+def rows_matching(store, key: str, value) -> dict:
+    """(author, source, text) -> count for the rows where metadata[key] == value."""
+    res = store._coll.get(where={key: value}, include=["documents", "metadatas"])
+    out: dict = {}
+    for t, m in zip(res["documents"], res["metadatas"]):
+        k = (m.get("author_id", ""), m.get("source", ""), t or "")
+        out[k] = out.get(k, 0) + 1
+    return out
+
+
+def expected_snapshot_rows(path: str) -> dict:
+    """What the snapshot rows must look like once loaded (exact multiset)."""
+    snap = json.load(open(path))
+    out: dict = {}
+    for e in snap["entries"]:
+        for w in e["writes"]:
+            k = (SNAPSHOT_AUTHOR, w["source"], w["text"])
+            out[k] = out.get(k, 0) + 1
+    return out
+
+
+def check_poison_meta(blob: dict, expected_writer: str, dc_name: str, path: str,
+                      strict: bool) -> None:
+    """The poison file records who generated it and for which D_c.
+
+    Trusting the command line alone would let "qwen wrote this" be a label on
+    xlam's own texts - the cell would silently be a self-attack - and would let a
+    HotpotQA file be replayed on MuSiQue. `strict` (our own generator, which
+    always writes both fields) makes the fields mandatory; the published
+    baselines' files do not all carry them, so there they are checked if present.
+    """
+    pm = blob.get("meta") or {}
+    for field, want in (("model", expected_writer), ("dc_file", dc_name)):
+        got = pm.get(field)
+        if got is None or got == "":
+            if strict:
+                raise SystemExit(
+                    f"[dcrun] poison file has no meta.{field}, so it cannot be "
+                    f"verified that it belongs to this run: {os.path.basename(path)}")
+            continue
+        if got != want:
+            raise SystemExit(
+                f"[dcrun] poison file meta.{field}={got!r} but this run needs "
+                f"{want!r}: {os.path.basename(path)}")
 
 
 def load_snapshot(store, path: str) -> int:
@@ -97,6 +153,10 @@ def main() -> None:
     ap.add_argument("--dc", default="")
     ap.add_argument("--snapshot", default="")
     ap.add_argument("--poison-file", default="", help="override the poison source")
+    ap.add_argument("--attacker", default="",
+                    help="model that WROTE the poison texts, for the cross-model "
+                         "cell (--condition ours_xsm). Required there: the whole "
+                         "point is that it is not --model.")
     ap.add_argument("--clean-file", default="",
                     help="official clean answers for THIS model on THIS condition "
                          "environment (dc_<condition>_clean_<model>.json). Required "
@@ -131,11 +191,91 @@ def main() -> None:
         if meta.get("sha256_questions") != snap["meta"]["dc_sha256_questions"]:
             raise SystemExit("[dcrun] snapshot was built for a different D_c")
 
+    # A cross-model cell is "model A's texts hit victim B". Both halves have to
+    # be explicit: without --poison-file this would silently become the diagonal
+    # (self-attack) row and be reported as a transfer result. Checked before the
+    # knowledge base is touched, so a wrong invocation cannot reset anything.
+    if args.condition == "ours_xsm":
+        if not args.poison_file:
+            raise SystemExit(
+                "[dcrun] --condition ours_xsm requires --poison-file "
+                "<attacker's dc_ours_noleak_*.json>.")
+        if not args.attacker:
+            raise SystemExit("[dcrun] --condition ours_xsm requires --attacker "
+                             "<model that wrote the texts>.")
+        if args.attacker == args.model:
+            raise SystemExit(
+                "[dcrun] --attacker == --model is the main-table row "
+                "(--condition ours), not a cross-model cell.")
+        if not os.path.exists(args.poison_file):
+            raise SystemExit(f"[dcrun] missing attacker poison file: {args.poison_file}")
+        check_poison_meta(json.load(open(args.poison_file)), args.attacker,
+                          os.path.basename(dc_path), args.poison_file,
+                          strict=True)
+
     config = load_config()
     config["kb"]["persist_dir"] = kb_dir
     config["kb"]["collection"] = kb_coll
     config["llm"]["local"]["model"] = args.model
     top_k = args.top_k or int(config["kb"].get("top_k", 8))
+
+    # ---- preflight: the "before the attack" reference this run is scored on --
+    # Resolved before the knowledge base is touched or a single question is
+    # asked: a wrong clean file must cost a second, not a three-minute run and
+    # 100 answers scored against the wrong denominator. It has to be THIS
+    # victim, on THIS snapshot (hash below), at THIS window, on THIS dataset.
+    clean_path = None
+    clean_ref: dict = {}
+    expected_corpus = None   # pristine-corpus size, from a finished clean run
+    if args.condition != "clean":
+        ds_suffix = "_musique" if args.dataset == "musique" else ""
+        cf = args.clean_file or os.path.join(
+            REPO, "results", f"dc_clean_clean_{args.model}{ds_suffix}.json")
+        if not os.path.exists(cf):
+            raise SystemExit(
+                f"[dcrun] missing clean baseline {cf}. Run --condition clean for "
+                f"this model first; the flip denominator comes from it.")
+        cblob = json.load(open(cf))
+        cmeta = cblob.get("meta") or {}
+        for field, want in (("model", args.model), ("dataset", args.dataset),
+                            ("window_k", top_k), ("condition", "clean")):
+            got = cmeta.get(field)
+            if got is None or str(got) != str(want):
+                raise SystemExit(
+                    f"[dcrun] clean baseline {os.path.basename(cf)} has "
+                    f"{field}={got!r}, this run needs {want!r}"
+                    + (" (the file predates the metadata this check needs)"
+                       if got is None else ""))
+        if cmeta.get("snapshot_sha256") != snap["meta"].get("sha256_snapshot"):
+            raise SystemExit("[dcrun] clean baseline was measured on a different "
+                             "snapshot than this run")
+        # Corpus size measured when the clean run finished its own bookkeeping:
+        # total rows minus that run's snapshot rows. Used below as an INDEPENDENT
+        # reference for "the KB really is back to the pristine corpus".
+        if cmeta.get("kb_total") is not None and cmeta.get("n_snapshot_rows") is not None:
+            expected_corpus = int(cmeta["kb_total"]) - int(cmeta["n_snapshot_rows"])
+        clean_ref = {q: bool(v.get("correct")) for q, v in
+                     (cblob.get("answers") or {}).items()}
+        clean_path = cf
+        missing = [q for q in dc if q not in clean_ref]
+        if missing:
+            raise SystemExit(f"[dcrun] clean baseline misses {len(missing)} qids")
+    else:
+        # A clean run has no "before the attack" file to borrow the corpus size
+        # from; fall back to the previous clean run of this victim if one exists.
+        prev = os.path.join(REPO, "results",
+                            f"dc_clean_clean_{args.model}"
+                            f"{'_musique' if args.dataset == 'musique' else ''}.json")
+        if os.path.exists(prev):
+            try:
+                pmeta = (json.load(open(prev)).get("meta") or {})
+                if pmeta.get("kb_total") is not None and \
+                        pmeta.get("n_snapshot_rows") is not None:
+                    expected_corpus = (int(pmeta["kb_total"]) -
+                                       int(pmeta["n_snapshot_rows"]))
+            except (OSError, ValueError):
+                expected_corpus = None
+
     store = get_store(config)
 
     # ---- reset to "pristine corpus + this model's snapshot" ---------------
@@ -145,14 +285,32 @@ def main() -> None:
     res = store._coll.get(where={"snapshot_of": POISON_AUTHOR})
     if res["ids"]:
         store.delete(res["ids"])
+    # Whatever is left is the pristine corpus. Record it so the final state can
+    # be checked as "corpus + snapshot + poison" instead of trusting counts.
+    n_pristine = store.count()
+    # A leftover benign row (an interrupted earlier run that wrote docs which are
+    # not tagged as poison or snapshot) would be absorbed into n_pristine and
+    # then cancel out in the sum check below. Compare against a corpus size
+    # measured by a different run instead of against itself.
+    if expected_corpus is not None and n_pristine != expected_corpus:
+        raise SystemExit(
+            f"[dcrun] after the reset the KB has {n_pristine} non-snapshot rows but "
+            f"the clean baseline of {args.model} recorded {expected_corpus}: "
+            f"{n_pristine - expected_corpus:+d} leftover row(s) that are neither "
+            f"poison nor snapshot. Refusing to measure on a dirty base.")
     n_snap = load_snapshot(store, snap_path)
     print(f"[dcrun] loaded snapshot {os.path.basename(snap_path)}: {n_snap} rows")
     if n_snap != snap["meta"]["n_entries"]:
         raise SystemExit("[dcrun] snapshot row count mismatch")
+    if rows_matching(store, "snapshot_of", POISON_AUTHOR) != \
+            expected_snapshot_rows(snap_path):
+        raise SystemExit("[dcrun] snapshot rows in the KB do not match the "
+                         "snapshot file (author/source/text)")
 
     # ---- poison -----------------------------------------------------------
     qid_list = list(dc)
     poison_rows: list[dict] = []
+    expected_poison: dict = {}      # (author, source, text) -> count, for verification
     poisoned_qids: list[str] = []   # stays empty for --condition clean
     n_required = n_written = 0
     if args.condition == "ours" and not (args.poison_file or os.path.exists(
@@ -170,6 +328,12 @@ def main() -> None:
                 f"[dcrun] no poison file for {args.condition}: {pf}\n"
                 f"         Generate it first (see baseline/<method>/gen_*.py).")
         blob = json.load(open(pf))
+        # Our own generator always records both fields; the published baselines'
+        # files do not, so there the fields are only checked when present.
+        check_poison_meta(blob,
+                          args.attacker if args.condition == "ours_xsm" else args.model,
+                          os.path.basename(dc_path), pf,
+                          strict=args.condition in ("ours", "ours_xsm"))
         writes = []
         for _, v in (blob.get("variants") or {}).items():
             writes += v.get("poison_writes") or []
@@ -200,26 +364,39 @@ def main() -> None:
         for q in qid_list:
             rec = dc[q]
             for w in by_q.get(q, []):
-                store.write(w["text"], author_id=POISON_AUTHOR,
-                            source=f"kb_write:{rec.get('topic') or 'topic'}",
+                src = f"kb_write:{rec.get('topic') or 'topic'}"
+                store.write(w["text"], author_id=POISON_AUTHOR, source=src,
                             is_poison=True,
                             extra={"wrong_answer": rec.get("wrong", ""),
                                    "target_question": rec.get("question", ""),
                                    "variant": args.condition, "qid": q})
+                key = (POISON_AUTHOR, src, w["text"])
+                expected_poison[key] = expected_poison.get(key, 0) + 1
                 poison_rows.append({"qid": q, "text": w["text"]})
                 n_written += 1
                 n_required += 1
         print(f"[dcrun] wrote {n_written} poison rows for {len(qid_list)} questions")
 
     # ---- verify the KB is exactly corpus + snapshot + poison --------------
+    # Counts alone cannot tell "corpus + snapshot + poison" from "corpus +
+    # snapshot + poison + one leftover benign row". Compare the actual content:
+    # poison rows must be exactly what we wrote, and the total must be the sum.
     inv = kb_multiset(store)
     n_poison = store.count(poison_only=True)
     if args.condition == "clean" and n_poison:
         raise SystemExit(f"[dcrun] clean condition but {n_poison} poison rows present")
     if args.condition != "clean" and n_poison != n_written:
         raise SystemExit(f"[dcrun] poison count {n_poison} != written {n_written}")
-    print(f"[dcrun] KB: total={store.count()} poison={n_poison} "
-          f"distinct_content={len(inv)}")
+    if rows_matching(store, "is_poison", 1) != expected_poison:
+        raise SystemExit("[dcrun] poison rows in the KB are not exactly the texts "
+                         "this run wrote (content mismatch)")
+    if store.count() != n_pristine + n_snap + n_written:
+        raise SystemExit(
+            f"[dcrun] KB total {store.count()} != corpus {n_pristine} + snapshot "
+            f"{n_snap} + poison {n_written}: something else is in the collection")
+    print(f"[dcrun] KB verified: corpus={n_pristine} + snapshot={n_snap} + "
+          f"poison={n_poison} = {store.count()} "
+          f"(distinct_content={len(inv)})")
 
     # ---- ask --------------------------------------------------------------
     from concurrent.futures import ThreadPoolExecutor
@@ -267,28 +444,11 @@ def main() -> None:
                     if a["pred"].strip() and not a["correct"]
                     and any(r in a["pred"].lower() for r in REFUSALS))
 
-    clean_ref = {}
+    # A clean run IS its own reference; for every other condition clean_ref and
+    # clean_path were validated in the preflight above.
     if args.condition == "clean":
         clean_ref = {q: a["correct"] for q, a in answers.items()}
         clean_path = None
-    else:
-        cf = args.clean_file or os.path.join(
-            REPO, "results", f"dc_clean_clean_{args.model}.json")
-        if not os.path.exists(cf):
-            raise SystemExit(
-                f"[dcrun] missing clean baseline {cf}. Run --condition clean for "
-                f"this model first; the flip denominator comes from it.")
-        blob = json.load(open(cf))
-        cmeta = blob.get("meta") or {}
-        if cmeta.get("snapshot_sha256") != snap["meta"].get("sha256_snapshot"):
-            raise SystemExit("[dcrun] clean baseline was measured on a different "
-                             "snapshot than this run")
-        clean_ref = {q: bool(v.get("correct")) for q, v in
-                     (blob.get("answers") or {}).items()}
-        clean_path = cf
-        missing = [q for q in qid_list if q not in clean_ref]
-        if missing:
-            raise SystemExit(f"[dcrun] clean baseline misses {len(missing)} qids")
 
     denom = sum(1 for q in qid_list if clean_ref.get(q))
     flipped = [q for q in qid_list
@@ -311,10 +471,20 @@ def main() -> None:
           f"unchanged {len(unchanged)}  refusals {n_refusal}  errors {n_err}")
     print(f"[dcrun]   asr(all 100) {asr_all}  asr(clean-correct) {asr_den}/{denom}")
 
-    name = args.results_name or f"dc_{args.condition}_{args.model}"
+    if args.results_name:
+        name = args.results_name
+    elif args.condition == "ours_xsm":
+        # <attacker>_to_<victim>: the direction is part of the result's identity,
+        # and the dataset suffix keeps HotpotQA and MuSiQue from overwriting each
+        # other when --results-name is omitted.
+        suf = "_musique" if args.dataset == "musique" else ""
+        name = f"dc_ours_xsm_{args.attacker}_to_{args.model}{suf}_eval"
+    else:
+        name = f"dc_{args.condition}_{args.model}"
     save_results(name, {
         "meta": {"dataset": args.dataset, "model": args.model,
                  "condition": args.condition, "n": len(qs), "window_k": top_k,
+                 "attacker": args.attacker or None,
                  "dc_file": os.path.basename(dc_path),
                  "dc_sha256_questions": (json.load(open(
                      dc_path.replace(".json", ".meta.json"))

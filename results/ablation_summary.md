@@ -20,7 +20,7 @@ Every number is a COUNT OUT OF 100 - the same 100 questions and the same denomin
 | victim retrieval window k=4 | 84 | 83 | 84 | 72 |
 | victim retrieval window k=16 | 84 | 77 | 85 | 76 |
 
-### of which really flipped to the injected wrong answer - out of 100
+### of which really flipped to a wrong answer (not necessarily the injected one) - out of 100
 
 | setting | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|
@@ -112,7 +112,7 @@ Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-templ
 | victim retrieval window k=4 | 76 | 71 | 70 | 48 |
 | victim retrieval window k=16 | 80 | 65 | 67 | 53 |
 
-### of which really flipped to the injected wrong answer - out of 100
+### of which really flipped to a wrong answer (not necessarily the injected one) - out of 100
 
 | setting | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|
@@ -187,6 +187,76 @@ Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-templ
 | olmo-3-7b | topk4 | 48 | 48 | 0 | 9 | 6 | 37 | 62 |
 | olmo-3-7b | topk16 | 53 | 53 | 0 | 2 | 3 | 42 | 61 |
 
+## Cross-model transfer
+
+Model A's poison texts replayed into victim B (that victim's own benign snapshot underneath, its own clean run as the 'before the attack' reference). The diagonal is that victim's own main-table row, repeated so transfer can be read against self-attack. Same 100 questions, same denominator, same scoring as everything above.
+
+### HotpotQA: cross-model transfer (attack success out of 100)
+
+Rows = who wrote the poison, columns = who got attacked. The diagonal is that victim attacking itself (main table row), shown for comparison. 12/12 transfer cells done.
+
+| attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 96 | 81 | 59 | 81 |
+| qwen3-4b-instruct | 86 | 77 | 63 | 79 |
+| gpt-oss-20b | 95 | 92 | 88 | 85 |
+| olmo-3-7b | 89 | 76 | 63 | 75 |
+
+#### HotpotQA: of which really flipped to a wrong answer (not necessarily the injected one)
+
+| attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 93 | 81 | 59 | 81 |
+| qwen3-4b-instruct | 84 | 77 | 62 | 79 |
+| gpt-oss-20b | 93 | 92 | 87 | 85 |
+| olmo-3-7b | 89 | 76 | 63 | 75 |
+
+#### HotpotQA: adopted the injected wrong answer (strict ASR)
+
+The narrower event: the answer states the specific wrong answer the attack injected. Counted over the SAME denominator as flip (the questions the victim answered correctly before the attack), so it is always <= flip; the gap is answers that are wrong in some other way.
+
+| attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 93 | 81 | 59 | 81 |
+| qwen3-4b-instruct | 83 | 77 | 62 | 78 |
+| gpt-oss-20b | 93 | 92 | 87 | 85 |
+| olmo-3-7b | 89 | 76 | 63 | 75 |
+
+Victim's own pre-attack error count (stays in the denominator, never credited to the attack): xlam-2-8b=0  qwen3-4b-instruct=1  gpt-oss-20b=1  olmo-3-7b=12.
+
+### MuSiQue: cross-model transfer (attack success out of 100)
+
+Rows = who wrote the poison, columns = who got attacked. The diagonal is that victim attacking itself (main table row), shown for comparison. 12/12 transfer cells done.
+
+| attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 84 | 82 | 64 | 56 |
+| qwen3-4b-instruct | 81 | 73 | 57 | 55 |
+| gpt-oss-20b | 78 | 85 | 78 | 58 |
+| olmo-3-7b | 71 | 76 | 54 | 50 |
+
+#### MuSiQue: of which really flipped to a wrong answer (not necessarily the injected one)
+
+| attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 84 | 82 | 64 | 56 |
+| qwen3-4b-instruct | 80 | 73 | 57 | 55 |
+| gpt-oss-20b | 78 | 85 | 77 | 58 |
+| olmo-3-7b | 71 | 75 | 54 | 50 |
+
+#### MuSiQue: adopted the injected wrong answer (strict ASR)
+
+The narrower event: the answer states the specific wrong answer the attack injected. Counted over the SAME denominator as flip (the questions the victim answered correctly before the attack), so it is always <= flip; the gap is answers that are wrong in some other way.
+
+| attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 73 | 72 | 56 | 52 |
+| qwen3-4b-instruct | 68 | 60 | 50 | 48 |
+| gpt-oss-20b | 68 | 79 | 70 | 56 |
+| olmo-3-7b | 64 | 67 | 48 | 44 |
+
+Victim's own pre-attack error count (stays in the denominator, never credited to the attack): xlam-2-8b=8  qwen3-4b-instruct=2  gpt-oss-20b=4  olmo-3-7b=39.
+
 ## How to read this
 
 - **main row** - the shipped method: 8 poison texts per question, cluster style, the trigger fires on everything, victim reads 8 passages.
@@ -198,4 +268,4 @@ Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-templ
 - **already wrong before** - questions the model answered wrongly with no attack at all. They stay in the denominator and are never credited to the attack.
 - `-` means that run has not finished yet.
 
-Generated 2026-10-28 16:03:37 by `experiments/summarize_ablation_dc.py` from the judged files in `results/` (judge: gpt-oss-20b, same judge as the main table).
+Generated 2026-10-29 01:54:11 by `experiments/summarize_ablation_dc.py` from the judged files in `results/` (judge: gpt-oss-20b, same judge as the main table).

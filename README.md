@@ -22,7 +22,8 @@
 > （OLMo 在攻击前本身就错 12 / 39 道，这一项作为它自己的基线错误率单列，不影响横比）。
 > **消融实验已于 2026-10-28 全部完成**（10 个设置 × 4 模型 × 2 数据集 = 80 次评测
 > + 16 次同窗口对照），结果见 `results/ablation_summary.md`，代码见
-> `experiments/run_ablation_dc.sh`。剩下的第 2 步是跨模型迁移（12 组）。
+> `experiments/run_ablation_dc.sh`。**跨模型迁移也已完成 2026-10-29**（12 组换人 × 2 数据集），
+> 见下面 "Cross-model transfer" 一节与 `results/cross_model_summary.md`。
 
 **TrojanScribe** is the public name of our attack (method identifier `cluster` —
 identifiers are stable, see Terminology below): a poisoned supply-chain subagent,
@@ -256,31 +257,75 @@ answers for continuity with older runs):
   (clean denominators are per-victim clean baselines)
 
 
-> ⚠️ **Legacy table (60-target protocol, includes the retired llama row).
-> The cross-model study must be redone on D_c; see `research/monitor/PROGRESS.md`.**
+> ⚠️ **Legacy table above is the old 60-target protocol (includes the retired
+> llama row) and is kept as history only. Every number reported in this README
+> now comes from D_c.**
 
 ## Cross-model transfer — poison written by A, victimized by B
 
-**Not run yet on D_c** (it is the next step in `research/monitor/PROGRESS.md`).
-The old 60-target matrix — which still contained the retired Qwen3-8B and the
-excluded Llama-3.1-8B — was deleted together with the rest of the old-protocol
-results; its conclusion (poison written once by any common open backbone
-transfers to another victim with little loss) is recorded in
-`research/monitor/experiment_ledger.md`.
+**12 ordered off-diagonal pairs × 2 datasets, all run on D_c.** A cell replays
+attacker A's persisted poison file **verbatim** into victim B's knowledge base —
+no regeneration, no attacker model served — on top of **B's own benign
+snapshot**, and scores it against **B's own clean run**. So a transfer cell is
+read exactly like a main-table row: the same 100 questions, attack success out
+of 100, and the diagonal (A = B) is the main-table row itself.
 
-The D_c version replays attacker A's persisted poison file verbatim through the
-same runner, with no regeneration at all:
+**HotpotQA** (attack success / 100; the diagonal, in bold, is self-attack)
+
+| attacker \ victim | xlam-2-8b | qwen3-4b | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | **96** | 81 | 59 | 81 |
+| qwen3-4b | 86 | **77** | 63 | 79 |
+| gpt-oss-20b | 95 | 92 | **88** | 85 |
+| olmo-3-7b | 89 | 76 | 63 | **75** |
+
+**MuSiQue** (attack success / 100)
+
+| attacker \ victim | xlam-2-8b | qwen3-4b | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | **84** | 82 | 64 | 56 |
+| qwen3-4b | 81 | **73** | 57 | 55 |
+| gpt-oss-20b | 78 | 85 | **78** | 58 |
+| olmo-3-7b | 71 | 76 | 54 | **50** |
+
+What the matrix says:
+
+- **Poison written once transfers with little loss.** Most off-diagonal cells
+  sit within a few points of the victim's own diagonal, and some are higher:
+  gpt-oss-written poison hits qwen at **92/100** vs qwen attacking itself at
+  77 (HotpotQA), and that same victim xlam drops from **96** on its own poison
+  to **86** on qwen's.
+- **gpt-oss-20b is the most resistant victim**: on HotpotQA every model's poison
+  lands at 59–63 on it against 88 for its own; on MuSiQue 54–64 against 78. It
+  is also the **strongest attacker** on HotpotQA (row 95 / 92 / 88 / 85).
+- **olmo-3-7b is the weakest attacker** (its row is lowest on both datasets),
+  which is a property of what it writes, not of the victim. Its own column looks
+  low only because it answers just 88/100 (HotpotQA) and 61/100 (MuSiQue)
+  correctly before any attack — **relative to that ceiling almost every transfer
+  attack on it lands** (e.g. 85/88 on HotpotQA). The `pre-wrong` count is
+  reported as its own baseline error rate and never credited to the attack.
+- **Every cell satisfies** `success + still-correct + unclear + pre-wrong = 100`.
+  `success` is "no longer returns the correct answer"; the narrower event
+  "states *the injected* wrong answer" is reported separately in
+  `results/cross_model_summary.md` and is always ≤ the flip count.
+
+Full tables (success / flip / silence / ASR, both datasets):
+`results/cross_model_summary.md`, also reproduced as a section of
+`results/ablation_summary.md` (same generator, so the two cannot disagree).
+Driver: `experiments/run_cross_model_dc.sh`; one cell can be run directly:
 
 ```
 # attacker A already wrote results/dc_ours_noleak_<A>[_musique].json
-python experiments/dc_run.py --model <B> --condition ours \
+python experiments/dc_run.py --model <B> --condition ours_xsm --attacker <A> \
     --dataset <hotpot|musique> \
     --poison-file results/dc_ours_noleak_<A>[_musique].json \
-    --clean-file  results/dc_clean_clean_<B>[_musique].json \
-    --results-name dc_ours_xsm_<A>_to_<B>[_musique]_eval
+    --clean-file  results/dc_clean_clean_<B>[_musique].json
+# -> results/dc_ours_xsm_<A>_to_<B>[_musique]_eval.json
 ```
 
-12 off-diagonal pairs × 2 datasets, scored against victim B's own clean run.
+The runner refuses to run if the declared attacker does not match the model
+recorded in the poison file, or if the clean reference belongs to another model,
+dataset or retrieval window.
 
 ## Dataset construction — how the 100 frozen questions were built
 
@@ -551,6 +596,11 @@ main row.
 
 ## Repository layout
 
+> `*.sh` drivers are kept out of git (they hardcode this machine's paths and vLLM
+> flags); everything they call — `dc_run.py`, the generators, the summarizers and
+> the judged result files — is in the repo, so any single cell can be reproduced
+> with the one-line commands shown above.
+
 ```
 configs/            vLLM / knowledge-base / attack settings
 src/agentic_rag/    our method: LangGraph victim agent + poisoned subagent chain
@@ -565,8 +615,11 @@ experiments/
   select_dc_on_snapshot.py  re-check clean accuracy inside the snapshot environment
   gen_ours_poison.py     craft our poison cluster only (8 chunks/target, no_gold_leak)
   derive_dose.py         build the dose 2/4/6 poison file from the dose-8 file (no generation)
-  dc_run.py              run ONE condition (clean / ours / 4 baselines) on D_c
+  dc_run.py              run ONE condition (clean / ours / ours_xsm / 4 baselines) on D_c
   run_ablation_dc.sh     ablation driver (one lane = one backbone; local or remote endpoint)
+  run_cross_model_dc.sh  cross-model driver: A's poison texts replayed into victim B
+  summarize_ablation_dc.py     ablation tables -> results/ablation_summary.md
+  summarize_cross_model_dc.py  cross-model matrices -> results/cross_model_summary.md
   run_judge_watch.sh     judge each finished evaluation as it lands (gpt-oss-20b)
   serve_remote.sh        serve a backbone on another box + ssh tunnel back
   audit_ablation.py      read-only audit: dose / window / snapshot / stale replay / coverage

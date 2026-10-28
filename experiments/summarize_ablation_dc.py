@@ -219,8 +219,8 @@ def main() -> None:
         parts.append("")
         for fname, what in (("success", "questions the attack got to (flip + "
                                         "collapse)"),
-                            ("flip", "of which really flipped to the injected "
-                                     "wrong answer")):
+                            ("flip", "of which really flipped to a wrong answer "
+                                     "(not necessarily the injected one)")):
             parts.append(f"### {what} - out of {N_TOTAL}")
             parts.append("")
             parts.append("| setting | " + " | ".join(MODELS) + " |")
@@ -280,6 +280,26 @@ def main() -> None:
                     f"| {m} | {key_name} | {st['success']} | {st['flip']} | "
                     f"{st['collapse']} | {st['still']} | {st['unclear']} | "
                     f"{st['pre_wrong']} | {st['strict_asr']} |")
+        parts.append("")
+
+    # ---- cross-model transfer -------------------------------------------
+    # Same cells and same definitions as results/cross_model_summary.md: both
+    # files call this one function, so they cannot drift apart (the 2026-09-09
+    # incident was a matrix that stayed "pending" in one file only).
+    parts.append("## Cross-model transfer")
+    parts.append("")
+    parts.append("Model A's poison texts replayed into victim B (that victim's own "
+                 "benign snapshot underneath, its own clean run as the 'before the "
+                 "attack' reference). The diagonal is that victim's own main-table "
+                 "row, repeated so transfer can be read against self-attack. Same "
+                 "100 questions, same denominator, same scoring as everything above.")
+    parts.append("")
+    try:
+        import summarize_cross_model_dc as xsm
+        for ds, suf in DATASETS:
+            parts += xsm.markdown(ds, suf)
+    except Exception as exc:      # never take the ablation tables down with it
+        parts.append(f"cross-model section unavailable: {exc}")
         parts.append("")
 
     header = [
