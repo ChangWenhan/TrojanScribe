@@ -69,13 +69,21 @@ def main() -> None:
     if len(set(questions)) != len(questions):
         print("[trig] WARNING: duplicate question strings in the D_c set")
 
+    # MUST match attack.py install_and_run(): the live trigger is built from
+    # kw_texts = target questions + target TOPICS, so a question that looks
+    # borderline on its own may still fire because one of the topics is close.
+    # Using only the questions here would under-count the fired set (the
+    # derived set can never be larger than the live one).
+    topics = [dc[q].get("topic") or "" for q in qid_list]
+    reference_texts = questions + [t for t in topics if t]
+
     tasks = {q: TASK.format(q=dc[q]["question"]) for q in qid_list}
 
     fired = {}
     extra = {}
     threshold = None
     if args.trigger == "keyword":
-        keywords = _auto_keywords(questions)
+        keywords = _auto_keywords(reference_texts)
         trig = KeywordTrigger(keywords)
         for q in qid_list:
             fired[q] = trig.check(tasks[q])
@@ -88,7 +96,7 @@ def main() -> None:
         # embeddings run on CPU, so this is safe next to a loaded GPU server
         store = get_store(config)
         threshold = float((config.get("attack") or {}).get("semantic_threshold", 0.82))
-        trig = SemanticTrigger(store, questions, threshold)
+        trig = SemanticTrigger(store, reference_texts, threshold)
         for q in qid_list:
             fired[q] = trig.check(tasks[q])
 
@@ -99,6 +107,8 @@ def main() -> None:
         "dc_file": os.path.basename(dc_path),
         "threshold": threshold,
         "task_template": TASK,
+        "reference_kind": "question+topics (same as attack.py)",
+        "n_reference_texts": len(reference_texts),
         "n_targets": len(qid_list),
         "n_fired": len(fired_qids),
         "fired_rate": round(len(fired_qids) / len(qid_list), 3) if qid_list else 0.0,

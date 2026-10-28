@@ -9,6 +9,11 @@
 | 模型判定结果 | 同名 + `_judged.json` |
 | **"我们"方法的正式结果** | 三个早期模型是 `dc_ours_noleak_<模型>_eval.json`（+`_judged`），**不是** `dc_ours_<模型>.json`。前者更晚、更正式，`summarize_dc.py` 也是优先读它；后者是更早的一轮，留作对比，别再"清理"前者 |
 | 新协议自动汇总（脚本 `experiments/summarize_dc.py` 生成） | `dc_summary.md`（HotpotQA）/ `dc_summary_musique.md`（MuSiQue） |
+| **消融的毒文本 + 评测**（10 个设置 × 4 模型 × 2 数据集） | `dc_ours_<设置>_<模型>[_musique].json`（毒文本）+ 同名 `_eval.json` / `_eval_judged.json`；设置在 `vol2/vol4/vol6/embed_hybrid/mono/nodiv/greedy/trig_semantic/topk4/topk16` |
+| 剂量臂的来源 | `vol2/4/6` **不再单独生成**，是从 `dc_ours_noleak_<模型>[_musique].json`（主表 8 条）按取样顺序取前 k 条，见 `experiments/derive_dose.py` |
+| 检索窗口两行的"攻击前"对照（同窗口 clean） | `dc_clean_clean_<模型>[_musique]_topk{4,16}.json`（+ `_judged`） |
+| 消融汇总（`experiments/summarize_ablation_dc.py` 生成） | `ablation_summary.md` |
+| 离线重算的触发清单 | `dc_trig_{semantic,keyword}_{hotpot,musique}_qids.json` |
 | 新协议论文表（人工整理，含翻转/说不出构成） | `dc_final_report.md` |
 | 基础环境必须共享的实测依据（三臂对照） | `benign_ablation_gpt-oss-20b.json` |
 

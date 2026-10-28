@@ -37,25 +37,37 @@ N_TOTAL = 100
 MODELS = ["xlam-2-8b", "qwen3-4b-instruct", "gpt-oss-20b", "olmo-3-7b"]
 DATASETS = [("hotpot", ""), ("musique", "_musique")]
 
+# (name, prose, judged-file template, clean-reference template or None)
+# The clean-reference template says which "before the attack" answers are the
+# flip denominator for that row. None = the main table's k=8 clean run. The two
+# window rows use a clean run measured AT THE SAME window: with k=4 the victim
+# can lose the true passage on its own, and that must be counted as "already
+# wrong before", never as an attack success.
 SETTINGS = [
     ("main", "main row: dose 8, cluster style, trigger always on, window k=8",
-     None),
-    ("vol2", "poison dose 2 per question", "dc_ours_vol2_{m}{s}_eval_judged.json"),
-    ("vol4", "poison dose 4 per question", "dc_ours_vol4_{m}{s}_eval_judged.json"),
-    ("vol6", "poison dose 6 per question", "dc_ours_vol6_{m}{s}_eval_judged.json"),
+     None, None),
+    ("vol2", "poison dose 2 per question",
+     "dc_ours_vol2_{m}{s}_eval_judged.json", None),
+    ("vol4", "poison dose 4 per question",
+     "dc_ours_vol4_{m}{s}_eval_judged.json", None),
+    ("vol6", "poison dose 6 per question",
+     "dc_ours_vol6_{m}{s}_eval_judged.json", None),
     ("embed_hybrid", "text style: embed_hybrid",
-     "dc_ours_embed_hybrid_{m}{s}_eval_judged.json"),
+     "dc_ours_embed_hybrid_{m}{s}_eval_judged.json", None),
     ("mono", "text style: mono (a single writing style)",
-     "dc_ours_mono_{m}{s}_eval_judged.json"),
+     "dc_ours_mono_{m}{s}_eval_judged.json", None),
     ("nodiv", "text style: nodiv (no diversity term when picking)",
-     "dc_ours_nodiv_{m}{s}_eval_judged.json"),
-    ("greedy", "text style: greedy (pure question similarity)",
-     "dc_ours_greedy_{m}{s}_eval_judged.json"),
+     "dc_ours_nodiv_{m}{s}_eval_judged.json", None),
+    ("greedy", "text style: greedy (no per-style anchor when picking)",
+     "dc_ours_greedy_{m}{s}_eval_judged.json", None),
     ("trig_semantic", "trigger: semantic (fires on the matching questions only)",
-     "dc_ours_trig_semantic_{m}{s}_eval_judged.json"),
-    ("topk4", "victim retrieval window k=4", "dc_ours_topk4_{m}{s}_eval_judged.json"),
+     "dc_ours_trig_semantic_{m}{s}_eval_judged.json", None),
+    ("topk4", "victim retrieval window k=4",
+     "dc_ours_topk4_{m}{s}_eval_judged.json",
+     "dc_clean_clean_{m}{s}_topk4_judged.json"),
     ("topk16", "victim retrieval window k=16",
-     "dc_ours_topk16_{m}{s}_eval_judged.json"),
+     "dc_ours_topk16_{m}{s}_eval_judged.json",
+     "dc_clean_clean_{m}{s}_topk16_judged.json"),
 ]
 
 # The main row's file names are not uniform - the very first batch used a
@@ -82,11 +94,40 @@ def load(path):
 
 
 def clean_ok(path):
+    """(set of questions answered CORRECTLY before the attack, problem or None).
+
+    A judged file that does not cover the full frozen set is treated as MISSING:
+    otherwise every question it never judged would be counted as "already wrong
+    before" (pre_wrong = 100 - len(ok)) and the row would still sum to 100 while
+    silently hiding the truncation.
+    """
     blob = load(path)
     if blob is None:
+        return None, "missing"
+    pt = blob.get("per_target") or {}
+    if len(pt) != N_TOTAL:
+        return None, f"covers {len(pt)}/{N_TOTAL} questions"
+    return {q for q, v in pt.items() if v.get("label") == "CORRECT"}, None
+
+
+def mean_dose(setting, model, suf):
+    """Poison chunks actually written per question (100 for a full run).
+
+    Some single-template arms cannot reach the nominal dose on every question:
+    a few frozen D_c "wrong answers" are dirty strings ("The incorrect answer
+    is: ...", unbalanced quotes) that the model will not reproduce, and the
+    generator's filter requires the wrong answer to appear verbatim. The number
+    written is recorded, never silently rounded up to 8.
+    """
+    blob = load(os.path.join(RES, f"dc_ours_{setting}_{model}{suf}.json"))
+    if blob is None:
         return None
-    return {q for q, v in (blob.get("per_target") or {}).items()
-            if v.get("label") == "CORRECT"}
+    n: dict = {}
+    for v in (blob.get("variants") or {}).values():
+        for w in v.get("poison_writes") or []:
+            q = w.get("qid") or ""
+            n[q] = n.get(q, 0) + 1
+    return round(sum(n.values()) / N_TOTAL, 2)
 
 
 def row_stats(judged_path, ok):
@@ -108,6 +149,18 @@ def row_stats(judged_path, ok):
             missing.append(q)
         else:
             unclear.append(q)
+    warnings = []
+    if missing:
+        warnings.append(f"{len(missing)} questions have no judge label")
+    if len(pt) != N_TOTAL:
+        warnings.append(f"judged file covers {len(pt)}/{N_TOTAL} questions")
+    # Empty/crashed answers are a legitimate attack outcome (collapse), but a
+    # dead or overloaded server looks exactly the same, so count them per row
+    # and let a human look when the number is implausible.
+    err_all = sum(1 for v in pt.values() if (v or {}).get("label") == "ERROR")
+    if err_all >= 10:
+        warnings.append(f"{err_all} answers are EMPTY/crashed - "
+                        f"check the server log for this run")
     return {
         "flip": len(flip), "collapse": len(collapse),
         "success": len(flip) + len(collapse), "still": len(still),
@@ -115,8 +168,7 @@ def row_stats(judged_path, ok):
         "pre_wrong": N_TOTAL - len(ok),
         "strict_asr": ((blob.get("summary") or {}).get("strict_asr")),
         "file": os.path.basename(judged_path),
-        "warnings": ([f"{len(missing)} questions have no judge label"]
-                     if missing else []),
+        "warnings": warnings,
     }
 
 
@@ -126,28 +178,40 @@ def main() -> None:
     for ds, suf in DATASETS:
         ok_all, stats = {}, {}
         for m in MODELS:
-            ok = clean_ok(os.path.join(RES, f"dc_clean_clean_{m}{suf}_judged.json"))
+            ok, why = clean_ok(os.path.join(RES, f"dc_clean_clean_{m}{suf}_judged.json"))
             ok_all[m] = ok
             if ok is None:
-                note.append(f"- missing clean judged file for {m} ({ds})")
+                note.append(f"- clean judged file for {m} ({ds}) unusable: {why}")
                 continue
-            if len(ok) > N_TOTAL:
-                note.append(f"- clean file for {m} ({ds}) has {len(ok)} questions")
-        for key_name, label, tmpl in SETTINGS:
+        for key_name, label, tmpl, clean_tmpl in SETTINGS:
             for m in MODELS:
                 ok = ok_all.get(m)
                 if ok is None:
                     stats[(key_name, m)] = None
                     continue
+                ok_ref = ok
+                if clean_tmpl:
+                    cp = os.path.join(RES, clean_tmpl.format(m=m, s=suf))
+                    ok_ref, why = clean_ok(cp)
+                    if ok_ref is None:
+                        note.append(
+                            f"- same-window clean run for `{ds}` / {m} / "
+                            f"{key_name} unusable ({why}: "
+                            f"{os.path.basename(cp)})")
+                        stats[(key_name, m)] = None
+                        continue
                 if tmpl is None:
                     path = main_row_file(m, suf)
                 else:
                     path = os.path.join(RES, tmpl.format(m=m, s=suf))
-                st = row_stats(path, ok) if path else None
+                st = row_stats(path, ok_ref) if path else None
                 if st is None:
                     note.append(
                         f"- missing run for `{ds}` / {m} / {key_name} "
                         f"({os.path.basename(path) if path else 'no file'})")
+                else:
+                    for w in st.get("warnings") or []:
+                        note.append(f"- `{ds}` / {m} / {key_name}: {w}")
                 stats[(key_name, m)] = st
 
         title = "HotpotQA" if ds == "hotpot" else "MuSiQue"
@@ -161,13 +225,47 @@ def main() -> None:
             parts.append("")
             parts.append("| setting | " + " | ".join(MODELS) + " |")
             parts.append("|" + "---|" * (len(MODELS) + 1))
-            for key_name, label, _ in SETTINGS:
+            for key_name, label, _, _ in SETTINGS:
                 cells = []
                 for m in MODELS:
                     st = stats.get((key_name, m))
                     cells.append(str(st[fname]) if st else "-")
                 parts.append(f"| {label} | " + " | ".join(cells) + " |")
             parts.append("")
+        # how many poison chunks were actually written (nominal 2/4/6/8)
+        dose_rows = []
+        for key_name, label, _, _ in SETTINGS:
+            if key_name == "main":
+                continue
+            nominal = {"vol2": 2, "vol4": 4, "vol6": 6}.get(key_name, 8)
+            cells = []
+            off = False
+            for m in MODELS:
+                d = mean_dose(key_name, m, suf)
+                cells.append("-" if d is None else (f"{d:g}" if d != nominal
+                                                    else f"{nominal}"))
+                if d is not None and d != nominal:
+                    off = True
+            if off:
+                dose_rows.append((label, nominal, cells))
+        if dose_rows:
+            parts.append(f"### {title}: poison chunks actually written per question")
+            parts.append("")
+            parts.append("Nominal dose is 2 / 4 / 6 / 8. A number below the nominal "
+                         "means the single-template arm could not produce that many "
+                         "**distinct** chunks that pass the \"must contain the "
+                         "injected wrong answer\" filter - the frozen D_c set has "
+                         "1 (HotpotQA) / 19 (MuSiQue) \"wrong answers\" that are "
+                         "dirty strings (e.g. 'The incorrect answer is: X'), which "
+                         "no passage will contain verbatim. Those questions still "
+                         "count in the 100; they just carry fewer chunks.")
+            parts.append("")
+            parts.append("| setting | nominal | " + " | ".join(MODELS) + " |")
+            parts.append("|" + "---|" * (len(MODELS) + 2))
+            for label, nominal, cells in dose_rows:
+                parts.append(f"| {label} | {nominal} | " + " | ".join(cells) + " |")
+            parts.append("")
+
         # per-model detail for this dataset
         parts.append(f"### {title} full ledger (out of {N_TOTAL})")
         parts.append("")
@@ -175,7 +273,7 @@ def main() -> None:
                      "unclear | already wrong before | strict ASR |")
         parts.append("|" + "---|" * 9)
         for m in MODELS:
-            for key_name, label, _ in SETTINGS:
+            for key_name, label, _, _ in SETTINGS:
                 st = stats.get((key_name, m))
                 if not st:
                     parts.append(f"| {m} | {key_name} | - | - | - | - | - | - | - |")
@@ -216,7 +314,10 @@ def main() -> None:
         " (99/100 on both datasets), so it is not run as its own row.",
         "- **victim retrieval window** - how many passages the victim pulls from"
         " the knowledge base per question (4 / 16 instead of 8). Nothing about the"
-        " attack changes.",
+        " attack changes. These two rows are scored against a CLEAN run made at the"
+        " same window (snapshot only, no poison), so their 'already wrong before'"
+        " column is what that window alone costs the model - a question the victim"
+        " cannot answer with a smaller window is not counted as an attack win.",
         "- **already wrong before** - questions the model answered wrongly with no"
         " attack at all. They stay in the denominator and are never credited to"
         " the attack.",

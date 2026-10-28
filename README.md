@@ -10,7 +10,8 @@
 > 当前四个模型：`xlam-2-8b`、`qwen3-4b-instruct`、`gpt-oss-20b`、`olmo-3-7b`
 > （Qwen3-8B 已下线、Llama-3.1-8B 已剔除：温度 0 下不可复现）。
 >
-> - 现行结果：`results/dc_final_report.md`、`results/dc_summary.md`
+> - 现行结果：`results/dc_final_report.md`、`results/dc_summary.md`、
+>   `results/ablation_summary.md`（消融）
 >   （**所有数字都以 100 道题作分母**，包括模型自己的基线错误率）
 > - 协议原文 + 修订：`research/proposals/dc_protocol_20261026.md`
 > - **进度与下一步计划：`research/monitor/PROGRESS.md`** ← 看这个
@@ -19,7 +20,9 @@
 >
 > 主表已完成：4 模型 × 2 数据集 × 5 方法 + clean 臂，八行里我们的方法全部第一
 > （OLMo 在攻击前本身就错 12 / 39 道，这一项作为它自己的基线错误率单列，不影响横比）。
-> **下一步是全部消融实验（剂量/文本风格/触发方式/检索窗口）在新协议下重跑。**
+> **消融实验已于 2026-10-28 全部完成**（10 个设置 × 4 模型 × 2 数据集 = 80 次评测
+> + 16 次同窗口对照），结果见 `results/ablation_summary.md`，代码见
+> `experiments/run_ablation_dc.sh`。剩下的第 2 步是跨模型迁移（12 组）。
 
 **TrojanScribe** is the public name of our attack (method identifier `cluster` —
 identifiers are stable, see Terminology below): a poisoned supply-chain subagent,
@@ -75,11 +78,9 @@ of clean-correct targets, in the direction the attacker chose.
 > 100/100 correct to **96/100 attacked** (93 flipped + 3 silenced) on HotpotQA and
 > **84/100** on MuSiQue, against the strongest published baseline's 79 and 62.
 >
-> The 60-target numbers quoted in the sections below (**81.5% flip / 93.3% ASR**)
-> are the **legacy protocol**; they are being replaced and must not be cited.
-
-> ⚠️ **This section describes the crafting methods (still valid) but its numbers
-> are the legacy 60-target protocol.** Current numbers: `results/dc_final_report.md`.
+> The ablation (poison dose / text style / trigger / victim window) is done too:
+> `results/ablation_summary.md` — 80 evaluations, every cell out of 100.
+> Cross-model transfer is the one experiment still outstanding.
 
 ## Baseline comparison — PoisonedRAG, AgentPoison & CorruptRAG
 
@@ -104,52 +105,11 @@ and replayed into every victim.
   incorrect answer [C]" + "latest data confirms the correct answer is [A]"`);
   AK = LLM-refined (Qwen3-8B, V=30 words, L=5 validation trials, fallback to AS).
 
-| victim | clean | PR flip | AP flip | CR-AS flip | CR-AK flip | TrojanScribe flip | TS ASR |
-|---|---|---|---|---|---|---|---|
-| xlam-2-8b | 27/60 | 14/27 (51.9%) | 12/27 (44.4%) | 18/27 (66.7%) | 16/27 (59.3%) | **22/27 (81.5%)** | **56/60** |
-| qwen3-8b | 31/60 | 21/31 (67.7%) | 18/31 (58.1%) | 22/31 (71.0%) | **24/31 (77.4%)** | 23/31 (74.2%) | **46/60** |
-| gpt-oss-20b | 38/60 | 19/38 (50.0%) | 11/38 (28.9%) | 28/38 (73.7%) | **30/38 (78.9%)** | 21/38 (55.3%) | 33/60 |
-| llama-3.1-8b | 25/60 | 19/25 (76.0%) | 11/25 (44.0%) | **21/25 (84.0%)** | **21/25 (84.0%)** | 19/25 (76.0%) | 32/60 |
-
-TrojanScribe is the strongest method on the default victim (xlam-2-8b:
-81.5% vs 66.7% for the best baseline) and stays close on qwen3-8b (74.2% vs
-77.4%); on gpt-oss-20b and llama-3.1-8b the single-shot **CorruptRAG**
-baselines lead (78.9% / 84.0%). Among baselines, **CorruptRAG is the
-strongest**: with only ONE poisoned text per target it matches or beats
-PoisonedRAG (5 chunks) on most rows — its "outdated corpus / latest data"
-framing is a very effective single shot. The adapted AgentPoison is the
-weakest because its retrieval-side trigger mechanism requires modifying the
-victim's query, which our KB-only attacker cannot do. Same-harness,
-same-metric comparison (not the old ReAct-harness numbers, removed
-2026-09-09); code in `baseline/poisonedrag/`, `baseline/agentpoison/` and
-`baseline/corruptrag/`.
-
-Note (2026-09-11): the gpt-oss-20b row was re-run with the payload
-generation-budget fix (issue A4); its baselines were re-scored against that
-victim's updated clean set so every method shares one denominator. The default
-victim's ranking is unchanged and TrojanScribe remains by far the most
-directional there (ASR 93.3% vs 73.3% for the best baseline, CorruptRAG-AS
-44/60).
-
-### MuSiQue (59 frozen targets)
-
-| victim | clean | PR flip | AP flip | CR-AS flip | CR-AK flip | TrojanScribe flip | TS ASR |
-|---|---|---|---|---|---|---|---|
-| xlam-2-8b | 7/59 | 7/7 (100%) | 6/7 (85.7%) | 5/7 (71.4%) | 6/7 (85.7%) | 7/7 (100%) | **51/59** |
-| qwen3-8b | 9/59 | 9/9 (100%) | 7/9 (77.8%) | 8/9 (88.9%) | 7/9 (77.8%) | 9/9 (100%) | 47/59 |
-| gpt-oss-20b | 21/59 | 19/21 (90.5%) | 11/21 (52.4%) | 17/21 (81.0%) | 19/21 (90.5%) | 16/21 (76.2%) | 33/59 |
-| llama-3.1-8b | 10/59 | 10/10 (100%) | 8/10 (80.0%) | 9/10 (90.0%) | 9/10 (90.0%) | 8/10 (80.0%) | 26/59 |
-
-On MuSiQue TrojanScribe reaches ceiling flip on xlam-2-8b and qwen3-8b
-(7/7 and 9/9; tiny clean-correct pools), together with PoisonedRAG. On
-gpt-oss-20b the A4 redo grew the clean pool from 18 to 21 targets, so the
-baseline flips resolve much better: PoisonedRAG and CorruptRAG-AK lead
-(19/21, 90.5%) while TrojanScribe sits at 16/21 (76.2%); PoisonedRAG leads on llama-3.1-8b (10/10, vs 9/10 for CorruptRAG). AgentPoison
-is the weakest baseline on 7 of 8 rows — the exception is MuSiQue xlam-2-8b,
-where CorruptRAG-AS is lowest (5/7). Across both datasets the pattern is
-consistent: TrojanScribe's edge is at its largest on the default victim, and
-CorruptRAG's single-shot "outdated corpus" framing is the strongest published
-baseline elsewhere.
+All four baselines are re-implemented in the same harness and re-scored on D_c;
+their current numbers are in the **main table below** (attack success / flip /
+collapse / ASR per backbone and dataset, everything out of 100). The older
+60-target comparison was removed together with the deleted old-protocol results;
+its conclusions are recorded in `research/monitor/experiment_ledger.md`.
 
 Metric definitions: **flip** counts only clean-correct targets answered with a
 NON-EMPTY wrong answer (true before the attack, false after); empty/crashed rows
@@ -299,134 +259,222 @@ answers for continuity with older runs):
 > ⚠️ **Legacy table (60-target protocol, includes the retired llama row).
 > The cross-model study must be redone on D_c; see `research/monitor/PROGRESS.md`.**
 
-## Cross-model transfer — poison written by A, victimized by B (`results/cross_model_summary.md`)
+## Cross-model transfer — poison written by A, victimized by B
 
-Attacker A's persisted poison texts are **replayed verbatim** into the KB
-(`--phase inject-from`, no regeneration — transferability of pre-written
-poison), then victim B is evaluated; 12 off-diagonal pairs, 4×4 backbones
-(diagonal = main table):
+**Not run yet on D_c** (it is the next step in `research/monitor/PROGRESS.md`).
+The old 60-target matrix — which still contained the retired Qwen3-8B and the
+excluded Llama-3.1-8B — was deleted together with the rest of the old-protocol
+results; its conclusion (poison written once by any common open backbone
+transfers to another victim with little loss) is recorded in
+`research/monitor/experiment_ledger.md`.
 
-| attacker \ victim | xlam-2-8b | qwen3-8b | gpt-oss-20b | llama-3.1-8b |
+The D_c version replays attacker A's persisted poison file verbatim through the
+same runner, with no regeneration at all:
+
+```
+# attacker A already wrote results/dc_ours_noleak_<A>[_musique].json
+python experiments/dc_run.py --model <B> --condition ours \
+    --dataset <hotpot|musique> \
+    --poison-file results/dc_ours_noleak_<A>[_musique].json \
+    --clean-file  results/dc_clean_clean_<B>[_musique].json \
+    --results-name dc_ours_xsm_<A>_to_<B>[_musique]_eval
+```
+
+12 off-diagonal pairs × 2 datasets, scored against victim B's own clean run.
+
+## Main table — 4 backbones × 2 datasets (D_c protocol; `results/dc_final_report.md`)
+
+Every number is a count out of 8:  **100 frozen questions per dataset, fixed
+denominator 100** for every backbone and every method. Each method starts from
+that backbone's own benign write-back snapshot and only adds its own poison;
+scores come from the gpt-oss-20b three-way judge (CORRECT / WRONG / REFUSAL /
+ERROR), not from substring matching. The ledger balances on every row:
+`attack success + still correct + unclear + already wrong before = 100`.
+
+### HotpotQA (100 frozen questions, denominator 100)
+
+| backbone | method | attack success | =flip | =collapse | still correct | unclear | already wrong before | ASR |
+|---|---|---|---|---|---|---|---|---|
+| xlam-2-8b | **TrojanScribe** (8 chunks) | **96/100** | 93 | 3 | 4 | 0 | 0 | 93/100 |
+| xlam-2-8b | PoisonedRAG | 65 | 64 | 1 | 34 | 1 | 0 | 64 |
+| xlam-2-8b | CorruptRAG-AS | 79 | 79 | 0 | 21 | 0 | 0 | 79 |
+| xlam-2-8b | CorruptRAG-AK | 37 | 37 | 0 | 63 | 0 | 0 | 37 |
+| xlam-2-8b | AgentPoison | 25 | 22 | 3 | 75 | 0 | 0 | 22 |
+| qwen3-4b-instruct | **TrojanScribe** (8 chunks) | **77/100** | 77 | 0 | 22 | 0 | 1 | 78/100 |
+| qwen3-4b-instruct | PoisonedRAG | 32 | 32 | 0 | 67 | 0 | 1 | 33 |
+| qwen3-4b-instruct | CorruptRAG-AS | 34 | 33 | 1 | 65 | 0 | 1 | 34 |
+| qwen3-4b-instruct | CorruptRAG-AK | 18 | 18 | 0 | 81 | 0 | 1 | 18 |
+| qwen3-4b-instruct | AgentPoison | 7 | 6 | 1 | 92 | 0 | 1 | 7 |
+| gpt-oss-20b | **TrojanScribe** (8 chunks) | **88/100** | 87 | 1 | 11 | 0 | 1 | 88/100 |
+| gpt-oss-20b | PoisonedRAG | 27 | 27 | 0 | 72 | 0 | 1 | 27 |
+| gpt-oss-20b | CorruptRAG-AS | 52 | 51 | 1 | 47 | 0 | 1 | 52 |
+| gpt-oss-20b | CorruptRAG-AK | 32 | 32 | 0 | 67 | 0 | 1 | 32 |
+| gpt-oss-20b | AgentPoison | 9 | 8 | 1 | 90 | 0 | 1 | 8 |
+| olmo-3-7b | **TrojanScribe** (8 chunks) | **75/100** | 75 | 0 | 12 | 1 | 12 | 86/100 |
+| olmo-3-7b | PoisonedRAG | 62 | 62 | 0 | 25 | 1 | 12 | 72 |
+| olmo-3-7b | CorruptRAG-AS | 48 | 48 | 0 | 40 | 0 | 12 | 53 |
+| olmo-3-7b | CorruptRAG-AK | 20 | 19 | 1 | 68 | 0 | 12 | 25 |
+| olmo-3-7b | AgentPoison | 34 | 34 | 0 | 53 | 1 | 12 | 42 |
+
+### MuSiQue (100 frozen questions, denominator 100)
+
+| backbone | method | attack success | =flip | =collapse | still correct | unclear | already wrong before | ASR |
+|---|---|---|---|---|---|---|---|---|
+| xlam-2-8b | **TrojanScribe** (8 chunks) | **84/100** | 84 | 0 | 7 | 1 | 8 | 80/100 |
+| xlam-2-8b | PoisonedRAG | 46 | 45 | 1 | 46 | 0 | 8 | 45 |
+| xlam-2-8b | CorruptRAG-AS | 62 | 62 | 0 | 30 | 0 | 8 | 64 |
+| xlam-2-8b | CorruptRAG-AK | 56 | 56 | 0 | 36 | 0 | 8 | 58 |
+| xlam-2-8b | AgentPoison | 22 | 21 | 1 | 70 | 0 | 8 | 22 |
+| qwen3-4b-instruct | **TrojanScribe** (8 chunks) | **73/100** | 73 | 0 | 24 | 1 | 2 | 60/100 |
+| qwen3-4b-instruct | PoisonedRAG | 34 | 33 | 1 | 64 | 0 | 2 | 30 |
+| qwen3-4b-instruct | CorruptRAG-AS | 40 | 40 | 0 | 58 | 0 | 2 | 36 |
+| qwen3-4b-instruct | CorruptRAG-AK | 41 | 41 | 0 | 57 | 0 | 2 | 39 |
+| qwen3-4b-instruct | AgentPoison | 17 | 17 | 0 | 81 | 0 | 2 | 14 |
+| gpt-oss-20b | **TrojanScribe** (8 chunks) | **78/100** | 77 | 1 | 18 | 0 | 4 | 72/100 |
+| gpt-oss-20b | PoisonedRAG | 29 | 29 | 0 | 67 | 0 | 4 | 26 |
+| gpt-oss-20b | CorruptRAG-AS | 56 | 56 | 0 | 39 | 1 | 4 | 55 |
+| gpt-oss-20b | CorruptRAG-AK | 55 | 55 | 0 | 40 | 1 | 4 | 52 |
+| gpt-oss-20b | AgentPoison | 12 | 11 | 1 | 84 | 0 | 4 | 11 |
+| olmo-3-7b | **TrojanScribe** (8 chunks) | **50/100** | 50 | 0 | 4 | 7 | 39 | 71/100 |
+| olmo-3-7b | PoisonedRAG | 34 | 33 | 1 | 25 | 2 | 39 | 58 |
+| olmo-3-7b | CorruptRAG-AS | 20 | 20 | 0 | 36 | 5 | 39 | 27 |
+| olmo-3-7b | CorruptRAG-AK | 15 | 15 | 0 | 39 | 7 | 39 | 24 |
+| olmo-3-7b | AgentPoison | 19 | 19 | 0 | 38 | 4 | 39 | 28 |
+
+**Read this before quoting the table.**
+
+1. **TrojanScribe is first in all eight cells**, by +13 to +43 questions
+   (xlam +17/+22, qwen +43/+32, gpt-oss +36/+22, olmo +13/+16). The runner-up is
+   CorruptRAG-AS on six cells and PoisonedRAG on the two OLMo cells.
+2. **The write volume is not equal**: we write 8 chunks per target, PoisonedRAG
+   5, CorruptRAG-AS/AK and AgentPoison 1. A reviewer will (rightly) ask whether
+   the win is just volume. The poison-dose ablation below answers it: at **2
+   chunks per target — fewer than PoisonedRAG writes — we still beat every
+   baseline in 5 of the 8 cells** (strictly), tie PoisonedRAG on OLMo/HotpotQA
+   (62 vs 62), and are behind only on xlam/HotpotQA (72 vs CorruptRAG-AS 79) and
+   gpt-oss/MuSiQue (52 vs CorruptRAG-AS 56 / AK 55).
+3. `already wrong before` is the backbone's own error rate with no attack
+   (OLMo: 12 / 39). It stays in the denominator and is never credited to us; it
+   is also why OLMo's absolute numbers look lower.
+4. ASR uses the injected wrong-answer string, so it is sensitive to how often a
+   victim echoes that string verbatim. It is a secondary column; `flip` +
+   `collapse` is the primary one.
+
+## Ablations (D_c, 4 backbones, both datasets; full tables in `results/ablation_summary.md`)
+
+10 settings × 4 backbones × 2 datasets = **80 evaluations**, all on the same 100
+frozen questions per dataset, plus 16 extra `clean` runs at the same retrieval
+window for the two window rows. Each setting changes **one** thing versus the
+main row.
+
+### Attack success (out of 100)
+
+**HotpotQA**
+
+| setting | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|
-| xlam-2-8b | — | 28/31 (90%), ASR 85% | 30/38 (79%), ASR 67% | 23/25 (92%), ASR 78% |
-| qwen3-8b | 22/27 (81%), ASR 88% | — | 27/38 (71%), ASR 65% | 22/25 (88%), ASR 73% |
-| gpt-oss-20b | 24/27 (89%), ASR 92% | 29/31 (94%), ASR 90% | — | 23/25 (92%), ASR 82% |
-| llama-3.1-8b | 21/27 (78%), ASR 65% | 25/31 (81%), ASR 72% | 25/38 (66%), ASR 55% | — |
+| main row: dose 8, cluster style, trigger always on, window k=8 | 96 | 77 | 88 | 75 |
+| poison dose 2 per question | 72 | 59 | 68 | 62 |
+| poison dose 4 per question | 85 | 69 | 73 | 73 |
+| poison dose 6 per question | 92 | 76 | 79 | 78 |
+| text style: embed_hybrid | 89 | 67 | 81 | 84 |
+| text style: mono (a single writing style) | 81 | 67 | 66 | 72 |
+| text style: nodiv (no diversity term when picking) | 93 | 78 | 81 | 80 |
+| text style: greedy (no per-style anchor when picking) | 90 | 72 | 86 | 78 |
+| trigger: semantic (fires on the matching questions only) | 96 | 78 | 88 | 77 |
+| victim retrieval window k=4 | 84 | 83 | 84 | 72 |
+| victim retrieval window k=16 | 84 | 77 | 85 | 76 |
 
-Key observations:
+**MuSiQue**
 
-- **Transfer is essentially lossless and often exceeds the same-model
-  diagonal**: every off-diagonal cell keeps ≥65% flip and ≥55% ASR, and
-  several non-diagonal cells beat the victim's own diagonal attack (e.g.
-  gpt-oss-20b poison on qwen3-8b: 94% flip / 90% ASR, while the same-model
-  diagonal gpt-oss-20b cell is 55% / 55%). A poison corpus written once by any
-  common open backbone poisons the whole fleet — there is no per-victim
-  customization barrier to cross.
-- Attacker quality ordering persists across victims: gpt-oss-20b poison is the
-  strongest (or tied-strongest) on every foreign victim; llama-3.1-8b poison
-  the weakest (still 55–72% ASR on foreign victims; 53% is llama's own
-  main-table ASR).
-- Collapse stays near zero (≤2 per cell): the damage is genuine knowledge
-  rewriting, not agent breakage, regardless of which model wrote the poison.
+| setting | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| main row: dose 8, cluster style, trigger always on, window k=8 | 84 | 73 | 78 | 50 |
+| poison dose 2 per question | 71 | 55 | 52 | 40 |
+| poison dose 4 per question | 78 | 68 | 62 | 47 |
+| poison dose 6 per question | 80 | 70 | 69 | 46 |
+| text style: embed_hybrid | 80 | 73 | 81 | 53 |
+| text style: mono (a single writing style) | 73 | 61 | 61 | 48 |
+| text style: nodiv (no diversity term when picking) | 78 | 71 | 73 | 54 |
+| text style: greedy (no per-style anchor when picking) | 80 | 67 | 67 | 48 |
+| trigger: semantic (fires on the matching questions only) | 83 | 71 | 68 | 51 |
+| victim retrieval window k=4 | 76 | 71 | 70 | 48 |
+| victim retrieval window k=16 | 80 | 65 | 67 | 53 |
 
-> ⚠️ **Legacy protocol (60 targets, per-model denominators 27/31/38/25).
-> All of these runs must be redone on D_c; current numbers live in
-> `results/dc_final_report.md`, progress in `research/monitor/PROGRESS.md`.**
+### Poison chunks actually written per question (nominal 2 / 4 / 6 / 8)
 
-## Main table — 4 backbones × 2 datasets (v2 rerun 2026-09-08; gpt-oss-20b rows re-run 2026-09-11; `results/ablation_summary.md`)
+**HotpotQA**
 
-Same protocol per dataset: HotpotQA = shared 60 targets + shared wrongs; MuSiQue
-= frozen 59-target set with frozen wrong answers, zero per-model re-selection.
-Method = `cluster` at poison dose 8, keyword trigger, 3 benign rounds, flip
-judged by the v2 substring-correct rule, victim = the served backbone (attacker
-payload/writer use the same backbone).
-
-### HotpotQA (60 shared targets)
-
-| backbone | clean correct | flip (knowledge) | collapse | ASR | true paragraph still in top-8 |
+| setting | nominal | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|---|
-| xlam-2-8b (default victim) | 27/60 | **22/27 (81.5%)** | 0 | **56/60 (93.3%)** | 13/60 |
-| Qwen3-8B | 31/60 | 23/31 (74.2%) | 0 | 46/60 (76.7%) | 13/60 |
-| gpt-oss-20b (MoE) | 38/60 | 21/38 (55.3%) | 1 | 33/60 (55.0%) | 9/60 |
-| Llama-3.1-8B-Instruct | 25/60 | 19/25 (76.0%) | 1 | 32/60 (53.3%) | 8/60 |
+| text style: near-duplicate (embed_hybrid) | 8 | 7.84 | 5.63 | 8 | 8 |
+| text style: single style (mono) | 8 | 7.92 | 7.77 | 7.92 | 8 |
 
-### MuSiQue (59 frozen targets)
+**MuSiQue**
 
-| backbone | clean correct | flip (knowledge) | collapse | ASR | true paragraph still in top-8 |
+| setting | nominal | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|---|
-| xlam-2-8b (default victim) | 7/59 | **7/7 (100%)** | 0 | 51/59 (86.4%) | 2/59 |
-| Qwen3-8B | 9/59 | 9/9 (100%) | 0 | 47/59 (79.7%) | 0/59 |
-| gpt-oss-20b (MoE) | 21/59 | 16/21 (76.2%) | 1 | 33/59 (55.9%) | 1/59 |
-| Llama-3.1-8B-Instruct | 10/59 | 8/10 (80.0%) | 0 | 26/59 (44.1%) | 0/59 |
+| text style: near-duplicate (embed_hybrid) | 8 | 7.84 | 6.51 | 8 | 8 |
+| text style: single style (mono) | 8 | 6.92 | 6.97 | 7.65 | 7.79 |
+| trigger: semantic only | 8 | 7.92 | 7.92 | 7.92 | 7.92 |
 
-**Insights.** (1) The attack generalizes across model families, scales and
-datasets — knowledge-flip stays at 55–100% and ASR at 44–93% everywhere. After
-the gpt-oss-20b redo (2026-09-11, generation-budget fix A4) the 20B MoE
-reasoning model is the most resistant victim on both datasets (55.3% HotpotQA /
-76.2% MuSiQue flip); the dense 8B backbones flip 74–100%. (2) ASR is the
-backbone-sensitive metric (44–93%), tracking each model's tendency to echo the
-injected string verbatim. (3) On MuSiQue the true paragraph is displaced out of
-the top-8 retrieval window on essentially all targets — the attack captures
-retrieval outright. (4) Two backbones were excluded for protocol reasons (weak
-tool-format compliance); evidence in `research/monitor/experiment_ledger.md`.
-The gpt-oss-20b rows above are the post-fix measurement; the earlier higher
-numbers were an artifact of empty authority/bio candidates (A4), not attack
-strength.
+### What the ablation says
 
-> ⚠️ **Legacy protocol (60 targets, per-model denominators 27/31/38/25).
-> All of these runs must be redone on D_c; current numbers live in
-> `results/dc_final_report.md`, progress in `research/monitor/PROGRESS.md`.**
+- **Dose is monotone for the three stronger victims and saturates at 8.**
+  HotpotQA 72→85→92→96 (xlam), 59→69→76→77 (qwen), 68→73→79→88 (gpt-oss);
+  MuSiQue 71→78→80→84, 55→68→70→73, 52→62→69→78. OLMo is the exception and is
+  non-monotone (HotpotQA 62→73→78→**75**, MuSiQue 40→47→**46**→50) — it is the
+  weakest victim (39 questions already wrong before the attack on MuSiQue), and
+  those two dips are inside the ±3 judge noise. The dose rows reuse the **same
+  texts** as the main row (first k of the 8 in sampler order), so the curve
+  isolates how many chunks are written, not which texts.
+- **The multi-style consensus is the component that carries the attack.** The
+  single-style setting (`mono`) is the lowest or tied-lowest of the four
+  style/selection arms on all 8 cells: −15 (xlam/HotpotQA), −10 (qwen/HotpotQA), −22 (gpt-oss/HotpotQA),
+  −11 (xlam/MuSiQue), −12 (qwen/MuSiQue), −17 (gpt-oss/MuSiQue). Only OLMo is
+  inside the noise band (−3 / −2).
+- **The selection machinery is nearly free, and sometimes unnecessary.**
+  `nodiv` stays inside −7…+5 and actually gains on three cells; `greedy` stays
+  inside −6…+3 except gpt-oss/MuSiQue (−11). Both **exceed** the full method on
+  OLMo/HotpotQA (+5 / +3). Read it as "consensus over styles matters; the exact
+  selection rule does not".
+- **The near-duplicate control is mixed.** `embed_hybrid` costs 4–10 questions on
+  xlam and qwen and 7 on gpt-oss/HotpotQA, but **exceeds** the full method on
+  OLMo/HotpotQA (84 vs 75), OLMo/MuSiQue (53 vs 50) and gpt-oss/MuSiQue (81 vs
+  78). On a weak victim, blunt repetition of the question plus an assertive
+  sentence beats five different voices.
+- **The trigger is not selective at this scale**, so the semantic row ≈ the main
+  row (fires on 100/100 HotpotQA, 99/100 MuSiQue tasks). Selectivity is free here
+  because the fired set is the whole target set; the keyword trigger behaves the
+  same way (99/100), so it is not run as a separate row.
+- **The window is a real knob, but only one cell gains from shrinking it.**
+  k=4 gains 6 on qwen/HotpotQA (83 vs 77) and costs 2–12 everywhere else
+  (worst: xlam/HotpotQA 84 vs 96, gpt-oss/MuSiQue 70 vs 78). k=16 ranges from
+  −11 (qwen/MuSiQue 65 vs 73) to +3 (OLMo/MuSiQue 53 vs 50). A smaller window removes true passages *and*
+  poison chunks at the same time, so it only helps where the victim was already
+  retrieving a conflicting true passage. Each window row is scored against a
+  clean run at that same window, so these numbers are not inflated by questions
+  the smaller window alone would break.
 
-## Ablations (v2, all 4 backbones; table in `results/ablation_summary.md`)
+### Known limitations of this table (quote them with the numbers)
 
-Every ablation setting is run on all four backbones, HotpotQA (bullets below)
-and MuSiQue (same 11 settings; compact reading at the end). All flip rates use
-the victim's main-table clean set as the denominator (settings reuse it via
-`--clean-from`; four early xlam-2-8b settings measured their own clean and are
-re-scored against the main-table clean at analysis time). All gpt-oss-20b rows
-were re-run 2026-09-11 with the payload generation-budget fix (A4), so its
-single-style and near-duplicate settings are now volume-matched with the rest.
-
-- **Poison dose** (2/4/6/8 chunks per target): flip rises with dose to a
-  plateau around 4–8 on xlam-2-8b (74→74→78→81.5%), qwen3-8b (58→77→74→74%)
-  and llama-3.1-8b (68→68→72→76%); gpt-oss-20b is non-monotonic
-  (47→66→74→55%) within its smallest clean-correct pool. The true paragraph's
-  presence in the victim's top-8 falls monotonically with dose on every
-  backbone (xlam 48→44→29→13, qwen3 48→46→30→13, gpt-oss 46→42→26→9) —
-  displacement keeps growing past the flip saturation point.
-- **Style diversity** (all dose 8): the single-style setting (`cluster_mono`) is
-  the weakest on every backbone, but the gap is modest and backbone-dependent:
-  −2.6pp on gpt-oss-20b (52.6% vs 55.3%), −6.5pp on qwen3-8b, −16.0pp on
-  llama-3.1-8b and −14.8pp on xlam-2-8b. Removing the selection machinery has
-  backbone-dependent effects rather than a uniform one: `cluster_nodiv` /
-  `cluster_greedy` stay within ±6pp of the full method on xlam-2-8b and
-  qwen3-8b, but on gpt-oss-20b both score clearly higher (71.1% / 63.2% vs
-  55.3%) and on llama-3.1-8b greedy is clearly lower (64.0% vs 76.0%). The
-  near-duplicate control (`embed_hybrid`) is within 4pp of the full method on
-  xlam-2-8b and llama-3.1-8b and exceeds it on qwen3-8b (80.6% vs 74.2%) and
-  gpt-oss-20b (81.6% vs 55.3%), where it also floods the retrieval window
-  (true_in_top8 ≈ 0). Consensus-style generation therefore gives a consistent
-  but not universal edge over a single style, and at equal volume near-
-  duplicates can be as strong or stronger.
-- **Trigger**: keyword (auto-extracted proper nouns) is within noise of the
-  always-fire upper bound (p=1.0) on three backbones (xlam-2-8b equal at 81.5%,
-  qwen3-8b equal at 74.2%, llama-3.1-8b 76.0% vs 60.0% in keyword's favour),
-  but on gpt-oss-20b always-fire scores 73.7% vs keyword 55.3%. Trigger
-  implementation is therefore not decisive, but **selectivity is not
-  universally free**.
-- **Victim retrieval window** (top-k 4/8/16): flip is robust to the window on
-  xlam-2-8b (81.5/81.5/92.6%) and qwen3-8b (77.4/74.2/80.6%); shrinking to k=4
-  does not protect on any backbone (gpt-oss-20b 78.9% at k=4 vs 55.3% at k=8),
-  and only llama-3.1-8b clearly loses at k=16 (68.0%). Window size mainly
-  modulates ASR (xlam 85→93→92%, llama 32→53→62%): a larger window surfaces
-  more poison chunks and more verbatim echo.
-- **MuSiQue counterpart** (same 11 settings; clean pools 7/9/21/10): dose saturates
-  by 4–6 (xlam 57→86→86→100%, qwen3 89/89/89/100%, gpt-oss 52→57→81→76%);
-  the single-style setting is again at the bottom (clear-lowest 6/10 on
-  llama-3.1-8b; tied-lowest 6/7 with the near-duplicate control on xlam-2-8b),
-  and the near-duplicate control again exceeds the full method on gpt-oss-20b
-  (19/21 vs 16/21); gpt-oss-20b's k=16 setting drops to 12/21 (57.1%) while k=4
-  stays 19/21 (90.5%).
+- **1–3% of the judge labels drift between WRONG and UNCLEAR** when the judge is
+  run with 16-way concurrency instead of one answer at a time (same prompt,
+  temperature 0; the batch composition changes the tokens). Re-judging two
+  already-judged main-table files moved 1/100 (HotpotQA) and 3/100 (MuSiQue)
+  labels. The main table above is the serial-judged one; ablation rows are the
+  concurrent one, and the `unclear` column shows the borderline cases.
+- **A few frozen "wrong answers" are dirty strings** — 1 in HotpotQA
+  (`USS "Virginia`, unbalanced quote) and 19 in MuSiQue (`The incorrect answer
+  is: Tim Hanseroth`). A passage has to contain the injected wrong answer to
+  pass the generator's filter, and no passage will reproduce those verbatim, so
+  the single-template arms cannot fill every question. The dose table above is
+  the measured number, not the nominal one; the worst cell is qwen
+  `embed_hybrid` on HotpotQA at **5.63 chunks/question**. Those questions stay in
+  the denominator (they simply carry fewer chunks).
+- The same dirty strings make the **ASR column under-count on MuSiQue** (the
+  victim never echoes the `The incorrect answer is:` prefix). `flip` and
+  `collapse` are unaffected.
 
 ## Repository layout
 
@@ -443,7 +491,12 @@ experiments/
   build_snapshot.py      build one benign "write-back" snapshot per backbone
   select_dc_on_snapshot.py  re-check clean accuracy inside the snapshot environment
   gen_ours_poison.py     craft our poison cluster only (8 chunks/target, no_gold_leak)
+  derive_dose.py         build the dose 2/4/6 poison file from the dose-8 file (no generation)
   dc_run.py              run ONE condition (clean / ours / 4 baselines) on D_c
+  run_ablation_dc.sh     ablation driver (one lane = one backbone; local or remote endpoint)
+  run_judge_watch.sh     judge each finished evaluation as it lands (gpt-oss-20b)
+  serve_remote.sh        serve a backbone on another box + ssh tunnel back
+  audit_ablation.py      read-only audit: dose / window / snapshot / stale replay / coverage
   judge_answers.py       model-judged scoring: CORRECT / WRONG / REFUSAL / ERROR
   summarize_dc.py        table for one dataset -> results/dc_summary.md
   serve_model.sh         per-backbone vLLM launch flags
@@ -486,6 +539,13 @@ research/           frozen hypotheses, proposals, experiment ledger, progress
 8. Judge and tabulate:
    `python experiments/judge_answers.py --dc ../data/targets/dc_hotpot_100.json ...`
    then `python experiments/summarize_dc.py` (`--musique` for the other dataset).
+9. Ablation (10 settings x 4 backbones x 2 datasets = 80 evaluations):
+   `bash experiments/run_ablation_dc.sh <backbone> ...` runs one lane per backbone
+   (a lane can point at a model served on another box, `serve_remote.sh`);
+   `run_judge_watch.sh` judges each finished evaluation as it lands,
+   `summarize_ablation_dc.py` writes `results/ablation_summary.md`, and
+   `audit_ablation.py` re-checks dose / window / snapshot / replay consistency
+   from the result JSON alone (no GPU, no knowledge base).
 
 ## Environment
 
