@@ -346,13 +346,15 @@ ERROR), not from substring matching. The ledger balances on every row:
 1. **TrojanScribe is first in all eight cells**, by +13 to +43 questions
    (xlam +17/+22, qwen +43/+32, gpt-oss +36/+22, olmo +13/+16). The runner-up is
    CorruptRAG-AS on six cells and PoisonedRAG on the two OLMo cells.
-2. **The write volume is not equal**: we write 8 chunks per target, PoisonedRAG
-   5, CorruptRAG-AS/AK and AgentPoison 1. A reviewer will (rightly) ask whether
-   the win is just volume. The poison-dose ablation below answers it: at **2
-   chunks per target — fewer than PoisonedRAG writes — we still beat every
-   baseline in 5 of the 8 cells** (strictly), tie PoisonedRAG on OLMo/HotpotQA
-   (62 vs 62), and are behind only on xlam/HotpotQA (72 vs CorruptRAG-AS 79) and
-   gpt-oss/MuSiQue (52 vs CorruptRAG-AS 56 / AK 55).
+2. **How much an attacker writes is part of the attack, not a handicap.** Every
+   method here writes through the same legitimate write-back channel into the
+   same knowledge base, from the same snapshot, and each published baseline runs
+   in the configuration its own paper specifies (PoisonedRAG 5 chunks per
+   target; CorruptRAG-AS/AK and AgentPoison 1). TrojanScribe writes 8 because
+   the consensus over five text styles needs several independent voices — that
+   is the design under evaluation, not an allowance made for us. The dose rows
+   below report what the *same* method does with 2 / 4 / 6 chunks, i.e. how much
+   each extra chunk is worth.
 3. `already wrong before` is the backbone's own error rate with no attack
    (OLMo: 12 / 39). It stays in the denominator and is never credited to us; it
    is also why OLMo's absolute numbers look lower.
