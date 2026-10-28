@@ -104,8 +104,8 @@ def audit_poison(setting, model, suf, ds, fails):
         coverage = len(per_q)
     else:
         # A generator may record documented shortfalls (meta.short_qids): those
-        # questions could not reach the full dose because the frozen D_c "wrong"
-        # string is dirty. Everything else must still be exactly `want`.
+        # questions could not reach the full dose with distinct chunks.
+        # Everything else must still be exactly `want`.
         short = meta.get("short_qids") or {}
         bad = {q: c for q, c in per_q.items() if q not in short and c != want}
         unlisted = [q for q in per_q if q in short and per_q[q] != short[q]]

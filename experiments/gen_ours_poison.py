@@ -174,11 +174,10 @@ def main() -> None:
                       f"(recorded)")
         bad = [q for q in dc if len(out_texts.get(q) or []) != args.volume]
         if bad:
-            # A few D_c "wrong answers" are dirty ("The incorrect answer is: ...",
-            # unbalanced quotes), so a single-template arm can never make the
-            # model reproduce the whole string. The older protocol hit the same
-            # wall (mono averaged 3.6/8 chunks) and wrote what it had. Do the
-            # same, record every shortfall, and never pretend the dose is 8.
+            # A single-template arm can run out of candidates that pass the
+            # quality filter for a question (the older protocol hit the same wall:
+            # mono averaged 3.6/8 chunks). Write what was found, record every
+            # shortfall, and never pretend the dose is 8.
             print(f"[ours] WARNING {len(bad)} question(s) below volume after all "
                   f"retries; writing what was found and recording it "
                   f"({[(q, len(out_texts.get(q) or [])) for q in bad[:3]]} ...)")

@@ -38,7 +38,7 @@ Every number is a COUNT OUT OF 100 - the same 100 questions and the same denomin
 
 ### HotpotQA: poison chunks actually written per question
 
-Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-template arm could not produce that many **distinct** chunks that pass the "must contain the injected wrong answer" filter - the frozen D_c set has 1 (HotpotQA) / 19 (MuSiQue) "wrong answers" that are dirty strings (e.g. 'The incorrect answer is: X'), which no passage will contain verbatim. Those questions still count in the 100; they just carry fewer chunks.
+Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-template arm could not produce that many **distinct** chunks for that question while still passing the generator's quality filter (states the injected wrong answer, length window, no leaked gold). Those questions still count in the 100; they just carry fewer chunks.
 
 | setting | nominal | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|---|
@@ -130,7 +130,7 @@ Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-templ
 
 ### MuSiQue: poison chunks actually written per question
 
-Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-template arm could not produce that many **distinct** chunks that pass the "must contain the injected wrong answer" filter - the frozen D_c set has 1 (HotpotQA) / 19 (MuSiQue) "wrong answers" that are dirty strings (e.g. 'The incorrect answer is: X'), which no passage will contain verbatim. Those questions still count in the 100; they just carry fewer chunks.
+Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-template arm could not produce that many **distinct** chunks for that question while still passing the generator's quality filter (states the injected wrong answer, length window, no leaked gold). Those questions still count in the 100; they just carry fewer chunks.
 
 | setting | nominal | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|---|
@@ -198,4 +198,4 @@ Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-templ
 - **already wrong before** - questions the model answered wrongly with no attack at all. They stay in the denominator and are never credited to the attack.
 - `-` means that run has not finished yet.
 
-Generated 2026-10-28 15:42:38 by `experiments/summarize_ablation_dc.py` from the judged files in `results/` (judge: gpt-oss-20b, same judge as the main table).
+Generated 2026-10-28 16:03:37 by `experiments/summarize_ablation_dc.py` from the judged files in `results/` (judge: gpt-oss-20b, same judge as the main table).

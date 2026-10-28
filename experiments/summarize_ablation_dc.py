@@ -114,10 +114,10 @@ def mean_dose(setting, model, suf):
     """Poison chunks actually written per question (100 for a full run).
 
     Some single-template arms cannot reach the nominal dose on every question:
-    a few frozen D_c "wrong answers" are dirty strings ("The incorrect answer
-    is: ...", unbalanced quotes) that the model will not reproduce, and the
-    generator's filter requires the wrong answer to appear verbatim. The number
-    written is recorded, never silently rounded up to 8.
+    the generator only accepts a chunk if it passes its quality filter (states
+    the injected wrong answer, length window, no leaked gold), so a
+    single-template arm occasionally cannot produce `volume` DISTINCT chunks for
+    a question. What was written is recorded, never silently rounded up.
     """
     blob = load(os.path.join(RES, f"dc_ours_{setting}_{model}{suf}.json"))
     if blob is None:
@@ -253,12 +253,10 @@ def main() -> None:
             parts.append("")
             parts.append("Nominal dose is 2 / 4 / 6 / 8. A number below the nominal "
                          "means the single-template arm could not produce that many "
-                         "**distinct** chunks that pass the \"must contain the "
-                         "injected wrong answer\" filter - the frozen D_c set has "
-                         "1 (HotpotQA) / 19 (MuSiQue) \"wrong answers\" that are "
-                         "dirty strings (e.g. 'The incorrect answer is: X'), which "
-                         "no passage will contain verbatim. Those questions still "
-                         "count in the 100; they just carry fewer chunks.")
+                         "**distinct** chunks for that question while still passing "
+                         "the generator's quality filter (states the injected wrong "
+                         "answer, length window, no leaked gold). Those questions "
+                         "still count in the 100; they just carry fewer chunks.")
             parts.append("")
             parts.append("| setting | nominal | " + " | ".join(MODELS) + " |")
             parts.append("|" + "---|" * (len(MODELS) + 2))

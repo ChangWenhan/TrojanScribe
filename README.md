@@ -346,19 +346,13 @@ How each stage decides, and why it is built this way:
    start if a snapshot was built for a different D_c. The set is never re-drawn:
    every method and every ablation setting runs on the same 100.
 
-Two consequences worth stating before the tables:
+One consequence worth stating before the tables:
 
 - **The clean arm is 100/100 by construction** for the four models the set was
   built on. That is the point of the design (one denominator), and it is also
   why "already wrong before" is a separate column: OLMo joined **after** the
   freeze and is wrong on 12 (HotpotQA) / 39 (MuSiQue) questions with no attack
   at all. Those questions stay in the denominator and are never credited to us.
-- **20 of the 200 frozen wrong answers are malformed** — 1 in HotpotQA
-  (`USS "Virginia`, unbalanced quote) and 19 in MuSiQue (`The incorrect answer
-  is: Tim Hanseroth`, the generator's own phrasing left in). The set is frozen,
-  so they were not re-drawn; the effect (single-template arms cannot reproduce
-  such strings verbatim, and ASR under-counts on MuSiQue) is quantified in the
-  ablation's limitations below.
 
 ## Main table — 4 backbones × 2 datasets (D_c protocol; `results/dc_final_report.md`)
 
@@ -544,17 +538,16 @@ main row.
   already-judged main-table files moved 1/100 (HotpotQA) and 3/100 (MuSiQue)
   labels. The main table above is the serial-judged one; ablation rows are the
   concurrent one, and the `unclear` column shows the borderline cases.
-- **A few frozen "wrong answers" are dirty strings** — 1 in HotpotQA
-  (`USS "Virginia`, unbalanced quote) and 19 in MuSiQue (`The incorrect answer
-  is: Tim Hanseroth`). A passage has to contain the injected wrong answer to
-  pass the generator's filter, and no passage will reproduce those verbatim, so
-  the single-template arms cannot fill every question. The dose table above is
-  the measured number, not the nominal one; the worst cell is qwen
-  `embed_hybrid` on HotpotQA at **5.63 chunks/question**. Those questions stay in
-  the denominator (they simply carry fewer chunks).
-- The same dirty strings make the **ASR column under-count on MuSiQue** (the
-  victim never echoes the `The incorrect answer is:` prefix). `flip` and
-  `collapse` are unaffected.
+- **Some questions cannot be filled to the nominal dose by a single-template
+  arm.** The generator only accepts a chunk if it passes the quality filter
+  (states the injected wrong answer, length window, does not state the correct
+  answer as a live fact). For a minority of questions a single-template arm
+  cannot produce 8 *distinct* chunks that pass, so it writes fewer. The dose
+  table above reports the measured number instead of the nominal one; the
+  questions stay in the denominator, they just carry fewer chunks.
+  `flip` and `collapse` are unaffected (a question answered wrongly counts the
+  same whatever the chunk count), and the ASR column is the one that is
+  conservative wherever the injected string was not reproduced verbatim.
 
 ## Repository layout
 
