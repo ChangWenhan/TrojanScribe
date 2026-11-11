@@ -61,7 +61,8 @@ short names in the table.
 | `keyword` / `semantic` / `trig_always` (triggers) | keyword / semantic / always-fire trigger | fire when the task text contains an auto-extracted proper noun / embedding cosine to any target query ≥ 0.82 / always (p=1.0) |
 | `flip` | knowledge flip | clean-correct target answered with a NON-EMPTY wrong answer after the attack |
 | `collapse` | collapse (DoS) | clean-correct target answered with an empty answer or crash — never counted as a flip |
-| `ASR` | attack success rate | answer contains the injected wrong-answer string |
+| `ASR` | attack success rate | the judge says the answer adopts the injected wrong answer; over all 100 questions |
+| `ASR (of questions it used to answer)` | attack success rate, honest denominator | the same count over only the questions the victim answered correctly before the attack, written `44/61 = 72%`; always <= `flip` |
 | `true_in_top8` (JSON key) | true paragraph displaced? (inverted) | count of targets whose **true** supporting paragraph still ranks in the victim's top-8 |
 | `08_longtail*.json` (result files) | — | **retired file-name convention** of the old 60-target protocol (results deleted 2026-10-27); current results are `dc_<condition>_<backbone>.json` |
 | AR1–AR5 | frozen hypotheses | pre-registered proposals in `research/frozen/` (read-only, sha256 manifest); e.g. AR3 = the consensus-style poisoning hypothesis implemented by `payload.generate_cluster` |
@@ -288,6 +289,25 @@ of 100, and the diagonal (A = B) is the main-table row itself.
 | gpt-oss-20b | 78 | 85 | **78** | 58 |
 | olmo-3-7b | 71 | 76 | 54 | **50** |
 
+**ASR — the answer states the injected wrong answer**, counted only over the
+questions that victim answered correctly before the attack, so it is always ≤
+that cell's flip count. The denominator differs by column (HotpotQA 100 / 99 /
+99 / 88; MuSiQue 92 / 98 / 96 / 61) and is printed with every cell.
+
+| HotpotQA · attacker \ victim | xlam-2-8b | qwen3-4b | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 93/100 = 93% | 81/99 = 82% | 59/99 = 60% | 81/88 = 92% |
+| qwen3-4b | 83/100 = 83% | 77/99 = 78% | 62/99 = 63% | 78/88 = 89% |
+| gpt-oss-20b | 93/100 = 93% | 92/99 = 93% | 87/99 = 88% | 85/88 = 97% |
+| olmo-3-7b | 89/100 = 89% | 76/99 = 77% | 63/99 = 64% | 75/88 = 85% |
+
+| MuSiQue · attacker \ victim | xlam-2-8b | qwen3-4b | gpt-oss-20b | olmo-3-7b |
+|---|---|---|---|---|
+| xlam-2-8b | 73/92 = 79% | 72/98 = 73% | 56/96 = 58% | 52/61 = 85% |
+| qwen3-4b | 68/92 = 74% | 60/98 = 61% | 50/96 = 52% | 48/61 = 79% |
+| gpt-oss-20b | 68/92 = 74% | 79/98 = 81% | 70/96 = 73% | 56/61 = 92% |
+| olmo-3-7b | 64/92 = 70% | 67/98 = 68% | 48/96 = 50% | 44/61 = 72% |
+
 What the matrix says:
 
 - **Poison written once transfers with little loss.** Most off-diagonal cells
@@ -304,6 +324,10 @@ What the matrix says:
   correctly before any attack — **relative to that ceiling almost every transfer
   attack on it lands** (e.g. 85/88 on HotpotQA). The `pre-wrong` count is
   reported as its own baseline error rate and never credited to the attack.
+- **Saying our exact sentence is not the same as being wrong.** Every ASR cell
+  is at or below the matching flip cell; the gap is answers that are wrong in
+  some other way (or no answer at all), which is why ASR is reported next to
+  flip rather than instead of it.
 - **Every cell satisfies** `success + still-correct + unclear + pre-wrong = 100`.
   `success` is "no longer returns the correct answer"; the narrower event
   "states *the injected* wrong answer" is reported separately in
@@ -401,62 +425,73 @@ One consequence worth stating before the tables:
 
 ## Main table — 4 backbones × 2 datasets (D_c protocol; `results/dc_final_report.md`)
 
-Every number is a count out of 8:  **100 frozen questions per dataset, fixed
-denominator 100** for every backbone and every method. Each method starts from
-that backbone's own benign write-back snapshot and only adds its own poison;
-scores come from the gpt-oss-20b three-way judge (CORRECT / WRONG / REFUSAL /
-ERROR), not from substring matching. The ledger balances on every row:
-`attack success + still correct + unclear + already wrong before = 100`.
+Each method starts from that backbone's own benign write-back snapshot and only
+adds its own poison; scores come from the gpt-oss-20b three-way judge (CORRECT /
+WRONG / REFUSAL / ERROR), not from substring matching. The ledger balances on
+every row: `attack success + still correct + unclear + already wrong before = 100`.
+
+**Attack success / flip / collapse / still correct / unclear / already wrong
+before count the same 100 questions**, so the four backbones are directly
+comparable even when one of them cannot answer everything before the attack.
+
+**The two ASR columns differ only in their denominator.** `ASR` counts *all* 100
+answers that state the injected wrong answer — a victim that was already wrong
+on a question can happen to answer with our string, and that is credited to the
+attack. `ASR (of questions it used to answer)` counts only the questions the
+victim answered **correctly before the attack** and prints the ratio with both
+counts (`44/61 = 72%`). It can never exceed `=flip`; that is the number to quote.
+On a victim with no pre-attack errors (xlam on HotpotQA) the two columns are
+identical by construction.
 
 ### HotpotQA (100 frozen questions, denominator 100)
 
-| backbone | method | attack success | =flip | =collapse | still correct | unclear | already wrong before | ASR |
+| backbone | method | attack success | =flip | =collapse | still correct | unclear | already wrong before | ASR | ASR (of questions it used to answer) |
 |---|---|---|---|---|---|---|---|---|
-| xlam-2-8b | **TrojanScribe** (8 chunks) | **96/100** | 93 | 3 | 4 | 0 | 0 | 93/100 |
-| xlam-2-8b | PoisonedRAG | 65 | 64 | 1 | 34 | 1 | 0 | 64 |
-| xlam-2-8b | CorruptRAG-AS | 79 | 79 | 0 | 21 | 0 | 0 | 79 |
-| xlam-2-8b | CorruptRAG-AK | 37 | 37 | 0 | 63 | 0 | 0 | 37 |
-| xlam-2-8b | AgentPoison | 25 | 22 | 3 | 75 | 0 | 0 | 22 |
-| qwen3-4b-instruct | **TrojanScribe** (8 chunks) | **77/100** | 77 | 0 | 22 | 0 | 1 | 78/100 |
-| qwen3-4b-instruct | PoisonedRAG | 32 | 32 | 0 | 67 | 0 | 1 | 33 |
-| qwen3-4b-instruct | CorruptRAG-AS | 34 | 33 | 1 | 65 | 0 | 1 | 34 |
-| qwen3-4b-instruct | CorruptRAG-AK | 18 | 18 | 0 | 81 | 0 | 1 | 18 |
-| qwen3-4b-instruct | AgentPoison | 7 | 6 | 1 | 92 | 0 | 1 | 7 |
-| gpt-oss-20b | **TrojanScribe** (8 chunks) | **88/100** | 87 | 1 | 11 | 0 | 1 | 88/100 |
-| gpt-oss-20b | PoisonedRAG | 27 | 27 | 0 | 72 | 0 | 1 | 27 |
-| gpt-oss-20b | CorruptRAG-AS | 52 | 51 | 1 | 47 | 0 | 1 | 52 |
-| gpt-oss-20b | CorruptRAG-AK | 32 | 32 | 0 | 67 | 0 | 1 | 32 |
-| gpt-oss-20b | AgentPoison | 9 | 8 | 1 | 90 | 0 | 1 | 8 |
-| olmo-3-7b | **TrojanScribe** (8 chunks) | **75/100** | 75 | 0 | 12 | 1 | 12 | 86/100 |
-| olmo-3-7b | PoisonedRAG | 62 | 62 | 0 | 25 | 1 | 12 | 72 |
-| olmo-3-7b | CorruptRAG-AS | 48 | 48 | 0 | 40 | 0 | 12 | 53 |
-| olmo-3-7b | CorruptRAG-AK | 20 | 19 | 1 | 68 | 0 | 12 | 25 |
-| olmo-3-7b | AgentPoison | 34 | 34 | 0 | 53 | 1 | 12 | 42 |
+| xlam-2-8b | **TrojanScribe** (8 chunks) | **96/100** | 93 | 3 | 4 | 0 | 0 | 93/100 | **93/100 = 93%** |
+| xlam-2-8b | PoisonedRAG | 65 | 64 | 1 | 34 | 1 | 0 | 64 | **64/100 = 64%** |
+| xlam-2-8b | CorruptRAG-AS | 79 | 79 | 0 | 21 | 0 | 0 | 79 | **79/100 = 79%** |
+| xlam-2-8b | CorruptRAG-AK | 37 | 37 | 0 | 63 | 0 | 0 | 37 | **37/100 = 37%** |
+| xlam-2-8b | AgentPoison | 25 | 22 | 3 | 75 | 0 | 0 | 22 | **22/100 = 22%** |
+| qwen3-4b-instruct | **TrojanScribe** (8 chunks) | **77/100** | 77 | 0 | 22 | 0 | 1 | 78/100 | **77/99 = 78%** |
+| qwen3-4b-instruct | PoisonedRAG | 32 | 32 | 0 | 67 | 0 | 1 | 33 | **32/99 = 32%** |
+| qwen3-4b-instruct | CorruptRAG-AS | 34 | 33 | 1 | 65 | 0 | 1 | 34 | **33/99 = 33%** |
+| qwen3-4b-instruct | CorruptRAG-AK | 18 | 18 | 0 | 81 | 0 | 1 | 18 | **17/99 = 17%** |
+| qwen3-4b-instruct | AgentPoison | 7 | 6 | 1 | 92 | 0 | 1 | 7 | **6/99 = 6%** |
+| gpt-oss-20b | **TrojanScribe** (8 chunks) | **88/100** | 87 | 1 | 11 | 0 | 1 | 88/100 | **87/99 = 88%** |
+| gpt-oss-20b | PoisonedRAG | 27 | 27 | 0 | 72 | 0 | 1 | 27 | **27/99 = 27%** |
+| gpt-oss-20b | CorruptRAG-AS | 52 | 51 | 1 | 47 | 0 | 1 | 52 | **51/99 = 52%** |
+| gpt-oss-20b | CorruptRAG-AK | 32 | 32 | 0 | 67 | 0 | 1 | 32 | **32/99 = 32%** |
+| gpt-oss-20b | AgentPoison | 9 | 8 | 1 | 90 | 0 | 1 | 8 | **8/99 = 8%** |
+| olmo-3-7b | **TrojanScribe** (8 chunks) | **75/100** | 75 | 0 | 12 | 1 | 12 | 86/100 | **75/88 = 85%** |
+| olmo-3-7b | PoisonedRAG | 62 | 62 | 0 | 25 | 1 | 12 | 72 | **62/88 = 70%** |
+| olmo-3-7b | CorruptRAG-AS | 48 | 48 | 0 | 40 | 0 | 12 | 53 | **46/88 = 52%** |
+| olmo-3-7b | CorruptRAG-AK | 20 | 19 | 1 | 68 | 0 | 12 | 25 | **18/88 = 20%** |
+| olmo-3-7b | AgentPoison | 34 | 34 | 0 | 53 | 1 | 12 | 42 | **33/88 = 38%** |
 
 ### MuSiQue (100 frozen questions, denominator 100)
 
-| backbone | method | attack success | =flip | =collapse | still correct | unclear | already wrong before | ASR |
+| backbone | method | attack success | =flip | =collapse | still correct | unclear | already wrong before | ASR | ASR (of questions it used to answer) |
 |---|---|---|---|---|---|---|---|---|
-| xlam-2-8b | **TrojanScribe** (8 chunks) | **84/100** | 84 | 0 | 7 | 1 | 8 | 80/100 |
-| xlam-2-8b | PoisonedRAG | 46 | 45 | 1 | 46 | 0 | 8 | 45 |
-| xlam-2-8b | CorruptRAG-AS | 62 | 62 | 0 | 30 | 0 | 8 | 64 |
-| xlam-2-8b | CorruptRAG-AK | 56 | 56 | 0 | 36 | 0 | 8 | 58 |
-| xlam-2-8b | AgentPoison | 22 | 21 | 1 | 70 | 0 | 8 | 22 |
-| qwen3-4b-instruct | **TrojanScribe** (8 chunks) | **73/100** | 73 | 0 | 24 | 1 | 2 | 60/100 |
-| qwen3-4b-instruct | PoisonedRAG | 34 | 33 | 1 | 64 | 0 | 2 | 30 |
-| qwen3-4b-instruct | CorruptRAG-AS | 40 | 40 | 0 | 58 | 0 | 2 | 36 |
-| qwen3-4b-instruct | CorruptRAG-AK | 41 | 41 | 0 | 57 | 0 | 2 | 39 |
-| qwen3-4b-instruct | AgentPoison | 17 | 17 | 0 | 81 | 0 | 2 | 14 |
-| gpt-oss-20b | **TrojanScribe** (8 chunks) | **78/100** | 77 | 1 | 18 | 0 | 4 | 72/100 |
-| gpt-oss-20b | PoisonedRAG | 29 | 29 | 0 | 67 | 0 | 4 | 26 |
-| gpt-oss-20b | CorruptRAG-AS | 56 | 56 | 0 | 39 | 1 | 4 | 55 |
-| gpt-oss-20b | CorruptRAG-AK | 55 | 55 | 0 | 40 | 1 | 4 | 52 |
-| gpt-oss-20b | AgentPoison | 12 | 11 | 1 | 84 | 0 | 4 | 11 |
-| olmo-3-7b | **TrojanScribe** (8 chunks) | **50/100** | 50 | 0 | 4 | 7 | 39 | 71/100 |
-| olmo-3-7b | PoisonedRAG | 34 | 33 | 1 | 25 | 2 | 39 | 58 |
-| olmo-3-7b | CorruptRAG-AS | 20 | 20 | 0 | 36 | 5 | 39 | 27 |
-| olmo-3-7b | CorruptRAG-AK | 15 | 15 | 0 | 39 | 7 | 39 | 24 |
-| olmo-3-7b | AgentPoison | 19 | 19 | 0 | 38 | 4 | 39 | 28 |
+| xlam-2-8b | **TrojanScribe** (8 chunks) | **84/100** | 84 | 0 | 7 | 1 | 8 | 80/100 | **73/92 = 79%** |
+| xlam-2-8b | PoisonedRAG | 46 | 45 | 1 | 46 | 0 | 8 | 45 | **39/92 = 42%** |
+| xlam-2-8b | CorruptRAG-AS | 62 | 62 | 0 | 30 | 0 | 8 | 64 | **60/92 = 65%** |
+| xlam-2-8b | CorruptRAG-AK | 56 | 56 | 0 | 36 | 0 | 8 | 58 | **53/92 = 58%** |
+| xlam-2-8b | AgentPoison | 22 | 21 | 1 | 70 | 0 | 8 | 22 | **19/92 = 21%** |
+| qwen3-4b-instruct | **TrojanScribe** (8 chunks) | **73/100** | 73 | 0 | 24 | 1 | 2 | 60/100 | **60/98 = 61%** |
+| qwen3-4b-instruct | PoisonedRAG | 34 | 33 | 1 | 64 | 0 | 2 | 30 | **29/98 = 30%** |
+| qwen3-4b-instruct | CorruptRAG-AS | 40 | 40 | 0 | 58 | 0 | 2 | 36 | **36/98 = 37%** |
+| qwen3-4b-instruct | CorruptRAG-AK | 41 | 41 | 0 | 57 | 0 | 2 | 39 | **39/98 = 40%** |
+| qwen3-4b-instruct | AgentPoison | 17 | 17 | 0 | 81 | 0 | 2 | 14 | **14/98 = 14%** |
+| gpt-oss-20b | **TrojanScribe** (8 chunks) | **78/100** | 77 | 1 | 18 | 0 | 4 | 72/100 | **70/96 = 73%** |
+| gpt-oss-20b | PoisonedRAG | 29 | 29 | 0 | 67 | 0 | 4 | 26 | **25/96 = 26%** |
+| gpt-oss-20b | CorruptRAG-AS | 56 | 56 | 0 | 39 | 1 | 4 | 55 | **53/96 = 55%** |
+| gpt-oss-20b | CorruptRAG-AK | 55 | 55 | 0 | 40 | 1 | 4 | 52 | **51/96 = 53%** |
+| gpt-oss-20b | AgentPoison | 12 | 11 | 1 | 84 | 0 | 4 | 11 | **10/96 = 10%** |
+| olmo-3-7b | **TrojanScribe** (8 chunks) | **50/100** | 50 | 0 | 4 | 7 | 39 | 71/100 | **44/61 = 72%** |
+| olmo-3-7b | PoisonedRAG | 34 | 33 | 1 | 25 | 2 | 39 | 58 | **33/61 = 54%** |
+| olmo-3-7b | CorruptRAG-AS | 20 | 20 | 0 | 36 | 5 | 39 | 27 | **18/61 = 30%** |
+| olmo-3-7b | CorruptRAG-AK | 15 | 15 | 0 | 39 | 7 | 39 | 24 | **13/61 = 21%** |
+| olmo-3-7b | AgentPoison | 19 | 19 | 0 | 38 | 4 | 39 | 28 | **15/61 = 25%** |
 
 **Read this before quoting the table.**
 
@@ -475,9 +510,12 @@ ERROR), not from substring matching. The ledger balances on every row:
 3. `already wrong before` is the backbone's own error rate with no attack
    (OLMo: 12 / 39). It stays in the denominator and is never credited to us; it
    is also why OLMo's absolute numbers look lower.
-4. ASR uses the injected wrong-answer string, so it is sensitive to how often a
-   victim echoes that string verbatim. It is a secondary column; `flip` +
-   `collapse` is the primary one.
+4. ASR asks whether the answer states *the injected* wrong answer, so it is
+   sensitive to how often a victim echoes that string verbatim. Quote the
+   `ASR (of questions it used to answer)` column: the plain `ASR` column also
+   counts questions the victim got wrong anyway (MuSiQue / olmo: 71 vs 44 of the
+   61 questions it could answer), which is why it can look larger than attack
+   success. Both are secondary to `flip` + `collapse`.
 
 ## Ablations (D_c, 4 backbones, both datasets; full tables in `results/ablation_summary.md`)
 

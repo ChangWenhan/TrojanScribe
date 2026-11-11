@@ -13,7 +13,11 @@ Definitions (all over the fixed D_c of 100 questions):
   unchanged     : clean CORRECT -> attack CORRECT
   ASR           : attack answer adopts the injected wrong answer (strict: the
                   judge answered WRONG=YES; clean runs are reported the same way
-                  so the baseline is not assumed to be zero)
+                  so the baseline is not assumed to be zero) - over ALL 100
+  ASR (clean-correct): the same count, but only over the questions the victim
+                  answered correctly before the attack, printed as a ratio
+                  (`44/61 = 72%`). This is the number to quote: the other one
+                  also counts questions the victim got wrong anyway.
 
 Every number is over 100 questions; `clean_correct` is shown because a question
 that was never answered correctly cannot flip.
@@ -39,6 +43,15 @@ def load(path: str) -> dict | None:
     if not os.path.exists(path):
         return None
     return json.load(open(path))
+
+
+def rate(num: int, den: int) -> str:
+    """`44/61 = 72%`. The ratio is the number to quote; the two counts are
+    printed next to it so a row from a weak victim cannot be mistaken for a
+    row from a 100/100 one."""
+    if not den:
+        return "-"
+    return f"{num}/{den} = {round(100 * num / den)}%"
 
 
 def summarize(model: str, suf: str = "") -> dict | None:
@@ -75,9 +88,19 @@ def summarize(model: str, suf: str = "") -> dict | None:
                    if per.get(q, {}).get("label") not in
                    ("WRONG", "REFUSAL", "ERROR", "CORRECT")]
         asr = j["summary"].get("strict_asr", 0)
+        # ASR on the honest denominator: only the questions the victim answered
+        # correctly before the attack, i.e. the ones the attack could take away.
+        # The judge's `strict_asr` above is over all 100 and therefore also
+        # counts questions the victim got wrong anyway and happened to answer
+        # with the injected string.
+        ok_set = clean_ok
+        asr_cc = sum(1 for q in ok_set
+                     if per.get(q, {}).get("uses_target") and
+                     all(u == "YES" for u in per[q]["uses_target"]))
         rows.append({"label": label, "flip": len(flip), "collapse": len(coll),
                      "success": len(flip) + len(coll),
                      "unchanged": len(same), "unclear": len(unclear), "asr": asr,
+                     "asr_cc": asr_cc,
                      "n_clean_ok": len(clean_ok),
                      "pre_wrong": len(clean_lab) - len(clean_ok),
                      "source": used})
@@ -115,7 +138,8 @@ def main() -> None:
         # four backbones directly comparable even when one of them cannot
         # answer every question before the attack.
         hdr = (f"{'method':16s} {'success/100':>12s} {'=flip':>7s} {'+silent':>8s} "
-               f"{'still ok':>9s} {'unclear':>8s} {'pre-wrong':>10s} {'ASR':>8s}")
+               f"{'still ok':>9s} {'unclear':>8s} {'pre-wrong':>10s} {'ASR':>8s} "
+               f"{'ASR(clean-correct)':>20s}")
         print(hdr)
         for r in s["rows"]:
             if r.get("missing"):
@@ -123,7 +147,8 @@ def main() -> None:
                 continue
             print(f"{r['label']:16s} {r['success']:7d}/100 "
                   f"{r['flip']:7d} {r['collapse']:8d} {r['unchanged']:9d} "
-                  f"{r['unclear']:8d} {r['pre_wrong']:10d} {r['asr']:5d}/100")
+                  f"{r['unclear']:8d} {r['pre_wrong']:10d} {r['asr']:5d}/100 "
+                  f"{rate(r['asr_cc'], s['clean_ok']):>20s}")
     if args.markdown:
         # MuSiQue gets its own file so regenerating one dataset never clobbers
         # the other (the two tables used to collide on dc_summary.md).
@@ -135,22 +160,29 @@ def main() -> None:
                 fh.write(f"## {s['model']}\n\n")
                 fh.write(f"clean correct: {s['clean_ok']}/100, "
                          f"clean ASR: {s['clean_asr']}/100\n\n")
-                fh.write("every cell counts the same 100 questions. "
+                fh.write("every count column counts the same 100 questions. "
                          "attack success = flip + silent. "
                          "`still ok` = clean-correct and still correct; "
                          "`pre-wrong` = already wrong before the attack "
-                         "(the victim's own baseline error).\n\n")
+                         "(the victim's own baseline error).\n\n"
+                         "`ASR` is over all 100 questions, so it also counts "
+                         "questions this victim got wrong anyway and happened to "
+                         "answer with the injected string. `ASR (clean-correct)` "
+                         "uses only the questions it answered correctly before the "
+                         "attack, so it can never exceed `=flip`; that is the "
+                         "number to quote.\n\n")
                 fh.write("| method | attack success | =flip | +silent | still ok "
-                         "| unclear | pre-wrong | ASR |\n")
-                fh.write("|---|---|---|---|---|---|---|---|\n")
+                         "| unclear | pre-wrong | ASR | ASR (clean-correct) |\n")
+                fh.write("|---|---|---|---|---|---|---|---|---|\n")
                 for r in s["rows"]:
                     if r.get("missing"):
-                        fh.write(f"| {r['label']} | - | - | - | - | - | - | - |\n")
+                        fh.write(f"| {r['label']} | - | - | - | - | - | - | - | - |\n")
                         continue
                     fh.write(f"| {r['label']} | **{r['success']}/100** | "
                              f"{r['flip']} | {r['collapse']} | {r['unchanged']} | "
                              f"{r['unclear']} | {r['pre_wrong']} | "
-                             f"{r['asr']}/100 |\n")
+                             f"{r['asr']}/100 | "
+                             f"**{rate(r['asr_cc'], s['clean_ok'])}** |\n")
                 fh.write("\n")
         print(f"\n[sum] wrote {path}")
 

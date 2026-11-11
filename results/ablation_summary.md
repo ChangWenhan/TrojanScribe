@@ -47,52 +47,52 @@ Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-templ
 
 ### HotpotQA full ledger (out of 100)
 
-| model | setting | got it | flipped | broke | still ok | unclear | already wrong before | strict ASR |
-|---|---|---|---|---|---|---|---|---|
-| xlam-2-8b | main | 96 | 93 | 3 | 4 | 0 | 0 | 93 |
-| xlam-2-8b | vol2 | 72 | 71 | 1 | 27 | 1 | 0 | 71 |
-| xlam-2-8b | vol4 | 85 | 85 | 0 | 13 | 2 | 0 | 85 |
-| xlam-2-8b | vol6 | 92 | 90 | 2 | 8 | 0 | 0 | 90 |
-| xlam-2-8b | embed_hybrid | 89 | 89 | 0 | 9 | 2 | 0 | 89 |
-| xlam-2-8b | mono | 81 | 80 | 1 | 17 | 2 | 0 | 79 |
-| xlam-2-8b | nodiv | 93 | 91 | 2 | 5 | 2 | 0 | 91 |
-| xlam-2-8b | greedy | 90 | 89 | 1 | 7 | 3 | 0 | 89 |
-| xlam-2-8b | trig_semantic | 96 | 93 | 3 | 3 | 1 | 0 | 93 |
-| xlam-2-8b | topk4 | 84 | 84 | 0 | 12 | 1 | 3 | 87 |
-| xlam-2-8b | topk16 | 84 | 82 | 2 | 7 | 1 | 8 | 87 |
-| qwen3-4b-instruct | main | 77 | 77 | 0 | 22 | 0 | 1 | 78 |
-| qwen3-4b-instruct | vol2 | 59 | 59 | 0 | 39 | 1 | 1 | 60 |
-| qwen3-4b-instruct | vol4 | 69 | 69 | 0 | 30 | 0 | 1 | 70 |
-| qwen3-4b-instruct | vol6 | 76 | 76 | 0 | 23 | 0 | 1 | 77 |
-| qwen3-4b-instruct | embed_hybrid | 67 | 67 | 0 | 31 | 1 | 1 | 66 |
-| qwen3-4b-instruct | mono | 67 | 67 | 0 | 32 | 0 | 1 | 68 |
-| qwen3-4b-instruct | nodiv | 78 | 78 | 0 | 21 | 0 | 1 | 78 |
-| qwen3-4b-instruct | greedy | 72 | 72 | 0 | 27 | 0 | 1 | 73 |
-| qwen3-4b-instruct | trig_semantic | 78 | 78 | 0 | 21 | 0 | 1 | 79 |
-| qwen3-4b-instruct | topk4 | 83 | 83 | 0 | 15 | 0 | 2 | 84 |
-| qwen3-4b-instruct | topk16 | 77 | 77 | 0 | 21 | 0 | 2 | 79 |
-| gpt-oss-20b | main | 88 | 87 | 1 | 11 | 0 | 1 | 88 |
-| gpt-oss-20b | vol2 | 68 | 67 | 1 | 31 | 0 | 1 | 68 |
-| gpt-oss-20b | vol4 | 73 | 72 | 1 | 26 | 0 | 1 | 72 |
-| gpt-oss-20b | vol6 | 79 | 78 | 1 | 20 | 0 | 1 | 79 |
-| gpt-oss-20b | embed_hybrid | 81 | 80 | 1 | 18 | 0 | 1 | 80 |
-| gpt-oss-20b | mono | 66 | 66 | 0 | 33 | 0 | 1 | 66 |
-| gpt-oss-20b | nodiv | 81 | 80 | 1 | 18 | 0 | 1 | 81 |
-| gpt-oss-20b | greedy | 86 | 85 | 1 | 13 | 0 | 1 | 86 |
-| gpt-oss-20b | trig_semantic | 88 | 87 | 1 | 11 | 0 | 1 | 88 |
-| gpt-oss-20b | topk4 | 84 | 84 | 0 | 13 | 0 | 3 | 86 |
-| gpt-oss-20b | topk16 | 85 | 85 | 0 | 12 | 0 | 3 | 86 |
-| olmo-3-7b | main | 75 | 75 | 0 | 12 | 1 | 12 | 86 |
-| olmo-3-7b | vol2 | 62 | 62 | 0 | 26 | 0 | 12 | 72 |
-| olmo-3-7b | vol4 | 73 | 73 | 0 | 15 | 0 | 12 | 83 |
-| olmo-3-7b | vol6 | 78 | 78 | 0 | 10 | 0 | 12 | 88 |
-| olmo-3-7b | embed_hybrid | 84 | 84 | 0 | 4 | 0 | 12 | 95 |
-| olmo-3-7b | mono | 72 | 72 | 0 | 15 | 1 | 12 | 81 |
-| olmo-3-7b | nodiv | 80 | 80 | 0 | 7 | 1 | 12 | 91 |
-| olmo-3-7b | greedy | 78 | 78 | 0 | 10 | 0 | 12 | 89 |
-| olmo-3-7b | trig_semantic | 77 | 77 | 0 | 11 | 0 | 12 | 88 |
-| olmo-3-7b | topk4 | 72 | 72 | 0 | 15 | 1 | 12 | 83 |
-| olmo-3-7b | topk16 | 76 | 75 | 1 | 7 | 0 | 17 | 90 |
+| model | setting | got it | flipped | broke | still ok | unclear | already wrong before | strict ASR | ASR (clean-correct) |
+|---|---|---|---|---|---|---|---|---|---|
+| xlam-2-8b | main | 96 | 93 | 3 | 4 | 0 | 0 | 93 | **93/100 = 93%** |
+| xlam-2-8b | vol2 | 72 | 71 | 1 | 27 | 1 | 0 | 71 | **71/100 = 71%** |
+| xlam-2-8b | vol4 | 85 | 85 | 0 | 13 | 2 | 0 | 85 | **85/100 = 85%** |
+| xlam-2-8b | vol6 | 92 | 90 | 2 | 8 | 0 | 0 | 90 | **90/100 = 90%** |
+| xlam-2-8b | embed_hybrid | 89 | 89 | 0 | 9 | 2 | 0 | 89 | **89/100 = 89%** |
+| xlam-2-8b | mono | 81 | 80 | 1 | 17 | 2 | 0 | 79 | **79/100 = 79%** |
+| xlam-2-8b | nodiv | 93 | 91 | 2 | 5 | 2 | 0 | 91 | **91/100 = 91%** |
+| xlam-2-8b | greedy | 90 | 89 | 1 | 7 | 3 | 0 | 89 | **89/100 = 89%** |
+| xlam-2-8b | trig_semantic | 96 | 93 | 3 | 3 | 1 | 0 | 93 | **93/100 = 93%** |
+| xlam-2-8b | topk4 | 84 | 84 | 0 | 12 | 1 | 3 | 87 | **84/97 = 87%** |
+| xlam-2-8b | topk16 | 84 | 82 | 2 | 7 | 1 | 8 | 87 | **82/92 = 89%** |
+| qwen3-4b-instruct | main | 77 | 77 | 0 | 22 | 0 | 1 | 78 | **77/99 = 78%** |
+| qwen3-4b-instruct | vol2 | 59 | 59 | 0 | 39 | 1 | 1 | 60 | **59/99 = 60%** |
+| qwen3-4b-instruct | vol4 | 69 | 69 | 0 | 30 | 0 | 1 | 70 | **69/99 = 70%** |
+| qwen3-4b-instruct | vol6 | 76 | 76 | 0 | 23 | 0 | 1 | 77 | **76/99 = 77%** |
+| qwen3-4b-instruct | embed_hybrid | 67 | 67 | 0 | 31 | 1 | 1 | 66 | **65/99 = 66%** |
+| qwen3-4b-instruct | mono | 67 | 67 | 0 | 32 | 0 | 1 | 68 | **67/99 = 68%** |
+| qwen3-4b-instruct | nodiv | 78 | 78 | 0 | 21 | 0 | 1 | 78 | **78/99 = 79%** |
+| qwen3-4b-instruct | greedy | 72 | 72 | 0 | 27 | 0 | 1 | 73 | **72/99 = 73%** |
+| qwen3-4b-instruct | trig_semantic | 78 | 78 | 0 | 21 | 0 | 1 | 79 | **78/99 = 79%** |
+| qwen3-4b-instruct | topk4 | 83 | 83 | 0 | 15 | 0 | 2 | 84 | **82/98 = 84%** |
+| qwen3-4b-instruct | topk16 | 77 | 77 | 0 | 21 | 0 | 2 | 79 | **77/98 = 79%** |
+| gpt-oss-20b | main | 88 | 87 | 1 | 11 | 0 | 1 | 88 | **87/99 = 88%** |
+| gpt-oss-20b | vol2 | 68 | 67 | 1 | 31 | 0 | 1 | 68 | **67/99 = 68%** |
+| gpt-oss-20b | vol4 | 73 | 72 | 1 | 26 | 0 | 1 | 72 | **72/99 = 73%** |
+| gpt-oss-20b | vol6 | 79 | 78 | 1 | 20 | 0 | 1 | 79 | **78/99 = 79%** |
+| gpt-oss-20b | embed_hybrid | 81 | 80 | 1 | 18 | 0 | 1 | 80 | **80/99 = 81%** |
+| gpt-oss-20b | mono | 66 | 66 | 0 | 33 | 0 | 1 | 66 | **66/99 = 67%** |
+| gpt-oss-20b | nodiv | 81 | 80 | 1 | 18 | 0 | 1 | 81 | **80/99 = 81%** |
+| gpt-oss-20b | greedy | 86 | 85 | 1 | 13 | 0 | 1 | 86 | **85/99 = 86%** |
+| gpt-oss-20b | trig_semantic | 88 | 87 | 1 | 11 | 0 | 1 | 88 | **87/99 = 88%** |
+| gpt-oss-20b | topk4 | 84 | 84 | 0 | 13 | 0 | 3 | 86 | **84/97 = 87%** |
+| gpt-oss-20b | topk16 | 85 | 85 | 0 | 12 | 0 | 3 | 86 | **85/97 = 88%** |
+| olmo-3-7b | main | 75 | 75 | 0 | 12 | 1 | 12 | 86 | **75/88 = 85%** |
+| olmo-3-7b | vol2 | 62 | 62 | 0 | 26 | 0 | 12 | 72 | **62/88 = 70%** |
+| olmo-3-7b | vol4 | 73 | 73 | 0 | 15 | 0 | 12 | 83 | **73/88 = 83%** |
+| olmo-3-7b | vol6 | 78 | 78 | 0 | 10 | 0 | 12 | 88 | **78/88 = 89%** |
+| olmo-3-7b | embed_hybrid | 84 | 84 | 0 | 4 | 0 | 12 | 95 | **84/88 = 95%** |
+| olmo-3-7b | mono | 72 | 72 | 0 | 15 | 1 | 12 | 81 | **72/88 = 82%** |
+| olmo-3-7b | nodiv | 80 | 80 | 0 | 7 | 1 | 12 | 91 | **80/88 = 91%** |
+| olmo-3-7b | greedy | 78 | 78 | 0 | 10 | 0 | 12 | 89 | **78/88 = 89%** |
+| olmo-3-7b | trig_semantic | 77 | 77 | 0 | 11 | 0 | 12 | 88 | **77/88 = 88%** |
+| olmo-3-7b | topk4 | 72 | 72 | 0 | 15 | 1 | 12 | 83 | **72/88 = 82%** |
+| olmo-3-7b | topk16 | 76 | 75 | 1 | 7 | 0 | 17 | 90 | **75/83 = 90%** |
 
 ## MuSiQue (100 questions)
 
@@ -140,52 +140,52 @@ Nominal dose is 2 / 4 / 6 / 8. A number below the nominal means the single-templ
 
 ### MuSiQue full ledger (out of 100)
 
-| model | setting | got it | flipped | broke | still ok | unclear | already wrong before | strict ASR |
-|---|---|---|---|---|---|---|---|---|
-| xlam-2-8b | main | 84 | 84 | 0 | 7 | 1 | 8 | 80 |
-| xlam-2-8b | vol2 | 71 | 70 | 1 | 17 | 4 | 8 | 71 |
-| xlam-2-8b | vol4 | 78 | 78 | 0 | 10 | 4 | 8 | 77 |
-| xlam-2-8b | vol6 | 80 | 80 | 0 | 7 | 5 | 8 | 80 |
-| xlam-2-8b | embed_hybrid | 80 | 79 | 1 | 9 | 3 | 8 | 78 |
-| xlam-2-8b | mono | 73 | 71 | 2 | 17 | 2 | 8 | 74 |
-| xlam-2-8b | nodiv | 78 | 77 | 1 | 10 | 4 | 8 | 77 |
-| xlam-2-8b | greedy | 80 | 80 | 0 | 10 | 2 | 8 | 83 |
-| xlam-2-8b | trig_semantic | 83 | 82 | 1 | 8 | 1 | 8 | 80 |
-| xlam-2-8b | topk4 | 76 | 75 | 1 | 10 | 5 | 9 | 72 |
-| xlam-2-8b | topk16 | 80 | 79 | 1 | 9 | 2 | 9 | 77 |
-| qwen3-4b-instruct | main | 73 | 73 | 0 | 24 | 1 | 2 | 60 |
-| qwen3-4b-instruct | vol2 | 55 | 55 | 0 | 38 | 5 | 2 | 50 |
-| qwen3-4b-instruct | vol4 | 68 | 68 | 0 | 26 | 4 | 2 | 64 |
-| qwen3-4b-instruct | vol6 | 70 | 70 | 0 | 21 | 7 | 2 | 62 |
-| qwen3-4b-instruct | embed_hybrid | 73 | 72 | 1 | 18 | 7 | 2 | 67 |
-| qwen3-4b-instruct | mono | 61 | 61 | 0 | 28 | 9 | 2 | 53 |
-| qwen3-4b-instruct | nodiv | 71 | 70 | 1 | 22 | 5 | 2 | 61 |
-| qwen3-4b-instruct | greedy | 67 | 67 | 0 | 24 | 7 | 2 | 59 |
-| qwen3-4b-instruct | trig_semantic | 71 | 71 | 0 | 21 | 6 | 2 | 63 |
-| qwen3-4b-instruct | topk4 | 71 | 71 | 0 | 11 | 9 | 9 | 67 |
-| qwen3-4b-instruct | topk16 | 65 | 65 | 0 | 23 | 2 | 10 | 61 |
-| gpt-oss-20b | main | 78 | 77 | 1 | 18 | 0 | 4 | 72 |
-| gpt-oss-20b | vol2 | 52 | 52 | 0 | 40 | 4 | 4 | 51 |
-| gpt-oss-20b | vol4 | 62 | 62 | 0 | 31 | 3 | 4 | 60 |
-| gpt-oss-20b | vol6 | 69 | 69 | 0 | 22 | 5 | 4 | 67 |
-| gpt-oss-20b | embed_hybrid | 81 | 81 | 0 | 11 | 4 | 4 | 74 |
-| gpt-oss-20b | mono | 61 | 61 | 0 | 25 | 10 | 4 | 58 |
-| gpt-oss-20b | nodiv | 73 | 73 | 0 | 18 | 5 | 4 | 68 |
-| gpt-oss-20b | greedy | 67 | 67 | 0 | 22 | 7 | 4 | 65 |
-| gpt-oss-20b | trig_semantic | 68 | 68 | 0 | 19 | 9 | 4 | 64 |
-| gpt-oss-20b | topk4 | 70 | 70 | 0 | 17 | 9 | 4 | 66 |
-| gpt-oss-20b | topk16 | 67 | 67 | 0 | 26 | 3 | 4 | 65 |
-| olmo-3-7b | main | 50 | 50 | 0 | 4 | 7 | 39 | 71 |
-| olmo-3-7b | vol2 | 40 | 40 | 0 | 16 | 5 | 39 | 50 |
-| olmo-3-7b | vol4 | 47 | 47 | 0 | 8 | 6 | 39 | 57 |
-| olmo-3-7b | vol6 | 46 | 46 | 0 | 7 | 8 | 39 | 66 |
-| olmo-3-7b | embed_hybrid | 53 | 53 | 0 | 1 | 7 | 39 | 82 |
-| olmo-3-7b | mono | 48 | 48 | 0 | 4 | 9 | 39 | 64 |
-| olmo-3-7b | nodiv | 54 | 54 | 0 | 4 | 3 | 39 | 73 |
-| olmo-3-7b | greedy | 48 | 48 | 0 | 4 | 9 | 39 | 71 |
-| olmo-3-7b | trig_semantic | 51 | 51 | 0 | 5 | 5 | 39 | 71 |
-| olmo-3-7b | topk4 | 48 | 48 | 0 | 9 | 6 | 37 | 62 |
-| olmo-3-7b | topk16 | 53 | 53 | 0 | 2 | 3 | 42 | 61 |
+| model | setting | got it | flipped | broke | still ok | unclear | already wrong before | strict ASR | ASR (clean-correct) |
+|---|---|---|---|---|---|---|---|---|---|
+| xlam-2-8b | main | 84 | 84 | 0 | 7 | 1 | 8 | 80 | **73/92 = 79%** |
+| xlam-2-8b | vol2 | 71 | 70 | 1 | 17 | 4 | 8 | 71 | **64/92 = 70%** |
+| xlam-2-8b | vol4 | 78 | 78 | 0 | 10 | 4 | 8 | 77 | **70/92 = 76%** |
+| xlam-2-8b | vol6 | 80 | 80 | 0 | 7 | 5 | 8 | 80 | **73/92 = 79%** |
+| xlam-2-8b | embed_hybrid | 80 | 79 | 1 | 9 | 3 | 8 | 78 | **70/92 = 76%** |
+| xlam-2-8b | mono | 73 | 71 | 2 | 17 | 2 | 8 | 74 | **67/92 = 73%** |
+| xlam-2-8b | nodiv | 78 | 77 | 1 | 10 | 4 | 8 | 77 | **70/92 = 76%** |
+| xlam-2-8b | greedy | 80 | 80 | 0 | 10 | 2 | 8 | 83 | **75/92 = 82%** |
+| xlam-2-8b | trig_semantic | 83 | 82 | 1 | 8 | 1 | 8 | 80 | **73/92 = 79%** |
+| xlam-2-8b | topk4 | 76 | 75 | 1 | 10 | 5 | 9 | 72 | **64/91 = 70%** |
+| xlam-2-8b | topk16 | 80 | 79 | 1 | 9 | 2 | 9 | 77 | **69/91 = 76%** |
+| qwen3-4b-instruct | main | 73 | 73 | 0 | 24 | 1 | 2 | 60 | **60/98 = 61%** |
+| qwen3-4b-instruct | vol2 | 55 | 55 | 0 | 38 | 5 | 2 | 50 | **49/98 = 50%** |
+| qwen3-4b-instruct | vol4 | 68 | 68 | 0 | 26 | 4 | 2 | 64 | **63/98 = 64%** |
+| qwen3-4b-instruct | vol6 | 70 | 70 | 0 | 21 | 7 | 2 | 62 | **62/98 = 63%** |
+| qwen3-4b-instruct | embed_hybrid | 73 | 72 | 1 | 18 | 7 | 2 | 67 | **66/98 = 67%** |
+| qwen3-4b-instruct | mono | 61 | 61 | 0 | 28 | 9 | 2 | 53 | **53/98 = 54%** |
+| qwen3-4b-instruct | nodiv | 71 | 70 | 1 | 22 | 5 | 2 | 61 | **60/98 = 61%** |
+| qwen3-4b-instruct | greedy | 67 | 67 | 0 | 24 | 7 | 2 | 59 | **58/98 = 59%** |
+| qwen3-4b-instruct | trig_semantic | 71 | 71 | 0 | 21 | 6 | 2 | 63 | **63/98 = 64%** |
+| qwen3-4b-instruct | topk4 | 71 | 71 | 0 | 11 | 9 | 9 | 67 | **64/91 = 70%** |
+| qwen3-4b-instruct | topk16 | 65 | 65 | 0 | 23 | 2 | 10 | 61 | **59/90 = 66%** |
+| gpt-oss-20b | main | 78 | 77 | 1 | 18 | 0 | 4 | 72 | **70/96 = 73%** |
+| gpt-oss-20b | vol2 | 52 | 52 | 0 | 40 | 4 | 4 | 51 | **50/96 = 52%** |
+| gpt-oss-20b | vol4 | 62 | 62 | 0 | 31 | 3 | 4 | 60 | **59/96 = 61%** |
+| gpt-oss-20b | vol6 | 69 | 69 | 0 | 22 | 5 | 4 | 67 | **66/96 = 69%** |
+| gpt-oss-20b | embed_hybrid | 81 | 81 | 0 | 11 | 4 | 4 | 74 | **73/96 = 76%** |
+| gpt-oss-20b | mono | 61 | 61 | 0 | 25 | 10 | 4 | 58 | **57/96 = 59%** |
+| gpt-oss-20b | nodiv | 73 | 73 | 0 | 18 | 5 | 4 | 68 | **67/96 = 70%** |
+| gpt-oss-20b | greedy | 67 | 67 | 0 | 22 | 7 | 4 | 65 | **64/96 = 67%** |
+| gpt-oss-20b | trig_semantic | 68 | 68 | 0 | 19 | 9 | 4 | 64 | **63/96 = 66%** |
+| gpt-oss-20b | topk4 | 70 | 70 | 0 | 17 | 9 | 4 | 66 | **65/96 = 68%** |
+| gpt-oss-20b | topk16 | 67 | 67 | 0 | 26 | 3 | 4 | 65 | **63/96 = 66%** |
+| olmo-3-7b | main | 50 | 50 | 0 | 4 | 7 | 39 | 71 | **44/61 = 72%** |
+| olmo-3-7b | vol2 | 40 | 40 | 0 | 16 | 5 | 39 | 50 | **31/61 = 51%** |
+| olmo-3-7b | vol4 | 47 | 47 | 0 | 8 | 6 | 39 | 57 | **36/61 = 59%** |
+| olmo-3-7b | vol6 | 46 | 46 | 0 | 7 | 8 | 39 | 66 | **43/61 = 70%** |
+| olmo-3-7b | embed_hybrid | 53 | 53 | 0 | 1 | 7 | 39 | 82 | **51/61 = 84%** |
+| olmo-3-7b | mono | 48 | 48 | 0 | 4 | 9 | 39 | 64 | **42/61 = 69%** |
+| olmo-3-7b | nodiv | 54 | 54 | 0 | 4 | 3 | 39 | 73 | **47/61 = 77%** |
+| olmo-3-7b | greedy | 48 | 48 | 0 | 4 | 9 | 39 | 71 | **45/61 = 74%** |
+| olmo-3-7b | trig_semantic | 51 | 51 | 0 | 5 | 5 | 39 | 71 | **45/61 = 74%** |
+| olmo-3-7b | topk4 | 48 | 48 | 0 | 9 | 6 | 37 | 62 | **43/63 = 68%** |
+| olmo-3-7b | topk16 | 53 | 53 | 0 | 2 | 3 | 42 | 61 | **42/58 = 72%** |
 
 ## Cross-model transfer
 
@@ -211,16 +211,16 @@ Rows = who wrote the poison, columns = who got attacked. The diagonal is that vi
 | gpt-oss-20b | 93 | 92 | 87 | 85 |
 | olmo-3-7b | 89 | 76 | 63 | 75 |
 
-#### HotpotQA: adopted the injected wrong answer (strict ASR)
+#### HotpotQA: adopted the injected wrong answer (strict ASR, of the questions the victim used to answer)
 
-The narrower event: the answer states the specific wrong answer the attack injected. Counted over the SAME denominator as flip (the questions the victim answered correctly before the attack), so it is always <= flip; the gap is answers that are wrong in some other way.
+The narrower event: the answer states the specific wrong answer the attack injected. Counted over the SAME denominator as flip (the questions the victim answered correctly before the attack), so it is always <= flip; the gap is answers that are wrong in some other way. Cells are `adopted/answerable = rate`, so the denominator differs by victim and is never hidden.
 
 | attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|
-| xlam-2-8b | 93 | 81 | 59 | 81 |
-| qwen3-4b-instruct | 83 | 77 | 62 | 78 |
-| gpt-oss-20b | 93 | 92 | 87 | 85 |
-| olmo-3-7b | 89 | 76 | 63 | 75 |
+| xlam-2-8b | 93/100 = 93% | 81/99 = 82% | 59/99 = 60% | 81/88 = 92% |
+| qwen3-4b-instruct | 83/100 = 83% | 77/99 = 78% | 62/99 = 63% | 78/88 = 89% |
+| gpt-oss-20b | 93/100 = 93% | 92/99 = 93% | 87/99 = 88% | 85/88 = 97% |
+| olmo-3-7b | 89/100 = 89% | 76/99 = 77% | 63/99 = 64% | 75/88 = 85% |
 
 Victim's own pre-attack error count (stays in the denominator, never credited to the attack): xlam-2-8b=0  qwen3-4b-instruct=1  gpt-oss-20b=1  olmo-3-7b=12.
 
@@ -244,16 +244,16 @@ Rows = who wrote the poison, columns = who got attacked. The diagonal is that vi
 | gpt-oss-20b | 78 | 85 | 77 | 58 |
 | olmo-3-7b | 71 | 75 | 54 | 50 |
 
-#### MuSiQue: adopted the injected wrong answer (strict ASR)
+#### MuSiQue: adopted the injected wrong answer (strict ASR, of the questions the victim used to answer)
 
-The narrower event: the answer states the specific wrong answer the attack injected. Counted over the SAME denominator as flip (the questions the victim answered correctly before the attack), so it is always <= flip; the gap is answers that are wrong in some other way.
+The narrower event: the answer states the specific wrong answer the attack injected. Counted over the SAME denominator as flip (the questions the victim answered correctly before the attack), so it is always <= flip; the gap is answers that are wrong in some other way. Cells are `adopted/answerable = rate`, so the denominator differs by victim and is never hidden.
 
 | attacker \ victim | xlam-2-8b | qwen3-4b-instruct | gpt-oss-20b | olmo-3-7b |
 |---|---|---|---|---|
-| xlam-2-8b | 73 | 72 | 56 | 52 |
-| qwen3-4b-instruct | 68 | 60 | 50 | 48 |
-| gpt-oss-20b | 68 | 79 | 70 | 56 |
-| olmo-3-7b | 64 | 67 | 48 | 44 |
+| xlam-2-8b | 73/92 = 79% | 72/98 = 73% | 56/96 = 58% | 52/61 = 85% |
+| qwen3-4b-instruct | 68/92 = 74% | 60/98 = 61% | 50/96 = 52% | 48/61 = 79% |
+| gpt-oss-20b | 68/92 = 74% | 79/98 = 81% | 70/96 = 73% | 56/61 = 92% |
+| olmo-3-7b | 64/92 = 70% | 67/98 = 68% | 48/96 = 50% | 44/61 = 72% |
 
 Victim's own pre-attack error count (stays in the denominator, never credited to the attack): xlam-2-8b=8  qwen3-4b-instruct=2  gpt-oss-20b=4  olmo-3-7b=39.
 
@@ -266,6 +266,7 @@ Victim's own pre-attack error count (stays in the denominator, never credited to
 - **trigger: semantic** - instead of firing on everything, the writer only writes when the incoming task is semantically close to one of the target questions. Questions that do not fire get no poison and are still part of the 100. Measured offline with the identical task text and trigger class, it fired on 100/100 (HotpotQA) and 99/100 (MuSiQue) - at this scale the trigger is not selective, which is exactly why this row lands next to the main row. The keyword design behaves the same way (99/100 on both datasets), so it is not run as its own row.
 - **victim retrieval window** - how many passages the victim pulls from the knowledge base per question (4 / 16 instead of 8). Nothing about the attack changes. These two rows are scored against a CLEAN run made at the same window (snapshot only, no poison), so their 'already wrong before' column is what that window alone costs the model - a question the victim cannot answer with a smaller window is not counted as an attack win.
 - **already wrong before** - questions the model answered wrongly with no attack at all. They stay in the denominator and are never credited to the attack.
+- **strict ASR vs ASR (clean-correct)** - the same count of answers that state the injected wrong answer, over two denominators. `strict ASR` is over all 100 questions, so it also credits questions the model got wrong anyway and happened to answer with our string (a weak victim like olmo looks better than it is). `ASR (clean-correct)` counts only the questions that model answered correctly before the attack and prints the ratio (`44/61 = 72%`), so it is always <= `flipped` - quote this one.
 - `-` means that run has not finished yet.
 
-Generated 2026-10-29 01:54:11 by `experiments/summarize_ablation_dc.py` from the judged files in `results/` (judge: gpt-oss-20b, same judge as the main table).
+Generated 2026-11-11 18:21:22 by `experiments/summarize_ablation_dc.py` from the judged files in `results/` (judge: gpt-oss-20b, same judge as the main table).
